@@ -102,12 +102,12 @@ class DomainsApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for getDomainonfiguration
+     * Test case for getDomainConfiguration
      *
      * Validate domain configuration.
      *
      */
-    public function testGetDomainonfiguration()
+    public function testGetDomainConfiguration()
     {
     }
 

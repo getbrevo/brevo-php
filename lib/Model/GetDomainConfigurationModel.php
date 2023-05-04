@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateWhatsAppCampaignRecipients
+ * GetDomainConfigurationModel
  *
  * PHP version 5
  *
@@ -33,15 +33,14 @@ use \ArrayAccess;
 use \Brevo\Client\ObjectSerializer;
 
 /**
- * CreateWhatsAppCampaignRecipients Class Doc Comment
+ * GetDomainConfigurationModel Class Doc Comment
  *
  * @category Class
- * @description Segment ids and List ids to include/exclude from campaign
  * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
+class GetDomainConfigurationModel implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'createWhatsAppCampaign_recipients';
+    protected static $swaggerModelName = 'getDomainConfigurationModel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +57,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'excludedListIds' => 'int[]',
-        'listIds' => 'int[]',
-        'segments' => 'int[]'
+        'domain' => 'string',
+        'verified' => 'bool',
+        'authenticated' => 'bool',
+        'dnsRecords' => '\Brevo\Client\Model\CreateDomainModelDnsRecords'
     ];
 
     /**
@@ -69,9 +69,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'excludedListIds' => 'int64',
-        'listIds' => 'int64',
-        'segments' => 'int64'
+        'domain' => null,
+        'verified' => null,
+        'authenticated' => null,
+        'dnsRecords' => null
     ];
 
     /**
@@ -101,9 +102,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'excludedListIds' => 'excludedListIds',
-        'listIds' => 'listIds',
-        'segments' => 'segments'
+        'domain' => 'domain',
+        'verified' => 'verified',
+        'authenticated' => 'authenticated',
+        'dnsRecords' => 'dns_records'
     ];
 
     /**
@@ -112,9 +114,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'excludedListIds' => 'setExcludedListIds',
-        'listIds' => 'setListIds',
-        'segments' => 'setSegments'
+        'domain' => 'setDomain',
+        'verified' => 'setVerified',
+        'authenticated' => 'setAuthenticated',
+        'dnsRecords' => 'setDnsRecords'
     ];
 
     /**
@@ -123,9 +126,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'excludedListIds' => 'getExcludedListIds',
-        'listIds' => 'getListIds',
-        'segments' => 'getSegments'
+        'domain' => 'getDomain',
+        'verified' => 'getVerified',
+        'authenticated' => 'getAuthenticated',
+        'dnsRecords' => 'getDnsRecords'
     ];
 
     /**
@@ -188,9 +192,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['excludedListIds'] = isset($data['excludedListIds']) ? $data['excludedListIds'] : null;
-        $this->container['listIds'] = isset($data['listIds']) ? $data['listIds'] : null;
-        $this->container['segments'] = isset($data['segments']) ? $data['segments'] : null;
+        $this->container['domain'] = isset($data['domain']) ? $data['domain'] : null;
+        $this->container['verified'] = isset($data['verified']) ? $data['verified'] : null;
+        $this->container['authenticated'] = isset($data['authenticated']) ? $data['authenticated'] : null;
+        $this->container['dnsRecords'] = isset($data['dnsRecords']) ? $data['dnsRecords'] : null;
     }
 
     /**
@@ -202,6 +207,18 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['domain'] === null) {
+            $invalidProperties[] = "'domain' can't be null";
+        }
+        if ($this->container['verified'] === null) {
+            $invalidProperties[] = "'verified' can't be null";
+        }
+        if ($this->container['authenticated'] === null) {
+            $invalidProperties[] = "'authenticated' can't be null";
+        }
+        if ($this->container['dnsRecords'] === null) {
+            $invalidProperties[] = "'dnsRecords' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -218,73 +235,97 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets excludedListIds
+     * Gets domain
      *
-     * @return int[]
+     * @return string
      */
-    public function getExcludedListIds()
+    public function getDomain()
     {
-        return $this->container['excludedListIds'];
+        return $this->container['domain'];
     }
 
     /**
-     * Sets excludedListIds
+     * Sets domain
      *
-     * @param int[] $excludedListIds List ids to exclude from the campaign
+     * @param string $domain Domain
      *
      * @return $this
      */
-    public function setExcludedListIds($excludedListIds)
+    public function setDomain($domain)
     {
-        $this->container['excludedListIds'] = $excludedListIds;
+        $this->container['domain'] = $domain;
 
         return $this;
     }
 
     /**
-     * Gets listIds
+     * Gets verified
      *
-     * @return int[]
+     * @return bool
      */
-    public function getListIds()
+    public function getVerified()
     {
-        return $this->container['listIds'];
+        return $this->container['verified'];
     }
 
     /**
-     * Sets listIds
+     * Sets verified
      *
-     * @param int[] $listIds **Mandatory if scheduledAt is not empty**. List Ids to send the campaign to
+     * @param bool $verified Status of domain verification (true=verified, false=non verified)
      *
      * @return $this
      */
-    public function setListIds($listIds)
+    public function setVerified($verified)
     {
-        $this->container['listIds'] = $listIds;
+        $this->container['verified'] = $verified;
 
         return $this;
     }
 
     /**
-     * Gets segments
+     * Gets authenticated
      *
-     * @return int[]
+     * @return bool
      */
-    public function getSegments()
+    public function getAuthenticated()
     {
-        return $this->container['segments'];
+        return $this->container['authenticated'];
     }
 
     /**
-     * Sets segments
+     * Sets authenticated
      *
-     * @param int[] $segments **Mandatory if listIds are not used**. Segment ids to send the campaign to.
+     * @param bool $authenticated Status of domain authentication (true=authenticated, false=non authenticated)
      *
      * @return $this
      */
-    public function setSegments($segments)
+    public function setAuthenticated($authenticated)
     {
-        $this->container['segments'] = $segments;
+        $this->container['authenticated'] = $authenticated;
+
+        return $this;
+    }
+
+    /**
+     * Gets dnsRecords
+     *
+     * @return \Brevo\Client\Model\CreateDomainModelDnsRecords
+     */
+    public function getDnsRecords()
+    {
+        return $this->container['dnsRecords'];
+    }
+
+    /**
+     * Sets dnsRecords
+     *
+     * @param \Brevo\Client\Model\CreateDomainModelDnsRecords $dnsRecords dnsRecords
+     *
+     * @return $this
+     */
+    public function setDnsRecords($dnsRecords)
+    {
+        $this->container['dnsRecords'] = $dnsRecords;
 
         return $this;
     }

@@ -140,4 +140,24 @@ class WhatsAppCampaignsApiTest extends \PHPUnit_Framework_TestCase
     public function testGetWhatsAppTemplates()
     {
     }
+
+    /**
+     * Test case for sendWhatsAppTemplateApproval
+     *
+     * Send your WhatsApp template for approval.
+     *
+     */
+    public function testSendWhatsAppTemplateApproval()
+    {
+    }
+
+    /**
+     * Test case for updateWhatsAppCampaign
+     *
+     * Update a WhatsApp campaign.
+     *
+     */
+    public function testUpdateWhatsAppCampaign()
+    {
+    }
 }

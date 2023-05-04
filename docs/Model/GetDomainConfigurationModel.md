@@ -1,4 +1,4 @@
-# GetDomainonfigurationModel
+# GetDomainConfigurationModel
 
 ## Properties
 Name | Type | Description | Notes

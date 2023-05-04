@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateWhatsAppCampaignRecipients
+ * GetInvitedUsersListFeatureAccess
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Brevo\Client\ObjectSerializer;
 
 /**
- * CreateWhatsAppCampaignRecipients Class Doc Comment
+ * GetInvitedUsersListFeatureAccess Class Doc Comment
  *
  * @category Class
- * @description Segment ids and List ids to include/exclude from campaign
+ * @description Feature accessiblity given to the user.
  * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
+class GetInvitedUsersListFeatureAccess implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'createWhatsAppCampaign_recipients';
+    protected static $swaggerModelName = 'getInvitedUsersList_feature_access';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'excludedListIds' => 'int[]',
-        'listIds' => 'int[]',
-        'segments' => 'int[]'
+        'marketing' => 'object',
+        'conversations' => 'object',
+        'crm' => 'object'
     ];
 
     /**
@@ -69,9 +69,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'excludedListIds' => 'int64',
-        'listIds' => 'int64',
-        'segments' => 'int64'
+        'marketing' => 'string',
+        'conversations' => 'string',
+        'crm' => 'string'
     ];
 
     /**
@@ -101,9 +101,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'excludedListIds' => 'excludedListIds',
-        'listIds' => 'listIds',
-        'segments' => 'segments'
+        'marketing' => 'marketing',
+        'conversations' => 'conversations',
+        'crm' => 'crm'
     ];
 
     /**
@@ -112,9 +112,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'excludedListIds' => 'setExcludedListIds',
-        'listIds' => 'setListIds',
-        'segments' => 'setSegments'
+        'marketing' => 'setMarketing',
+        'conversations' => 'setConversations',
+        'crm' => 'setCrm'
     ];
 
     /**
@@ -123,9 +123,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'excludedListIds' => 'getExcludedListIds',
-        'listIds' => 'getListIds',
-        'segments' => 'getSegments'
+        'marketing' => 'getMarketing',
+        'conversations' => 'getConversations',
+        'crm' => 'getCrm'
     ];
 
     /**
@@ -188,9 +188,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['excludedListIds'] = isset($data['excludedListIds']) ? $data['excludedListIds'] : null;
-        $this->container['listIds'] = isset($data['listIds']) ? $data['listIds'] : null;
-        $this->container['segments'] = isset($data['segments']) ? $data['segments'] : null;
+        $this->container['marketing'] = isset($data['marketing']) ? $data['marketing'] : null;
+        $this->container['conversations'] = isset($data['conversations']) ? $data['conversations'] : null;
+        $this->container['crm'] = isset($data['crm']) ? $data['crm'] : null;
     }
 
     /**
@@ -218,73 +218,73 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets excludedListIds
+     * Gets marketing
      *
-     * @return int[]
+     * @return object
      */
-    public function getExcludedListIds()
+    public function getMarketing()
     {
-        return $this->container['excludedListIds'];
+        return $this->container['marketing'];
     }
 
     /**
-     * Sets excludedListIds
+     * Sets marketing
      *
-     * @param int[] $excludedListIds List ids to exclude from the campaign
+     * @param object $marketing Marketing features accessiblity.
      *
      * @return $this
      */
-    public function setExcludedListIds($excludedListIds)
+    public function setMarketing($marketing)
     {
-        $this->container['excludedListIds'] = $excludedListIds;
+        $this->container['marketing'] = $marketing;
 
         return $this;
     }
 
     /**
-     * Gets listIds
+     * Gets conversations
      *
-     * @return int[]
+     * @return object
      */
-    public function getListIds()
+    public function getConversations()
     {
-        return $this->container['listIds'];
+        return $this->container['conversations'];
     }
 
     /**
-     * Sets listIds
+     * Sets conversations
      *
-     * @param int[] $listIds **Mandatory if scheduledAt is not empty**. List Ids to send the campaign to
+     * @param object $conversations Conversations features accessiblity.
      *
      * @return $this
      */
-    public function setListIds($listIds)
+    public function setConversations($conversations)
     {
-        $this->container['listIds'] = $listIds;
+        $this->container['conversations'] = $conversations;
 
         return $this;
     }
 
     /**
-     * Gets segments
+     * Gets crm
      *
-     * @return int[]
+     * @return object
      */
-    public function getSegments()
+    public function getCrm()
     {
-        return $this->container['segments'];
+        return $this->container['crm'];
     }
 
     /**
-     * Sets segments
+     * Sets crm
      *
-     * @param int[] $segments **Mandatory if listIds are not used**. Segment ids to send the campaign to.
+     * @param object $crm CRM features accessiblity.
      *
      * @return $this
      */
-    public function setSegments($segments)
+    public function setCrm($crm)
     {
-        $this->container['segments'] = $segments;
+        $this->container['crm'] = $crm;
 
         return $this;
     }

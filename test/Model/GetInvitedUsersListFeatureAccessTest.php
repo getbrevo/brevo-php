@@ -1,6 +1,6 @@
 <?php
 /**
- * GetDomainonfigurationModelTest
+ * GetInvitedUsersListFeatureAccessTest
  *
  * PHP version 5
  *
@@ -30,15 +30,15 @@
 namespace Brevo\Client;
 
 /**
- * GetDomainonfigurationModelTest Class Doc Comment
+ * GetInvitedUsersListFeatureAccessTest Class Doc Comment
  *
  * @category    Class
- * @description GetDomainonfigurationModel
+ * @description Feature accessiblity given to the user.
  * @package     Brevo\Client
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GetDomainonfigurationModelTest extends \PHPUnit_Framework_TestCase
+class GetInvitedUsersListFeatureAccessTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,37 +70,30 @@ class GetDomainonfigurationModelTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "GetDomainonfigurationModel"
+     * Test "GetInvitedUsersListFeatureAccess"
      */
-    public function testGetDomainonfigurationModel()
+    public function testGetInvitedUsersListFeatureAccess()
     {
     }
 
     /**
-     * Test attribute "domain"
+     * Test attribute "marketing"
      */
-    public function testPropertyDomain()
+    public function testPropertyMarketing()
     {
     }
 
     /**
-     * Test attribute "verified"
+     * Test attribute "conversations"
      */
-    public function testPropertyVerified()
+    public function testPropertyConversations()
     {
     }
 
     /**
-     * Test attribute "authenticated"
+     * Test attribute "crm"
      */
-    public function testPropertyAuthenticated()
-    {
-    }
-
-    /**
-     * Test attribute "dnsRecords"
-     */
-    public function testPropertyDnsRecords()
+    public function testPropertyCrm()
     {
     }
 }

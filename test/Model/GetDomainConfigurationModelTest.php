@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateWhatsAppCampaignRecipientsTest
+ * GetDomainConfigurationModelTest
  *
  * PHP version 5
  *
@@ -30,15 +30,15 @@
 namespace Brevo\Client;
 
 /**
- * CreateWhatsAppCampaignRecipientsTest Class Doc Comment
+ * GetDomainConfigurationModelTest Class Doc Comment
  *
  * @category    Class
- * @description Segment ids and List ids to include/exclude from campaign
+ * @description GetDomainConfigurationModel
  * @package     Brevo\Client
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class CreateWhatsAppCampaignRecipientsTest extends \PHPUnit_Framework_TestCase
+class GetDomainConfigurationModelTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,30 +70,37 @@ class CreateWhatsAppCampaignRecipientsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "CreateWhatsAppCampaignRecipients"
+     * Test "GetDomainConfigurationModel"
      */
-    public function testCreateWhatsAppCampaignRecipients()
+    public function testGetDomainConfigurationModel()
     {
     }
 
     /**
-     * Test attribute "excludedListIds"
+     * Test attribute "domain"
      */
-    public function testPropertyExcludedListIds()
+    public function testPropertyDomain()
     {
     }
 
     /**
-     * Test attribute "listIds"
+     * Test attribute "verified"
      */
-    public function testPropertyListIds()
+    public function testPropertyVerified()
     {
     }
 
     /**
-     * Test attribute "segments"
+     * Test attribute "authenticated"
      */
-    public function testPropertySegments()
+    public function testPropertyAuthenticated()
+    {
+    }
+
+    /**
+     * Test attribute "dnsRecords"
+     */
+    public function testPropertyDnsRecords()
     {
     }
 }

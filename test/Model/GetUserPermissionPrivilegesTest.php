@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateWhatsAppCampaignRecipientsTest
+ * GetUserPermissionPrivilegesTest
  *
  * PHP version 5
  *
@@ -30,15 +30,15 @@
 namespace Brevo\Client;
 
 /**
- * CreateWhatsAppCampaignRecipientsTest Class Doc Comment
+ * GetUserPermissionPrivilegesTest Class Doc Comment
  *
  * @category    Class
- * @description Segment ids and List ids to include/exclude from campaign
+ * @description GetUserPermissionPrivileges
  * @package     Brevo\Client
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class CreateWhatsAppCampaignRecipientsTest extends \PHPUnit_Framework_TestCase
+class GetUserPermissionPrivilegesTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,30 +70,23 @@ class CreateWhatsAppCampaignRecipientsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "CreateWhatsAppCampaignRecipients"
+     * Test "GetUserPermissionPrivileges"
      */
-    public function testCreateWhatsAppCampaignRecipients()
+    public function testGetUserPermissionPrivileges()
     {
     }
 
     /**
-     * Test attribute "excludedListIds"
+     * Test attribute "feature"
      */
-    public function testPropertyExcludedListIds()
+    public function testPropertyFeature()
     {
     }
 
     /**
-     * Test attribute "listIds"
+     * Test attribute "permissions"
      */
-    public function testPropertyListIds()
-    {
-    }
-
-    /**
-     * Test attribute "segments"
-     */
-    public function testPropertySegments()
+    public function testPropertyPermissions()
     {
     }
 }

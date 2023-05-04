@@ -1,6 +1,6 @@
 <?php
 /**
- * GetDomainonfigurationModel
+ * GetUserPermissionPrivileges
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \Brevo\Client\ObjectSerializer;
 
 /**
- * GetDomainonfigurationModel Class Doc Comment
+ * GetUserPermissionPrivileges Class Doc Comment
  *
  * @category Class
  * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class GetDomainonfigurationModel implements ModelInterface, ArrayAccess
+class GetUserPermissionPrivileges implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class GetDomainonfigurationModel implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'getDomainonfigurationModel';
+    protected static $swaggerModelName = 'getUserPermission_privileges';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,8 @@ class GetDomainonfigurationModel implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'domain' => 'string',
-        'verified' => 'bool',
-        'authenticated' => 'bool',
-        'dnsRecords' => '\Brevo\Client\Model\CreateDomainModelDnsRecords'
+        'feature' => 'string',
+        'permissions' => 'string[]'
     ];
 
     /**
@@ -69,10 +67,8 @@ class GetDomainonfigurationModel implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'domain' => null,
-        'verified' => null,
-        'authenticated' => null,
-        'dnsRecords' => null
+        'feature' => null,
+        'permissions' => null
     ];
 
     /**
@@ -102,10 +98,8 @@ class GetDomainonfigurationModel implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'domain' => 'domain',
-        'verified' => 'verified',
-        'authenticated' => 'authenticated',
-        'dnsRecords' => 'dns_records'
+        'feature' => 'feature',
+        'permissions' => 'permissions'
     ];
 
     /**
@@ -114,10 +108,8 @@ class GetDomainonfigurationModel implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'domain' => 'setDomain',
-        'verified' => 'setVerified',
-        'authenticated' => 'setAuthenticated',
-        'dnsRecords' => 'setDnsRecords'
+        'feature' => 'setFeature',
+        'permissions' => 'setPermissions'
     ];
 
     /**
@@ -126,10 +118,8 @@ class GetDomainonfigurationModel implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'domain' => 'getDomain',
-        'verified' => 'getVerified',
-        'authenticated' => 'getAuthenticated',
-        'dnsRecords' => 'getDnsRecords'
+        'feature' => 'getFeature',
+        'permissions' => 'getPermissions'
     ];
 
     /**
@@ -192,10 +182,8 @@ class GetDomainonfigurationModel implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['domain'] = isset($data['domain']) ? $data['domain'] : null;
-        $this->container['verified'] = isset($data['verified']) ? $data['verified'] : null;
-        $this->container['authenticated'] = isset($data['authenticated']) ? $data['authenticated'] : null;
-        $this->container['dnsRecords'] = isset($data['dnsRecords']) ? $data['dnsRecords'] : null;
+        $this->container['feature'] = isset($data['feature']) ? $data['feature'] : null;
+        $this->container['permissions'] = isset($data['permissions']) ? $data['permissions'] : null;
     }
 
     /**
@@ -207,17 +195,11 @@ class GetDomainonfigurationModel implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['domain'] === null) {
-            $invalidProperties[] = "'domain' can't be null";
+        if ($this->container['feature'] === null) {
+            $invalidProperties[] = "'feature' can't be null";
         }
-        if ($this->container['verified'] === null) {
-            $invalidProperties[] = "'verified' can't be null";
-        }
-        if ($this->container['authenticated'] === null) {
-            $invalidProperties[] = "'authenticated' can't be null";
-        }
-        if ($this->container['dnsRecords'] === null) {
-            $invalidProperties[] = "'dnsRecords' can't be null";
+        if ($this->container['permissions'] === null) {
+            $invalidProperties[] = "'permissions' can't be null";
         }
         return $invalidProperties;
     }
@@ -235,97 +217,49 @@ class GetDomainonfigurationModel implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets domain
+     * Gets feature
      *
      * @return string
      */
-    public function getDomain()
+    public function getFeature()
     {
-        return $this->container['domain'];
+        return $this->container['feature'];
     }
 
     /**
-     * Sets domain
+     * Sets feature
      *
-     * @param string $domain Domain
+     * @param string $feature feature
      *
      * @return $this
      */
-    public function setDomain($domain)
+    public function setFeature($feature)
     {
-        $this->container['domain'] = $domain;
+        $this->container['feature'] = $feature;
 
         return $this;
     }
 
     /**
-     * Gets verified
+     * Gets permissions
      *
-     * @return bool
+     * @return string[]
      */
-    public function getVerified()
+    public function getPermissions()
     {
-        return $this->container['verified'];
+        return $this->container['permissions'];
     }
 
     /**
-     * Sets verified
+     * Sets permissions
      *
-     * @param bool $verified Status of domain verification (true=verified, false=non verified)
+     * @param string[] $permissions permissions
      *
      * @return $this
      */
-    public function setVerified($verified)
+    public function setPermissions($permissions)
     {
-        $this->container['verified'] = $verified;
-
-        return $this;
-    }
-
-    /**
-     * Gets authenticated
-     *
-     * @return bool
-     */
-    public function getAuthenticated()
-    {
-        return $this->container['authenticated'];
-    }
-
-    /**
-     * Sets authenticated
-     *
-     * @param bool $authenticated Status of domain authentication (true=authenticated, false=non authenticated)
-     *
-     * @return $this
-     */
-    public function setAuthenticated($authenticated)
-    {
-        $this->container['authenticated'] = $authenticated;
-
-        return $this;
-    }
-
-    /**
-     * Gets dnsRecords
-     *
-     * @return \Brevo\Client\Model\CreateDomainModelDnsRecords
-     */
-    public function getDnsRecords()
-    {
-        return $this->container['dnsRecords'];
-    }
-
-    /**
-     * Sets dnsRecords
-     *
-     * @param \Brevo\Client\Model\CreateDomainModelDnsRecords $dnsRecords dnsRecords
-     *
-     * @return $this
-     */
-    public function setDnsRecords($dnsRecords)
-    {
-        $this->container['dnsRecords'] = $dnsRecords;
+        $this->container['permissions'] = $permissions;
 
         return $this;
     }

@@ -163,7 +163,7 @@ Class | Method | HTTP request | Description
 *DomainsApi* | [**authenticateDomain**](docs/Api/DomainsApi.md#authenticatedomain) | **PUT** /senders/domains/{domainName}/authenticate | Authenticate a domain
 *DomainsApi* | [**createDomain**](docs/Api/DomainsApi.md#createdomain) | **POST** /senders/domains | Create a new domain
 *DomainsApi* | [**deleteDomain**](docs/Api/DomainsApi.md#deletedomain) | **DELETE** /senders/domains/{domainName} | Delete a domain
-*DomainsApi* | [**getDomainonfiguration**](docs/Api/DomainsApi.md#getdomainonfiguration) | **GET** /senders/domains/{domainName} | Validate domain configuration
+*DomainsApi* | [**getDomainConfiguration**](docs/Api/DomainsApi.md#getdomainconfiguration) | **GET** /senders/domains/{domainName} | Validate domain configuration
 *DomainsApi* | [**getDomains**](docs/Api/DomainsApi.md#getdomains) | **GET** /senders/domains | Get the list of all your domains
 *EcommerceApi* | [**createBatchOrder**](docs/Api/EcommerceApi.md#createbatchorder) | **POST** /orders/status/batch | Create orders in batch
 *EcommerceApi* | [**createOrder**](docs/Api/EcommerceApi.md#createorder) | **POST** /orders/status | Managing the status of the order
@@ -300,6 +300,8 @@ Class | Method | HTTP request | Description
 *TransactionalSMSApi* | [**sendTransacSms**](docs/Api/TransactionalSMSApi.md#sendtransacsms) | **POST** /transactionalSMS/sms | Send SMS message to a mobile number
 *TransactionalWhatsAppApi* | [**getWhatsappEventReport**](docs/Api/TransactionalWhatsAppApi.md#getwhatsappeventreport) | **GET** /whatsapp/statistics/events | Get all your WhatsApp activity (unaggregated events)
 *TransactionalWhatsAppApi* | [**sendWhatsappMessage**](docs/Api/TransactionalWhatsAppApi.md#sendwhatsappmessage) | **POST** /whatsapp/sendMessage | Send a WhatsApp message
+*UserApi* | [**getInvitedUsersList**](docs/Api/UserApi.md#getinviteduserslist) | **GET** /organization/invited/users | Get the list of all your users
+*UserApi* | [**getUserPermission**](docs/Api/UserApi.md#getuserpermission) | **GET** /organization/user/{email}/permissions | Check user permission
 *WebhooksApi* | [**createWebhook**](docs/Api/WebhooksApi.md#createwebhook) | **POST** /webhooks | Create a webhook
 *WebhooksApi* | [**deleteWebhook**](docs/Api/WebhooksApi.md#deletewebhook) | **DELETE** /webhooks/{webhookId} | Delete a webhook
 *WebhooksApi* | [**exportWebhooksHistory**](docs/Api/WebhooksApi.md#exportwebhookshistory) | **POST** /webhooks/export | Export all transactional events
@@ -313,6 +315,8 @@ Class | Method | HTTP request | Description
 *WhatsAppCampaignsApi* | [**getWhatsAppCampaigns**](docs/Api/WhatsAppCampaignsApi.md#getwhatsappcampaigns) | **GET** /whatsappCampaigns | Return all your created WhatsApp campaigns
 *WhatsAppCampaignsApi* | [**getWhatsAppConfig**](docs/Api/WhatsAppCampaignsApi.md#getwhatsappconfig) | **GET** /whatsappCampaigns/config | Get your WhatsApp API account information
 *WhatsAppCampaignsApi* | [**getWhatsAppTemplates**](docs/Api/WhatsAppCampaignsApi.md#getwhatsapptemplates) | **GET** /whatsappCampaigns/template-list | Return all your created WhatsApp templates
+*WhatsAppCampaignsApi* | [**sendWhatsAppTemplateApproval**](docs/Api/WhatsAppCampaignsApi.md#sendwhatsapptemplateapproval) | **POST** /whatsappCampaigns/template/approval/{templateId} | Send your WhatsApp template for approval
+*WhatsAppCampaignsApi* | [**updateWhatsAppCampaign**](docs/Api/WhatsAppCampaignsApi.md#updatewhatsappcampaign) | **PUT** /whatsappCampaigns/{campaignId} | Update a WhatsApp campaign
 
 
 ## Documentation For Models
@@ -445,7 +449,7 @@ Class | Method | HTTP request | Description
  - [GetContactDetails](docs/Model/GetContactDetails.md)
  - [GetContacts](docs/Model/GetContacts.md)
  - [GetDeviceBrowserStats](docs/Model/GetDeviceBrowserStats.md)
- - [GetDomainonfigurationModel](docs/Model/GetDomainonfigurationModel.md)
+ - [GetDomainConfigurationModel](docs/Model/GetDomainConfigurationModel.md)
  - [GetDomainsList](docs/Model/GetDomainsList.md)
  - [GetDomainsListDomains](docs/Model/GetDomainsListDomains.md)
  - [GetEmailCampaign](docs/Model/GetEmailCampaign.md)
@@ -480,6 +484,9 @@ Class | Method | HTTP request | Description
  - [GetInboundEmailEventsByUuidAttachments](docs/Model/GetInboundEmailEventsByUuidAttachments.md)
  - [GetInboundEmailEventsByUuidLogs](docs/Model/GetInboundEmailEventsByUuidLogs.md)
  - [GetInboundEmailEventsEvents](docs/Model/GetInboundEmailEventsEvents.md)
+ - [GetInvitedUsersList](docs/Model/GetInvitedUsersList.md)
+ - [GetInvitedUsersListFeatureAccess](docs/Model/GetInvitedUsersListFeatureAccess.md)
+ - [GetInvitedUsersListUsers](docs/Model/GetInvitedUsersListUsers.md)
  - [GetIp](docs/Model/GetIp.md)
  - [GetIpFromSender](docs/Model/GetIpFromSender.md)
  - [GetIps](docs/Model/GetIps.md)
@@ -525,6 +532,8 @@ Class | Method | HTTP request | Description
  - [GetTransacEmailsListTransactionalEmails](docs/Model/GetTransacEmailsListTransactionalEmails.md)
  - [GetTransacSmsReport](docs/Model/GetTransacSmsReport.md)
  - [GetTransacSmsReportReports](docs/Model/GetTransacSmsReportReports.md)
+ - [GetUserPermission](docs/Model/GetUserPermission.md)
+ - [GetUserPermissionPrivileges](docs/Model/GetUserPermissionPrivileges.md)
  - [GetWATemplates](docs/Model/GetWATemplates.md)
  - [GetWATemplatesTemplates](docs/Model/GetWATemplatesTemplates.md)
  - [GetWebhook](docs/Model/GetWebhook.md)
@@ -628,6 +637,7 @@ Class | Method | HTTP request | Description
  - [UpdateSmtpTemplate](docs/Model/UpdateSmtpTemplate.md)
  - [UpdateSmtpTemplateSender](docs/Model/UpdateSmtpTemplateSender.md)
  - [UpdateWebhook](docs/Model/UpdateWebhook.md)
+ - [UpdateWhatsAppCampaign](docs/Model/UpdateWhatsAppCampaign.md)
  - [UploadImageModel](docs/Model/UploadImageModel.md)
  - [UploadImageToGallery](docs/Model/UploadImageToGallery.md)
  - [GetChildInfo](docs/Model/GetChildInfo.md)

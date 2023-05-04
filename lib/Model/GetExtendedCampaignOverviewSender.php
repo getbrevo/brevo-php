@@ -59,7 +59,7 @@ class GetExtendedCampaignOverviewSender implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'name' => 'string',
         'email' => 'string',
-        'id' => 'string'
+        'id' => 'int'
     ];
 
     /**
@@ -70,7 +70,7 @@ class GetExtendedCampaignOverviewSender implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'name' => null,
         'email' => 'email',
-        'id' => null
+        'id' => 'int64'
     ];
 
     /**
@@ -267,7 +267,7 @@ class GetExtendedCampaignOverviewSender implements ModelInterface, ArrayAccess
     /**
      * Gets id
      *
-     * @return string
+     * @return int
      */
     public function getId()
     {
@@ -277,7 +277,7 @@ class GetExtendedCampaignOverviewSender implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string $id Sender id of the campaign
+     * @param int $id Sender id of the campaign
      *
      * @return $this
      */

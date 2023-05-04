@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateWhatsAppCampaignRecipientsTest
+ * UpdateWhatsAppCampaignTest
  *
  * PHP version 5
  *
@@ -30,15 +30,15 @@
 namespace Brevo\Client;
 
 /**
- * CreateWhatsAppCampaignRecipientsTest Class Doc Comment
+ * UpdateWhatsAppCampaignTest Class Doc Comment
  *
  * @category    Class
- * @description Segment ids and List ids to include/exclude from campaign
+ * @description UpdateWhatsAppCampaign
  * @package     Brevo\Client
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class CreateWhatsAppCampaignRecipientsTest extends \PHPUnit_Framework_TestCase
+class UpdateWhatsAppCampaignTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,30 +70,37 @@ class CreateWhatsAppCampaignRecipientsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "CreateWhatsAppCampaignRecipients"
+     * Test "UpdateWhatsAppCampaign"
      */
-    public function testCreateWhatsAppCampaignRecipients()
+    public function testUpdateWhatsAppCampaign()
     {
     }
 
     /**
-     * Test attribute "excludedListIds"
+     * Test attribute "campaignName"
      */
-    public function testPropertyExcludedListIds()
+    public function testPropertyCampaignName()
     {
     }
 
     /**
-     * Test attribute "listIds"
+     * Test attribute "campaignStatus"
      */
-    public function testPropertyListIds()
+    public function testPropertyCampaignStatus()
     {
     }
 
     /**
-     * Test attribute "segments"
+     * Test attribute "rescheduleFor"
      */
-    public function testPropertySegments()
+    public function testPropertyRescheduleFor()
+    {
+    }
+
+    /**
+     * Test attribute "recipients"
+     */
+    public function testPropertyRecipients()
     {
     }
 }

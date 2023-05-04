@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**authenticateDomain**](DomainsApi.md#authenticateDomain) | **PUT** /senders/domains/{domainName}/authenticate | Authenticate a domain
 [**createDomain**](DomainsApi.md#createDomain) | **POST** /senders/domains | Create a new domain
 [**deleteDomain**](DomainsApi.md#deleteDomain) | **DELETE** /senders/domains/{domainName} | Delete a domain
-[**getDomainonfiguration**](DomainsApi.md#getDomainonfiguration) | **GET** /senders/domains/{domainName} | Validate domain configuration
+[**getDomainConfiguration**](DomainsApi.md#getDomainConfiguration) | **GET** /senders/domains/{domainName} | Validate domain configuration
 [**getDomains**](DomainsApi.md#getDomains) | **GET** /senders/domains | Get the list of all your domains
 
 
@@ -181,8 +181,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **getDomainonfiguration**
-> \Brevo\Client\Model\GetDomainonfigurationModel getDomainonfiguration($domainName)
+# **getDomainConfiguration**
+> \Brevo\Client\Model\GetDomainConfigurationModel getDomainConfiguration($domainName)
 
 Validate domain configuration
 
@@ -209,10 +209,10 @@ $apiInstance = new Brevo\Client\Api\DomainsApi(
 $domainName = "domainName_example"; // string | Domain name
 
 try {
-    $result = $apiInstance->getDomainonfiguration($domainName);
+    $result = $apiInstance->getDomainConfiguration($domainName);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DomainsApi->getDomainonfiguration: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DomainsApi->getDomainConfiguration: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Brevo\Client\Model\GetDomainonfigurationModel**](../Model/GetDomainonfigurationModel.md)
+[**\Brevo\Client\Model\GetDomainConfigurationModel**](../Model/GetDomainConfigurationModel.md)
 
 ### Authorization
 

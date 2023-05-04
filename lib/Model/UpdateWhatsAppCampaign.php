@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateWhatsAppCampaignRecipients
+ * UpdateWhatsAppCampaign
  *
  * PHP version 5
  *
@@ -33,15 +33,14 @@ use \ArrayAccess;
 use \Brevo\Client\ObjectSerializer;
 
 /**
- * CreateWhatsAppCampaignRecipients Class Doc Comment
+ * UpdateWhatsAppCampaign Class Doc Comment
  *
  * @category Class
- * @description Segment ids and List ids to include/exclude from campaign
  * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
+class UpdateWhatsAppCampaign implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'createWhatsAppCampaign_recipients';
+    protected static $swaggerModelName = 'updateWhatsAppCampaign';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +57,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'excludedListIds' => 'int[]',
-        'listIds' => 'int[]',
-        'segments' => 'int[]'
+        'campaignName' => 'string',
+        'campaignStatus' => 'string',
+        'rescheduleFor' => 'string',
+        'recipients' => '\Brevo\Client\Model\CreateWhatsAppCampaignRecipients'
     ];
 
     /**
@@ -69,9 +69,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'excludedListIds' => 'int64',
-        'listIds' => 'int64',
-        'segments' => 'int64'
+        'campaignName' => null,
+        'campaignStatus' => null,
+        'rescheduleFor' => null,
+        'recipients' => null
     ];
 
     /**
@@ -101,9 +102,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'excludedListIds' => 'excludedListIds',
-        'listIds' => 'listIds',
-        'segments' => 'segments'
+        'campaignName' => 'campaignName',
+        'campaignStatus' => 'campaignStatus',
+        'rescheduleFor' => 'rescheduleFor',
+        'recipients' => 'recipients'
     ];
 
     /**
@@ -112,9 +114,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'excludedListIds' => 'setExcludedListIds',
-        'listIds' => 'setListIds',
-        'segments' => 'setSegments'
+        'campaignName' => 'setCampaignName',
+        'campaignStatus' => 'setCampaignStatus',
+        'rescheduleFor' => 'setRescheduleFor',
+        'recipients' => 'setRecipients'
     ];
 
     /**
@@ -123,9 +126,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'excludedListIds' => 'getExcludedListIds',
-        'listIds' => 'getListIds',
-        'segments' => 'getSegments'
+        'campaignName' => 'getCampaignName',
+        'campaignStatus' => 'getCampaignStatus',
+        'rescheduleFor' => 'getRescheduleFor',
+        'recipients' => 'getRecipients'
     ];
 
     /**
@@ -169,8 +173,23 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
+    const CAMPAIGN_STATUS_SCHEDULED = 'scheduled';
+    const CAMPAIGN_STATUS_SUSPENDED = 'suspended';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCampaignStatusAllowableValues()
+    {
+        return [
+            self::CAMPAIGN_STATUS_SCHEDULED,
+            self::CAMPAIGN_STATUS_SUSPENDED,
+        ];
+    }
     
 
     /**
@@ -188,9 +207,10 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['excludedListIds'] = isset($data['excludedListIds']) ? $data['excludedListIds'] : null;
-        $this->container['listIds'] = isset($data['listIds']) ? $data['listIds'] : null;
-        $this->container['segments'] = isset($data['segments']) ? $data['segments'] : null;
+        $this->container['campaignName'] = isset($data['campaignName']) ? $data['campaignName'] : null;
+        $this->container['campaignStatus'] = isset($data['campaignStatus']) ? $data['campaignStatus'] : 'scheduled';
+        $this->container['rescheduleFor'] = isset($data['rescheduleFor']) ? $data['rescheduleFor'] : null;
+        $this->container['recipients'] = isset($data['recipients']) ? $data['recipients'] : null;
     }
 
     /**
@@ -201,6 +221,14 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getCampaignStatusAllowableValues();
+        if (!is_null($this->container['campaignStatus']) && !in_array($this->container['campaignStatus'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'campaignStatus', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -218,73 +246,106 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets excludedListIds
+     * Gets campaignName
      *
-     * @return int[]
+     * @return string
      */
-    public function getExcludedListIds()
+    public function getCampaignName()
     {
-        return $this->container['excludedListIds'];
+        return $this->container['campaignName'];
     }
 
     /**
-     * Sets excludedListIds
+     * Sets campaignName
      *
-     * @param int[] $excludedListIds List ids to exclude from the campaign
+     * @param string $campaignName Name of the campaign
      *
      * @return $this
      */
-    public function setExcludedListIds($excludedListIds)
+    public function setCampaignName($campaignName)
     {
-        $this->container['excludedListIds'] = $excludedListIds;
+        $this->container['campaignName'] = $campaignName;
 
         return $this;
     }
 
     /**
-     * Gets listIds
+     * Gets campaignStatus
      *
-     * @return int[]
+     * @return string
      */
-    public function getListIds()
+    public function getCampaignStatus()
     {
-        return $this->container['listIds'];
+        return $this->container['campaignStatus'];
     }
 
     /**
-     * Sets listIds
+     * Sets campaignStatus
      *
-     * @param int[] $listIds **Mandatory if scheduledAt is not empty**. List Ids to send the campaign to
+     * @param string $campaignStatus Status of the campaign
      *
      * @return $this
      */
-    public function setListIds($listIds)
+    public function setCampaignStatus($campaignStatus)
     {
-        $this->container['listIds'] = $listIds;
+        $allowedValues = $this->getCampaignStatusAllowableValues();
+        if (!is_null($campaignStatus) && !in_array($campaignStatus, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'campaignStatus', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['campaignStatus'] = $campaignStatus;
 
         return $this;
     }
 
     /**
-     * Gets segments
+     * Gets rescheduleFor
      *
-     * @return int[]
+     * @return string
      */
-    public function getSegments()
+    public function getRescheduleFor()
     {
-        return $this->container['segments'];
+        return $this->container['rescheduleFor'];
     }
 
     /**
-     * Sets segments
+     * Sets rescheduleFor
      *
-     * @param int[] $segments **Mandatory if listIds are not used**. Segment ids to send the campaign to.
+     * @param string $rescheduleFor Reschedule the sending UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) of campaign. **Prefer to pass your timezone in date-time format for accurate result.For example: **2017-06-01T12:30:00+02:00** Use this field to update the scheduledAt of any existing draft or scheduled WhatsApp campaign.
      *
      * @return $this
      */
-    public function setSegments($segments)
+    public function setRescheduleFor($rescheduleFor)
     {
-        $this->container['segments'] = $segments;
+        $this->container['rescheduleFor'] = $rescheduleFor;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipients
+     *
+     * @return \Brevo\Client\Model\CreateWhatsAppCampaignRecipients
+     */
+    public function getRecipients()
+    {
+        return $this->container['recipients'];
+    }
+
+    /**
+     * Sets recipients
+     *
+     * @param \Brevo\Client\Model\CreateWhatsAppCampaignRecipients $recipients recipients
+     *
+     * @return $this
+     */
+    public function setRecipients($recipients)
+    {
+        $this->container['recipients'] = $recipients;
 
         return $this;
     }

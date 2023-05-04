@@ -1,11 +1,9 @@
-# GetExtendedCampaignOverviewSender
+# GetInvitedUsersList
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **string** | Sender name of the campaign | [optional] 
-**email** | **string** | Sender email of the campaign | [optional] 
-**id** | **int** | Sender id of the campaign | [optional] 
+**users** | [**\Brevo\Client\Model\GetInvitedUsersListUsers[]**](GetInvitedUsersListUsers.md) | Get invited users list | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

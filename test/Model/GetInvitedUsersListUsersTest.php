@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateWhatsAppCampaignRecipientsTest
+ * GetInvitedUsersListUsersTest
  *
  * PHP version 5
  *
@@ -30,15 +30,15 @@
 namespace Brevo\Client;
 
 /**
- * CreateWhatsAppCampaignRecipientsTest Class Doc Comment
+ * GetInvitedUsersListUsersTest Class Doc Comment
  *
  * @category    Class
- * @description Segment ids and List ids to include/exclude from campaign
+ * @description GetInvitedUsersListUsers
  * @package     Brevo\Client
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class CreateWhatsAppCampaignRecipientsTest extends \PHPUnit_Framework_TestCase
+class GetInvitedUsersListUsersTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,30 +70,37 @@ class CreateWhatsAppCampaignRecipientsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "CreateWhatsAppCampaignRecipients"
+     * Test "GetInvitedUsersListUsers"
      */
-    public function testCreateWhatsAppCampaignRecipients()
+    public function testGetInvitedUsersListUsers()
     {
     }
 
     /**
-     * Test attribute "excludedListIds"
+     * Test attribute "email"
      */
-    public function testPropertyExcludedListIds()
+    public function testPropertyEmail()
     {
     }
 
     /**
-     * Test attribute "listIds"
+     * Test attribute "isOwner"
      */
-    public function testPropertyListIds()
+    public function testPropertyIsOwner()
     {
     }
 
     /**
-     * Test attribute "segments"
+     * Test attribute "status"
      */
-    public function testPropertySegments()
+    public function testPropertyStatus()
+    {
+    }
+
+    /**
+     * Test attribute "featureAccess"
+     */
+    public function testPropertyFeatureAccess()
     {
     }
 }

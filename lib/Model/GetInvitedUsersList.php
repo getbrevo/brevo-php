@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateWhatsAppCampaignRecipients
+ * GetInvitedUsersList
  *
  * PHP version 5
  *
@@ -33,15 +33,14 @@ use \ArrayAccess;
 use \Brevo\Client\ObjectSerializer;
 
 /**
- * CreateWhatsAppCampaignRecipients Class Doc Comment
+ * GetInvitedUsersList Class Doc Comment
  *
  * @category Class
- * @description Segment ids and List ids to include/exclude from campaign
  * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
+class GetInvitedUsersList implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'createWhatsAppCampaign_recipients';
+    protected static $swaggerModelName = 'getInvitedUsersList';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +57,7 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'excludedListIds' => 'int[]',
-        'listIds' => 'int[]',
-        'segments' => 'int[]'
+        'users' => '\Brevo\Client\Model\GetInvitedUsersListUsers[]'
     ];
 
     /**
@@ -69,9 +66,7 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'excludedListIds' => 'int64',
-        'listIds' => 'int64',
-        'segments' => 'int64'
+        'users' => null
     ];
 
     /**
@@ -101,9 +96,7 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'excludedListIds' => 'excludedListIds',
-        'listIds' => 'listIds',
-        'segments' => 'segments'
+        'users' => 'users'
     ];
 
     /**
@@ -112,9 +105,7 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'excludedListIds' => 'setExcludedListIds',
-        'listIds' => 'setListIds',
-        'segments' => 'setSegments'
+        'users' => 'setUsers'
     ];
 
     /**
@@ -123,9 +114,7 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'excludedListIds' => 'getExcludedListIds',
-        'listIds' => 'getListIds',
-        'segments' => 'getSegments'
+        'users' => 'getUsers'
     ];
 
     /**
@@ -188,9 +177,7 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['excludedListIds'] = isset($data['excludedListIds']) ? $data['excludedListIds'] : null;
-        $this->container['listIds'] = isset($data['listIds']) ? $data['listIds'] : null;
-        $this->container['segments'] = isset($data['segments']) ? $data['segments'] : null;
+        $this->container['users'] = isset($data['users']) ? $data['users'] : null;
     }
 
     /**
@@ -218,73 +205,25 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets excludedListIds
+     * Gets users
      *
-     * @return int[]
+     * @return \Brevo\Client\Model\GetInvitedUsersListUsers[]
      */
-    public function getExcludedListIds()
+    public function getUsers()
     {
-        return $this->container['excludedListIds'];
+        return $this->container['users'];
     }
 
     /**
-     * Sets excludedListIds
+     * Sets users
      *
-     * @param int[] $excludedListIds List ids to exclude from the campaign
+     * @param \Brevo\Client\Model\GetInvitedUsersListUsers[] $users Get invited users list
      *
      * @return $this
      */
-    public function setExcludedListIds($excludedListIds)
+    public function setUsers($users)
     {
-        $this->container['excludedListIds'] = $excludedListIds;
-
-        return $this;
-    }
-
-    /**
-     * Gets listIds
-     *
-     * @return int[]
-     */
-    public function getListIds()
-    {
-        return $this->container['listIds'];
-    }
-
-    /**
-     * Sets listIds
-     *
-     * @param int[] $listIds **Mandatory if scheduledAt is not empty**. List Ids to send the campaign to
-     *
-     * @return $this
-     */
-    public function setListIds($listIds)
-    {
-        $this->container['listIds'] = $listIds;
-
-        return $this;
-    }
-
-    /**
-     * Gets segments
-     *
-     * @return int[]
-     */
-    public function getSegments()
-    {
-        return $this->container['segments'];
-    }
-
-    /**
-     * Sets segments
-     *
-     * @param int[] $segments **Mandatory if listIds are not used**. Segment ids to send the campaign to.
-     *
-     * @return $this
-     */
-    public function setSegments($segments)
-    {
-        $this->container['segments'] = $segments;
+        $this->container['users'] = $users;
 
         return $this;
     }

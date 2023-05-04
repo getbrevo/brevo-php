@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateWhatsAppCampaignRecipients
+ * GetUserPermission
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Brevo\Client\ObjectSerializer;
 
 /**
- * CreateWhatsAppCampaignRecipients Class Doc Comment
+ * GetUserPermission Class Doc Comment
  *
  * @category Class
- * @description Segment ids and List ids to include/exclude from campaign
+ * @description Check user permission
  * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
+class GetUserPermission implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'createWhatsAppCampaign_recipients';
+    protected static $swaggerModelName = 'getUserPermission';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'excludedListIds' => 'int[]',
-        'listIds' => 'int[]',
-        'segments' => 'int[]'
+        'email' => 'string',
+        'status' => 'string',
+        'privileges' => '\Brevo\Client\Model\GetUserPermissionPrivileges[]'
     ];
 
     /**
@@ -69,9 +69,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'excludedListIds' => 'int64',
-        'listIds' => 'int64',
-        'segments' => 'int64'
+        'email' => null,
+        'status' => null,
+        'privileges' => null
     ];
 
     /**
@@ -101,9 +101,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'excludedListIds' => 'excludedListIds',
-        'listIds' => 'listIds',
-        'segments' => 'segments'
+        'email' => 'email',
+        'status' => 'status',
+        'privileges' => 'privileges'
     ];
 
     /**
@@ -112,9 +112,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'excludedListIds' => 'setExcludedListIds',
-        'listIds' => 'setListIds',
-        'segments' => 'setSegments'
+        'email' => 'setEmail',
+        'status' => 'setStatus',
+        'privileges' => 'setPrivileges'
     ];
 
     /**
@@ -123,9 +123,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'excludedListIds' => 'getExcludedListIds',
-        'listIds' => 'getListIds',
-        'segments' => 'getSegments'
+        'email' => 'getEmail',
+        'status' => 'getStatus',
+        'privileges' => 'getPrivileges'
     ];
 
     /**
@@ -188,9 +188,9 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['excludedListIds'] = isset($data['excludedListIds']) ? $data['excludedListIds'] : null;
-        $this->container['listIds'] = isset($data['listIds']) ? $data['listIds'] : null;
-        $this->container['segments'] = isset($data['segments']) ? $data['segments'] : null;
+        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['privileges'] = isset($data['privileges']) ? $data['privileges'] : null;
     }
 
     /**
@@ -202,6 +202,15 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['email'] === null) {
+            $invalidProperties[] = "'email' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        if ($this->container['privileges'] === null) {
+            $invalidProperties[] = "'privileges' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -218,73 +227,73 @@ class CreateWhatsAppCampaignRecipients implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets excludedListIds
+     * Gets email
      *
-     * @return int[]
+     * @return string
      */
-    public function getExcludedListIds()
+    public function getEmail()
     {
-        return $this->container['excludedListIds'];
+        return $this->container['email'];
     }
 
     /**
-     * Sets excludedListIds
+     * Sets email
      *
-     * @param int[] $excludedListIds List ids to exclude from the campaign
+     * @param string $email Email address of the user.
      *
      * @return $this
      */
-    public function setExcludedListIds($excludedListIds)
+    public function setEmail($email)
     {
-        $this->container['excludedListIds'] = $excludedListIds;
+        $this->container['email'] = $email;
 
         return $this;
     }
 
     /**
-     * Gets listIds
+     * Gets status
      *
-     * @return int[]
+     * @return string
      */
-    public function getListIds()
+    public function getStatus()
     {
-        return $this->container['listIds'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets listIds
+     * Sets status
      *
-     * @param int[] $listIds **Mandatory if scheduledAt is not empty**. List Ids to send the campaign to
+     * @param string $status Status of the invited user.
      *
      * @return $this
      */
-    public function setListIds($listIds)
+    public function setStatus($status)
     {
-        $this->container['listIds'] = $listIds;
+        $this->container['status'] = $status;
 
         return $this;
     }
 
     /**
-     * Gets segments
+     * Gets privileges
      *
-     * @return int[]
+     * @return \Brevo\Client\Model\GetUserPermissionPrivileges[]
      */
-    public function getSegments()
+    public function getPrivileges()
     {
-        return $this->container['segments'];
+        return $this->container['privileges'];
     }
 
     /**
-     * Sets segments
+     * Sets privileges
      *
-     * @param int[] $segments **Mandatory if listIds are not used**. Segment ids to send the campaign to.
+     * @param \Brevo\Client\Model\GetUserPermissionPrivileges[] $privileges Granular feature permissions given to the user.
      *
      * @return $this
      */
-    public function setSegments($segments)
+    public function setPrivileges($privileges)
     {
-        $this->container['segments'] = $segments;
+        $this->container['privileges'] = $privileges;
 
         return $this;
     }

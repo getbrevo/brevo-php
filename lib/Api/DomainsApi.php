@@ -917,7 +917,7 @@ class DomainsApi
     }
 
     /**
-     * Operation getDomainonfiguration
+     * Operation getDomainConfiguration
      *
      * Validate domain configuration
      *
@@ -925,16 +925,16 @@ class DomainsApi
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Brevo\Client\Model\GetDomainonfigurationModel
+     * @return \Brevo\Client\Model\GetDomainConfigurationModel
      */
-    public function getDomainonfiguration($domainName)
+    public function getDomainConfiguration($domainName)
     {
-        list($response) = $this->getDomainonfigurationWithHttpInfo($domainName);
+        list($response) = $this->getDomainConfigurationWithHttpInfo($domainName);
         return $response;
     }
 
     /**
-     * Operation getDomainonfigurationWithHttpInfo
+     * Operation getDomainConfigurationWithHttpInfo
      *
      * Validate domain configuration
      *
@@ -942,12 +942,12 @@ class DomainsApi
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Brevo\Client\Model\GetDomainonfigurationModel, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Brevo\Client\Model\GetDomainConfigurationModel, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getDomainonfigurationWithHttpInfo($domainName)
+    public function getDomainConfigurationWithHttpInfo($domainName)
     {
-        $returnType = '\Brevo\Client\Model\GetDomainonfigurationModel';
-        $request = $this->getDomainonfigurationRequest($domainName);
+        $returnType = '\Brevo\Client\Model\GetDomainConfigurationModel';
+        $request = $this->getDomainConfigurationRequest($domainName);
 
         try {
             $options = $this->createHttpClientOption();
@@ -998,7 +998,7 @@ class DomainsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Brevo\Client\Model\GetDomainonfigurationModel',
+                        '\Brevo\Client\Model\GetDomainConfigurationModel',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1025,7 +1025,7 @@ class DomainsApi
     }
 
     /**
-     * Operation getDomainonfigurationAsync
+     * Operation getDomainConfigurationAsync
      *
      * Validate domain configuration
      *
@@ -1034,9 +1034,9 @@ class DomainsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDomainonfigurationAsync($domainName)
+    public function getDomainConfigurationAsync($domainName)
     {
-        return $this->getDomainonfigurationAsyncWithHttpInfo($domainName)
+        return $this->getDomainConfigurationAsyncWithHttpInfo($domainName)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1045,7 +1045,7 @@ class DomainsApi
     }
 
     /**
-     * Operation getDomainonfigurationAsyncWithHttpInfo
+     * Operation getDomainConfigurationAsyncWithHttpInfo
      *
      * Validate domain configuration
      *
@@ -1054,10 +1054,10 @@ class DomainsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDomainonfigurationAsyncWithHttpInfo($domainName)
+    public function getDomainConfigurationAsyncWithHttpInfo($domainName)
     {
-        $returnType = '\Brevo\Client\Model\GetDomainonfigurationModel';
-        $request = $this->getDomainonfigurationRequest($domainName);
+        $returnType = '\Brevo\Client\Model\GetDomainConfigurationModel';
+        $request = $this->getDomainConfigurationRequest($domainName);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1097,19 +1097,19 @@ class DomainsApi
     }
 
     /**
-     * Create request for operation 'getDomainonfiguration'
+     * Create request for operation 'getDomainConfiguration'
      *
      * @param  string $domainName Domain name (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getDomainonfigurationRequest($domainName)
+    protected function getDomainConfigurationRequest($domainName)
     {
         // verify the required parameter 'domainName' is set
         if ($domainName === null || (is_array($domainName) && count($domainName) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $domainName when calling getDomainonfiguration'
+                'Missing the required parameter $domainName when calling getDomainConfiguration'
             );
         }
 

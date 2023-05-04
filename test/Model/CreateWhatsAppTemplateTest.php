@@ -105,23 +105,16 @@ class CreateWhatsAppTemplateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "body"
+     * Test attribute "bodyText"
      */
-    public function testPropertyBody()
+    public function testPropertyBodyText()
     {
     }
 
     /**
-     * Test attribute "headerHtml"
+     * Test attribute "headerText"
      */
-    public function testPropertyHeaderHtml()
-    {
-    }
-
-    /**
-     * Test attribute "headerType"
-     */
-    public function testPropertyHeaderType()
+    public function testPropertyHeaderText()
     {
     }
 }

@@ -11,6 +11,8 @@ Method | HTTP request | Description
 [**getWhatsAppCampaigns**](WhatsAppCampaignsApi.md#getWhatsAppCampaigns) | **GET** /whatsappCampaigns | Return all your created WhatsApp campaigns
 [**getWhatsAppConfig**](WhatsAppCampaignsApi.md#getWhatsAppConfig) | **GET** /whatsappCampaigns/config | Get your WhatsApp API account information
 [**getWhatsAppTemplates**](WhatsAppCampaignsApi.md#getWhatsAppTemplates) | **GET** /whatsappCampaigns/template-list | Return all your created WhatsApp templates
+[**sendWhatsAppTemplateApproval**](WhatsAppCampaignsApi.md#sendWhatsAppTemplateApproval) | **POST** /whatsappCampaigns/template/approval/{templateId} | Send your WhatsApp template for approval
+[**updateWhatsAppCampaign**](WhatsAppCampaignsApi.md#updateWhatsAppCampaign) | **PUT** /whatsappCampaigns/{campaignId} | Update a WhatsApp campaign
 
 
 # **createWhatsAppCampaign**
@@ -411,6 +413,120 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Brevo\Client\Model\GetWATemplates**](../Model/GetWATemplates.md)
+
+### Authorization
+
+[api-key](../../README.md#api-key), [partner-key](../../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **sendWhatsAppTemplateApproval**
+> sendWhatsAppTemplateApproval($templateId)
+
+Send your WhatsApp template for approval
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: api-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: partner-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
+
+$apiInstance = new Brevo\Client\Api\WhatsAppCampaignsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$templateId = 789; // int | id of the campaign
+
+try {
+    $apiInstance->sendWhatsAppTemplateApproval($templateId);
+} catch (Exception $e) {
+    echo 'Exception when calling WhatsAppCampaignsApi->sendWhatsAppTemplateApproval: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **templateId** | **int**| id of the campaign |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api-key](../../README.md#api-key), [partner-key](../../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **updateWhatsAppCampaign**
+> updateWhatsAppCampaign($campaignId, $whatsAppCampaign)
+
+Update a WhatsApp campaign
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: api-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: partner-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
+
+$apiInstance = new Brevo\Client\Api\WhatsAppCampaignsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$campaignId = 789; // int | Id of the campaign
+$whatsAppCampaign = new \Brevo\Client\Model\UpdateWhatsAppCampaign(); // \Brevo\Client\Model\UpdateWhatsAppCampaign | values to update WhatsApp Campaign
+
+try {
+    $apiInstance->updateWhatsAppCampaign($campaignId, $whatsAppCampaign);
+} catch (Exception $e) {
+    echo 'Exception when calling WhatsAppCampaignsApi->updateWhatsAppCampaign: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **campaignId** | **int**| Id of the campaign |
+ **whatsAppCampaign** | [**\Brevo\Client\Model\UpdateWhatsAppCampaign**](../Model/UpdateWhatsAppCampaign.md)| values to update WhatsApp Campaign | [optional]
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
