@@ -1,0 +1,43 @@
+{
+    "name": "brevo/api-v3-sdk",
+    "description": "Official Brevo provided RESTFul API V3 php library",
+    "keywords": [
+        "brevo",
+        "swagger",
+        "php",
+        "sdk",
+        "api"
+    ],
+    "homepage": "https://github.com/getbrevo/brevo-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brevo Developers",
+            "email": "contact@brevo.com",
+            "homepage": "https://www.brevo.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^7.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "squizlabs/php_codesniffer": "~2.6",
+        "friendsofphp/php-cs-fixer": "~1.12"
+    },
+    "autoload": {
+        "psr-4": { "Brevo\\Client\\" : "lib/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Brevo\\Client\\" : "test/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x.x-dev"
+        }
+    }
+}
