@@ -120,7 +120,7 @@ class Configuration
     public function __construct()
     {
         $this->tempFolderPath = sys_get_temp_dir();
-        $this->userAgent = 'Brevo_clientAPI/v' . $GLOBALS['version'] . '/php'; 
+        $this->userAgent = 'brevo_clientAPI/v' . $GLOBALS['version'] . '/php'; 
     }
 
     /**
