@@ -1,5 +1,5 @@
 {
-    "name": "brevo/api-v3-sdk",
+    "name": "getbrevo/api-v3-sdk",
     "description": "Official Brevo provided RESTFul API V3 php library",
     "keywords": [
         "brevo",
