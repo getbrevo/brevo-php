@@ -38,7 +38,7 @@ namespace Brevo\Client;
  * @link     https://github.com/swagger-api/swagger-codegen
  */
 
-$GLOBALS['version'] = '1.0.0';
+$GLOBALS['version'] = '1.0.1';
 
 class Configuration
 {
