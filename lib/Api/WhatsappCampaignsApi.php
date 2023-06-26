@@ -558,7 +558,7 @@ class WhatsAppCampaignsApi
             );
         }
 
-        $resourcePath = '/whatsppCampaigns/template';
+        $resourcePath = '/whatsappCampaigns/template';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
