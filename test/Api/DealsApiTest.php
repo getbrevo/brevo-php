@@ -142,12 +142,32 @@ class DealsApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for crmPipelineDetailsAllGet
+     *
+     * Get all pipelines.
+     *
+     */
+    public function testCrmPipelineDetailsAllGet()
+    {
+    }
+
+    /**
      * Test case for crmPipelineDetailsGet
      *
      * Get pipeline stages.
      *
      */
     public function testCrmPipelineDetailsGet()
+    {
+    }
+
+    /**
+     * Test case for crmPipelineDetailsPipelineIDGet
+     *
+     * Get a pipeline.
+     *
+     */
+    public function testCrmPipelineDetailsPipelineIDGet()
     {
     }
 }

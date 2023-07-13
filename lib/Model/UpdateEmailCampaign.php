@@ -64,6 +64,7 @@ class UpdateEmailCampaign implements ModelInterface, ArrayAccess
         'htmlUrl' => 'string',
         'scheduledAt' => 'string',
         'subject' => 'string',
+        'previewText' => 'string',
         'replyTo' => 'string',
         'toField' => 'string',
         'recipients' => '\Brevo\Client\Model\UpdateEmailCampaignRecipients',
@@ -102,6 +103,7 @@ class UpdateEmailCampaign implements ModelInterface, ArrayAccess
         'htmlUrl' => 'url',
         'scheduledAt' => null,
         'subject' => null,
+        'previewText' => null,
         'replyTo' => 'email',
         'toField' => null,
         'recipients' => null,
@@ -161,6 +163,7 @@ class UpdateEmailCampaign implements ModelInterface, ArrayAccess
         'htmlUrl' => 'htmlUrl',
         'scheduledAt' => 'scheduledAt',
         'subject' => 'subject',
+        'previewText' => 'previewText',
         'replyTo' => 'replyTo',
         'toField' => 'toField',
         'recipients' => 'recipients',
@@ -199,6 +202,7 @@ class UpdateEmailCampaign implements ModelInterface, ArrayAccess
         'htmlUrl' => 'setHtmlUrl',
         'scheduledAt' => 'setScheduledAt',
         'subject' => 'setSubject',
+        'previewText' => 'setPreviewText',
         'replyTo' => 'setReplyTo',
         'toField' => 'setToField',
         'recipients' => 'setRecipients',
@@ -237,6 +241,7 @@ class UpdateEmailCampaign implements ModelInterface, ArrayAccess
         'htmlUrl' => 'getHtmlUrl',
         'scheduledAt' => 'getScheduledAt',
         'subject' => 'getSubject',
+        'previewText' => 'getPreviewText',
         'replyTo' => 'getReplyTo',
         'toField' => 'getToField',
         'recipients' => 'getRecipients',
@@ -344,6 +349,7 @@ class UpdateEmailCampaign implements ModelInterface, ArrayAccess
         $this->container['htmlUrl'] = isset($data['htmlUrl']) ? $data['htmlUrl'] : null;
         $this->container['scheduledAt'] = isset($data['scheduledAt']) ? $data['scheduledAt'] : null;
         $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
+        $this->container['previewText'] = isset($data['previewText']) ? $data['previewText'] : null;
         $this->container['replyTo'] = isset($data['replyTo']) ? $data['replyTo'] : null;
         $this->container['toField'] = isset($data['toField']) ? $data['toField'] : null;
         $this->container['recipients'] = isset($data['recipients']) ? $data['recipients'] : null;
@@ -589,6 +595,30 @@ class UpdateEmailCampaign implements ModelInterface, ArrayAccess
     public function setSubject($subject)
     {
         $this->container['subject'] = $subject;
+
+        return $this;
+    }
+
+    /**
+     * Gets previewText
+     *
+     * @return string
+     */
+    public function getPreviewText()
+    {
+        return $this->container['previewText'];
+    }
+
+    /**
+     * Sets previewText
+     *
+     * @param string $previewText Preview text or preheader of the email campaign
+     *
+     * @return $this
+     */
+    public function setPreviewText($previewText)
+    {
+        $this->container['previewText'] = $previewText;
 
         return $this;
     }

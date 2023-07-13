@@ -77,9 +77,9 @@ class InlineResponse2013Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "id"
+     * Test attribute "messageId"
      */
-    public function testPropertyId()
+    public function testPropertyMessageId()
     {
     }
 }

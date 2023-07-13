@@ -58,6 +58,8 @@ class Pipeline implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
+        'pipeline' => 'string',
+        'pipelineName' => 'string',
         'stages' => '\Brevo\Client\Model\PipelineStage[]'
     ];
 
@@ -67,6 +69,8 @@ class Pipeline implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
+        'pipeline' => null,
+        'pipelineName' => null,
         'stages' => null
     ];
 
@@ -97,6 +101,8 @@ class Pipeline implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'pipeline' => 'pipeline',
+        'pipelineName' => 'pipeline_name',
         'stages' => 'stages'
     ];
 
@@ -106,6 +112,8 @@ class Pipeline implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'pipeline' => 'setPipeline',
+        'pipelineName' => 'setPipelineName',
         'stages' => 'setStages'
     ];
 
@@ -115,6 +123,8 @@ class Pipeline implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'pipeline' => 'getPipeline',
+        'pipelineName' => 'getPipelineName',
         'stages' => 'getStages'
     ];
 
@@ -178,6 +188,8 @@ class Pipeline implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['pipeline'] = isset($data['pipeline']) ? $data['pipeline'] : null;
+        $this->container['pipelineName'] = isset($data['pipelineName']) ? $data['pipelineName'] : null;
         $this->container['stages'] = isset($data['stages']) ? $data['stages'] : null;
     }
 
@@ -204,6 +216,54 @@ class Pipeline implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets pipeline
+     *
+     * @return string
+     */
+    public function getPipeline()
+    {
+        return $this->container['pipeline'];
+    }
+
+    /**
+     * Sets pipeline
+     *
+     * @param string $pipeline Pipeline id
+     *
+     * @return $this
+     */
+    public function setPipeline($pipeline)
+    {
+        $this->container['pipeline'] = $pipeline;
+
+        return $this;
+    }
+
+    /**
+     * Gets pipelineName
+     *
+     * @return string
+     */
+    public function getPipelineName()
+    {
+        return $this->container['pipelineName'];
+    }
+
+    /**
+     * Sets pipelineName
+     *
+     * @param string $pipelineName Pipeline Name
+     *
+     * @return $this
+     */
+    public function setPipelineName($pipelineName)
+    {
+        $this->container['pipelineName'] = $pipelineName;
+
+        return $this;
+    }
 
     /**
      * Gets stages

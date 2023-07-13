@@ -59,7 +59,7 @@ class RequestContactImport implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'fileUrl' => 'string',
         'fileBody' => 'string',
-        'jsonBody' => 'map[string,object][]',
+        'jsonBody' => '\Brevo\Client\Model\RequestContactImportJsonBody[]',
         'listIds' => 'int[]',
         'notifyUrl' => 'string',
         'newList' => '\Brevo\Client\Model\RequestContactImportNewList',
@@ -309,7 +309,7 @@ class RequestContactImport implements ModelInterface, ArrayAccess
     /**
      * Gets jsonBody
      *
-     * @return map[string,object][]
+     * @return \Brevo\Client\Model\RequestContactImportJsonBody[]
      */
     public function getJsonBody()
     {
@@ -319,7 +319,7 @@ class RequestContactImport implements ModelInterface, ArrayAccess
     /**
      * Sets jsonBody
      *
-     * @param map[string,object][] $jsonBody **Mandatory if fileUrl and fileBody is not defined.** JSON content to be imported. **Maximum allowed json body size is 10MB** . However we recommend a safe limit of around 8 MB to avoid the issues caused due to increase of json body size while parsing. Please use fileUrl instead to import bigger files.
+     * @param \Brevo\Client\Model\RequestContactImportJsonBody[] $jsonBody **Mandatory if fileUrl and fileBody is not defined.** JSON content to be imported. **Maximum allowed json body size is 10MB** . However we recommend a safe limit of around 8 MB to avoid the issues caused due to increase of json body size while parsing. Please use fileUrl instead to import bigger files.
      *
      * @return $this
      */

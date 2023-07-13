@@ -152,6 +152,11 @@ Class | Method | HTTP request | Description
 *ConversationsApi* | [**conversationsPushedMessagesIdGet**](docs/Api/ConversationsApi.md#conversationspushedmessagesidget) | **GET** /conversations/pushedMessages/{id} | Get an automated message
 *ConversationsApi* | [**conversationsPushedMessagesIdPut**](docs/Api/ConversationsApi.md#conversationspushedmessagesidput) | **PUT** /conversations/pushedMessages/{id} | Update an automated message
 *ConversationsApi* | [**conversationsPushedMessagesPost**](docs/Api/ConversationsApi.md#conversationspushedmessagespost) | **POST** /conversations/pushedMessages | Send an automated message to a visitor
+*CouponsApi* | [**createCouponCollection**](docs/Api/CouponsApi.md#createcouponcollection) | **POST** /couponCollections | Create а coupon collection
+*CouponsApi* | [**createCoupons**](docs/Api/CouponsApi.md#createcoupons) | **POST** /coupons | Create coupons for a coupon collection
+*CouponsApi* | [**getCouponCollection**](docs/Api/CouponsApi.md#getcouponcollection) | **GET** /couponCollections/{id} | Get a coupon collection by id
+*CouponsApi* | [**getCouponCollections**](docs/Api/CouponsApi.md#getcouponcollections) | **GET** /couponCollections | Get all your coupon collections
+*CouponsApi* | [**updateCouponCollection**](docs/Api/CouponsApi.md#updatecouponcollection) | **PATCH** /couponCollections/{id} | Update a coupon collection by id
 *DealsApi* | [**crmAttributesDealsGet**](docs/Api/DealsApi.md#crmattributesdealsget) | **GET** /crm/attributes/deals | Get deal attributes
 *DealsApi* | [**crmDealsGet**](docs/Api/DealsApi.md#crmdealsget) | **GET** /crm/deals | Get all deals
 *DealsApi* | [**crmDealsIdDelete**](docs/Api/DealsApi.md#crmdealsiddelete) | **DELETE** /crm/deals/{id} | Delete a deal
@@ -159,7 +164,9 @@ Class | Method | HTTP request | Description
 *DealsApi* | [**crmDealsIdPatch**](docs/Api/DealsApi.md#crmdealsidpatch) | **PATCH** /crm/deals/{id} | Update a deal
 *DealsApi* | [**crmDealsLinkUnlinkIdPatch**](docs/Api/DealsApi.md#crmdealslinkunlinkidpatch) | **PATCH** /crm/deals/link-unlink/{id} | Link and Unlink a deal with contacts and companies
 *DealsApi* | [**crmDealsPost**](docs/Api/DealsApi.md#crmdealspost) | **POST** /crm/deals | Create a deal
+*DealsApi* | [**crmPipelineDetailsAllGet**](docs/Api/DealsApi.md#crmpipelinedetailsallget) | **GET** /crm/pipeline/details/all | Get all pipelines
 *DealsApi* | [**crmPipelineDetailsGet**](docs/Api/DealsApi.md#crmpipelinedetailsget) | **GET** /crm/pipeline/details | Get pipeline stages
+*DealsApi* | [**crmPipelineDetailsPipelineIDGet**](docs/Api/DealsApi.md#crmpipelinedetailspipelineidget) | **GET** /crm/pipeline/details/{pipelineID} | Get a pipeline
 *DomainsApi* | [**authenticateDomain**](docs/Api/DomainsApi.md#authenticatedomain) | **PUT** /senders/domains/{domainName}/authenticate | Authenticate a domain
 *DomainsApi* | [**createDomain**](docs/Api/DomainsApi.md#createdomain) | **POST** /senders/domains | Create a new domain
 *DomainsApi* | [**deleteDomain**](docs/Api/DomainsApi.md#deletedomain) | **DELETE** /senders/domains/{domainName} | Delete a domain
@@ -219,6 +226,7 @@ Class | Method | HTTP request | Description
 *ListsApi* | [**updateList**](docs/Api/ListsApi.md#updatelist) | **PUT** /contacts/lists/{listId} | Update a list
 *MasterAccountApi* | [**corporateMasterAccountGet**](docs/Api/MasterAccountApi.md#corporatemasteraccountget) | **GET** /corporate/masterAccount | Get the details of requested master account
 *MasterAccountApi* | [**corporateSubAccountGet**](docs/Api/MasterAccountApi.md#corporatesubaccountget) | **GET** /corporate/subAccount | Get the list of all the sub-accounts of the master account.
+*MasterAccountApi* | [**corporateSubAccountIdApplicationsTogglePut**](docs/Api/MasterAccountApi.md#corporatesubaccountidapplicationstoggleput) | **PUT** /corporate/subAccount/{id}/applications/toggle | Enable/disable sub-account application(s)
 *MasterAccountApi* | [**corporateSubAccountIdDelete**](docs/Api/MasterAccountApi.md#corporatesubaccountiddelete) | **DELETE** /corporate/subAccount/{id} | Delete a sub-account
 *MasterAccountApi* | [**corporateSubAccountIdGet**](docs/Api/MasterAccountApi.md#corporatesubaccountidget) | **GET** /corporate/subAccount/{id} | Get sub-account details
 *MasterAccountApi* | [**corporateSubAccountIdPlanPut**](docs/Api/MasterAccountApi.md#corporatesubaccountidplanput) | **PUT** /corporate/subAccount/{id}/plan | Update sub-account plan
@@ -361,6 +369,8 @@ Class | Method | HTTP request | Description
  - [CreateCategoryModel](docs/Model/CreateCategoryModel.md)
  - [CreateChild](docs/Model/CreateChild.md)
  - [CreateContact](docs/Model/CreateContact.md)
+ - [CreateCouponCollection](docs/Model/CreateCouponCollection.md)
+ - [CreateCoupons](docs/Model/CreateCoupons.md)
  - [CreateDoiContact](docs/Model/CreateDoiContact.md)
  - [CreateDomain](docs/Model/CreateDomain.md)
  - [CreateDomainModel](docs/Model/CreateDomainModel.md)
@@ -448,6 +458,7 @@ Class | Method | HTTP request | Description
  - [GetContactCampaignStatsUnsubscriptions](docs/Model/GetContactCampaignStatsUnsubscriptions.md)
  - [GetContactDetails](docs/Model/GetContactDetails.md)
  - [GetContacts](docs/Model/GetContacts.md)
+ - [GetCouponCollection](docs/Model/GetCouponCollection.md)
  - [GetDeviceBrowserStats](docs/Model/GetDeviceBrowserStats.md)
  - [GetDomainConfigurationModel](docs/Model/GetDomainConfigurationModel.md)
  - [GetDomainsList](docs/Model/GetDomainsList.md)
@@ -545,10 +556,12 @@ Class | Method | HTTP request | Description
  - [GetWhatsappEventReport](docs/Model/GetWhatsappEventReport.md)
  - [GetWhatsappEventReportEvents](docs/Model/GetWhatsappEventReportEvents.md)
  - [InlineResponse200](docs/Model/InlineResponse200.md)
+ - [InlineResponse2001](docs/Model/InlineResponse2001.md)
  - [InlineResponse201](docs/Model/InlineResponse201.md)
  - [InlineResponse2011](docs/Model/InlineResponse2011.md)
  - [InlineResponse2012](docs/Model/InlineResponse2012.md)
  - [InlineResponse2013](docs/Model/InlineResponse2013.md)
+ - [InlineResponse2014](docs/Model/InlineResponse2014.md)
  - [ManageIp](docs/Model/ManageIp.md)
  - [MasterDetailsResponse](docs/Model/MasterDetailsResponse.md)
  - [MasterDetailsResponseBillingInfo](docs/Model/MasterDetailsResponseBillingInfo.md)
@@ -567,6 +580,7 @@ Class | Method | HTTP request | Description
  - [Otp](docs/Model/Otp.md)
  - [Pipeline](docs/Model/Pipeline.md)
  - [PipelineStage](docs/Model/PipelineStage.md)
+ - [Pipelines](docs/Model/Pipelines.md)
  - [PostContactInfo](docs/Model/PostContactInfo.md)
  - [PostContactInfoContacts](docs/Model/PostContactInfoContacts.md)
  - [PostSendFailed](docs/Model/PostSendFailed.md)
@@ -579,6 +593,7 @@ Class | Method | HTTP request | Description
  - [RequestContactExport](docs/Model/RequestContactExport.md)
  - [RequestContactExportCustomContactFilter](docs/Model/RequestContactExportCustomContactFilter.md)
  - [RequestContactImport](docs/Model/RequestContactImport.md)
+ - [RequestContactImportJsonBody](docs/Model/RequestContactImportJsonBody.md)
  - [RequestContactImportNewList](docs/Model/RequestContactImportNewList.md)
  - [RequestSmsRecipientExport](docs/Model/RequestSmsRecipientExport.md)
  - [ScheduleSmtpEmail](docs/Model/ScheduleSmtpEmail.md)
@@ -600,6 +615,7 @@ Class | Method | HTTP request | Description
  - [SendTransacSms](docs/Model/SendTransacSms.md)
  - [SendWhatsappMessage](docs/Model/SendWhatsappMessage.md)
  - [SsoTokenRequest](docs/Model/SsoTokenRequest.md)
+ - [SubAccountAppsToggleRequest](docs/Model/SubAccountAppsToggleRequest.md)
  - [SubAccountDetailsResponse](docs/Model/SubAccountDetailsResponse.md)
  - [SubAccountDetailsResponsePlanInfo](docs/Model/SubAccountDetailsResponsePlanInfo.md)
  - [SubAccountDetailsResponsePlanInfoCredits](docs/Model/SubAccountDetailsResponsePlanInfoCredits.md)
@@ -627,6 +643,7 @@ Class | Method | HTTP request | Description
  - [UpdateChildAccountStatus](docs/Model/UpdateChildAccountStatus.md)
  - [UpdateChildDomain](docs/Model/UpdateChildDomain.md)
  - [UpdateContact](docs/Model/UpdateContact.md)
+ - [UpdateCouponCollection](docs/Model/UpdateCouponCollection.md)
  - [UpdateEmailCampaign](docs/Model/UpdateEmailCampaign.md)
  - [UpdateEmailCampaignRecipients](docs/Model/UpdateEmailCampaignRecipients.md)
  - [UpdateEmailCampaignSender](docs/Model/UpdateEmailCampaignSender.md)

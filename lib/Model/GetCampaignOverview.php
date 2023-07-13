@@ -60,6 +60,7 @@ class GetCampaignOverview implements ModelInterface, ArrayAccess
         'id' => 'int',
         'name' => 'string',
         'subject' => 'string',
+        'previewText' => 'string',
         'type' => 'string',
         'status' => 'string',
         'scheduledAt' => 'string',
@@ -81,6 +82,7 @@ class GetCampaignOverview implements ModelInterface, ArrayAccess
         'id' => 'int64',
         'name' => null,
         'subject' => null,
+        'previewText' => null,
         'type' => null,
         'status' => null,
         'scheduledAt' => null,
@@ -123,6 +125,7 @@ class GetCampaignOverview implements ModelInterface, ArrayAccess
         'id' => 'id',
         'name' => 'name',
         'subject' => 'subject',
+        'previewText' => 'previewText',
         'type' => 'type',
         'status' => 'status',
         'scheduledAt' => 'scheduledAt',
@@ -144,6 +147,7 @@ class GetCampaignOverview implements ModelInterface, ArrayAccess
         'id' => 'setId',
         'name' => 'setName',
         'subject' => 'setSubject',
+        'previewText' => 'setPreviewText',
         'type' => 'setType',
         'status' => 'setStatus',
         'scheduledAt' => 'setScheduledAt',
@@ -165,6 +169,7 @@ class GetCampaignOverview implements ModelInterface, ArrayAccess
         'id' => 'getId',
         'name' => 'getName',
         'subject' => 'getSubject',
+        'previewText' => 'getPreviewText',
         'type' => 'getType',
         'status' => 'getStatus',
         'scheduledAt' => 'getScheduledAt',
@@ -278,6 +283,7 @@ class GetCampaignOverview implements ModelInterface, ArrayAccess
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
+        $this->container['previewText'] = isset($data['previewText']) ? $data['previewText'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['scheduledAt'] = isset($data['scheduledAt']) ? $data['scheduledAt'] : null;
@@ -410,6 +416,30 @@ class GetCampaignOverview implements ModelInterface, ArrayAccess
     public function setSubject($subject)
     {
         $this->container['subject'] = $subject;
+
+        return $this;
+    }
+
+    /**
+     * Gets previewText
+     *
+     * @return string
+     */
+    public function getPreviewText()
+    {
+        return $this->container['previewText'];
+    }
+
+    /**
+     * Sets previewText
+     *
+     * @param string $previewText Preview text or preheader of the email campaign
+     *
+     * @return $this
+     */
+    public function setPreviewText($previewText)
+    {
+        $this->container['previewText'] = $previewText;
 
         return $this;
     }

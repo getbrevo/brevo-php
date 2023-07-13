@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **htmlUrl** | **string** | Url which contents the body of the email message. REQUIRED if htmlContent is empty | [optional] 
 **scheduledAt** | **string** | UTC date-time on which the campaign has to run (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. If sendAtBestTime is set to true, your campaign will be sent according to the date passed (ignoring the time part). | [optional] 
 **subject** | **string** | Subject of the campaign | [optional] 
+**previewText** | **string** | Preview text or preheader of the email campaign | [optional] 
 **replyTo** | **string** | Email on which campaign recipients will be able to reply to | [optional] 
 **toField** | **string** | To personalize the «To» Field. If you want to include the first name and last name of your recipient, add {FNAME} {LNAME}. These contact attributes must already exist in your Brevo account. If input parameter &#39;params&#39; used please use {{contact.FNAME}} {{contact.LNAME}} for personalization | [optional] 
 **recipients** | [**\Brevo\Client\Model\UpdateEmailCampaignRecipients**](UpdateEmailCampaignRecipients.md) |  | [optional] 
