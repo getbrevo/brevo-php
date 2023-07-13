@@ -59,7 +59,8 @@ class SsoTokenRequest implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'id' => 'int',
         'email' => 'string',
-        'target' => 'string'
+        'target' => 'string',
+        'url' => 'string'
     ];
 
     /**
@@ -70,7 +71,8 @@ class SsoTokenRequest implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'id' => 'int64',
         'email' => null,
-        'target' => null
+        'target' => null,
+        'url' => null
     ];
 
     /**
@@ -102,7 +104,8 @@ class SsoTokenRequest implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'id' => 'id',
         'email' => 'email',
-        'target' => 'target'
+        'target' => 'target',
+        'url' => 'url'
     ];
 
     /**
@@ -113,7 +116,8 @@ class SsoTokenRequest implements ModelInterface, ArrayAccess
     protected static $setters = [
         'id' => 'setId',
         'email' => 'setEmail',
-        'target' => 'setTarget'
+        'target' => 'setTarget',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -124,7 +128,8 @@ class SsoTokenRequest implements ModelInterface, ArrayAccess
     protected static $getters = [
         'id' => 'getId',
         'email' => 'getEmail',
-        'target' => 'getTarget'
+        'target' => 'getTarget',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -217,6 +222,7 @@ class SsoTokenRequest implements ModelInterface, ArrayAccess
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['email'] = isset($data['email']) ? $data['email'] : null;
         $this->container['target'] = isset($data['target']) ? $data['target'] : null;
+        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
     }
 
     /**
@@ -331,6 +337,30 @@ class SsoTokenRequest implements ModelInterface, ArrayAccess
             );
         }
         $this->container['target'] = $target;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string $url Set the full target URL after login success. The user will land directly on this target URL after login
+     *
+     * @return $this
+     */
+    public function setUrl($url)
+    {
+        $this->container['url'] = $url;
 
         return $this;
     }

@@ -77,6 +77,20 @@ class PipelineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "pipeline"
+     */
+    public function testPropertyPipeline()
+    {
+    }
+
+    /**
+     * Test attribute "pipelineName"
+     */
+    public function testPropertyPipelineName()
+    {
+    }
+
+    /**
      * Test attribute "stages"
      */
     public function testPropertyStages()

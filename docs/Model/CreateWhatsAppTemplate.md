@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** | Name of the template | 
-**language** | **string** | Language of the template. For Example :  **en** for English | 
+**language** | **string** | Language of the template. For Example : **en** for English | 
 **category** | **string** | Category of the template | 
 **mediaUrl** | **string** | Absolute url of the media file **(no local file)** for the header. **Use this field in you want to add media in Template header and headerText is empty.** Allowed extensions for media files are: #### jpeg | png | mp4 | pdf | [optional] 
 **bodyText** | **string** | Body of the template. **Maximum allowed characters are 1024** | 

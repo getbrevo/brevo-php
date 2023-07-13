@@ -306,7 +306,7 @@ class CreateWhatsAppTemplate implements ModelInterface, ArrayAccess
     /**
      * Sets language
      *
-     * @param string $language Language of the template. For Example :  **en** for English
+     * @param string $language Language of the template. For Example : **en** for English
      *
      * @return $this
      */

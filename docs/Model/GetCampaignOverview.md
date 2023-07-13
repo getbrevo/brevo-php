@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **id** | **int** | ID of the campaign | 
 **name** | **string** | Name of the campaign | 
 **subject** | **string** | Subject of the campaign. Only available if &#x60;abTesting&#x60; flag of the campaign is &#x60;false&#x60; | [optional] 
+**previewText** | **string** | Preview text or preheader of the email campaign | [optional] 
 **type** | **string** | Type of campaign | 
 **status** | **string** | Status of the campaign | 
 **scheduledAt** | **string** | UTC date-time on which campaign is scheduled (YYYY-MM-DDTHH:mm:ss.SSSZ) | [optional] 

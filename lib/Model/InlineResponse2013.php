@@ -57,7 +57,7 @@ class InlineResponse2013 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'string'
+        'messageId' => 'string'
     ];
 
     /**
@@ -66,7 +66,7 @@ class InlineResponse2013 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'id' => 'uuidv4'
+        'messageId' => 'uuidv4'
     ];
 
     /**
@@ -96,7 +96,7 @@ class InlineResponse2013 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id'
+        'messageId' => 'messageId'
     ];
 
     /**
@@ -105,7 +105,7 @@ class InlineResponse2013 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId'
+        'messageId' => 'setMessageId'
     ];
 
     /**
@@ -114,7 +114,7 @@ class InlineResponse2013 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId'
+        'messageId' => 'getMessageId'
     ];
 
     /**
@@ -177,7 +177,7 @@ class InlineResponse2013 implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['messageId'] = isset($data['messageId']) ? $data['messageId'] : null;
     }
 
     /**
@@ -189,8 +189,8 @@ class InlineResponse2013 implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['messageId'] === null) {
+            $invalidProperties[] = "'messageId' can't be null";
         }
         return $invalidProperties;
     }
@@ -208,25 +208,25 @@ class InlineResponse2013 implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets id
+     * Gets messageId
      *
      * @return string
      */
-    public function getId()
+    public function getMessageId()
     {
-        return $this->container['id'];
+        return $this->container['messageId'];
     }
 
     /**
-     * Sets id
+     * Sets messageId
      *
-     * @param string $id ID of the object created
+     * @param string $messageId messageId of sent message
      *
      * @return $this
      */
-    public function setId($id)
+    public function setMessageId($messageId)
     {
-        $this->container['id'] = $id;
+        $this->container['messageId'] = $messageId;
 
         return $this;
     }

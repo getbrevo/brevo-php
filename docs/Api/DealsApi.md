@@ -11,7 +11,9 @@ Method | HTTP request | Description
 [**crmDealsIdPatch**](DealsApi.md#crmDealsIdPatch) | **PATCH** /crm/deals/{id} | Update a deal
 [**crmDealsLinkUnlinkIdPatch**](DealsApi.md#crmDealsLinkUnlinkIdPatch) | **PATCH** /crm/deals/link-unlink/{id} | Link and Unlink a deal with contacts and companies
 [**crmDealsPost**](DealsApi.md#crmDealsPost) | **POST** /crm/deals | Create a deal
+[**crmPipelineDetailsAllGet**](DealsApi.md#crmPipelineDetailsAllGet) | **GET** /crm/pipeline/details/all | Get all pipelines
 [**crmPipelineDetailsGet**](DealsApi.md#crmPipelineDetailsGet) | **GET** /crm/pipeline/details | Get pipeline stages
+[**crmPipelineDetailsPipelineIDGet**](DealsApi.md#crmPipelineDetailsPipelineIDGet) | **GET** /crm/pipeline/details/{pipelineID} | Get a pipeline
 
 
 # **crmAttributesDealsGet**
@@ -68,7 +70,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **crmDealsGet**
-> \Brevo\Client\Model\DealsList crmDealsGet($filtersAttributes, $filtersLinkedCompaniesIds, $filtersLinkedContactsIds, $offset, $limit, $sort, $sortBy)
+> \Brevo\Client\Model\DealsList crmDealsGet($filtersAttributesDealName, $filtersLinkedCompaniesIds, $filtersLinkedContactsIds, $offset, $limit, $sort, $sortBy)
 
 Get all deals
 
@@ -92,7 +94,7 @@ $apiInstance = new Brevo\Client\Api\DealsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$filtersAttributes = "filtersAttributes_example"; // string | Filter by attrbutes. If you have filter for owner on your side please send it as `attributes.owner`.\"
+$filtersAttributesDealName = "filtersAttributesDealName_example"; // string | Filter by attributes. If you have filter for owner on your side please send it as `filters[attributes.deal_owner]`.\"
 $filtersLinkedCompaniesIds = "filtersLinkedCompaniesIds_example"; // string | Filter by linked companies ids
 $filtersLinkedContactsIds = "filtersLinkedContactsIds_example"; // string | Filter by linked companies ids
 $offset = 789; // int | Index of the first document of the page
@@ -101,7 +103,7 @@ $sort = "sort_example"; // string | Sort the results in the ascending/descending
 $sortBy = "sortBy_example"; // string | The field used to sort field names.
 
 try {
-    $result = $apiInstance->crmDealsGet($filtersAttributes, $filtersLinkedCompaniesIds, $filtersLinkedContactsIds, $offset, $limit, $sort, $sortBy);
+    $result = $apiInstance->crmDealsGet($filtersAttributesDealName, $filtersLinkedCompaniesIds, $filtersLinkedContactsIds, $offset, $limit, $sort, $sortBy);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DealsApi->crmDealsGet: ', $e->getMessage(), PHP_EOL;
@@ -113,7 +115,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filtersAttributes** | **string**| Filter by attrbutes. If you have filter for owner on your side please send it as &#x60;attributes.owner&#x60;.\" | [optional]
+ **filtersAttributesDealName** | **string**| Filter by attributes. If you have filter for owner on your side please send it as &#x60;filters[attributes.deal_owner]&#x60;.\&quot; | [optional]
  **filtersLinkedCompaniesIds** | **string**| Filter by linked companies ids | [optional]
  **filtersLinkedContactsIds** | **string**| Filter by linked companies ids | [optional]
  **offset** | **int**| Index of the first document of the page | [optional]
@@ -422,10 +424,65 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **crmPipelineDetailsAllGet**
+> \Brevo\Client\Model\Pipelines crmPipelineDetailsAllGet()
+
+Get all pipelines
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: api-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: partner-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
+
+$apiInstance = new Brevo\Client\Api\DealsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->crmPipelineDetailsAllGet();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DealsApi->crmPipelineDetailsAllGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Brevo\Client\Model\Pipelines**](../Model/Pipelines.md)
+
+### Authorization
+
+[api-key](../../README.md#api-key), [partner-key](../../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **crmPipelineDetailsGet**
 > \Brevo\Client\Model\Pipeline crmPipelineDetailsGet()
 
 Get pipeline stages
+
+This endpoint is deprecated. Prefer /crm/pipeline/details/{pipelineID} instead.
 
 ### Example
 ```php
@@ -463,6 +520,63 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\Brevo\Client\Model\Pipeline**](../Model/Pipeline.md)
+
+### Authorization
+
+[api-key](../../README.md#api-key), [partner-key](../../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **crmPipelineDetailsPipelineIDGet**
+> \Brevo\Client\Model\Pipelines crmPipelineDetailsPipelineIDGet($pipelineID)
+
+Get a pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: api-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: partner-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
+
+$apiInstance = new Brevo\Client\Api\DealsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$pipelineID = "pipelineID_example"; // string | 
+
+try {
+    $result = $apiInstance->crmPipelineDetailsPipelineIDGet($pipelineID);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DealsApi->crmPipelineDetailsPipelineIDGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pipelineID** | **string**|  |
+
+### Return type
+
+[**\Brevo\Client\Model\Pipelines**](../Model/Pipelines.md)
 
 ### Authorization
 

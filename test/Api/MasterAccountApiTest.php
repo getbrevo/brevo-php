@@ -92,6 +92,16 @@ class MasterAccountApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for corporateSubAccountIdApplicationsTogglePut
+     *
+     * Enable/disable sub-account application(s).
+     *
+     */
+    public function testCorporateSubAccountIdApplicationsTogglePut()
+    {
+    }
+
+    /**
      * Test case for corporateSubAccountIdDelete
      *
      * Delete a sub-account.

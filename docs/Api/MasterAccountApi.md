@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**corporateMasterAccountGet**](MasterAccountApi.md#corporateMasterAccountGet) | **GET** /corporate/masterAccount | Get the details of requested master account
 [**corporateSubAccountGet**](MasterAccountApi.md#corporateSubAccountGet) | **GET** /corporate/subAccount | Get the list of all the sub-accounts of the master account.
+[**corporateSubAccountIdApplicationsTogglePut**](MasterAccountApi.md#corporateSubAccountIdApplicationsTogglePut) | **PUT** /corporate/subAccount/{id}/applications/toggle | Enable/disable sub-account application(s)
 [**corporateSubAccountIdDelete**](MasterAccountApi.md#corporateSubAccountIdDelete) | **DELETE** /corporate/subAccount/{id} | Delete a sub-account
 [**corporateSubAccountIdGet**](MasterAccountApi.md#corporateSubAccountIdGet) | **GET** /corporate/subAccount/{id} | Get sub-account details
 [**corporateSubAccountIdPlanPut**](MasterAccountApi.md#corporateSubAccountIdPlanPut) | **PUT** /corporate/subAccount/{id}/plan | Update sub-account plan
@@ -119,6 +120,66 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Brevo\Client\Model\SubAccountsResponse**](../Model/SubAccountsResponse.md)
+
+### Authorization
+
+[api-key](../../README.md#api-key), [partner-key](../../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **corporateSubAccountIdApplicationsTogglePut**
+> corporateSubAccountIdApplicationsTogglePut($id, $toggleApplications)
+
+Enable/disable sub-account application(s)
+
+API endpoint for the Corporate owner to enable/disable applications on the sub-account
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: api-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: partner-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
+
+$apiInstance = new Brevo\Client\Api\MasterAccountApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 789; // int | Id of the sub-account organization (mandatory)
+$toggleApplications = new \Brevo\Client\Model\SubAccountAppsToggleRequest(); // \Brevo\Client\Model\SubAccountAppsToggleRequest | List of applications to activate or deactivate on a sub-account
+
+try {
+    $apiInstance->corporateSubAccountIdApplicationsTogglePut($id, $toggleApplications);
+} catch (Exception $e) {
+    echo 'Exception when calling MasterAccountApi->corporateSubAccountIdApplicationsTogglePut: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Id of the sub-account organization (mandatory) |
+ **toggleApplications** | [**\Brevo\Client\Model\SubAccountAppsToggleRequest**](../Model/SubAccountAppsToggleRequest.md)| List of applications to activate or deactivate on a sub-account |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

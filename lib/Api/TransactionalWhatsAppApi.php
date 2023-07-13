@@ -443,7 +443,7 @@ class TransactionalWhatsAppApi
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Brevo\Client\Model\InlineResponse2012
+     * @return \Brevo\Client\Model\InlineResponse2013
      */
     public function sendWhatsappMessage($sendWhatsappMessage)
     {
@@ -460,11 +460,11 @@ class TransactionalWhatsAppApi
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Brevo\Client\Model\InlineResponse2012, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Brevo\Client\Model\InlineResponse2013, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendWhatsappMessageWithHttpInfo($sendWhatsappMessage)
     {
-        $returnType = '\Brevo\Client\Model\InlineResponse2012';
+        $returnType = '\Brevo\Client\Model\InlineResponse2013';
         $request = $this->sendWhatsappMessageRequest($sendWhatsappMessage);
 
         try {
@@ -516,7 +516,7 @@ class TransactionalWhatsAppApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Brevo\Client\Model\InlineResponse2012',
+                        '\Brevo\Client\Model\InlineResponse2013',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -566,7 +566,7 @@ class TransactionalWhatsAppApi
      */
     public function sendWhatsappMessageAsyncWithHttpInfo($sendWhatsappMessage)
     {
-        $returnType = '\Brevo\Client\Model\InlineResponse2012';
+        $returnType = '\Brevo\Client\Model\InlineResponse2013';
         $request = $this->sendWhatsappMessageRequest($sendWhatsappMessage);
 
         return $this->client

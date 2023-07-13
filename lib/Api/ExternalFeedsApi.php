@@ -96,7 +96,7 @@ class ExternalFeedsApi
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Brevo\Client\Model\InlineResponse2013
+     * @return \Brevo\Client\Model\InlineResponse2014
      */
     public function createExternalFeed($createExternalFeed)
     {
@@ -113,11 +113,11 @@ class ExternalFeedsApi
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Brevo\Client\Model\InlineResponse2013, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Brevo\Client\Model\InlineResponse2014, HTTP status code, HTTP response headers (array of strings)
      */
     public function createExternalFeedWithHttpInfo($createExternalFeed)
     {
-        $returnType = '\Brevo\Client\Model\InlineResponse2013';
+        $returnType = '\Brevo\Client\Model\InlineResponse2014';
         $request = $this->createExternalFeedRequest($createExternalFeed);
 
         try {
@@ -169,7 +169,7 @@ class ExternalFeedsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Brevo\Client\Model\InlineResponse2013',
+                        '\Brevo\Client\Model\InlineResponse2014',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -219,7 +219,7 @@ class ExternalFeedsApi
      */
     public function createExternalFeedAsyncWithHttpInfo($createExternalFeed)
     {
-        $returnType = '\Brevo\Client\Model\InlineResponse2013';
+        $returnType = '\Brevo\Client\Model\InlineResponse2014';
         $request = $this->createExternalFeedRequest($createExternalFeed);
 
         return $this->client

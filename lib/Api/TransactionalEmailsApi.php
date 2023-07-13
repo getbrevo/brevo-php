@@ -3864,7 +3864,7 @@ class TransactionalEmailsApi
      *
      * Get the list of email templates
      *
-     * @param  bool $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
+     * @param  string $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document in the page (optional, default to 0)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
@@ -3884,7 +3884,7 @@ class TransactionalEmailsApi
      *
      * Get the list of email templates
      *
-     * @param  bool $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
+     * @param  string $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document in the page (optional, default to 0)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
@@ -3970,7 +3970,7 @@ class TransactionalEmailsApi
      *
      * Get the list of email templates
      *
-     * @param  bool $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
+     * @param  string $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document in the page (optional, default to 0)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
@@ -3993,7 +3993,7 @@ class TransactionalEmailsApi
      *
      * Get the list of email templates
      *
-     * @param  bool $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
+     * @param  string $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document in the page (optional, default to 0)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
@@ -4046,7 +4046,7 @@ class TransactionalEmailsApi
     /**
      * Create request for operation 'getSmtpTemplates'
      *
-     * @param  bool $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
+     * @param  string $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document in the page (optional, default to 0)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
