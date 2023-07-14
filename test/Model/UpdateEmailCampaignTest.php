@@ -126,6 +126,13 @@ class UpdateEmailCampaignTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "previewText"
+     */
+    public function testPropertyPreviewText()
+    {
+    }
+
+    /**
      * Test attribute "replyTo"
      */
     public function testPropertyReplyTo()

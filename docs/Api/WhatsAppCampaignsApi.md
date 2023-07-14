@@ -5,7 +5,7 @@ All URIs are relative to *https://api.brevo.com/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createWhatsAppCampaign**](WhatsAppCampaignsApi.md#createWhatsAppCampaign) | **POST** /whatsappCampaigns | Create and Send a WhatsApp campaign
-[**createWhatsAppTemplate**](WhatsAppCampaignsApi.md#createWhatsAppTemplate) | **POST** /whatsppCampaigns/template | Create a WhatsApp template
+[**createWhatsAppTemplate**](WhatsAppCampaignsApi.md#createWhatsAppTemplate) | **POST** /whatsappCampaigns/template | Create a WhatsApp template
 [**deleteWhatsAppCampaign**](WhatsAppCampaignsApi.md#deleteWhatsAppCampaign) | **DELETE** /whatsappCampaigns/{campaignId} | Delete a WhatsApp campaign
 [**getWhatsAppCampaign**](WhatsAppCampaignsApi.md#getWhatsAppCampaign) | **GET** /whatsappCampaigns/{campaignId} | Get a WhatsApp campaign
 [**getWhatsAppCampaigns**](WhatsAppCampaignsApi.md#getWhatsAppCampaigns) | **GET** /whatsappCampaigns | Return all your created WhatsApp campaigns

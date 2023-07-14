@@ -96,4 +96,11 @@ class SsoTokenRequestTest extends \PHPUnit_Framework_TestCase
     public function testPropertyTarget()
     {
     }
+
+    /**
+     * Test attribute "url"
+     */
+    public function testPropertyUrl()
+    {
+    }
 }
