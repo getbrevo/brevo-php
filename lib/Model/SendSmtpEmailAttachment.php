@@ -201,8 +201,13 @@ class SendSmtpEmailAttachment implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['content']) && !preg_match("/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/", $this->container['content'])) {
-            $invalidProperties[] = "invalid value for 'content', must be conform to the pattern /^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/.";
+        if (
+            !is_null($this->container['content']) &&
+            !base64_encode(
+                base64_decode($this->container['content'], true) === $this->container['content']
+            )
+        ) {
+            $invalidProperties[] = "Invalid value for 'content', must be base64 encoded";
         }
 
         return $invalidProperties;
@@ -264,8 +269,13 @@ class SendSmtpEmailAttachment implements ModelInterface, ArrayAccess
     public function setContent($content)
     {
 
-        if (!is_null($content) && (!preg_match("/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/", $content))) {
-            throw new \InvalidArgumentException("invalid value for $content when calling SendSmtpEmailAttachment., must conform to the pattern /^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/.");
+        if (
+            !is_null($this->container['content']) &&
+            !base64_encode(
+                base64_decode($this->container['content'], true) === $this->container['content']
+            )
+        ) {
+            throw new \InvalidArgumentException("Invalid value for 'content', must be base64 encoded");
         }
 
         $this->container['content'] = $content;
