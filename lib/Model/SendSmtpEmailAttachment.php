@@ -203,9 +203,7 @@ class SendSmtpEmailAttachment implements ModelInterface, ArrayAccess
 
         if (
             !is_null($this->container['content']) &&
-            !base64_encode(
-                base64_decode($this->container['content'], true) === $this->container['content']
-            )
+            !base64_encode(base64_decode($this->container['content'], true)) === $this->container['content']
         ) {
             $invalidProperties[] = "Invalid value for 'content', must be base64 encoded";
         }
@@ -271,9 +269,7 @@ class SendSmtpEmailAttachment implements ModelInterface, ArrayAccess
 
         if (
             !is_null($this->container['content']) &&
-            !base64_encode(
-                base64_decode($this->container['content'], true) === $this->container['content']
-            )
+            !base64_encode(base64_decode($this->container['content'], true)) === $this->container['content']
         ) {
             throw new \InvalidArgumentException("Invalid value for 'content', must be base64 encoded");
         }
