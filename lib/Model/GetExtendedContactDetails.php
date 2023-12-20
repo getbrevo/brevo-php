@@ -64,6 +64,7 @@ class GetExtendedContactDetails implements ModelInterface, ArrayAccess
         'createdAt' => 'string',
         'modifiedAt' => 'string',
         'listIds' => 'int[]',
+        'unlinkListIds' => 'int[]',
         'listUnsubscribed' => 'int[]',
         'attributes' => 'object',
         'statistics' => '\Brevo\Client\Model\GetExtendedContactDetailsStatistics'
@@ -82,6 +83,7 @@ class GetExtendedContactDetails implements ModelInterface, ArrayAccess
         'createdAt' => null,
         'modifiedAt' => null,
         'listIds' => 'int64',
+        'unlinkListIds' => 'int64',
         'listUnsubscribed' => 'int64',
         'attributes' => null,
         'statistics' => null
@@ -121,6 +123,7 @@ class GetExtendedContactDetails implements ModelInterface, ArrayAccess
         'createdAt' => 'createdAt',
         'modifiedAt' => 'modifiedAt',
         'listIds' => 'listIds',
+        'unlinkListIds' => 'unlinkListIds',
         'listUnsubscribed' => 'listUnsubscribed',
         'attributes' => 'attributes',
         'statistics' => 'statistics'
@@ -139,6 +142,7 @@ class GetExtendedContactDetails implements ModelInterface, ArrayAccess
         'createdAt' => 'setCreatedAt',
         'modifiedAt' => 'setModifiedAt',
         'listIds' => 'setListIds',
+        'unlinkListIds' => 'setUnlinkListIds',
         'listUnsubscribed' => 'setListUnsubscribed',
         'attributes' => 'setAttributes',
         'statistics' => 'setStatistics'
@@ -157,6 +161,7 @@ class GetExtendedContactDetails implements ModelInterface, ArrayAccess
         'createdAt' => 'getCreatedAt',
         'modifiedAt' => 'getModifiedAt',
         'listIds' => 'getListIds',
+        'unlinkListIds' => 'getUnlinkListIds',
         'listUnsubscribed' => 'getListUnsubscribed',
         'attributes' => 'getAttributes',
         'statistics' => 'getStatistics'
@@ -230,6 +235,7 @@ class GetExtendedContactDetails implements ModelInterface, ArrayAccess
         $this->container['createdAt'] = isset($data['createdAt']) ? $data['createdAt'] : null;
         $this->container['modifiedAt'] = isset($data['modifiedAt']) ? $data['modifiedAt'] : null;
         $this->container['listIds'] = isset($data['listIds']) ? $data['listIds'] : null;
+        $this->container['unlinkListIds'] = isset($data['unlinkListIds']) ? $data['unlinkListIds'] : null;
         $this->container['listUnsubscribed'] = isset($data['listUnsubscribed']) ? $data['listUnsubscribed'] : null;
         $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
         $this->container['statistics'] = isset($data['statistics']) ? $data['statistics'] : null;
@@ -450,6 +456,30 @@ class GetExtendedContactDetails implements ModelInterface, ArrayAccess
     public function setListIds($listIds)
     {
         $this->container['listIds'] = $listIds;
+
+        return $this;
+    }
+
+    /**
+     * Gets unlinkListIds
+     *
+     * @return int[]
+     */
+    public function getUnlinkListIds()
+    {
+        return $this->container['unlinkListIds'];
+    }
+
+    /**
+     * Sets unlinkListIds
+     *
+     * @param int[] $unlinkListIds unlinkListIds
+     *
+     * @return $this
+     */
+    public function setUnlinkListIds($unlinkListIds)
+    {
+        $this->container['unlinkListIds'] = $unlinkListIds;
 
         return $this;
     }
