@@ -98,9 +98,23 @@ class MasterDetailsResponsePlanInfoFeaturesTest extends \PHPUnit_Framework_TestC
     }
 
     /**
+     * Test attribute "quantityWithOverages"
+     */
+    public function testPropertyQuantityWithOverages()
+    {
+    }
+
+    /**
      * Test attribute "used"
      */
     public function testPropertyUsed()
+    {
+    }
+
+    /**
+     * Test attribute "usedOverages"
+     */
+    public function testPropertyUsedOverages()
     {
     }
 

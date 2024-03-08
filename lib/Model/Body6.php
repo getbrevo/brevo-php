@@ -58,16 +58,7 @@ class Body6 implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'name' => 'string',
-        'duration' => 'int',
-        'taskTypeId' => 'string',
-        'date' => '\DateTime',
-        'notes' => 'string',
-        'done' => 'bool',
-        'assignToId' => 'string',
-        'contactsIds' => 'int[]',
-        'dealsIds' => 'string[]',
-        'companiesIds' => 'string[]',
-        'reminder' => '\Brevo\Client\Model\TaskReminder'
+        'attributes' => 'object'
     ];
 
     /**
@@ -77,16 +68,7 @@ class Body6 implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'name' => null,
-        'duration' => 'int64',
-        'taskTypeId' => null,
-        'date' => 'date-time',
-        'notes' => null,
-        'done' => null,
-        'assignToId' => null,
-        'contactsIds' => null,
-        'dealsIds' => null,
-        'companiesIds' => null,
-        'reminder' => null
+        'attributes' => null
     ];
 
     /**
@@ -117,16 +99,7 @@ class Body6 implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'name' => 'name',
-        'duration' => 'duration',
-        'taskTypeId' => 'taskTypeId',
-        'date' => 'date',
-        'notes' => 'notes',
-        'done' => 'done',
-        'assignToId' => 'assignToId',
-        'contactsIds' => 'contactsIds',
-        'dealsIds' => 'dealsIds',
-        'companiesIds' => 'companiesIds',
-        'reminder' => 'reminder'
+        'attributes' => 'attributes'
     ];
 
     /**
@@ -136,16 +109,7 @@ class Body6 implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'name' => 'setName',
-        'duration' => 'setDuration',
-        'taskTypeId' => 'setTaskTypeId',
-        'date' => 'setDate',
-        'notes' => 'setNotes',
-        'done' => 'setDone',
-        'assignToId' => 'setAssignToId',
-        'contactsIds' => 'setContactsIds',
-        'dealsIds' => 'setDealsIds',
-        'companiesIds' => 'setCompaniesIds',
-        'reminder' => 'setReminder'
+        'attributes' => 'setAttributes'
     ];
 
     /**
@@ -155,16 +119,7 @@ class Body6 implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'name' => 'getName',
-        'duration' => 'getDuration',
-        'taskTypeId' => 'getTaskTypeId',
-        'date' => 'getDate',
-        'notes' => 'getNotes',
-        'done' => 'getDone',
-        'assignToId' => 'getAssignToId',
-        'contactsIds' => 'getContactsIds',
-        'dealsIds' => 'getDealsIds',
-        'companiesIds' => 'getCompaniesIds',
-        'reminder' => 'getReminder'
+        'attributes' => 'getAttributes'
     ];
 
     /**
@@ -228,16 +183,7 @@ class Body6 implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['duration'] = isset($data['duration']) ? $data['duration'] : null;
-        $this->container['taskTypeId'] = isset($data['taskTypeId']) ? $data['taskTypeId'] : null;
-        $this->container['date'] = isset($data['date']) ? $data['date'] : null;
-        $this->container['notes'] = isset($data['notes']) ? $data['notes'] : null;
-        $this->container['done'] = isset($data['done']) ? $data['done'] : null;
-        $this->container['assignToId'] = isset($data['assignToId']) ? $data['assignToId'] : null;
-        $this->container['contactsIds'] = isset($data['contactsIds']) ? $data['contactsIds'] : null;
-        $this->container['dealsIds'] = isset($data['dealsIds']) ? $data['dealsIds'] : null;
-        $this->container['companiesIds'] = isset($data['companiesIds']) ? $data['companiesIds'] : null;
-        $this->container['reminder'] = isset($data['reminder']) ? $data['reminder'] : null;
+        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
     }
 
     /**
@@ -249,19 +195,6 @@ class Body6 implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if (!is_null($this->container['duration']) && ($this->container['duration'] < 0)) {
-            $invalidProperties[] = "invalid value for 'duration', must be bigger than or equal to 0.";
-        }
-
-        if ($this->container['taskTypeId'] === null) {
-            $invalidProperties[] = "'taskTypeId' can't be null";
-        }
-        if ($this->container['date'] === null) {
-            $invalidProperties[] = "'date' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -290,7 +223,7 @@ class Body6 implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name Name of task
+     * @param string $name Name of deal
      *
      * @return $this
      */
@@ -302,246 +235,25 @@ class Body6 implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets duration
+     * Gets attributes
      *
-     * @return int
+     * @return object
      */
-    public function getDuration()
+    public function getAttributes()
     {
-        return $this->container['duration'];
+        return $this->container['attributes'];
     }
 
     /**
-     * Sets duration
+     * Sets attributes
      *
-     * @param int $duration Duration of task in milliseconds [1 minute = 60000 ms]
+     * @param object $attributes Attributes for deal update  If you wish to update the pipeline of a deal you need to provide the `pipeline` and the `deal_stage`.  Pipeline and deal_stage are ids you can fetch using this endpoint `/crm/pipeline/details/{pipelineID}`
      *
      * @return $this
      */
-    public function setDuration($duration)
+    public function setAttributes($attributes)
     {
-
-        if (!is_null($duration) && ($duration < 0)) {
-            throw new \InvalidArgumentException('invalid value for $duration when calling Body6., must be bigger than or equal to 0.');
-        }
-
-        $this->container['duration'] = $duration;
-
-        return $this;
-    }
-
-    /**
-     * Gets taskTypeId
-     *
-     * @return string
-     */
-    public function getTaskTypeId()
-    {
-        return $this->container['taskTypeId'];
-    }
-
-    /**
-     * Sets taskTypeId
-     *
-     * @param string $taskTypeId Id for type of task e.g Call / Email / Meeting etc.
-     *
-     * @return $this
-     */
-    public function setTaskTypeId($taskTypeId)
-    {
-        $this->container['taskTypeId'] = $taskTypeId;
-
-        return $this;
-    }
-
-    /**
-     * Gets date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->container['date'];
-    }
-
-    /**
-     * Sets date
-     *
-     * @param \DateTime $date Task due date and time
-     *
-     * @return $this
-     */
-    public function setDate($date)
-    {
-        $this->container['date'] = $date;
-
-        return $this;
-    }
-
-    /**
-     * Gets notes
-     *
-     * @return string
-     */
-    public function getNotes()
-    {
-        return $this->container['notes'];
-    }
-
-    /**
-     * Sets notes
-     *
-     * @param string $notes Notes added to a task
-     *
-     * @return $this
-     */
-    public function setNotes($notes)
-    {
-        $this->container['notes'] = $notes;
-
-        return $this;
-    }
-
-    /**
-     * Gets done
-     *
-     * @return bool
-     */
-    public function getDone()
-    {
-        return $this->container['done'];
-    }
-
-    /**
-     * Sets done
-     *
-     * @param bool $done Task marked as done
-     *
-     * @return $this
-     */
-    public function setDone($done)
-    {
-        $this->container['done'] = $done;
-
-        return $this;
-    }
-
-    /**
-     * Gets assignToId
-     *
-     * @return string
-     */
-    public function getAssignToId()
-    {
-        return $this->container['assignToId'];
-    }
-
-    /**
-     * Sets assignToId
-     *
-     * @param string $assignToId User id to whom task is assigned
-     *
-     * @return $this
-     */
-    public function setAssignToId($assignToId)
-    {
-        $this->container['assignToId'] = $assignToId;
-
-        return $this;
-    }
-
-    /**
-     * Gets contactsIds
-     *
-     * @return int[]
-     */
-    public function getContactsIds()
-    {
-        return $this->container['contactsIds'];
-    }
-
-    /**
-     * Sets contactsIds
-     *
-     * @param int[] $contactsIds Contact ids for contacts linked to this task
-     *
-     * @return $this
-     */
-    public function setContactsIds($contactsIds)
-    {
-        $this->container['contactsIds'] = $contactsIds;
-
-        return $this;
-    }
-
-    /**
-     * Gets dealsIds
-     *
-     * @return string[]
-     */
-    public function getDealsIds()
-    {
-        return $this->container['dealsIds'];
-    }
-
-    /**
-     * Sets dealsIds
-     *
-     * @param string[] $dealsIds Deal ids for deals a task is linked to
-     *
-     * @return $this
-     */
-    public function setDealsIds($dealsIds)
-    {
-        $this->container['dealsIds'] = $dealsIds;
-
-        return $this;
-    }
-
-    /**
-     * Gets companiesIds
-     *
-     * @return string[]
-     */
-    public function getCompaniesIds()
-    {
-        return $this->container['companiesIds'];
-    }
-
-    /**
-     * Sets companiesIds
-     *
-     * @param string[] $companiesIds Companies ids for companies a task is linked to
-     *
-     * @return $this
-     */
-    public function setCompaniesIds($companiesIds)
-    {
-        $this->container['companiesIds'] = $companiesIds;
-
-        return $this;
-    }
-
-    /**
-     * Gets reminder
-     *
-     * @return \Brevo\Client\Model\TaskReminder
-     */
-    public function getReminder()
-    {
-        return $this->container['reminder'];
-    }
-
-    /**
-     * Sets reminder
-     *
-     * @param \Brevo\Client\Model\TaskReminder $reminder reminder
-     *
-     * @return $this
-     */
-    public function setReminder($reminder)
-    {
-        $this->container['reminder'] = $reminder;
+        $this->container['attributes'] = $attributes;
 
         return $this;
     }

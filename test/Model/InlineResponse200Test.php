@@ -33,7 +33,7 @@ namespace Brevo\Client;
  * InlineResponse200Test Class Doc Comment
  *
  * @category    Class
- * @description Created company id
+ * @description InlineResponse200
  * @package     Brevo\Client
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -80,6 +80,13 @@ class InlineResponse200Test extends \PHPUnit_Framework_TestCase
      * Test attribute "id"
      */
     public function testPropertyId()
+    {
+    }
+
+    /**
+     * Test attribute "groupName"
+     */
+    public function testPropertyGroupName()
     {
     }
 }

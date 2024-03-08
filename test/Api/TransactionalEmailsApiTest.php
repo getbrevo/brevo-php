@@ -272,12 +272,12 @@ class TransactionalEmailsApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for smtpLogMessageIdDelete
+     * Test case for smtpLogIdentifierDelete
      *
      * Delete an SMTP transactional log.
      *
      */
-    public function testSmtpLogMessageIdDelete()
+    public function testSmtpLogIdentifierDelete()
     {
     }
 

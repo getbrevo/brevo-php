@@ -98,6 +98,13 @@ class SendWhatsappMessageTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "params"
+     */
+    public function testPropertyParams()
+    {
+    }
+
+    /**
      * Test attribute "contactNumbers"
      */
     public function testPropertyContactNumbers()

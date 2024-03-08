@@ -89,4 +89,11 @@ class OrderBatchTest extends \PHPUnit_Framework_TestCase
     public function testPropertyNotifyUrl()
     {
     }
+
+    /**
+     * Test attribute "historical"
+     */
+    public function testPropertyHistorical()
+    {
+    }
 }

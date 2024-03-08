@@ -63,7 +63,10 @@ class GetWebhook implements ModelInterface, ArrayAccess
         'events' => 'string[]',
         'type' => 'string',
         'createdAt' => 'string',
-        'modifiedAt' => 'string'
+        'modifiedAt' => 'string',
+        'batched' => 'bool',
+        'auth' => '\Brevo\Client\Model\GetWebhookAuth',
+        'headers' => '\Brevo\Client\Model\GetWebhookHeaders[]'
     ];
 
     /**
@@ -78,7 +81,10 @@ class GetWebhook implements ModelInterface, ArrayAccess
         'events' => null,
         'type' => null,
         'createdAt' => null,
-        'modifiedAt' => null
+        'modifiedAt' => null,
+        'batched' => null,
+        'auth' => null,
+        'headers' => null
     ];
 
     /**
@@ -114,7 +120,10 @@ class GetWebhook implements ModelInterface, ArrayAccess
         'events' => 'events',
         'type' => 'type',
         'createdAt' => 'createdAt',
-        'modifiedAt' => 'modifiedAt'
+        'modifiedAt' => 'modifiedAt',
+        'batched' => 'batched',
+        'auth' => 'auth',
+        'headers' => 'headers'
     ];
 
     /**
@@ -129,7 +138,10 @@ class GetWebhook implements ModelInterface, ArrayAccess
         'events' => 'setEvents',
         'type' => 'setType',
         'createdAt' => 'setCreatedAt',
-        'modifiedAt' => 'setModifiedAt'
+        'modifiedAt' => 'setModifiedAt',
+        'batched' => 'setBatched',
+        'auth' => 'setAuth',
+        'headers' => 'setHeaders'
     ];
 
     /**
@@ -144,7 +156,10 @@ class GetWebhook implements ModelInterface, ArrayAccess
         'events' => 'getEvents',
         'type' => 'getType',
         'createdAt' => 'getCreatedAt',
-        'modifiedAt' => 'getModifiedAt'
+        'modifiedAt' => 'getModifiedAt',
+        'batched' => 'getBatched',
+        'auth' => 'getAuth',
+        'headers' => 'getHeaders'
     ];
 
     /**
@@ -229,6 +244,9 @@ class GetWebhook implements ModelInterface, ArrayAccess
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
         $this->container['createdAt'] = isset($data['createdAt']) ? $data['createdAt'] : null;
         $this->container['modifiedAt'] = isset($data['modifiedAt']) ? $data['modifiedAt'] : null;
+        $this->container['batched'] = isset($data['batched']) ? $data['batched'] : null;
+        $this->container['auth'] = isset($data['auth']) ? $data['auth'] : null;
+        $this->container['headers'] = isset($data['headers']) ? $data['headers'] : null;
     }
 
     /**
@@ -457,6 +475,78 @@ class GetWebhook implements ModelInterface, ArrayAccess
     public function setModifiedAt($modifiedAt)
     {
         $this->container['modifiedAt'] = $modifiedAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets batched
+     *
+     * @return bool
+     */
+    public function getBatched()
+    {
+        return $this->container['batched'];
+    }
+
+    /**
+     * Sets batched
+     *
+     * @param bool $batched To send batched webhooks
+     *
+     * @return $this
+     */
+    public function setBatched($batched)
+    {
+        $this->container['batched'] = $batched;
+
+        return $this;
+    }
+
+    /**
+     * Gets auth
+     *
+     * @return \Brevo\Client\Model\GetWebhookAuth
+     */
+    public function getAuth()
+    {
+        return $this->container['auth'];
+    }
+
+    /**
+     * Sets auth
+     *
+     * @param \Brevo\Client\Model\GetWebhookAuth $auth auth
+     *
+     * @return $this
+     */
+    public function setAuth($auth)
+    {
+        $this->container['auth'] = $auth;
+
+        return $this;
+    }
+
+    /**
+     * Gets headers
+     *
+     * @return \Brevo\Client\Model\GetWebhookHeaders[]
+     */
+    public function getHeaders()
+    {
+        return $this->container['headers'];
+    }
+
+    /**
+     * Sets headers
+     *
+     * @param \Brevo\Client\Model\GetWebhookHeaders[] $headers Custom headers to be send with webhooks
+     *
+     * @return $this
+     */
+    public function setHeaders($headers)
+    {
+        $this->container['headers'] = $headers;
 
         return $this;
     }

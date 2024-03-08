@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **createCouponCollection**
-> \Brevo\Client\Model\InlineResponse2012 createCouponCollection($createCouponCollection)
+> \Brevo\Client\Model\InlineResponse2013 createCouponCollection($createCouponCollection)
 
 Create а coupon collection
 
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Brevo\Client\Model\InlineResponse2012**](../Model/InlineResponse2012.md)
+[**\Brevo\Client\Model\InlineResponse2013**](../Model/InlineResponse2013.md)
 
 ### Authorization
 
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateCouponCollection**
-> \Brevo\Client\Model\InlineResponse2001 updateCouponCollection($id, $updateCouponCollection)
+> \Brevo\Client\Model\InlineResponse2002 updateCouponCollection($id, $updateCouponCollection)
 
 Update a coupon collection by id
 
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Brevo\Client\Model\InlineResponse2001**](../Model/InlineResponse2001.md)
+[**\Brevo\Client\Model\InlineResponse2002**](../Model/InlineResponse2002.md)
 
 ### Authorization
 

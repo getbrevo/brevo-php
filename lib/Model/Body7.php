@@ -57,16 +57,10 @@ class Body7 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-        'duration' => 'int',
-        'taskTypeId' => 'string',
-        'date' => '\DateTime',
-        'notes' => 'string',
-        'done' => 'bool',
-        'assignToId' => 'string',
-        'contactsIds' => 'int[]',
-        'dealsIds' => 'string[]',
-        'companiesIds' => 'string[]'
+        'linkContactIds' => 'int[]',
+        'unlinkContactIds' => 'int[]',
+        'linkCompanyIds' => 'string[]',
+        'unlinkCompanyIds' => 'string[]'
     ];
 
     /**
@@ -75,16 +69,10 @@ class Body7 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-        'duration' => null,
-        'taskTypeId' => null,
-        'date' => 'date-time',
-        'notes' => null,
-        'done' => null,
-        'assignToId' => null,
-        'contactsIds' => null,
-        'dealsIds' => null,
-        'companiesIds' => null
+        'linkContactIds' => 'int64',
+        'unlinkContactIds' => 'int64',
+        'linkCompanyIds' => null,
+        'unlinkCompanyIds' => null
     ];
 
     /**
@@ -114,16 +102,10 @@ class Body7 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'duration' => 'duration',
-        'taskTypeId' => 'taskTypeId',
-        'date' => 'date',
-        'notes' => 'notes',
-        'done' => 'done',
-        'assignToId' => 'assignToId',
-        'contactsIds' => 'contactsIds',
-        'dealsIds' => 'dealsIds',
-        'companiesIds' => 'companiesIds'
+        'linkContactIds' => 'linkContactIds',
+        'unlinkContactIds' => 'unlinkContactIds',
+        'linkCompanyIds' => 'linkCompanyIds',
+        'unlinkCompanyIds' => 'unlinkCompanyIds'
     ];
 
     /**
@@ -132,16 +114,10 @@ class Body7 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'duration' => 'setDuration',
-        'taskTypeId' => 'setTaskTypeId',
-        'date' => 'setDate',
-        'notes' => 'setNotes',
-        'done' => 'setDone',
-        'assignToId' => 'setAssignToId',
-        'contactsIds' => 'setContactsIds',
-        'dealsIds' => 'setDealsIds',
-        'companiesIds' => 'setCompaniesIds'
+        'linkContactIds' => 'setLinkContactIds',
+        'unlinkContactIds' => 'setUnlinkContactIds',
+        'linkCompanyIds' => 'setLinkCompanyIds',
+        'unlinkCompanyIds' => 'setUnlinkCompanyIds'
     ];
 
     /**
@@ -150,16 +126,10 @@ class Body7 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'duration' => 'getDuration',
-        'taskTypeId' => 'getTaskTypeId',
-        'date' => 'getDate',
-        'notes' => 'getNotes',
-        'done' => 'getDone',
-        'assignToId' => 'getAssignToId',
-        'contactsIds' => 'getContactsIds',
-        'dealsIds' => 'getDealsIds',
-        'companiesIds' => 'getCompaniesIds'
+        'linkContactIds' => 'getLinkContactIds',
+        'unlinkContactIds' => 'getUnlinkContactIds',
+        'linkCompanyIds' => 'getLinkCompanyIds',
+        'unlinkCompanyIds' => 'getUnlinkCompanyIds'
     ];
 
     /**
@@ -222,16 +192,10 @@ class Body7 implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['duration'] = isset($data['duration']) ? $data['duration'] : null;
-        $this->container['taskTypeId'] = isset($data['taskTypeId']) ? $data['taskTypeId'] : null;
-        $this->container['date'] = isset($data['date']) ? $data['date'] : null;
-        $this->container['notes'] = isset($data['notes']) ? $data['notes'] : null;
-        $this->container['done'] = isset($data['done']) ? $data['done'] : null;
-        $this->container['assignToId'] = isset($data['assignToId']) ? $data['assignToId'] : null;
-        $this->container['contactsIds'] = isset($data['contactsIds']) ? $data['contactsIds'] : null;
-        $this->container['dealsIds'] = isset($data['dealsIds']) ? $data['dealsIds'] : null;
-        $this->container['companiesIds'] = isset($data['companiesIds']) ? $data['companiesIds'] : null;
+        $this->container['linkContactIds'] = isset($data['linkContactIds']) ? $data['linkContactIds'] : null;
+        $this->container['unlinkContactIds'] = isset($data['unlinkContactIds']) ? $data['unlinkContactIds'] : null;
+        $this->container['linkCompanyIds'] = isset($data['linkCompanyIds']) ? $data['linkCompanyIds'] : null;
+        $this->container['unlinkCompanyIds'] = isset($data['unlinkCompanyIds']) ? $data['unlinkCompanyIds'] : null;
     }
 
     /**
@@ -259,241 +223,97 @@ class Body7 implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of task
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets duration
-     *
-     * @return int
-     */
-    public function getDuration()
-    {
-        return $this->container['duration'];
-    }
-
-    /**
-     * Sets duration
-     *
-     * @param int $duration Duration of task in milliseconds [1 minute = 60000 ms]
-     *
-     * @return $this
-     */
-    public function setDuration($duration)
-    {
-        $this->container['duration'] = $duration;
-
-        return $this;
-    }
-
-    /**
-     * Gets taskTypeId
-     *
-     * @return string
-     */
-    public function getTaskTypeId()
-    {
-        return $this->container['taskTypeId'];
-    }
-
-    /**
-     * Sets taskTypeId
-     *
-     * @param string $taskTypeId Id for type of task e.g Call / Email / Meeting etc.
-     *
-     * @return $this
-     */
-    public function setTaskTypeId($taskTypeId)
-    {
-        $this->container['taskTypeId'] = $taskTypeId;
-
-        return $this;
-    }
-
-    /**
-     * Gets date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->container['date'];
-    }
-
-    /**
-     * Sets date
-     *
-     * @param \DateTime $date Task date/time
-     *
-     * @return $this
-     */
-    public function setDate($date)
-    {
-        $this->container['date'] = $date;
-
-        return $this;
-    }
-
-    /**
-     * Gets notes
-     *
-     * @return string
-     */
-    public function getNotes()
-    {
-        return $this->container['notes'];
-    }
-
-    /**
-     * Sets notes
-     *
-     * @param string $notes Notes added to a task
-     *
-     * @return $this
-     */
-    public function setNotes($notes)
-    {
-        $this->container['notes'] = $notes;
-
-        return $this;
-    }
-
-    /**
-     * Gets done
-     *
-     * @return bool
-     */
-    public function getDone()
-    {
-        return $this->container['done'];
-    }
-
-    /**
-     * Sets done
-     *
-     * @param bool $done Task marked as done
-     *
-     * @return $this
-     */
-    public function setDone($done)
-    {
-        $this->container['done'] = $done;
-
-        return $this;
-    }
-
-    /**
-     * Gets assignToId
-     *
-     * @return string
-     */
-    public function getAssignToId()
-    {
-        return $this->container['assignToId'];
-    }
-
-    /**
-     * Sets assignToId
-     *
-     * @param string $assignToId User id to whom task is assigned
-     *
-     * @return $this
-     */
-    public function setAssignToId($assignToId)
-    {
-        $this->container['assignToId'] = $assignToId;
-
-        return $this;
-    }
-
-    /**
-     * Gets contactsIds
+     * Gets linkContactIds
      *
      * @return int[]
      */
-    public function getContactsIds()
+    public function getLinkContactIds()
     {
-        return $this->container['contactsIds'];
+        return $this->container['linkContactIds'];
     }
 
     /**
-     * Sets contactsIds
+     * Sets linkContactIds
      *
-     * @param int[] $contactsIds Contact ids for contacts linked to this task
+     * @param int[] $linkContactIds Contact ids for contacts to be linked with deal
      *
      * @return $this
      */
-    public function setContactsIds($contactsIds)
+    public function setLinkContactIds($linkContactIds)
     {
-        $this->container['contactsIds'] = $contactsIds;
+        $this->container['linkContactIds'] = $linkContactIds;
 
         return $this;
     }
 
     /**
-     * Gets dealsIds
+     * Gets unlinkContactIds
      *
-     * @return string[]
+     * @return int[]
      */
-    public function getDealsIds()
+    public function getUnlinkContactIds()
     {
-        return $this->container['dealsIds'];
+        return $this->container['unlinkContactIds'];
     }
 
     /**
-     * Sets dealsIds
+     * Sets unlinkContactIds
      *
-     * @param string[] $dealsIds Deal ids for deals a task is linked to
+     * @param int[] $unlinkContactIds Contact ids for contacts to be unlinked from deal
      *
      * @return $this
      */
-    public function setDealsIds($dealsIds)
+    public function setUnlinkContactIds($unlinkContactIds)
     {
-        $this->container['dealsIds'] = $dealsIds;
+        $this->container['unlinkContactIds'] = $unlinkContactIds;
 
         return $this;
     }
 
     /**
-     * Gets companiesIds
+     * Gets linkCompanyIds
      *
      * @return string[]
      */
-    public function getCompaniesIds()
+    public function getLinkCompanyIds()
     {
-        return $this->container['companiesIds'];
+        return $this->container['linkCompanyIds'];
     }
 
     /**
-     * Sets companiesIds
+     * Sets linkCompanyIds
      *
-     * @param string[] $companiesIds Companies ids for companies a task is linked to
+     * @param string[] $linkCompanyIds Company ids to be linked with deal
      *
      * @return $this
      */
-    public function setCompaniesIds($companiesIds)
+    public function setLinkCompanyIds($linkCompanyIds)
     {
-        $this->container['companiesIds'] = $companiesIds;
+        $this->container['linkCompanyIds'] = $linkCompanyIds;
+
+        return $this;
+    }
+
+    /**
+     * Gets unlinkCompanyIds
+     *
+     * @return string[]
+     */
+    public function getUnlinkCompanyIds()
+    {
+        return $this->container['unlinkCompanyIds'];
+    }
+
+    /**
+     * Sets unlinkCompanyIds
+     *
+     * @param string[] $unlinkCompanyIds Company ids to be unlinked from deal
+     *
+     * @return $this
+     */
+    public function setUnlinkCompanyIds($unlinkCompanyIds)
+    {
+        $this->container['unlinkCompanyIds'] = $unlinkCompanyIds;
 
         return $this;
     }

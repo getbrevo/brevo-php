@@ -24,7 +24,7 @@ Method | HTTP request | Description
 [**sendTestTemplate**](TransactionalEmailsApi.md#sendTestTemplate) | **POST** /smtp/templates/{templateId}/sendTest | Send a template to your test list
 [**sendTransacEmail**](TransactionalEmailsApi.md#sendTransacEmail) | **POST** /smtp/email | Send a transactional email
 [**smtpBlockedContactsEmailDelete**](TransactionalEmailsApi.md#smtpBlockedContactsEmailDelete) | **DELETE** /smtp/blockedContacts/{email} | Unblock or resubscribe a transactional contact
-[**smtpLogMessageIdDelete**](TransactionalEmailsApi.md#smtpLogMessageIdDelete) | **DELETE** /smtp/log/{messageId} | Delete an SMTP transactional log
+[**smtpLogIdentifierDelete**](TransactionalEmailsApi.md#smtpLogIdentifierDelete) | **DELETE** /smtp/log/{identifier} | Delete an SMTP transactional log
 [**updateSmtpTemplate**](TransactionalEmailsApi.md#updateSmtpTemplate) | **PUT** /smtp/templates/{templateId} | Update an email template
 
 
@@ -1263,8 +1263,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **smtpLogMessageIdDelete**
-> smtpLogMessageIdDelete($messageId)
+# **smtpLogIdentifierDelete**
+> smtpLogIdentifierDelete($identifier)
 
 Delete an SMTP transactional log
 
@@ -1288,12 +1288,12 @@ $apiInstance = new Brevo\Client\Api\TransactionalEmailsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$messageId = "messageId_example"; // string | MessageId of the transactional log to delete
+$identifier = "identifier_example"; // string | MessageId or Email of the transactional log(s) to delete
 
 try {
-    $apiInstance->smtpLogMessageIdDelete($messageId);
+    $apiInstance->smtpLogIdentifierDelete($identifier);
 } catch (Exception $e) {
-    echo 'Exception when calling TransactionalEmailsApi->smtpLogMessageIdDelete: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling TransactionalEmailsApi->smtpLogIdentifierDelete: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -1302,7 +1302,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **messageId** | **string**| MessageId of the transactional log to delete |
+ **identifier** | **string**| MessageId or Email of the transactional log(s) to delete |
 
 ### Return type
 

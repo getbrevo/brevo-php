@@ -3864,7 +3864,7 @@ class TransactionalEmailsApi
      *
      * Get the list of email templates
      *
-     * @param  string $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
+     * @param  bool $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document in the page (optional, default to 0)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
@@ -3884,7 +3884,7 @@ class TransactionalEmailsApi
      *
      * Get the list of email templates
      *
-     * @param  string $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
+     * @param  bool $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document in the page (optional, default to 0)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
@@ -3970,7 +3970,7 @@ class TransactionalEmailsApi
      *
      * Get the list of email templates
      *
-     * @param  string $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
+     * @param  bool $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document in the page (optional, default to 0)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
@@ -3993,7 +3993,7 @@ class TransactionalEmailsApi
      *
      * Get the list of email templates
      *
-     * @param  string $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
+     * @param  bool $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document in the page (optional, default to 0)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
@@ -4046,7 +4046,7 @@ class TransactionalEmailsApi
     /**
      * Create request for operation 'getSmtpTemplates'
      *
-     * @param  string $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
+     * @param  bool $templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document in the page (optional, default to 0)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
@@ -5949,36 +5949,36 @@ class TransactionalEmailsApi
     }
 
     /**
-     * Operation smtpLogMessageIdDelete
+     * Operation smtpLogIdentifierDelete
      *
      * Delete an SMTP transactional log
      *
-     * @param  string $messageId MessageId of the transactional log to delete (required)
+     * @param  string $identifier MessageId or Email of the transactional log(s) to delete (required)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function smtpLogMessageIdDelete($messageId)
+    public function smtpLogIdentifierDelete($identifier)
     {
-        $this->smtpLogMessageIdDeleteWithHttpInfo($messageId);
+        $this->smtpLogIdentifierDeleteWithHttpInfo($identifier);
     }
 
     /**
-     * Operation smtpLogMessageIdDeleteWithHttpInfo
+     * Operation smtpLogIdentifierDeleteWithHttpInfo
      *
      * Delete an SMTP transactional log
      *
-     * @param  string $messageId MessageId of the transactional log to delete (required)
+     * @param  string $identifier MessageId or Email of the transactional log(s) to delete (required)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function smtpLogMessageIdDeleteWithHttpInfo($messageId)
+    public function smtpLogIdentifierDeleteWithHttpInfo($identifier)
     {
         $returnType = '';
-        $request = $this->smtpLogMessageIdDeleteRequest($messageId);
+        $request = $this->smtpLogIdentifierDeleteRequest($identifier);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6034,18 +6034,18 @@ class TransactionalEmailsApi
     }
 
     /**
-     * Operation smtpLogMessageIdDeleteAsync
+     * Operation smtpLogIdentifierDeleteAsync
      *
      * Delete an SMTP transactional log
      *
-     * @param  string $messageId MessageId of the transactional log to delete (required)
+     * @param  string $identifier MessageId or Email of the transactional log(s) to delete (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function smtpLogMessageIdDeleteAsync($messageId)
+    public function smtpLogIdentifierDeleteAsync($identifier)
     {
-        return $this->smtpLogMessageIdDeleteAsyncWithHttpInfo($messageId)
+        return $this->smtpLogIdentifierDeleteAsyncWithHttpInfo($identifier)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6054,19 +6054,19 @@ class TransactionalEmailsApi
     }
 
     /**
-     * Operation smtpLogMessageIdDeleteAsyncWithHttpInfo
+     * Operation smtpLogIdentifierDeleteAsyncWithHttpInfo
      *
      * Delete an SMTP transactional log
      *
-     * @param  string $messageId MessageId of the transactional log to delete (required)
+     * @param  string $identifier MessageId or Email of the transactional log(s) to delete (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function smtpLogMessageIdDeleteAsyncWithHttpInfo($messageId)
+    public function smtpLogIdentifierDeleteAsyncWithHttpInfo($identifier)
     {
         $returnType = '';
-        $request = $this->smtpLogMessageIdDeleteRequest($messageId);
+        $request = $this->smtpLogIdentifierDeleteRequest($identifier);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6092,23 +6092,23 @@ class TransactionalEmailsApi
     }
 
     /**
-     * Create request for operation 'smtpLogMessageIdDelete'
+     * Create request for operation 'smtpLogIdentifierDelete'
      *
-     * @param  string $messageId MessageId of the transactional log to delete (required)
+     * @param  string $identifier MessageId or Email of the transactional log(s) to delete (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function smtpLogMessageIdDeleteRequest($messageId)
+    protected function smtpLogIdentifierDeleteRequest($identifier)
     {
-        // verify the required parameter 'messageId' is set
-        if ($messageId === null || (is_array($messageId) && count($messageId) === 0)) {
+        // verify the required parameter 'identifier' is set
+        if ($identifier === null || (is_array($identifier) && count($identifier) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $messageId when calling smtpLogMessageIdDelete'
+                'Missing the required parameter $identifier when calling smtpLogIdentifierDelete'
             );
         }
 
-        $resourcePath = '/smtp/log/{messageId}';
+        $resourcePath = '/smtp/log/{identifier}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -6117,10 +6117,10 @@ class TransactionalEmailsApi
 
 
         // path params
-        if ($messageId !== null) {
+        if ($identifier !== null) {
             $resourcePath = str_replace(
-                '{' . 'messageId' . '}',
-                ObjectSerializer::toPathValue($messageId),
+                '{' . 'identifier' . '}',
+                ObjectSerializer::toPathValue($identifier),
                 $resourcePath
             );
         }

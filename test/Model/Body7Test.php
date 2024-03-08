@@ -77,72 +77,30 @@ class Body7Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "linkContactIds"
      */
-    public function testPropertyName()
+    public function testPropertyLinkContactIds()
     {
     }
 
     /**
-     * Test attribute "duration"
+     * Test attribute "unlinkContactIds"
      */
-    public function testPropertyDuration()
+    public function testPropertyUnlinkContactIds()
     {
     }
 
     /**
-     * Test attribute "taskTypeId"
+     * Test attribute "linkCompanyIds"
      */
-    public function testPropertyTaskTypeId()
+    public function testPropertyLinkCompanyIds()
     {
     }
 
     /**
-     * Test attribute "date"
+     * Test attribute "unlinkCompanyIds"
      */
-    public function testPropertyDate()
-    {
-    }
-
-    /**
-     * Test attribute "notes"
-     */
-    public function testPropertyNotes()
-    {
-    }
-
-    /**
-     * Test attribute "done"
-     */
-    public function testPropertyDone()
-    {
-    }
-
-    /**
-     * Test attribute "assignToId"
-     */
-    public function testPropertyAssignToId()
-    {
-    }
-
-    /**
-     * Test attribute "contactsIds"
-     */
-    public function testPropertyContactsIds()
-    {
-    }
-
-    /**
-     * Test attribute "dealsIds"
-     */
-    public function testPropertyDealsIds()
-    {
-    }
-
-    /**
-     * Test attribute "companiesIds"
-     */
-    public function testPropertyCompaniesIds()
+    public function testPropertyUnlinkCompanyIds()
     {
     }
 }

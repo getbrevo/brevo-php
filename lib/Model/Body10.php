@@ -60,7 +60,9 @@ class Body10 implements ModelInterface, ArrayAccess
         'visitorId' => 'string',
         'text' => 'string',
         'agentId' => 'string',
-        'groupId' => 'string'
+        'receivedFrom' => 'string',
+        'agentEmail' => 'string',
+        'agentName' => 'string'
     ];
 
     /**
@@ -72,7 +74,9 @@ class Body10 implements ModelInterface, ArrayAccess
         'visitorId' => null,
         'text' => null,
         'agentId' => null,
-        'groupId' => null
+        'receivedFrom' => null,
+        'agentEmail' => 'email',
+        'agentName' => null
     ];
 
     /**
@@ -105,7 +109,9 @@ class Body10 implements ModelInterface, ArrayAccess
         'visitorId' => 'visitorId',
         'text' => 'text',
         'agentId' => 'agentId',
-        'groupId' => 'groupId'
+        'receivedFrom' => 'receivedFrom',
+        'agentEmail' => 'agentEmail',
+        'agentName' => 'agentName'
     ];
 
     /**
@@ -117,7 +123,9 @@ class Body10 implements ModelInterface, ArrayAccess
         'visitorId' => 'setVisitorId',
         'text' => 'setText',
         'agentId' => 'setAgentId',
-        'groupId' => 'setGroupId'
+        'receivedFrom' => 'setReceivedFrom',
+        'agentEmail' => 'setAgentEmail',
+        'agentName' => 'setAgentName'
     ];
 
     /**
@@ -129,7 +137,9 @@ class Body10 implements ModelInterface, ArrayAccess
         'visitorId' => 'getVisitorId',
         'text' => 'getText',
         'agentId' => 'getAgentId',
-        'groupId' => 'getGroupId'
+        'receivedFrom' => 'getReceivedFrom',
+        'agentEmail' => 'getAgentEmail',
+        'agentName' => 'getAgentName'
     ];
 
     /**
@@ -195,7 +205,9 @@ class Body10 implements ModelInterface, ArrayAccess
         $this->container['visitorId'] = isset($data['visitorId']) ? $data['visitorId'] : null;
         $this->container['text'] = isset($data['text']) ? $data['text'] : null;
         $this->container['agentId'] = isset($data['agentId']) ? $data['agentId'] : null;
-        $this->container['groupId'] = isset($data['groupId']) ? $data['groupId'] : null;
+        $this->container['receivedFrom'] = isset($data['receivedFrom']) ? $data['receivedFrom'] : null;
+        $this->container['agentEmail'] = isset($data['agentEmail']) ? $data['agentEmail'] : null;
+        $this->container['agentName'] = isset($data['agentName']) ? $data['agentName'] : null;
     }
 
     /**
@@ -289,7 +301,7 @@ class Body10 implements ModelInterface, ArrayAccess
     /**
      * Sets agentId
      *
-     * @param string $agentId agent ID. It can be found on agent’s page or received <a href=\"https://developers.brevo.com/docs/conversations-webhooks\">from a webhook</a>. Optional if `groupId` is set.
+     * @param string $agentId agent ID. It can be found on agent’s page or received <a href=\"https://developers.brevo.com/docs/conversations-webhooks\">from a webhook</a>. Alternatively, you can use `agentEmail` + `agentName` + `receivedFrom` instead (all 3 fields required).
      *
      * @return $this
      */
@@ -301,25 +313,73 @@ class Body10 implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets groupId
+     * Gets receivedFrom
      *
      * @return string
      */
-    public function getGroupId()
+    public function getReceivedFrom()
     {
-        return $this->container['groupId'];
+        return $this->container['receivedFrom'];
     }
 
     /**
-     * Sets groupId
+     * Sets receivedFrom
      *
-     * @param string $groupId group ID. It can be found on group’s page. Optional if `agentId` is set.
+     * @param string $receivedFrom mark your messages to distinguish messages created by you from the others.
      *
      * @return $this
      */
-    public function setGroupId($groupId)
+    public function setReceivedFrom($receivedFrom)
     {
-        $this->container['groupId'] = $groupId;
+        $this->container['receivedFrom'] = $receivedFrom;
+
+        return $this;
+    }
+
+    /**
+     * Gets agentEmail
+     *
+     * @return string
+     */
+    public function getAgentEmail()
+    {
+        return $this->container['agentEmail'];
+    }
+
+    /**
+     * Sets agentEmail
+     *
+     * @param string $agentEmail agent email. When sending messages from a standalone system, it’s hard to maintain a 1-to-1 relationship between the users of both systems. In this case, an agent can be specified by their email address.
+     *
+     * @return $this
+     */
+    public function setAgentEmail($agentEmail)
+    {
+        $this->container['agentEmail'] = $agentEmail;
+
+        return $this;
+    }
+
+    /**
+     * Gets agentName
+     *
+     * @return string
+     */
+    public function getAgentName()
+    {
+        return $this->container['agentName'];
+    }
+
+    /**
+     * Sets agentName
+     *
+     * @param string $agentName agent name
+     *
+     * @return $this
+     */
+    public function setAgentName($agentName)
+    {
+        $this->container['agentName'] = $agentName;
 
         return $this;
     }

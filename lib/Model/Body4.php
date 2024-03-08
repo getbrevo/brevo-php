@@ -57,8 +57,10 @@ class Body4 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-        'attributes' => 'object'
+        'linkContactIds' => 'int[]',
+        'unlinkContactIds' => 'int[]',
+        'linkDealsIds' => 'string[]',
+        'unlinkDealsIds' => 'string[]'
     ];
 
     /**
@@ -67,8 +69,10 @@ class Body4 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-        'attributes' => null
+        'linkContactIds' => 'int64',
+        'unlinkContactIds' => 'int64',
+        'linkDealsIds' => null,
+        'unlinkDealsIds' => null
     ];
 
     /**
@@ -98,8 +102,10 @@ class Body4 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'attributes' => 'attributes'
+        'linkContactIds' => 'linkContactIds',
+        'unlinkContactIds' => 'unlinkContactIds',
+        'linkDealsIds' => 'linkDealsIds',
+        'unlinkDealsIds' => 'unlinkDealsIds'
     ];
 
     /**
@@ -108,8 +114,10 @@ class Body4 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'attributes' => 'setAttributes'
+        'linkContactIds' => 'setLinkContactIds',
+        'unlinkContactIds' => 'setUnlinkContactIds',
+        'linkDealsIds' => 'setLinkDealsIds',
+        'unlinkDealsIds' => 'setUnlinkDealsIds'
     ];
 
     /**
@@ -118,8 +126,10 @@ class Body4 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'attributes' => 'getAttributes'
+        'linkContactIds' => 'getLinkContactIds',
+        'unlinkContactIds' => 'getUnlinkContactIds',
+        'linkDealsIds' => 'getLinkDealsIds',
+        'unlinkDealsIds' => 'getUnlinkDealsIds'
     ];
 
     /**
@@ -182,8 +192,10 @@ class Body4 implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
+        $this->container['linkContactIds'] = isset($data['linkContactIds']) ? $data['linkContactIds'] : null;
+        $this->container['unlinkContactIds'] = isset($data['unlinkContactIds']) ? $data['unlinkContactIds'] : null;
+        $this->container['linkDealsIds'] = isset($data['linkDealsIds']) ? $data['linkDealsIds'] : null;
+        $this->container['unlinkDealsIds'] = isset($data['unlinkDealsIds']) ? $data['unlinkDealsIds'] : null;
     }
 
     /**
@@ -211,49 +223,97 @@ class Body4 implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets linkContactIds
      *
-     * @return string
+     * @return int[]
      */
-    public function getName()
+    public function getLinkContactIds()
     {
-        return $this->container['name'];
+        return $this->container['linkContactIds'];
     }
 
     /**
-     * Sets name
+     * Sets linkContactIds
      *
-     * @param string $name Name of deal
+     * @param int[] $linkContactIds Contact ids for contacts to be linked with company
      *
      * @return $this
      */
-    public function setName($name)
+    public function setLinkContactIds($linkContactIds)
     {
-        $this->container['name'] = $name;
+        $this->container['linkContactIds'] = $linkContactIds;
 
         return $this;
     }
 
     /**
-     * Gets attributes
+     * Gets unlinkContactIds
      *
-     * @return object
+     * @return int[]
      */
-    public function getAttributes()
+    public function getUnlinkContactIds()
     {
-        return $this->container['attributes'];
+        return $this->container['unlinkContactIds'];
     }
 
     /**
-     * Sets attributes
+     * Sets unlinkContactIds
      *
-     * @param object $attributes Attributes for deal update  If you wish to update the pipeline of a deal you need to provide the `pipeline` and the `deal_stage`.  Pipeline and deal_stage are ids you can fetch using this endpoint `/crm/pipeline/details/{pipelineID}`
+     * @param int[] $unlinkContactIds Contact ids for contacts to be unlinked from company
      *
      * @return $this
      */
-    public function setAttributes($attributes)
+    public function setUnlinkContactIds($unlinkContactIds)
     {
-        $this->container['attributes'] = $attributes;
+        $this->container['unlinkContactIds'] = $unlinkContactIds;
+
+        return $this;
+    }
+
+    /**
+     * Gets linkDealsIds
+     *
+     * @return string[]
+     */
+    public function getLinkDealsIds()
+    {
+        return $this->container['linkDealsIds'];
+    }
+
+    /**
+     * Sets linkDealsIds
+     *
+     * @param string[] $linkDealsIds Deals ids for deals to be linked with company
+     *
+     * @return $this
+     */
+    public function setLinkDealsIds($linkDealsIds)
+    {
+        $this->container['linkDealsIds'] = $linkDealsIds;
+
+        return $this;
+    }
+
+    /**
+     * Gets unlinkDealsIds
+     *
+     * @return string[]
+     */
+    public function getUnlinkDealsIds()
+    {
+        return $this->container['unlinkDealsIds'];
+    }
+
+    /**
+     * Sets unlinkDealsIds
+     *
+     * @param string[] $unlinkDealsIds Deals ids for deals to be unlinked from company
+     *
+     * @return $this
+     */
+    public function setUnlinkDealsIds($unlinkDealsIds)
+    {
+        $this->container['unlinkDealsIds'] = $unlinkDealsIds;
 
         return $this;
     }

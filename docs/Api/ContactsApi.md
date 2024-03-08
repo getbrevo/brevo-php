@@ -785,7 +785,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getContacts**
-> \Brevo\Client\Model\GetContacts getContacts($limit, $offset, $modifiedSince, $createdSince, $sort)
+> \Brevo\Client\Model\GetContacts getContacts($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds)
 
 Get all the contacts
 
@@ -814,9 +814,11 @@ $offset = 0; // int | Index of the first document of the page
 $modifiedSince = "modifiedSince_example"; // string | Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
 $createdSince = "createdSince_example"; // string | Filter (urlencoded) the contacts created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
 $sort = "desc"; // string | Sort the results in the ascending/descending order of record creation. Default order is **descending** if `sort` is not passed
+$segmentId = 789; // int | Id of the segment. **Either listIds or segmentId can be passed.**
+$listIds = array(56); // int[] | Ids of the list. **Either listIds or segmentId can be passed.**
 
 try {
-    $result = $apiInstance->getContacts($limit, $offset, $modifiedSince, $createdSince, $sort);
+    $result = $apiInstance->getContacts($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->getContacts: ', $e->getMessage(), PHP_EOL;
@@ -833,6 +835,8 @@ Name | Type | Description  | Notes
  **modifiedSince** | **string**| Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. | [optional]
  **createdSince** | **string**| Filter (urlencoded) the contacts created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. | [optional]
  **sort** | **string**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [optional] [default to desc]
+ **segmentId** | **int**| Id of the segment. **Either listIds or segmentId can be passed.** | [optional]
+ **listIds** | [**int[]**](../Model/int.md)| Ids of the list. **Either listIds or segmentId can be passed.** | [optional]
 
 ### Return type
 
@@ -1096,7 +1100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getList**
-> \Brevo\Client\Model\GetExtendedList getList($listId)
+> \Brevo\Client\Model\GetExtendedList getList($listId, $startDate, $endDate)
 
 Get a list's details
 
@@ -1121,9 +1125,11 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     $config
 );
 $listId = 789; // int | Id of the list
+$startDate = "startDate_example"; // string | Mandatory if endDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result
+$endDate = "endDate_example"; // string | Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result
 
 try {
-    $result = $apiInstance->getList($listId);
+    $result = $apiInstance->getList($listId, $startDate, $endDate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->getList: ', $e->getMessage(), PHP_EOL;
@@ -1136,6 +1142,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **listId** | **int**| Id of the list |
+ **startDate** | **string**| Mandatory if endDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result | [optional]
+ **endDate** | **string**| Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result | [optional]
 
 ### Return type
 

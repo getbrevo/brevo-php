@@ -57,10 +57,8 @@ class Body5 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'linkContactIds' => 'int[]',
-        'unlinkContactIds' => 'int[]',
-        'linkCompanyIds' => 'string[]',
-        'unlinkCompanyIds' => 'string[]'
+        'name' => 'string',
+        'attributes' => 'object'
     ];
 
     /**
@@ -69,10 +67,8 @@ class Body5 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'linkContactIds' => 'int64',
-        'unlinkContactIds' => 'int64',
-        'linkCompanyIds' => null,
-        'unlinkCompanyIds' => null
+        'name' => null,
+        'attributes' => null
     ];
 
     /**
@@ -102,10 +98,8 @@ class Body5 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'linkContactIds' => 'linkContactIds',
-        'unlinkContactIds' => 'unlinkContactIds',
-        'linkCompanyIds' => 'linkCompanyIds',
-        'unlinkCompanyIds' => 'unlinkCompanyIds'
+        'name' => 'name',
+        'attributes' => 'attributes'
     ];
 
     /**
@@ -114,10 +108,8 @@ class Body5 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'linkContactIds' => 'setLinkContactIds',
-        'unlinkContactIds' => 'setUnlinkContactIds',
-        'linkCompanyIds' => 'setLinkCompanyIds',
-        'unlinkCompanyIds' => 'setUnlinkCompanyIds'
+        'name' => 'setName',
+        'attributes' => 'setAttributes'
     ];
 
     /**
@@ -126,10 +118,8 @@ class Body5 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'linkContactIds' => 'getLinkContactIds',
-        'unlinkContactIds' => 'getUnlinkContactIds',
-        'linkCompanyIds' => 'getLinkCompanyIds',
-        'unlinkCompanyIds' => 'getUnlinkCompanyIds'
+        'name' => 'getName',
+        'attributes' => 'getAttributes'
     ];
 
     /**
@@ -192,10 +182,8 @@ class Body5 implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['linkContactIds'] = isset($data['linkContactIds']) ? $data['linkContactIds'] : null;
-        $this->container['unlinkContactIds'] = isset($data['unlinkContactIds']) ? $data['unlinkContactIds'] : null;
-        $this->container['linkCompanyIds'] = isset($data['linkCompanyIds']) ? $data['linkCompanyIds'] : null;
-        $this->container['unlinkCompanyIds'] = isset($data['unlinkCompanyIds']) ? $data['unlinkCompanyIds'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
     }
 
     /**
@@ -207,6 +195,9 @@ class Body5 implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -223,97 +214,49 @@ class Body5 implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets linkContactIds
+     * Gets name
      *
-     * @return int[]
+     * @return string
      */
-    public function getLinkContactIds()
+    public function getName()
     {
-        return $this->container['linkContactIds'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets linkContactIds
+     * Sets name
      *
-     * @param int[] $linkContactIds Contact ids for contacts to be linked with deal
+     * @param string $name Name of deal
      *
      * @return $this
      */
-    public function setLinkContactIds($linkContactIds)
+    public function setName($name)
     {
-        $this->container['linkContactIds'] = $linkContactIds;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets unlinkContactIds
+     * Gets attributes
      *
-     * @return int[]
+     * @return object
      */
-    public function getUnlinkContactIds()
+    public function getAttributes()
     {
-        return $this->container['unlinkContactIds'];
+        return $this->container['attributes'];
     }
 
     /**
-     * Sets unlinkContactIds
+     * Sets attributes
      *
-     * @param int[] $unlinkContactIds Contact ids for contacts to be unlinked from deal
+     * @param object $attributes Attributes for deal creation  If you want to create a deal on a specific pipeline and stage you can use the following attributes `pipeline` and `deal_stage`.  Pipeline and deal_stage are ids you can fetch using this endpoint `/crm/pipeline/details/{pipelineID}`
      *
      * @return $this
      */
-    public function setUnlinkContactIds($unlinkContactIds)
+    public function setAttributes($attributes)
     {
-        $this->container['unlinkContactIds'] = $unlinkContactIds;
-
-        return $this;
-    }
-
-    /**
-     * Gets linkCompanyIds
-     *
-     * @return string[]
-     */
-    public function getLinkCompanyIds()
-    {
-        return $this->container['linkCompanyIds'];
-    }
-
-    /**
-     * Sets linkCompanyIds
-     *
-     * @param string[] $linkCompanyIds Company ids to be linked with deal
-     *
-     * @return $this
-     */
-    public function setLinkCompanyIds($linkCompanyIds)
-    {
-        $this->container['linkCompanyIds'] = $linkCompanyIds;
-
-        return $this;
-    }
-
-    /**
-     * Gets unlinkCompanyIds
-     *
-     * @return string[]
-     */
-    public function getUnlinkCompanyIds()
-    {
-        return $this->container['unlinkCompanyIds'];
-    }
-
-    /**
-     * Sets unlinkCompanyIds
-     *
-     * @param string[] $unlinkCompanyIds Company ids to be unlinked from deal
-     *
-     * @return $this
-     */
-    public function setUnlinkCompanyIds($unlinkCompanyIds)
-    {
-        $this->container['unlinkCompanyIds'] = $unlinkCompanyIds;
+        $this->container['attributes'] = $attributes;
 
         return $this;
     }

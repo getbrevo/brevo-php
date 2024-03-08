@@ -61,7 +61,10 @@ class CreateWebhook implements ModelInterface, ArrayAccess
         'description' => 'string',
         'events' => 'string[]',
         'type' => 'string',
-        'domain' => 'string'
+        'domain' => 'string',
+        'batched' => 'bool',
+        'auth' => '\Brevo\Client\Model\GetWebhookAuth',
+        'headers' => '\Brevo\Client\Model\GetWebhookHeaders[]'
     ];
 
     /**
@@ -74,7 +77,10 @@ class CreateWebhook implements ModelInterface, ArrayAccess
         'description' => null,
         'events' => null,
         'type' => null,
-        'domain' => null
+        'domain' => null,
+        'batched' => null,
+        'auth' => null,
+        'headers' => null
     ];
 
     /**
@@ -108,7 +114,10 @@ class CreateWebhook implements ModelInterface, ArrayAccess
         'description' => 'description',
         'events' => 'events',
         'type' => 'type',
-        'domain' => 'domain'
+        'domain' => 'domain',
+        'batched' => 'batched',
+        'auth' => 'auth',
+        'headers' => 'headers'
     ];
 
     /**
@@ -121,7 +130,10 @@ class CreateWebhook implements ModelInterface, ArrayAccess
         'description' => 'setDescription',
         'events' => 'setEvents',
         'type' => 'setType',
-        'domain' => 'setDomain'
+        'domain' => 'setDomain',
+        'batched' => 'setBatched',
+        'auth' => 'setAuth',
+        'headers' => 'setHeaders'
     ];
 
     /**
@@ -134,7 +146,10 @@ class CreateWebhook implements ModelInterface, ArrayAccess
         'description' => 'getDescription',
         'events' => 'getEvents',
         'type' => 'getType',
-        'domain' => 'getDomain'
+        'domain' => 'getDomain',
+        'batched' => 'getBatched',
+        'auth' => 'getAuth',
+        'headers' => 'getHeaders'
     ];
 
     /**
@@ -264,6 +279,9 @@ class CreateWebhook implements ModelInterface, ArrayAccess
         $this->container['events'] = isset($data['events']) ? $data['events'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : 'transactional';
         $this->container['domain'] = isset($data['domain']) ? $data['domain'] : null;
+        $this->container['batched'] = isset($data['batched']) ? $data['batched'] : null;
+        $this->container['auth'] = isset($data['auth']) ? $data['auth'] : null;
+        $this->container['headers'] = isset($data['headers']) ? $data['headers'] : null;
     }
 
     /**
@@ -438,6 +456,78 @@ class CreateWebhook implements ModelInterface, ArrayAccess
     public function setDomain($domain)
     {
         $this->container['domain'] = $domain;
+
+        return $this;
+    }
+
+    /**
+     * Gets batched
+     *
+     * @return bool
+     */
+    public function getBatched()
+    {
+        return $this->container['batched'];
+    }
+
+    /**
+     * Sets batched
+     *
+     * @param bool $batched To send batched webhooks
+     *
+     * @return $this
+     */
+    public function setBatched($batched)
+    {
+        $this->container['batched'] = $batched;
+
+        return $this;
+    }
+
+    /**
+     * Gets auth
+     *
+     * @return \Brevo\Client\Model\GetWebhookAuth
+     */
+    public function getAuth()
+    {
+        return $this->container['auth'];
+    }
+
+    /**
+     * Sets auth
+     *
+     * @param \Brevo\Client\Model\GetWebhookAuth $auth auth
+     *
+     * @return $this
+     */
+    public function setAuth($auth)
+    {
+        $this->container['auth'] = $auth;
+
+        return $this;
+    }
+
+    /**
+     * Gets headers
+     *
+     * @return \Brevo\Client\Model\GetWebhookHeaders[]
+     */
+    public function getHeaders()
+    {
+        return $this->container['headers'];
+    }
+
+    /**
+     * Sets headers
+     *
+     * @param \Brevo\Client\Model\GetWebhookHeaders[] $headers Custom headers to be send with webhooks
+     *
+     * @return $this
+     */
+    public function setHeaders($headers)
+    {
+        $this->container['headers'] = $headers;
 
         return $this;
     }

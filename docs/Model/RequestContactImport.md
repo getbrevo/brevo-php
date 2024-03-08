@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **notifyUrl** | **string** | URL that will be called once the import process is finished. For reference, https://help.brevo.com/hc/en-us/articles/360007666479 | [optional] 
 **newList** | [**\Brevo\Client\Model\RequestContactImportNewList**](RequestContactImportNewList.md) |  | [optional] 
 **emailBlacklist** | **bool** | To blacklist all the contacts for email | [optional] [default to false]
+**disableNotification** | **bool** | To disable email notification | [optional] [default to false]
 **smsBlacklist** | **bool** | To blacklist all the contacts for sms | [optional] [default to false]
 **updateExistingContacts** | **bool** | To facilitate the choice to update the existing contacts | [optional] [default to true]
 **emptyContactsAttributes** | **bool** | To facilitate the choice to erase any attribute of the existing contacts with empty value. emptyContactsAttributes &#x3D; true means the empty fields in your import will erase any attribute that currently contain data in Brevo, &amp; emptyContactsAttributes &#x3D; false means the empty fields will not affect your existing data ( only available if &#x60;updateExistingContacts&#x60; set to true ) | [optional] [default to false]

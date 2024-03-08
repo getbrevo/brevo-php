@@ -3725,14 +3725,16 @@ class ContactsApi
      * @param  string $modifiedSince Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. (optional)
      * @param  string $createdSince Filter (urlencoded) the contacts created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. (optional)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
+     * @param  int $segmentId Id of the segment. **Either listIds or segmentId can be passed.** (optional)
+     * @param  int[] $listIds Ids of the list. **Either listIds or segmentId can be passed.** (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Brevo\Client\Model\GetContacts
      */
-    public function getContacts($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc')
+    public function getContacts($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null)
     {
-        list($response) = $this->getContactsWithHttpInfo($limit, $offset, $modifiedSince, $createdSince, $sort);
+        list($response) = $this->getContactsWithHttpInfo($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds);
         return $response;
     }
 
@@ -3746,15 +3748,17 @@ class ContactsApi
      * @param  string $modifiedSince Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. (optional)
      * @param  string $createdSince Filter (urlencoded) the contacts created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. (optional)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
+     * @param  int $segmentId Id of the segment. **Either listIds or segmentId can be passed.** (optional)
+     * @param  int[] $listIds Ids of the list. **Either listIds or segmentId can be passed.** (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Brevo\Client\Model\GetContacts, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getContactsWithHttpInfo($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc')
+    public function getContactsWithHttpInfo($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null)
     {
         $returnType = '\Brevo\Client\Model\GetContacts';
-        $request = $this->getContactsRequest($limit, $offset, $modifiedSince, $createdSince, $sort);
+        $request = $this->getContactsRequest($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3833,13 +3837,15 @@ class ContactsApi
      * @param  string $modifiedSince Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. (optional)
      * @param  string $createdSince Filter (urlencoded) the contacts created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. (optional)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
+     * @param  int $segmentId Id of the segment. **Either listIds or segmentId can be passed.** (optional)
+     * @param  int[] $listIds Ids of the list. **Either listIds or segmentId can be passed.** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getContactsAsync($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc')
+    public function getContactsAsync($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null)
     {
-        return $this->getContactsAsyncWithHttpInfo($limit, $offset, $modifiedSince, $createdSince, $sort)
+        return $this->getContactsAsyncWithHttpInfo($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3857,14 +3863,16 @@ class ContactsApi
      * @param  string $modifiedSince Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. (optional)
      * @param  string $createdSince Filter (urlencoded) the contacts created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. (optional)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
+     * @param  int $segmentId Id of the segment. **Either listIds or segmentId can be passed.** (optional)
+     * @param  int[] $listIds Ids of the list. **Either listIds or segmentId can be passed.** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getContactsAsyncWithHttpInfo($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc')
+    public function getContactsAsyncWithHttpInfo($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null)
     {
         $returnType = '\Brevo\Client\Model\GetContacts';
-        $request = $this->getContactsRequest($limit, $offset, $modifiedSince, $createdSince, $sort);
+        $request = $this->getContactsRequest($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3911,11 +3919,13 @@ class ContactsApi
      * @param  string $modifiedSince Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. (optional)
      * @param  string $createdSince Filter (urlencoded) the contacts created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result. (optional)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
+     * @param  int $segmentId Id of the segment. **Either listIds or segmentId can be passed.** (optional)
+     * @param  int[] $listIds Ids of the list. **Either listIds or segmentId can be passed.** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getContactsRequest($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc')
+    protected function getContactsRequest($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null)
     {
         if ($limit !== null && $limit > 1000) {
             throw new \InvalidArgumentException('invalid value for "$limit" when calling ContactsApi.getContacts, must be smaller than or equal to 1000.');
@@ -3951,6 +3961,17 @@ class ContactsApi
         // query params
         if ($sort !== null) {
             $queryParams['sort'] = ObjectSerializer::toQueryValue($sort);
+        }
+        // query params
+        if ($segmentId !== null) {
+            $queryParams['segmentId'] = ObjectSerializer::toQueryValue($segmentId);
+        }
+        // query params
+        if (is_array($listIds)) {
+            $queryParams['listIds'] = $listIds;
+        } else
+        if ($listIds !== null) {
+            $queryParams['listIds'] = ObjectSerializer::toQueryValue($listIds);
         }
 
 
@@ -5317,14 +5338,16 @@ class ContactsApi
      * Get a list's details
      *
      * @param  int $listId Id of the list (required)
+     * @param  string $startDate Mandatory if endDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result (optional)
+     * @param  string $endDate Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Brevo\Client\Model\GetExtendedList
      */
-    public function getList($listId)
+    public function getList($listId, $startDate = null, $endDate = null)
     {
-        list($response) = $this->getListWithHttpInfo($listId);
+        list($response) = $this->getListWithHttpInfo($listId, $startDate, $endDate);
         return $response;
     }
 
@@ -5334,15 +5357,17 @@ class ContactsApi
      * Get a list's details
      *
      * @param  int $listId Id of the list (required)
+     * @param  string $startDate Mandatory if endDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result (optional)
+     * @param  string $endDate Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Brevo\Client\Model\GetExtendedList, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getListWithHttpInfo($listId)
+    public function getListWithHttpInfo($listId, $startDate = null, $endDate = null)
     {
         $returnType = '\Brevo\Client\Model\GetExtendedList';
-        $request = $this->getListRequest($listId);
+        $request = $this->getListRequest($listId, $startDate, $endDate);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5425,13 +5450,15 @@ class ContactsApi
      * Get a list's details
      *
      * @param  int $listId Id of the list (required)
+     * @param  string $startDate Mandatory if endDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result (optional)
+     * @param  string $endDate Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getListAsync($listId)
+    public function getListAsync($listId, $startDate = null, $endDate = null)
     {
-        return $this->getListAsyncWithHttpInfo($listId)
+        return $this->getListAsyncWithHttpInfo($listId, $startDate, $endDate)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5445,14 +5472,16 @@ class ContactsApi
      * Get a list's details
      *
      * @param  int $listId Id of the list (required)
+     * @param  string $startDate Mandatory if endDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result (optional)
+     * @param  string $endDate Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getListAsyncWithHttpInfo($listId)
+    public function getListAsyncWithHttpInfo($listId, $startDate = null, $endDate = null)
     {
         $returnType = '\Brevo\Client\Model\GetExtendedList';
-        $request = $this->getListRequest($listId);
+        $request = $this->getListRequest($listId, $startDate, $endDate);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5495,11 +5524,13 @@ class ContactsApi
      * Create request for operation 'getList'
      *
      * @param  int $listId Id of the list (required)
+     * @param  string $startDate Mandatory if endDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result (optional)
+     * @param  string $endDate Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id.Prefer to pass your timezone in date-time format for accurate result (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getListRequest($listId)
+    protected function getListRequest($listId, $startDate = null, $endDate = null)
     {
         // verify the required parameter 'listId' is set
         if ($listId === null || (is_array($listId) && count($listId) === 0)) {
@@ -5515,6 +5546,14 @@ class ContactsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($startDate !== null) {
+            $queryParams['startDate'] = ObjectSerializer::toQueryValue($startDate);
+        }
+        // query params
+        if ($endDate !== null) {
+            $queryParams['endDate'] = ObjectSerializer::toQueryValue($endDate);
+        }
 
         // path params
         if ($listId !== null) {

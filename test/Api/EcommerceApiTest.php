@@ -162,6 +162,16 @@ class EcommerceApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for getOrders
+     *
+     * Get order details.
+     *
+     */
+    public function testGetOrders()
+    {
+    }
+
+    /**
      * Test case for getProductInfo
      *
      * Get a product's details.

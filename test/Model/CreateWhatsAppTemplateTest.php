@@ -117,4 +117,11 @@ class CreateWhatsAppTemplateTest extends \PHPUnit_Framework_TestCase
     public function testPropertyHeaderText()
     {
     }
+
+    /**
+     * Test attribute "source"
+     */
+    public function testPropertySource()
+    {
+    }
 }

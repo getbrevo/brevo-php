@@ -33,7 +33,7 @@ namespace Brevo\Client;
  * InlineResponse2012Test Class Doc Comment
  *
  * @category    Class
- * @description InlineResponse2012
+ * @description Task Details
  * @package     Brevo\Client
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen

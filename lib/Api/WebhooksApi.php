@@ -630,7 +630,7 @@ class WebhooksApi
     /**
      * Operation exportWebhooksHistory
      *
-     * Export all transactional events
+     * Export all webhook events
      *
      * @param  \Brevo\Client\Model\ExportWebhooksHistory $exportWebhookHistory Values to submit for webhooks history (required)
      *
@@ -647,7 +647,7 @@ class WebhooksApi
     /**
      * Operation exportWebhooksHistoryWithHttpInfo
      *
-     * Export all transactional events
+     * Export all webhook events
      *
      * @param  \Brevo\Client\Model\ExportWebhooksHistory $exportWebhookHistory Values to submit for webhooks history (required)
      *
@@ -730,7 +730,7 @@ class WebhooksApi
     /**
      * Operation exportWebhooksHistoryAsync
      *
-     * Export all transactional events
+     * Export all webhook events
      *
      * @param  \Brevo\Client\Model\ExportWebhooksHistory $exportWebhookHistory Values to submit for webhooks history (required)
      *
@@ -750,7 +750,7 @@ class WebhooksApi
     /**
      * Operation exportWebhooksHistoryAsyncWithHttpInfo
      *
-     * Export all transactional events
+     * Export all webhook events
      *
      * @param  \Brevo\Client\Model\ExportWebhooksHistory $exportWebhookHistory Values to submit for webhooks history (required)
      *

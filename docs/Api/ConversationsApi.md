@@ -42,7 +42,7 @@ $apiInstance = new Brevo\Client\Api\ConversationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Brevo\Client\Model\Body12(); // \Brevo\Client\Model\Body12 | Agent fields.
+$body = new \Brevo\Client\Model\Body14(); // \Brevo\Client\Model\Body14 | Agent fields.
 
 try {
     $apiInstance->conversationsAgentOnlinePingPost($body);
@@ -56,7 +56,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Brevo\Client\Model\Body12**](../Model/Body12.md)| Agent fields. |
+ **body** | [**\Brevo\Client\Model\Body14**](../Model/Body14.md)| Agent fields. |
 
 ### Return type
 
@@ -216,7 +216,7 @@ $apiInstance = new Brevo\Client\Api\ConversationsApi(
     $config
 );
 $id = "id_example"; // string | ID of the message
-$body = new \Brevo\Client\Model\Body9(); // \Brevo\Client\Model\Body9 | 
+$body = new \Brevo\Client\Model\Body11(); // \Brevo\Client\Model\Body11 | 
 
 try {
     $result = $apiInstance->conversationsMessagesIdPut($id, $body);
@@ -232,7 +232,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID of the message |
- **body** | [**\Brevo\Client\Model\Body9**](../Model/Body9.md)|  | [optional]
+ **body** | [**\Brevo\Client\Model\Body11**](../Model/Body11.md)|  | [optional]
 
 ### Return type
 
@@ -274,7 +274,7 @@ $apiInstance = new Brevo\Client\Api\ConversationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Brevo\Client\Model\Body8(); // \Brevo\Client\Model\Body8 | Message fields.
+$body = new \Brevo\Client\Model\Body10(); // \Brevo\Client\Model\Body10 | Message fields.
 
 try {
     $result = $apiInstance->conversationsMessagesPost($body);
@@ -289,7 +289,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Brevo\Client\Model\Body8**](../Model/Body8.md)| Message fields. |
+ **body** | [**\Brevo\Client\Model\Body10**](../Model/Body10.md)| Message fields. |
 
 ### Return type
 
@@ -445,7 +445,7 @@ $apiInstance = new Brevo\Client\Api\ConversationsApi(
     $config
 );
 $id = "id_example"; // string | ID of the message
-$body = new \Brevo\Client\Model\Body11(); // \Brevo\Client\Model\Body11 | 
+$body = new \Brevo\Client\Model\Body13(); // \Brevo\Client\Model\Body13 | 
 
 try {
     $result = $apiInstance->conversationsPushedMessagesIdPut($id, $body);
@@ -461,7 +461,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID of the message |
- **body** | [**\Brevo\Client\Model\Body11**](../Model/Body11.md)|  |
+ **body** | [**\Brevo\Client\Model\Body13**](../Model/Body13.md)|  |
 
 ### Return type
 
@@ -505,7 +505,7 @@ $apiInstance = new Brevo\Client\Api\ConversationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Brevo\Client\Model\Body10(); // \Brevo\Client\Model\Body10 | 
+$body = new \Brevo\Client\Model\Body12(); // \Brevo\Client\Model\Body12 | 
 
 try {
     $result = $apiInstance->conversationsPushedMessagesPost($body);
@@ -520,7 +520,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Brevo\Client\Model\Body10**](../Model/Body10.md)|  |
+ **body** | [**\Brevo\Client\Model\Body12**](../Model/Body12.md)|  |
 
 ### Return type
 

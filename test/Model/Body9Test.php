@@ -77,9 +77,72 @@ class Body9Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "text"
+     * Test attribute "name"
      */
-    public function testPropertyText()
+    public function testPropertyName()
+    {
+    }
+
+    /**
+     * Test attribute "duration"
+     */
+    public function testPropertyDuration()
+    {
+    }
+
+    /**
+     * Test attribute "taskTypeId"
+     */
+    public function testPropertyTaskTypeId()
+    {
+    }
+
+    /**
+     * Test attribute "date"
+     */
+    public function testPropertyDate()
+    {
+    }
+
+    /**
+     * Test attribute "notes"
+     */
+    public function testPropertyNotes()
+    {
+    }
+
+    /**
+     * Test attribute "done"
+     */
+    public function testPropertyDone()
+    {
+    }
+
+    /**
+     * Test attribute "assignToId"
+     */
+    public function testPropertyAssignToId()
+    {
+    }
+
+    /**
+     * Test attribute "contactsIds"
+     */
+    public function testPropertyContactsIds()
+    {
+    }
+
+    /**
+     * Test attribute "dealsIds"
+     */
+    public function testPropertyDealsIds()
+    {
+    }
+
+    /**
+     * Test attribute "companiesIds"
+     */
+    public function testPropertyCompaniesIds()
     {
     }
 }

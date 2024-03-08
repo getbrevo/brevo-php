@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **sendWhatsappMessage**
-> \Brevo\Client\Model\InlineResponse2013 sendWhatsappMessage($sendWhatsappMessage)
+> \Brevo\Client\Model\InlineResponse2014 sendWhatsappMessage($sendWhatsappMessage)
 
 Send a WhatsApp message
 
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Brevo\Client\Model\InlineResponse2013**](../Model/InlineResponse2013.md)
+[**\Brevo\Client\Model\InlineResponse2014**](../Model/InlineResponse2014.md)
 
 ### Authorization
 

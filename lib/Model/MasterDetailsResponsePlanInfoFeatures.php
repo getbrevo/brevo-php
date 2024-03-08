@@ -60,7 +60,9 @@ class MasterDetailsResponsePlanInfoFeatures implements ModelInterface, ArrayAcce
         'name' => 'string',
         'unitValue' => 'string',
         'quantity' => 'int',
+        'quantityWithOverages' => 'int',
         'used' => 'int',
+        'usedOverages' => 'int',
         'remaining' => 'int'
     ];
 
@@ -73,7 +75,9 @@ class MasterDetailsResponsePlanInfoFeatures implements ModelInterface, ArrayAcce
         'name' => null,
         'unitValue' => null,
         'quantity' => 'int64',
+        'quantityWithOverages' => 'int64',
         'used' => 'int64',
+        'usedOverages' => 'int64',
         'remaining' => 'int64'
     ];
 
@@ -107,7 +111,9 @@ class MasterDetailsResponsePlanInfoFeatures implements ModelInterface, ArrayAcce
         'name' => 'name',
         'unitValue' => 'unitValue',
         'quantity' => 'quantity',
+        'quantityWithOverages' => 'quantityWithOverages',
         'used' => 'used',
+        'usedOverages' => 'usedOverages',
         'remaining' => 'remaining'
     ];
 
@@ -120,7 +126,9 @@ class MasterDetailsResponsePlanInfoFeatures implements ModelInterface, ArrayAcce
         'name' => 'setName',
         'unitValue' => 'setUnitValue',
         'quantity' => 'setQuantity',
+        'quantityWithOverages' => 'setQuantityWithOverages',
         'used' => 'setUsed',
+        'usedOverages' => 'setUsedOverages',
         'remaining' => 'setRemaining'
     ];
 
@@ -133,7 +141,9 @@ class MasterDetailsResponsePlanInfoFeatures implements ModelInterface, ArrayAcce
         'name' => 'getName',
         'unitValue' => 'getUnitValue',
         'quantity' => 'getQuantity',
+        'quantityWithOverages' => 'getQuantityWithOverages',
         'used' => 'getUsed',
+        'usedOverages' => 'getUsedOverages',
         'remaining' => 'getRemaining'
     ];
 
@@ -200,7 +210,9 @@ class MasterDetailsResponsePlanInfoFeatures implements ModelInterface, ArrayAcce
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['unitValue'] = isset($data['unitValue']) ? $data['unitValue'] : null;
         $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
+        $this->container['quantityWithOverages'] = isset($data['quantityWithOverages']) ? $data['quantityWithOverages'] : null;
         $this->container['used'] = isset($data['used']) ? $data['used'] : null;
+        $this->container['usedOverages'] = isset($data['usedOverages']) ? $data['usedOverages'] : null;
         $this->container['remaining'] = isset($data['remaining']) ? $data['remaining'] : null;
     }
 
@@ -301,6 +313,30 @@ class MasterDetailsResponsePlanInfoFeatures implements ModelInterface, ArrayAcce
     }
 
     /**
+     * Gets quantityWithOverages
+     *
+     * @return int
+     */
+    public function getQuantityWithOverages()
+    {
+        return $this->container['quantityWithOverages'];
+    }
+
+    /**
+     * Sets quantityWithOverages
+     *
+     * @param int $quantityWithOverages Quantity with overages provided in the plan (only applicable on ENTv2)
+     *
+     * @return $this
+     */
+    public function setQuantityWithOverages($quantityWithOverages)
+    {
+        $this->container['quantityWithOverages'] = $quantityWithOverages;
+
+        return $this;
+    }
+
+    /**
      * Gets used
      *
      * @return int
@@ -320,6 +356,30 @@ class MasterDetailsResponsePlanInfoFeatures implements ModelInterface, ArrayAcce
     public function setUsed($used)
     {
         $this->container['used'] = $used;
+
+        return $this;
+    }
+
+    /**
+     * Gets usedOverages
+     *
+     * @return int
+     */
+    public function getUsedOverages()
+    {
+        return $this->container['usedOverages'];
+    }
+
+    /**
+     * Sets usedOverages
+     *
+     * @param int $usedOverages Quantity consumed by sub-organizations over the admin plan limit (only applicable on ENTv2)
+     *
+     * @return $this
+     */
+    public function setUsedOverages($usedOverages)
+    {
+        $this->container['usedOverages'] = $usedOverages;
 
         return $this;
     }

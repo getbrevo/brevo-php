@@ -274,7 +274,7 @@ $apiInstance = new Brevo\Client\Api\CompaniesApi(
     $config
 );
 $id = "id_example"; // string | 
-$body = new \Brevo\Client\Model\Body1(); // \Brevo\Client\Model\Body1 | Updated company details.
+$body = new \Brevo\Client\Model\Body3(); // \Brevo\Client\Model\Body3 | Updated company details.
 
 try {
     $result = $apiInstance->companiesIdPatch($id, $body);
@@ -290,7 +290,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
- **body** | [**\Brevo\Client\Model\Body1**](../Model/Body1.md)| Updated company details. |
+ **body** | [**\Brevo\Client\Model\Body3**](../Model/Body3.md)| Updated company details. |
 
 ### Return type
 
@@ -333,7 +333,7 @@ $apiInstance = new Brevo\Client\Api\CompaniesApi(
     $config
 );
 $id = "id_example"; // string | 
-$body = new \Brevo\Client\Model\Body2(); // \Brevo\Client\Model\Body2 | Linked / Unlinked contacts and deals ids.
+$body = new \Brevo\Client\Model\Body4(); // \Brevo\Client\Model\Body4 | Linked / Unlinked contacts and deals ids.
 
 try {
     $apiInstance->companiesLinkUnlinkIdPatch($id, $body);
@@ -348,7 +348,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
- **body** | [**\Brevo\Client\Model\Body2**](../Model/Body2.md)| Linked / Unlinked contacts and deals ids. |
+ **body** | [**\Brevo\Client\Model\Body4**](../Model/Body4.md)| Linked / Unlinked contacts and deals ids. |
 
 ### Return type
 
@@ -366,7 +366,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **companiesPost**
-> \Brevo\Client\Model\InlineResponse200 companiesPost($body)
+> \Brevo\Client\Model\InlineResponse2001 companiesPost($body)
 
 Create a company
 
@@ -390,7 +390,7 @@ $apiInstance = new Brevo\Client\Api\CompaniesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Brevo\Client\Model\Body(); // \Brevo\Client\Model\Body | Company create data.
+$body = new \Brevo\Client\Model\Body2(); // \Brevo\Client\Model\Body2 | Company create data.
 
 try {
     $result = $apiInstance->companiesPost($body);
@@ -405,11 +405,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Brevo\Client\Model\Body**](../Model/Body.md)| Company create data. |
+ **body** | [**\Brevo\Client\Model\Body2**](../Model/Body2.md)| Company create data. |
 
 ### Return type
 
-[**\Brevo\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
+[**\Brevo\Client\Model\InlineResponse2001**](../Model/InlineResponse2001.md)
 
 ### Authorization
 

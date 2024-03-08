@@ -62,7 +62,8 @@ class CreateWhatsAppTemplate implements ModelInterface, ArrayAccess
         'category' => 'string',
         'mediaUrl' => 'string',
         'bodyText' => 'string',
-        'headerText' => 'string'
+        'headerText' => 'string',
+        'source' => 'string'
     ];
 
     /**
@@ -76,7 +77,8 @@ class CreateWhatsAppTemplate implements ModelInterface, ArrayAccess
         'category' => null,
         'mediaUrl' => null,
         'bodyText' => null,
-        'headerText' => null
+        'headerText' => null,
+        'source' => null
     ];
 
     /**
@@ -111,7 +113,8 @@ class CreateWhatsAppTemplate implements ModelInterface, ArrayAccess
         'category' => 'category',
         'mediaUrl' => 'mediaUrl',
         'bodyText' => 'bodyText',
-        'headerText' => 'headerText'
+        'headerText' => 'headerText',
+        'source' => 'source'
     ];
 
     /**
@@ -125,7 +128,8 @@ class CreateWhatsAppTemplate implements ModelInterface, ArrayAccess
         'category' => 'setCategory',
         'mediaUrl' => 'setMediaUrl',
         'bodyText' => 'setBodyText',
-        'headerText' => 'setHeaderText'
+        'headerText' => 'setHeaderText',
+        'source' => 'setSource'
     ];
 
     /**
@@ -139,7 +143,8 @@ class CreateWhatsAppTemplate implements ModelInterface, ArrayAccess
         'category' => 'getCategory',
         'mediaUrl' => 'getMediaUrl',
         'bodyText' => 'getBodyText',
-        'headerText' => 'getHeaderText'
+        'headerText' => 'getHeaderText',
+        'source' => 'getSource'
     ];
 
     /**
@@ -184,7 +189,9 @@ class CreateWhatsAppTemplate implements ModelInterface, ArrayAccess
     }
 
     const CATEGORY_MARKETING = 'MARKETING';
-    const CATEGORY_TRANSACTIONAL = 'TRANSACTIONAL';
+    const CATEGORY_UTILITY = 'UTILITY';
+    const SOURCE_AUTOMATION = 'Automation';
+    const SOURCE_CONVERSATIONS = 'Conversations';
     
 
     
@@ -197,7 +204,20 @@ class CreateWhatsAppTemplate implements ModelInterface, ArrayAccess
     {
         return [
             self::CATEGORY_MARKETING,
-            self::CATEGORY_TRANSACTIONAL,
+            self::CATEGORY_UTILITY,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getSourceAllowableValues()
+    {
+        return [
+            self::SOURCE_AUTOMATION,
+            self::SOURCE_CONVERSATIONS,
         ];
     }
     
@@ -223,6 +243,7 @@ class CreateWhatsAppTemplate implements ModelInterface, ArrayAccess
         $this->container['mediaUrl'] = isset($data['mediaUrl']) ? $data['mediaUrl'] : null;
         $this->container['bodyText'] = isset($data['bodyText']) ? $data['bodyText'] : null;
         $this->container['headerText'] = isset($data['headerText']) ? $data['headerText'] : null;
+        $this->container['source'] = isset($data['source']) ? $data['source'] : null;
     }
 
     /**
@@ -254,6 +275,14 @@ class CreateWhatsAppTemplate implements ModelInterface, ArrayAccess
         if ($this->container['bodyText'] === null) {
             $invalidProperties[] = "'bodyText' can't be null";
         }
+        $allowedValues = $this->getSourceAllowableValues();
+        if (!is_null($this->container['source']) && !in_array($this->container['source'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'source', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -418,6 +447,39 @@ class CreateWhatsAppTemplate implements ModelInterface, ArrayAccess
     public function setHeaderText($headerText)
     {
         $this->container['headerText'] = $headerText;
+
+        return $this;
+    }
+
+    /**
+     * Gets source
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->container['source'];
+    }
+
+    /**
+     * Sets source
+     *
+     * @param string $source source of the template
+     *
+     * @return $this
+     */
+    public function setSource($source)
+    {
+        $allowedValues = $this->getSourceAllowableValues();
+        if (!is_null($source) && !in_array($source, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'source', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['source'] = $source;
 
         return $this;
     }

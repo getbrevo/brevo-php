@@ -181,6 +181,7 @@ Class | Method | HTTP request | Description
 *EcommerceApi* | [**ecommerceActivatePost**](docs/Api/EcommerceApi.md#ecommerceactivatepost) | **POST** /ecommerce/activate | Activate the eCommerce app
 *EcommerceApi* | [**getCategories**](docs/Api/EcommerceApi.md#getcategories) | **GET** /categories | Return all your categories
 *EcommerceApi* | [**getCategoryInfo**](docs/Api/EcommerceApi.md#getcategoryinfo) | **GET** /categories/{id} | Get a category details
+*EcommerceApi* | [**getOrders**](docs/Api/EcommerceApi.md#getorders) | **GET** /orders | Get order details
 *EcommerceApi* | [**getProductInfo**](docs/Api/EcommerceApi.md#getproductinfo) | **GET** /products/{id} | Get a product&#39;s details
 *EcommerceApi* | [**getProducts**](docs/Api/EcommerceApi.md#getproducts) | **GET** /products | Return all your products
 *EmailCampaignsApi* | [**createEmailCampaign**](docs/Api/EmailCampaignsApi.md#createemailcampaign) | **POST** /emailCampaigns | Create an email campaign
@@ -224,6 +225,8 @@ Class | Method | HTTP request | Description
 *ListsApi* | [**getLists**](docs/Api/ListsApi.md#getlists) | **GET** /contacts/lists | Get all the lists
 *ListsApi* | [**removeContactFromList**](docs/Api/ListsApi.md#removecontactfromlist) | **POST** /contacts/lists/{listId}/contacts/remove | Delete a contact from a list
 *ListsApi* | [**updateList**](docs/Api/ListsApi.md#updatelist) | **PUT** /contacts/lists/{listId} | Update a list
+*MasterAccountApi* | [**corporateGroupIdPut**](docs/Api/MasterAccountApi.md#corporategroupidput) | **PUT** /corporate/group/{id} | Update a group of sub-accounts
+*MasterAccountApi* | [**corporateGroupPost**](docs/Api/MasterAccountApi.md#corporategrouppost) | **POST** /corporate/group | Create a new group of sub-accounts
 *MasterAccountApi* | [**corporateMasterAccountGet**](docs/Api/MasterAccountApi.md#corporatemasteraccountget) | **GET** /corporate/masterAccount | Get the details of requested master account
 *MasterAccountApi* | [**corporateSubAccountGet**](docs/Api/MasterAccountApi.md#corporatesubaccountget) | **GET** /corporate/subAccount | Get the list of all the sub-accounts of the master account.
 *MasterAccountApi* | [**corporateSubAccountIdApplicationsTogglePut**](docs/Api/MasterAccountApi.md#corporatesubaccountidapplicationstoggleput) | **PUT** /corporate/subAccount/{id}/applications/toggle | Enable/disable sub-account application(s)
@@ -233,7 +236,11 @@ Class | Method | HTTP request | Description
 *MasterAccountApi* | [**corporateSubAccountKeyPost**](docs/Api/MasterAccountApi.md#corporatesubaccountkeypost) | **POST** /corporate/subAccount/key | Create an API key for a sub-account
 *MasterAccountApi* | [**corporateSubAccountPost**](docs/Api/MasterAccountApi.md#corporatesubaccountpost) | **POST** /corporate/subAccount | Create a new sub-account under a master account.
 *MasterAccountApi* | [**corporateSubAccountSsoTokenPost**](docs/Api/MasterAccountApi.md#corporatesubaccountssotokenpost) | **POST** /corporate/subAccount/ssoToken | Generate SSO token to access Brevo
+*MasterAccountApi* | [**corporateUserRevokeEmailDelete**](docs/Api/MasterAccountApi.md#corporateuserrevokeemaildelete) | **DELETE** /corporate/user/revoke/{email} | Revoke an admin user
 *MasterAccountApi* | [**getAccountActivity**](docs/Api/MasterAccountApi.md#getaccountactivity) | **GET** /organization/activities | Get user activity logs
+*MasterAccountApi* | [**getCorporateInvitedUsersList**](docs/Api/MasterAccountApi.md#getcorporateinviteduserslist) | **GET** /corporate/invited/users | Get the list of all admin users
+*MasterAccountApi* | [**getSubAccountGroups**](docs/Api/MasterAccountApi.md#getsubaccountgroups) | **GET** /corporate/groups | Get the list of groups
+*MasterAccountApi* | [**inviteAdminUser**](docs/Api/MasterAccountApi.md#inviteadminuser) | **POST** /corporate/user/invitation/send | Send invitation to an admin user
 *NotesApi* | [**crmNotesGet**](docs/Api/NotesApi.md#crmnotesget) | **GET** /crm/notes | Get all notes
 *NotesApi* | [**crmNotesIdDelete**](docs/Api/NotesApi.md#crmnotesiddelete) | **DELETE** /crm/notes/{id} | Delete a note
 *NotesApi* | [**crmNotesIdGet**](docs/Api/NotesApi.md#crmnotesidget) | **GET** /crm/notes/{id} | Get a note
@@ -300,7 +307,7 @@ Class | Method | HTTP request | Description
 *TransactionalEmailsApi* | [**sendTestTemplate**](docs/Api/TransactionalEmailsApi.md#sendtesttemplate) | **POST** /smtp/templates/{templateId}/sendTest | Send a template to your test list
 *TransactionalEmailsApi* | [**sendTransacEmail**](docs/Api/TransactionalEmailsApi.md#sendtransacemail) | **POST** /smtp/email | Send a transactional email
 *TransactionalEmailsApi* | [**smtpBlockedContactsEmailDelete**](docs/Api/TransactionalEmailsApi.md#smtpblockedcontactsemaildelete) | **DELETE** /smtp/blockedContacts/{email} | Unblock or resubscribe a transactional contact
-*TransactionalEmailsApi* | [**smtpLogMessageIdDelete**](docs/Api/TransactionalEmailsApi.md#smtplogmessageiddelete) | **DELETE** /smtp/log/{messageId} | Delete an SMTP transactional log
+*TransactionalEmailsApi* | [**smtpLogIdentifierDelete**](docs/Api/TransactionalEmailsApi.md#smtplogidentifierdelete) | **DELETE** /smtp/log/{identifier} | Delete an SMTP transactional log
 *TransactionalEmailsApi* | [**updateSmtpTemplate**](docs/Api/TransactionalEmailsApi.md#updatesmtptemplate) | **PUT** /smtp/templates/{templateId} | Update an email template
 *TransactionalSMSApi* | [**getSmsEvents**](docs/Api/TransactionalSMSApi.md#getsmsevents) | **GET** /transactionalSMS/statistics/events | Get all your SMS activity (unaggregated events)
 *TransactionalSMSApi* | [**getTransacAggregatedSmsReport**](docs/Api/TransactionalSMSApi.md#gettransacaggregatedsmsreport) | **GET** /transactionalSMS/statistics/aggregatedReport | Get your SMS activity aggregated over a period of time
@@ -308,11 +315,15 @@ Class | Method | HTTP request | Description
 *TransactionalSMSApi* | [**sendTransacSms**](docs/Api/TransactionalSMSApi.md#sendtransacsms) | **POST** /transactionalSMS/sms | Send SMS message to a mobile number
 *TransactionalWhatsAppApi* | [**getWhatsappEventReport**](docs/Api/TransactionalWhatsAppApi.md#getwhatsappeventreport) | **GET** /whatsapp/statistics/events | Get all your WhatsApp activity (unaggregated events)
 *TransactionalWhatsAppApi* | [**sendWhatsappMessage**](docs/Api/TransactionalWhatsAppApi.md#sendwhatsappmessage) | **POST** /whatsapp/sendMessage | Send a WhatsApp message
+*UserApi* | [**editUserPermission**](docs/Api/UserApi.md#edituserpermission) | **POST** /organization/user/update/permissions | Update permission for a user
 *UserApi* | [**getInvitedUsersList**](docs/Api/UserApi.md#getinviteduserslist) | **GET** /organization/invited/users | Get the list of all your users
 *UserApi* | [**getUserPermission**](docs/Api/UserApi.md#getuserpermission) | **GET** /organization/user/{email}/permissions | Check user permission
+*UserApi* | [**inviteuser**](docs/Api/UserApi.md#inviteuser) | **POST** /organization/user/invitation/send | Send invitation to user
+*UserApi* | [**putRevokeUserPermission**](docs/Api/UserApi.md#putrevokeuserpermission) | **PUT** /organization/user/invitation/revoke/{email} | Revoke user permission
+*UserApi* | [**putresendcancelinvitation**](docs/Api/UserApi.md#putresendcancelinvitation) | **PUT** /organization/user/invitation/{action}/{email} | Resend / Cancel invitation
 *WebhooksApi* | [**createWebhook**](docs/Api/WebhooksApi.md#createwebhook) | **POST** /webhooks | Create a webhook
 *WebhooksApi* | [**deleteWebhook**](docs/Api/WebhooksApi.md#deletewebhook) | **DELETE** /webhooks/{webhookId} | Delete a webhook
-*WebhooksApi* | [**exportWebhooksHistory**](docs/Api/WebhooksApi.md#exportwebhookshistory) | **POST** /webhooks/export | Export all transactional events
+*WebhooksApi* | [**exportWebhooksHistory**](docs/Api/WebhooksApi.md#exportwebhookshistory) | **POST** /webhooks/export | Export all webhook events
 *WebhooksApi* | [**getWebhook**](docs/Api/WebhooksApi.md#getwebhook) | **GET** /webhooks/{webhookId} | Get a webhook details
 *WebhooksApi* | [**getWebhooks**](docs/Api/WebhooksApi.md#getwebhooks) | **GET** /webhooks | Get all webhooks
 *WebhooksApi* | [**updateWebhook**](docs/Api/WebhooksApi.md#updatewebhook) | **PUT** /webhooks/{webhookId} | Update a webhook
@@ -345,6 +356,8 @@ Class | Method | HTTP request | Description
  - [Body10](docs/Model/Body10.md)
  - [Body11](docs/Model/Body11.md)
  - [Body12](docs/Model/Body12.md)
+ - [Body13](docs/Model/Body13.md)
+ - [Body14](docs/Model/Body14.md)
  - [Body2](docs/Model/Body2.md)
  - [Body3](docs/Model/Body3.md)
  - [Body4](docs/Model/Body4.md)
@@ -458,6 +471,10 @@ Class | Method | HTTP request | Description
  - [GetContactCampaignStatsUnsubscriptions](docs/Model/GetContactCampaignStatsUnsubscriptions.md)
  - [GetContactDetails](docs/Model/GetContactDetails.md)
  - [GetContacts](docs/Model/GetContacts.md)
+ - [GetCorporateInvitedUsersList](docs/Model/GetCorporateInvitedUsersList.md)
+ - [GetCorporateInvitedUsersListFeatureAccess](docs/Model/GetCorporateInvitedUsersListFeatureAccess.md)
+ - [GetCorporateInvitedUsersListGroups](docs/Model/GetCorporateInvitedUsersListGroups.md)
+ - [GetCorporateInvitedUsersListUsers](docs/Model/GetCorporateInvitedUsersListUsers.md)
  - [GetCouponCollection](docs/Model/GetCouponCollection.md)
  - [GetDeviceBrowserStats](docs/Model/GetDeviceBrowserStats.md)
  - [GetDomainConfigurationModel](docs/Model/GetDomainConfigurationModel.md)
@@ -504,6 +521,7 @@ Class | Method | HTTP request | Description
  - [GetIpsFromSender](docs/Model/GetIpsFromSender.md)
  - [GetList](docs/Model/GetList.md)
  - [GetLists](docs/Model/GetLists.md)
+ - [GetOrders](docs/Model/GetOrders.md)
  - [GetProcess](docs/Model/GetProcess.md)
  - [GetProcesses](docs/Model/GetProcesses.md)
  - [GetProductDetails](docs/Model/GetProductDetails.md)
@@ -548,6 +566,8 @@ Class | Method | HTTP request | Description
  - [GetWATemplates](docs/Model/GetWATemplates.md)
  - [GetWATemplatesTemplates](docs/Model/GetWATemplatesTemplates.md)
  - [GetWebhook](docs/Model/GetWebhook.md)
+ - [GetWebhookAuth](docs/Model/GetWebhookAuth.md)
+ - [GetWebhookHeaders](docs/Model/GetWebhookHeaders.md)
  - [GetWebhooks](docs/Model/GetWebhooks.md)
  - [GetWhatsAppConfig](docs/Model/GetWhatsAppConfig.md)
  - [GetWhatsappCampaignOverview](docs/Model/GetWhatsappCampaignOverview.md)
@@ -557,11 +577,17 @@ Class | Method | HTTP request | Description
  - [GetWhatsappEventReportEvents](docs/Model/GetWhatsappEventReportEvents.md)
  - [InlineResponse200](docs/Model/InlineResponse200.md)
  - [InlineResponse2001](docs/Model/InlineResponse2001.md)
+ - [InlineResponse2002](docs/Model/InlineResponse2002.md)
  - [InlineResponse201](docs/Model/InlineResponse201.md)
  - [InlineResponse2011](docs/Model/InlineResponse2011.md)
  - [InlineResponse2012](docs/Model/InlineResponse2012.md)
  - [InlineResponse2013](docs/Model/InlineResponse2013.md)
  - [InlineResponse2014](docs/Model/InlineResponse2014.md)
+ - [InlineResponse2015](docs/Model/InlineResponse2015.md)
+ - [InviteAdminUser](docs/Model/InviteAdminUser.md)
+ - [InviteAdminUserPrivileges](docs/Model/InviteAdminUserPrivileges.md)
+ - [Inviteuser](docs/Model/Inviteuser.md)
+ - [InviteuserPrivileges](docs/Model/InviteuserPrivileges.md)
  - [ManageIp](docs/Model/ManageIp.md)
  - [MasterDetailsResponse](docs/Model/MasterDetailsResponse.md)
  - [MasterDetailsResponseBillingInfo](docs/Model/MasterDetailsResponseBillingInfo.md)
@@ -585,6 +611,8 @@ Class | Method | HTTP request | Description
  - [PostContactInfoContacts](docs/Model/PostContactInfoContacts.md)
  - [PostSendFailed](docs/Model/PostSendFailed.md)
  - [PostSendSmsTestFailed](docs/Model/PostSendSmsTestFailed.md)
+ - [PutRevokeUserPermission](docs/Model/PutRevokeUserPermission.md)
+ - [Putresendcancelinvitation](docs/Model/Putresendcancelinvitation.md)
  - [RemainingCreditModel](docs/Model/RemainingCreditModel.md)
  - [RemainingCreditModelChild](docs/Model/RemainingCreditModelChild.md)
  - [RemainingCreditModelReseller](docs/Model/RemainingCreditModelReseller.md)

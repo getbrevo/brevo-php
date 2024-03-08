@@ -72,6 +72,16 @@ class UserApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for editUserPermission
+     *
+     * Update permission for a user.
+     *
+     */
+    public function testEditUserPermission()
+    {
+    }
+
+    /**
      * Test case for getInvitedUsersList
      *
      * Get the list of all your users.
@@ -88,6 +98,36 @@ class UserApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function testGetUserPermission()
+    {
+    }
+
+    /**
+     * Test case for inviteuser
+     *
+     * Send invitation to user.
+     *
+     */
+    public function testInviteuser()
+    {
+    }
+
+    /**
+     * Test case for putRevokeUserPermission
+     *
+     * Revoke user permission.
+     *
+     */
+    public function testPutRevokeUserPermission()
+    {
+    }
+
+    /**
+     * Test case for putresendcancelinvitation
+     *
+     * Resend / Cancel invitation.
+     *
+     */
+    public function testPutresendcancelinvitation()
     {
     }
 }
