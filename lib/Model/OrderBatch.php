@@ -58,7 +58,8 @@ class OrderBatch implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'orders' => '\Brevo\Client\Model\Order[]',
-        'notifyUrl' => 'string'
+        'notifyUrl' => 'string',
+        'historical' => 'bool'
     ];
 
     /**
@@ -68,7 +69,8 @@ class OrderBatch implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'orders' => null,
-        'notifyUrl' => null
+        'notifyUrl' => null,
+        'historical' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class OrderBatch implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'orders' => 'orders',
-        'notifyUrl' => 'notifyUrl'
+        'notifyUrl' => 'notifyUrl',
+        'historical' => 'historical'
     ];
 
     /**
@@ -109,7 +112,8 @@ class OrderBatch implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'orders' => 'setOrders',
-        'notifyUrl' => 'setNotifyUrl'
+        'notifyUrl' => 'setNotifyUrl',
+        'historical' => 'setHistorical'
     ];
 
     /**
@@ -119,7 +123,8 @@ class OrderBatch implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'orders' => 'getOrders',
-        'notifyUrl' => 'getNotifyUrl'
+        'notifyUrl' => 'getNotifyUrl',
+        'historical' => 'getHistorical'
     ];
 
     /**
@@ -184,6 +189,7 @@ class OrderBatch implements ModelInterface, ArrayAccess
     {
         $this->container['orders'] = isset($data['orders']) ? $data['orders'] : null;
         $this->container['notifyUrl'] = isset($data['notifyUrl']) ? $data['notifyUrl'] : null;
+        $this->container['historical'] = isset($data['historical']) ? $data['historical'] : true;
     }
 
     /**
@@ -257,6 +263,30 @@ class OrderBatch implements ModelInterface, ArrayAccess
     public function setNotifyUrl($notifyUrl)
     {
         $this->container['notifyUrl'] = $notifyUrl;
+
+        return $this;
+    }
+
+    /**
+     * Gets historical
+     *
+     * @return bool
+     */
+    public function getHistorical()
+    {
+        return $this->container['historical'];
+    }
+
+    /**
+     * Sets historical
+     *
+     * @param bool $historical Defines wether you want your orders to be considered as live data or as historical data (import of past data, synchronising data). True: orders will not trigger any automation workflows. False: orders will trigger workflows as usual.
+     *
+     * @return $this
+     */
+    public function setHistorical($historical)
+    {
+        $this->container['historical'] = $historical;
 
         return $this;
     }

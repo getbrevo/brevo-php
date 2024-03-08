@@ -94,7 +94,7 @@ class WebhooksApiTest extends \PHPUnit_Framework_TestCase
     /**
      * Test case for exportWebhooksHistory
      *
-     * Export all transactional events.
+     * Export all webhook events.
      *
      */
     public function testExportWebhooksHistory()

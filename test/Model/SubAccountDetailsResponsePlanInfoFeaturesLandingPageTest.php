@@ -33,7 +33,7 @@ namespace Brevo\Client;
  * SubAccountDetailsResponsePlanInfoFeaturesLandingPageTest Class Doc Comment
  *
  * @category    Class
- * @description Landing page details
+ * @description Landing page details / Not available on ENTv2
  * @package     Brevo\Client
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen

@@ -290,7 +290,7 @@ class SubAccountAppsToggleRequest implements ModelInterface, ArrayAccess
     /**
      * Sets inbox
      *
-     * @param bool $inbox Set this field to enable or disable Inbox on the sub-account
+     * @param bool $inbox Set this field to enable or disable Inbox on the sub-account / Not applicable on ENTv2
      *
      * @return $this
      */

@@ -60,7 +60,10 @@ class UpdateWebhook implements ModelInterface, ArrayAccess
         'url' => 'string',
         'description' => 'string',
         'events' => 'string[]',
-        'domain' => 'string'
+        'domain' => 'string',
+        'batched' => 'bool',
+        'auth' => '\Brevo\Client\Model\GetWebhookAuth',
+        'headers' => '\Brevo\Client\Model\GetWebhookHeaders[]'
     ];
 
     /**
@@ -72,7 +75,10 @@ class UpdateWebhook implements ModelInterface, ArrayAccess
         'url' => 'url',
         'description' => null,
         'events' => null,
-        'domain' => null
+        'domain' => null,
+        'batched' => null,
+        'auth' => null,
+        'headers' => null
     ];
 
     /**
@@ -105,7 +111,10 @@ class UpdateWebhook implements ModelInterface, ArrayAccess
         'url' => 'url',
         'description' => 'description',
         'events' => 'events',
-        'domain' => 'domain'
+        'domain' => 'domain',
+        'batched' => 'batched',
+        'auth' => 'auth',
+        'headers' => 'headers'
     ];
 
     /**
@@ -117,7 +126,10 @@ class UpdateWebhook implements ModelInterface, ArrayAccess
         'url' => 'setUrl',
         'description' => 'setDescription',
         'events' => 'setEvents',
-        'domain' => 'setDomain'
+        'domain' => 'setDomain',
+        'batched' => 'setBatched',
+        'auth' => 'setAuth',
+        'headers' => 'setHeaders'
     ];
 
     /**
@@ -129,7 +141,10 @@ class UpdateWebhook implements ModelInterface, ArrayAccess
         'url' => 'getUrl',
         'description' => 'getDescription',
         'events' => 'getEvents',
-        'domain' => 'getDomain'
+        'domain' => 'getDomain',
+        'batched' => 'getBatched',
+        'auth' => 'getAuth',
+        'headers' => 'getHeaders'
     ];
 
     /**
@@ -241,6 +256,9 @@ class UpdateWebhook implements ModelInterface, ArrayAccess
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['events'] = isset($data['events']) ? $data['events'] : null;
         $this->container['domain'] = isset($data['domain']) ? $data['domain'] : null;
+        $this->container['batched'] = isset($data['batched']) ? $data['batched'] : null;
+        $this->container['auth'] = isset($data['auth']) ? $data['auth'] : null;
+        $this->container['headers'] = isset($data['headers']) ? $data['headers'] : null;
     }
 
     /**
@@ -368,6 +386,78 @@ class UpdateWebhook implements ModelInterface, ArrayAccess
     public function setDomain($domain)
     {
         $this->container['domain'] = $domain;
+
+        return $this;
+    }
+
+    /**
+     * Gets batched
+     *
+     * @return bool
+     */
+    public function getBatched()
+    {
+        return $this->container['batched'];
+    }
+
+    /**
+     * Sets batched
+     *
+     * @param bool $batched To send batched webhooks
+     *
+     * @return $this
+     */
+    public function setBatched($batched)
+    {
+        $this->container['batched'] = $batched;
+
+        return $this;
+    }
+
+    /**
+     * Gets auth
+     *
+     * @return \Brevo\Client\Model\GetWebhookAuth
+     */
+    public function getAuth()
+    {
+        return $this->container['auth'];
+    }
+
+    /**
+     * Sets auth
+     *
+     * @param \Brevo\Client\Model\GetWebhookAuth $auth auth
+     *
+     * @return $this
+     */
+    public function setAuth($auth)
+    {
+        $this->container['auth'] = $auth;
+
+        return $this;
+    }
+
+    /**
+     * Gets headers
+     *
+     * @return \Brevo\Client\Model\GetWebhookHeaders[]
+     */
+    public function getHeaders()
+    {
+        return $this->container['headers'];
+    }
+
+    /**
+     * Sets headers
+     *
+     * @param \Brevo\Client\Model\GetWebhookHeaders[] $headers Custom headers to be send with webhooks
+     *
+     * @return $this
+     */
+    public function setHeaders($headers)
+    {
+        $this->container['headers'] = $headers;
 
         return $this;
     }

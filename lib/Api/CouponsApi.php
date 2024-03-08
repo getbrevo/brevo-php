@@ -96,7 +96,7 @@ class CouponsApi
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Brevo\Client\Model\InlineResponse2012
+     * @return \Brevo\Client\Model\InlineResponse2013
      */
     public function createCouponCollection($createCouponCollection)
     {
@@ -113,11 +113,11 @@ class CouponsApi
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Brevo\Client\Model\InlineResponse2012, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Brevo\Client\Model\InlineResponse2013, HTTP status code, HTTP response headers (array of strings)
      */
     public function createCouponCollectionWithHttpInfo($createCouponCollection)
     {
-        $returnType = '\Brevo\Client\Model\InlineResponse2012';
+        $returnType = '\Brevo\Client\Model\InlineResponse2013';
         $request = $this->createCouponCollectionRequest($createCouponCollection);
 
         try {
@@ -169,7 +169,7 @@ class CouponsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Brevo\Client\Model\InlineResponse2012',
+                        '\Brevo\Client\Model\InlineResponse2013',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -227,7 +227,7 @@ class CouponsApi
      */
     public function createCouponCollectionAsyncWithHttpInfo($createCouponCollection)
     {
-        $returnType = '\Brevo\Client\Model\InlineResponse2012';
+        $returnType = '\Brevo\Client\Model\InlineResponse2013';
         $request = $this->createCouponCollectionRequest($createCouponCollection);
 
         return $this->client
@@ -1273,7 +1273,7 @@ class CouponsApi
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Brevo\Client\Model\InlineResponse2001
+     * @return \Brevo\Client\Model\InlineResponse2002
      */
     public function updateCouponCollection($id, $updateCouponCollection)
     {
@@ -1291,11 +1291,11 @@ class CouponsApi
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Brevo\Client\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Brevo\Client\Model\InlineResponse2002, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateCouponCollectionWithHttpInfo($id, $updateCouponCollection)
     {
-        $returnType = '\Brevo\Client\Model\InlineResponse2001';
+        $returnType = '\Brevo\Client\Model\InlineResponse2002';
         $request = $this->updateCouponCollectionRequest($id, $updateCouponCollection);
 
         try {
@@ -1347,7 +1347,7 @@ class CouponsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Brevo\Client\Model\InlineResponse2001',
+                        '\Brevo\Client\Model\InlineResponse2002',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1407,7 +1407,7 @@ class CouponsApi
      */
     public function updateCouponCollectionAsyncWithHttpInfo($id, $updateCouponCollection)
     {
-        $returnType = '\Brevo\Client\Model\InlineResponse2001';
+        $returnType = '\Brevo\Client\Model\InlineResponse2002';
         $request = $this->updateCouponCollectionRequest($id, $updateCouponCollection);
 
         return $this->client

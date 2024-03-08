@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createWebhook**](WebhooksApi.md#createWebhook) | **POST** /webhooks | Create a webhook
 [**deleteWebhook**](WebhooksApi.md#deleteWebhook) | **DELETE** /webhooks/{webhookId} | Delete a webhook
-[**exportWebhooksHistory**](WebhooksApi.md#exportWebhooksHistory) | **POST** /webhooks/export | Export all transactional events
+[**exportWebhooksHistory**](WebhooksApi.md#exportWebhooksHistory) | **POST** /webhooks/export | Export all webhook events
 [**getWebhook**](WebhooksApi.md#getWebhook) | **GET** /webhooks/{webhookId} | Get a webhook details
 [**getWebhooks**](WebhooksApi.md#getWebhooks) | **GET** /webhooks | Get all webhooks
 [**updateWebhook**](WebhooksApi.md#updateWebhook) | **PUT** /webhooks/{webhookId} | Update a webhook
@@ -128,9 +128,9 @@ void (empty response body)
 # **exportWebhooksHistory**
 > \Brevo\Client\Model\CreatedProcessId exportWebhooksHistory($exportWebhookHistory)
 
-Export all transactional events
+Export all webhook events
 
-This endpoint will submit a request to get the history of webhooks in the CSV file. The link to download that CSV file will send to the webhook link provided in notifyURL of the body payload.
+This endpoint will submit a request to get the history of webhooks in the CSV file. The link to download the CSV file will be sent to the webhook that was provided in the notifyURL.
 
 ### Example
 ```php

@@ -77,16 +77,30 @@ class Body4Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "linkContactIds"
      */
-    public function testPropertyName()
+    public function testPropertyLinkContactIds()
     {
     }
 
     /**
-     * Test attribute "attributes"
+     * Test attribute "unlinkContactIds"
      */
-    public function testPropertyAttributes()
+    public function testPropertyUnlinkContactIds()
+    {
+    }
+
+    /**
+     * Test attribute "linkDealsIds"
+     */
+    public function testPropertyLinkDealsIds()
+    {
+    }
+
+    /**
+     * Test attribute "unlinkDealsIds"
+     */
+    public function testPropertyUnlinkDealsIds()
     {
     }
 }

@@ -77,6 +77,20 @@ class Body12Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "visitorId"
+     */
+    public function testPropertyVisitorId()
+    {
+    }
+
+    /**
+     * Test attribute "text"
+     */
+    public function testPropertyText()
+    {
+    }
+
+    /**
      * Test attribute "agentId"
      */
     public function testPropertyAgentId()
@@ -84,23 +98,9 @@ class Body12Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "receivedFrom"
+     * Test attribute "groupId"
      */
-    public function testPropertyReceivedFrom()
-    {
-    }
-
-    /**
-     * Test attribute "agentEmail"
-     */
-    public function testPropertyAgentEmail()
-    {
-    }
-
-    /**
-     * Test attribute "agentName"
-     */
-    public function testPropertyAgentName()
+    public function testPropertyGroupId()
     {
     }
 }

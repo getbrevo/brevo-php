@@ -84,72 +84,9 @@ class Body6Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "duration"
+     * Test attribute "attributes"
      */
-    public function testPropertyDuration()
-    {
-    }
-
-    /**
-     * Test attribute "taskTypeId"
-     */
-    public function testPropertyTaskTypeId()
-    {
-    }
-
-    /**
-     * Test attribute "date"
-     */
-    public function testPropertyDate()
-    {
-    }
-
-    /**
-     * Test attribute "notes"
-     */
-    public function testPropertyNotes()
-    {
-    }
-
-    /**
-     * Test attribute "done"
-     */
-    public function testPropertyDone()
-    {
-    }
-
-    /**
-     * Test attribute "assignToId"
-     */
-    public function testPropertyAssignToId()
-    {
-    }
-
-    /**
-     * Test attribute "contactsIds"
-     */
-    public function testPropertyContactsIds()
-    {
-    }
-
-    /**
-     * Test attribute "dealsIds"
-     */
-    public function testPropertyDealsIds()
-    {
-    }
-
-    /**
-     * Test attribute "companiesIds"
-     */
-    public function testPropertyCompaniesIds()
-    {
-    }
-
-    /**
-     * Test attribute "reminder"
-     */
-    public function testPropertyReminder()
+    public function testPropertyAttributes()
     {
     }
 }

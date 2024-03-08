@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **id** | **string** | The id of the collection | 
 **name** | **string** | The name of the collection | 
 **defaultCoupon** | **string** | The default coupon of the collection | 
-**createdAt** | [**\DateTime**](\DateTime.md) | Datetime on which the collection was created | 
+**createdAt** | [**\DateTime**] | Datetime on which the collection was created | 
 **totalCoupons** | **int** | Total coupons in the collection | 
 **remainingCoupons** | **int** | Not sent coupons in the collection | 
 

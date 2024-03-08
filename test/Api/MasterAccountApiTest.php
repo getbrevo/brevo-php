@@ -72,6 +72,26 @@ class MasterAccountApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for corporateGroupIdPut
+     *
+     * Update a group of sub-accounts.
+     *
+     */
+    public function testCorporateGroupIdPut()
+    {
+    }
+
+    /**
+     * Test case for corporateGroupPost
+     *
+     * Create a new group of sub-accounts.
+     *
+     */
+    public function testCorporateGroupPost()
+    {
+    }
+
+    /**
      * Test case for corporateMasterAccountGet
      *
      * Get the details of requested master account.
@@ -162,12 +182,52 @@ class MasterAccountApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for corporateUserRevokeEmailDelete
+     *
+     * Revoke an admin user.
+     *
+     */
+    public function testCorporateUserRevokeEmailDelete()
+    {
+    }
+
+    /**
      * Test case for getAccountActivity
      *
      * Get user activity logs.
      *
      */
     public function testGetAccountActivity()
+    {
+    }
+
+    /**
+     * Test case for getCorporateInvitedUsersList
+     *
+     * Get the list of all admin users.
+     *
+     */
+    public function testGetCorporateInvitedUsersList()
+    {
+    }
+
+    /**
+     * Test case for getSubAccountGroups
+     *
+     * Get the list of groups.
+     *
+     */
+    public function testGetSubAccountGroups()
+    {
+    }
+
+    /**
+     * Test case for inviteAdminUser
+     *
+     * Send invitation to an admin user.
+     *
+     */
+    public function testInviteAdminUser()
     {
     }
 }

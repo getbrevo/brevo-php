@@ -277,7 +277,7 @@ $apiInstance = new Brevo\Client\Api\DealsApi(
     $config
 );
 $id = "id_example"; // string | 
-$body = new \Brevo\Client\Model\Body4(); // \Brevo\Client\Model\Body4 | Updated deal details.
+$body = new \Brevo\Client\Model\Body6(); // \Brevo\Client\Model\Body6 | Updated deal details.
 
 try {
     $apiInstance->crmDealsIdPatch($id, $body);
@@ -292,7 +292,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
- **body** | [**\Brevo\Client\Model\Body4**](../Model/Body4.md)| Updated deal details. |
+ **body** | [**\Brevo\Client\Model\Body6**](../Model/Body6.md)| Updated deal details. |
 
 ### Return type
 
@@ -335,7 +335,7 @@ $apiInstance = new Brevo\Client\Api\DealsApi(
     $config
 );
 $id = "id_example"; // string | 
-$body = new \Brevo\Client\Model\Body5(); // \Brevo\Client\Model\Body5 | Linked / Unlinked contacts and companies ids.
+$body = new \Brevo\Client\Model\Body7(); // \Brevo\Client\Model\Body7 | Linked / Unlinked contacts and companies ids.
 
 try {
     $apiInstance->crmDealsLinkUnlinkIdPatch($id, $body);
@@ -350,7 +350,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
- **body** | [**\Brevo\Client\Model\Body5**](../Model/Body5.md)| Linked / Unlinked contacts and companies ids. |
+ **body** | [**\Brevo\Client\Model\Body7**](../Model/Body7.md)| Linked / Unlinked contacts and companies ids. |
 
 ### Return type
 
@@ -368,7 +368,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **crmDealsPost**
-> \Brevo\Client\Model\InlineResponse201 crmDealsPost($body)
+> \Brevo\Client\Model\InlineResponse2011 crmDealsPost($body)
 
 Create a deal
 
@@ -392,7 +392,7 @@ $apiInstance = new Brevo\Client\Api\DealsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Brevo\Client\Model\Body3(); // \Brevo\Client\Model\Body3 | Deal create data.
+$body = new \Brevo\Client\Model\Body5(); // \Brevo\Client\Model\Body5 | Deal create data.
 
 try {
     $result = $apiInstance->crmDealsPost($body);
@@ -407,11 +407,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Brevo\Client\Model\Body3**](../Model/Body3.md)| Deal create data. |
+ **body** | [**\Brevo\Client\Model\Body5**](../Model/Body5.md)| Deal create data. |
 
 ### Return type
 
-[**\Brevo\Client\Model\InlineResponse201**](../Model/InlineResponse201.md)
+[**\Brevo\Client\Model\InlineResponse2011**](../Model/InlineResponse2011.md)
 
 ### Authorization
 

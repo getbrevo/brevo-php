@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **createExternalFeed**
-> \Brevo\Client\Model\InlineResponse2014 createExternalFeed($createExternalFeed)
+> \Brevo\Client\Model\InlineResponse2015 createExternalFeed($createExternalFeed)
 
 Create an external feed
 
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Brevo\Client\Model\InlineResponse2014**](../Model/InlineResponse2014.md)
+[**\Brevo\Client\Model\InlineResponse2015**](../Model/InlineResponse2015.md)
 
 ### Authorization
 

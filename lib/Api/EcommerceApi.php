@@ -1954,14 +1954,16 @@ class EcommerceApi
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      * @param  string[] $ids Filter by category ids (optional)
      * @param  string $name Filter by category name (optional)
+     * @param  string $modifiedSince Filter (urlencoded) the categories modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the categories created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Brevo\Client\Model\GetCategories
      */
-    public function getCategories($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null)
+    public function getCategories($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $modifiedSince = null, $createdSince = null)
     {
-        list($response) = $this->getCategoriesWithHttpInfo($limit, $offset, $sort, $ids, $name);
+        list($response) = $this->getCategoriesWithHttpInfo($limit, $offset, $sort, $ids, $name, $modifiedSince, $createdSince);
         return $response;
     }
 
@@ -1975,15 +1977,17 @@ class EcommerceApi
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      * @param  string[] $ids Filter by category ids (optional)
      * @param  string $name Filter by category name (optional)
+     * @param  string $modifiedSince Filter (urlencoded) the categories modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the categories created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Brevo\Client\Model\GetCategories, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCategoriesWithHttpInfo($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null)
+    public function getCategoriesWithHttpInfo($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $modifiedSince = null, $createdSince = null)
     {
         $returnType = '\Brevo\Client\Model\GetCategories';
-        $request = $this->getCategoriesRequest($limit, $offset, $sort, $ids, $name);
+        $request = $this->getCategoriesRequest($limit, $offset, $sort, $ids, $name, $modifiedSince, $createdSince);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2062,13 +2066,15 @@ class EcommerceApi
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      * @param  string[] $ids Filter by category ids (optional)
      * @param  string $name Filter by category name (optional)
+     * @param  string $modifiedSince Filter (urlencoded) the categories modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the categories created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCategoriesAsync($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null)
+    public function getCategoriesAsync($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $modifiedSince = null, $createdSince = null)
     {
-        return $this->getCategoriesAsyncWithHttpInfo($limit, $offset, $sort, $ids, $name)
+        return $this->getCategoriesAsyncWithHttpInfo($limit, $offset, $sort, $ids, $name, $modifiedSince, $createdSince)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2086,14 +2092,16 @@ class EcommerceApi
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      * @param  string[] $ids Filter by category ids (optional)
      * @param  string $name Filter by category name (optional)
+     * @param  string $modifiedSince Filter (urlencoded) the categories modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the categories created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCategoriesAsyncWithHttpInfo($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null)
+    public function getCategoriesAsyncWithHttpInfo($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $modifiedSince = null, $createdSince = null)
     {
         $returnType = '\Brevo\Client\Model\GetCategories';
-        $request = $this->getCategoriesRequest($limit, $offset, $sort, $ids, $name);
+        $request = $this->getCategoriesRequest($limit, $offset, $sort, $ids, $name, $modifiedSince, $createdSince);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2140,11 +2148,13 @@ class EcommerceApi
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      * @param  string[] $ids Filter by category ids (optional)
      * @param  string $name Filter by category name (optional)
+     * @param  string $modifiedSince Filter (urlencoded) the categories modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the categories created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getCategoriesRequest($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null)
+    protected function getCategoriesRequest($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $modifiedSince = null, $createdSince = null)
     {
         if ($limit !== null && $limit > 100) {
             throw new \InvalidArgumentException('invalid value for "$limit" when calling EcommerceApi.getCategories, must be smaller than or equal to 100.');
@@ -2180,6 +2190,14 @@ class EcommerceApi
         // query params
         if ($name !== null) {
             $queryParams['name'] = ObjectSerializer::toQueryValue($name);
+        }
+        // query params
+        if ($modifiedSince !== null) {
+            $queryParams['modifiedSince'] = ObjectSerializer::toQueryValue($modifiedSince);
+        }
+        // query params
+        if ($createdSince !== null) {
+            $queryParams['createdSince'] = ObjectSerializer::toQueryValue($createdSince);
         }
 
 
@@ -2477,6 +2495,323 @@ class EcommerceApi
                 $resourcePath
             );
         }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            
+            if($headers['Content-Type'] === 'application/json') {
+                // \stdClass has no __toString(), so we should encode it manually
+                if ($httpBody instanceof \stdClass) {
+                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                }
+                // array has no __toString(), so we should encode it manually
+                if(is_array($httpBody)) {
+                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                }
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
+        if ($apiKey !== null) {
+            $headers['api-key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('partner-key');
+        if ($apiKey !== null) {
+            $headers['partner-key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getOrders
+     *
+     * Get order details
+     *
+     * @param  int $limit Number of documents per page (optional, default to 50)
+     * @param  int $offset Index of the first document in the page (optional, default to 0)
+     * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
+     * @param  string $modifiedSince Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     *
+     * @throws \Brevo\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Brevo\Client\Model\GetOrders
+     */
+    public function getOrders($limit = '50', $offset = '0', $sort = 'desc', $modifiedSince = null, $createdSince = null)
+    {
+        list($response) = $this->getOrdersWithHttpInfo($limit, $offset, $sort, $modifiedSince, $createdSince);
+        return $response;
+    }
+
+    /**
+     * Operation getOrdersWithHttpInfo
+     *
+     * Get order details
+     *
+     * @param  int $limit Number of documents per page (optional, default to 50)
+     * @param  int $offset Index of the first document in the page (optional, default to 0)
+     * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
+     * @param  string $modifiedSince Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     *
+     * @throws \Brevo\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Brevo\Client\Model\GetOrders, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getOrdersWithHttpInfo($limit = '50', $offset = '0', $sort = 'desc', $modifiedSince = null, $createdSince = null)
+    {
+        $returnType = '\Brevo\Client\Model\GetOrders';
+        $request = $this->getOrdersRequest($limit, $offset, $sort, $modifiedSince, $createdSince);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Brevo\Client\Model\GetOrders',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Brevo\Client\Model\ErrorModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getOrdersAsync
+     *
+     * Get order details
+     *
+     * @param  int $limit Number of documents per page (optional, default to 50)
+     * @param  int $offset Index of the first document in the page (optional, default to 0)
+     * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
+     * @param  string $modifiedSince Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getOrdersAsync($limit = '50', $offset = '0', $sort = 'desc', $modifiedSince = null, $createdSince = null)
+    {
+        return $this->getOrdersAsyncWithHttpInfo($limit, $offset, $sort, $modifiedSince, $createdSince)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getOrdersAsyncWithHttpInfo
+     *
+     * Get order details
+     *
+     * @param  int $limit Number of documents per page (optional, default to 50)
+     * @param  int $offset Index of the first document in the page (optional, default to 0)
+     * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
+     * @param  string $modifiedSince Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getOrdersAsyncWithHttpInfo($limit = '50', $offset = '0', $sort = 'desc', $modifiedSince = null, $createdSince = null)
+    {
+        $returnType = '\Brevo\Client\Model\GetOrders';
+        $request = $this->getOrdersRequest($limit, $offset, $sort, $modifiedSince, $createdSince);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getOrders'
+     *
+     * @param  int $limit Number of documents per page (optional, default to 50)
+     * @param  int $offset Index of the first document in the page (optional, default to 0)
+     * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
+     * @param  string $modifiedSince Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getOrdersRequest($limit = '50', $offset = '0', $sort = 'desc', $modifiedSince = null, $createdSince = null)
+    {
+        if ($limit !== null && $limit > 100) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EcommerceApi.getOrders, must be smaller than or equal to 100.');
+        }
+
+
+        $resourcePath = '/orders';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($limit !== null) {
+            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+        }
+        // query params
+        if ($offset !== null) {
+            $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
+        }
+        // query params
+        if ($sort !== null) {
+            $queryParams['sort'] = ObjectSerializer::toQueryValue($sort);
+        }
+        // query params
+        if ($modifiedSince !== null) {
+            $queryParams['modifiedSince'] = ObjectSerializer::toQueryValue($modifiedSince);
+        }
+        // query params
+        if ($createdSince !== null) {
+            $queryParams['createdSince'] = ObjectSerializer::toQueryValue($createdSince);
+        }
+
 
         // body params
         $_tempBody = null;
@@ -2871,14 +3206,16 @@ class EcommerceApi
      * @param  float $priceEq Price filter for products equals to particular amount (optional)
      * @param  float $priceNe Price filter for products not equals to particular amount (optional)
      * @param  string[] $categories Filter by category ids (optional)
+     * @param  string $modifiedSince Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Brevo\Client\Model\GetProducts
      */
-    public function getProducts($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $priceLte = null, $priceGte = null, $priceLt = null, $priceGt = null, $priceEq = null, $priceNe = null, $categories = null)
+    public function getProducts($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $priceLte = null, $priceGte = null, $priceLt = null, $priceGt = null, $priceEq = null, $priceNe = null, $categories = null, $modifiedSince = null, $createdSince = null)
     {
-        list($response) = $this->getProductsWithHttpInfo($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories);
+        list($response) = $this->getProductsWithHttpInfo($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories, $modifiedSince, $createdSince);
         return $response;
     }
 
@@ -2899,15 +3236,17 @@ class EcommerceApi
      * @param  float $priceEq Price filter for products equals to particular amount (optional)
      * @param  float $priceNe Price filter for products not equals to particular amount (optional)
      * @param  string[] $categories Filter by category ids (optional)
+     * @param  string $modifiedSince Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Brevo\Client\Model\GetProducts, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getProductsWithHttpInfo($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $priceLte = null, $priceGte = null, $priceLt = null, $priceGt = null, $priceEq = null, $priceNe = null, $categories = null)
+    public function getProductsWithHttpInfo($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $priceLte = null, $priceGte = null, $priceLt = null, $priceGt = null, $priceEq = null, $priceNe = null, $categories = null, $modifiedSince = null, $createdSince = null)
     {
         $returnType = '\Brevo\Client\Model\GetProducts';
-        $request = $this->getProductsRequest($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories);
+        $request = $this->getProductsRequest($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories, $modifiedSince, $createdSince);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2993,13 +3332,15 @@ class EcommerceApi
      * @param  float $priceEq Price filter for products equals to particular amount (optional)
      * @param  float $priceNe Price filter for products not equals to particular amount (optional)
      * @param  string[] $categories Filter by category ids (optional)
+     * @param  string $modifiedSince Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProductsAsync($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $priceLte = null, $priceGte = null, $priceLt = null, $priceGt = null, $priceEq = null, $priceNe = null, $categories = null)
+    public function getProductsAsync($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $priceLte = null, $priceGte = null, $priceLt = null, $priceGt = null, $priceEq = null, $priceNe = null, $categories = null, $modifiedSince = null, $createdSince = null)
     {
-        return $this->getProductsAsyncWithHttpInfo($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories)
+        return $this->getProductsAsyncWithHttpInfo($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories, $modifiedSince, $createdSince)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3024,14 +3365,16 @@ class EcommerceApi
      * @param  float $priceEq Price filter for products equals to particular amount (optional)
      * @param  float $priceNe Price filter for products not equals to particular amount (optional)
      * @param  string[] $categories Filter by category ids (optional)
+     * @param  string $modifiedSince Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProductsAsyncWithHttpInfo($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $priceLte = null, $priceGte = null, $priceLt = null, $priceGt = null, $priceEq = null, $priceNe = null, $categories = null)
+    public function getProductsAsyncWithHttpInfo($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $priceLte = null, $priceGte = null, $priceLt = null, $priceGt = null, $priceEq = null, $priceNe = null, $categories = null, $modifiedSince = null, $createdSince = null)
     {
         $returnType = '\Brevo\Client\Model\GetProducts';
-        $request = $this->getProductsRequest($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories);
+        $request = $this->getProductsRequest($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories, $modifiedSince, $createdSince);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3085,11 +3428,13 @@ class EcommerceApi
      * @param  float $priceEq Price filter for products equals to particular amount (optional)
      * @param  float $priceNe Price filter for products not equals to particular amount (optional)
      * @param  string[] $categories Filter by category ids (optional)
+     * @param  string $modifiedSince Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
+     * @param  string $createdSince Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getProductsRequest($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $priceLte = null, $priceGte = null, $priceLt = null, $priceGt = null, $priceEq = null, $priceNe = null, $categories = null)
+    protected function getProductsRequest($limit = '50', $offset = '0', $sort = 'desc', $ids = null, $name = null, $priceLte = null, $priceGte = null, $priceLt = null, $priceGt = null, $priceEq = null, $priceNe = null, $categories = null, $modifiedSince = null, $createdSince = null)
     {
         if ($limit !== null && $limit > 1000) {
             throw new \InvalidArgumentException('invalid value for "$limit" when calling EcommerceApi.getProducts, must be smaller than or equal to 1000.');
@@ -3156,6 +3501,14 @@ class EcommerceApi
         } else
         if ($categories !== null) {
             $queryParams['categories'] = ObjectSerializer::toQueryValue($categories);
+        }
+        // query params
+        if ($modifiedSince !== null) {
+            $queryParams['modifiedSince'] = ObjectSerializer::toQueryValue($modifiedSince);
+        }
+        // query params
+        if ($createdSince !== null) {
+            $queryParams['createdSince'] = ObjectSerializer::toQueryValue($createdSince);
         }
 
 

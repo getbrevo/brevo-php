@@ -187,7 +187,7 @@ class Pipelines implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = listInvalidProperties();
 
         return $invalidProperties;
     }

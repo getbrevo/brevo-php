@@ -232,7 +232,7 @@ $apiInstance = new Brevo\Client\Api\TasksApi(
     $config
 );
 $id = "id_example"; // string | 
-$body = new \Brevo\Client\Model\Body7(); // \Brevo\Client\Model\Body7 | Updated task details.
+$body = new \Brevo\Client\Model\Body9(); // \Brevo\Client\Model\Body9 | Updated task details.
 
 try {
     $apiInstance->crmTasksIdPatch($id, $body);
@@ -247,7 +247,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
- **body** | [**\Brevo\Client\Model\Body7**](../Model/Body7.md)| Updated task details. |
+ **body** | [**\Brevo\Client\Model\Body9**](../Model/Body9.md)| Updated task details. |
 
 ### Return type
 
@@ -265,7 +265,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **crmTasksPost**
-> \Brevo\Client\Model\InlineResponse2011 crmTasksPost($body)
+> \Brevo\Client\Model\InlineResponse2012 crmTasksPost($body)
 
 Create a task
 
@@ -289,7 +289,7 @@ $apiInstance = new Brevo\Client\Api\TasksApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Brevo\Client\Model\Body6(); // \Brevo\Client\Model\Body6 | Task name.
+$body = new \Brevo\Client\Model\Body8(); // \Brevo\Client\Model\Body8 | Task name.
 
 try {
     $result = $apiInstance->crmTasksPost($body);
@@ -304,11 +304,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Brevo\Client\Model\Body6**](../Model/Body6.md)| Task name. |
+ **body** | [**\Brevo\Client\Model\Body8**](../Model/Body8.md)| Task name. |
 
 ### Return type
 
-[**\Brevo\Client\Model\InlineResponse2011**](../Model/InlineResponse2011.md)
+[**\Brevo\Client\Model\InlineResponse2012**](../Model/InlineResponse2012.md)
 
 ### Authorization
 

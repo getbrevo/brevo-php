@@ -36,6 +36,7 @@ use \Brevo\Client\ObjectSerializer;
  * InlineResponse2001 Class Doc Comment
  *
  * @category Class
+ * @description Created company id
  * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -57,9 +58,7 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'string',
-        'name' => 'string',
-        'defaultCoupon' => 'string'
+        'id' => 'string'
     ];
 
     /**
@@ -68,9 +67,7 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'id' => 'uuidv4',
-        'name' => 'uuidv4',
-        'defaultCoupon' => null
+        'id' => null
     ];
 
     /**
@@ -100,9 +97,7 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'defaultCoupon' => 'defaultCoupon'
+        'id' => 'id'
     ];
 
     /**
@@ -111,9 +106,7 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'name' => 'setName',
-        'defaultCoupon' => 'setDefaultCoupon'
+        'id' => 'setId'
     ];
 
     /**
@@ -122,9 +115,7 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'name' => 'getName',
-        'defaultCoupon' => 'getDefaultCoupon'
+        'id' => 'getId'
     ];
 
     /**
@@ -188,8 +179,6 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['defaultCoupon'] = isset($data['defaultCoupon']) ? $data['defaultCoupon'] : null;
     }
 
     /**
@@ -203,12 +192,6 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
 
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['defaultCoupon'] === null) {
-            $invalidProperties[] = "'defaultCoupon' can't be null";
         }
         return $invalidProperties;
     }
@@ -238,61 +221,13 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string $id The id of the collection
+     * @param string $id Unique company id
      *
      * @return $this
      */
     public function setId($id)
     {
         $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name The name of the collection
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets defaultCoupon
-     *
-     * @return string
-     */
-    public function getDefaultCoupon()
-    {
-        return $this->container['defaultCoupon'];
-    }
-
-    /**
-     * Sets defaultCoupon
-     *
-     * @param string $defaultCoupon The default coupon of the collection
-     *
-     * @return $this
-     */
-    public function setDefaultCoupon($defaultCoupon)
-    {
-        $this->container['defaultCoupon'] = $defaultCoupon;
 
         return $this;
     }

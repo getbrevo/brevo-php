@@ -5,7 +5,7 @@ All URIs are relative to *https://api.brevo.com/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createWhatsAppCampaign**](WhatsAppCampaignsApi.md#createWhatsAppCampaign) | **POST** /whatsappCampaigns | Create and Send a WhatsApp campaign
-[**createWhatsAppTemplate**](WhatsAppCampaignsApi.md#createWhatsAppTemplate) | **POST** /whatsappCampaigns/template | Create a WhatsApp template
+[**createWhatsAppTemplate**](WhatsAppCampaignsApi.md#createWhatsAppTemplate) | **POST** /whatsppCampaigns/template | Create a WhatsApp template
 [**deleteWhatsAppCampaign**](WhatsAppCampaignsApi.md#deleteWhatsAppCampaign) | **DELETE** /whatsappCampaigns/{campaignId} | Delete a WhatsApp campaign
 [**getWhatsAppCampaign**](WhatsAppCampaignsApi.md#getWhatsAppCampaign) | **GET** /whatsappCampaigns/{campaignId} | Get a WhatsApp campaign
 [**getWhatsAppCampaigns**](WhatsAppCampaignsApi.md#getWhatsAppCampaigns) | **GET** /whatsappCampaigns | Return all your created WhatsApp campaigns
@@ -361,7 +361,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getWhatsAppTemplates**
-> \Brevo\Client\Model\GetWATemplates getWhatsAppTemplates($startDate, $endDate, $limit, $offset, $sort)
+> \Brevo\Client\Model\GetWATemplates getWhatsAppTemplates($startDate, $endDate, $limit, $offset, $sort, $source)
 
 Return all your created WhatsApp templates
 
@@ -390,9 +390,10 @@ $endDate = "endDate_example"; // string | **Mandatory if startDate is used**. En
 $limit = 50; // int | Number of documents per page
 $offset = 0; // int | Index of the first document in the page
 $sort = "desc"; // string | Sort the results in the ascending/descending order of record modification. Default order is **descending** if `sort` is not passed
+$source = "source_example"; // string | source of the template
 
 try {
-    $result = $apiInstance->getWhatsAppTemplates($startDate, $endDate, $limit, $offset, $sort);
+    $result = $apiInstance->getWhatsAppTemplates($startDate, $endDate, $limit, $offset, $sort, $source);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling WhatsAppCampaignsApi->getWhatsAppTemplates: ', $e->getMessage(), PHP_EOL;
@@ -409,6 +410,7 @@ Name | Type | Description  | Notes
  **limit** | **int**| Number of documents per page | [optional] [default to 50]
  **offset** | **int**| Index of the first document in the page | [optional] [default to 0]
  **sort** | **string**| Sort the results in the ascending/descending order of record modification. Default order is **descending** if &#x60;sort&#x60; is not passed | [optional] [default to desc]
+ **source** | **string**| source of the template | [optional]
 
 ### Return type
 

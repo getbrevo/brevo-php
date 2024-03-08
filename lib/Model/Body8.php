@@ -57,12 +57,17 @@ class Body8 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'visitorId' => 'string',
-        'text' => 'string',
-        'agentId' => 'string',
-        'receivedFrom' => 'string',
-        'agentEmail' => 'string',
-        'agentName' => 'string'
+        'name' => 'string',
+        'duration' => 'int',
+        'taskTypeId' => 'string',
+        'date' => '\DateTime',
+        'notes' => 'string',
+        'done' => 'bool',
+        'assignToId' => 'string',
+        'contactsIds' => 'int[]',
+        'dealsIds' => 'string[]',
+        'companiesIds' => 'string[]',
+        'reminder' => '\Brevo\Client\Model\TaskReminder'
     ];
 
     /**
@@ -71,12 +76,17 @@ class Body8 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'visitorId' => null,
-        'text' => null,
-        'agentId' => null,
-        'receivedFrom' => null,
-        'agentEmail' => 'email',
-        'agentName' => null
+        'name' => null,
+        'duration' => 'int64',
+        'taskTypeId' => null,
+        'date' => 'date-time',
+        'notes' => null,
+        'done' => null,
+        'assignToId' => null,
+        'contactsIds' => null,
+        'dealsIds' => null,
+        'companiesIds' => null,
+        'reminder' => null
     ];
 
     /**
@@ -106,12 +116,17 @@ class Body8 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'visitorId' => 'visitorId',
-        'text' => 'text',
-        'agentId' => 'agentId',
-        'receivedFrom' => 'receivedFrom',
-        'agentEmail' => 'agentEmail',
-        'agentName' => 'agentName'
+        'name' => 'name',
+        'duration' => 'duration',
+        'taskTypeId' => 'taskTypeId',
+        'date' => 'date',
+        'notes' => 'notes',
+        'done' => 'done',
+        'assignToId' => 'assignToId',
+        'contactsIds' => 'contactsIds',
+        'dealsIds' => 'dealsIds',
+        'companiesIds' => 'companiesIds',
+        'reminder' => 'reminder'
     ];
 
     /**
@@ -120,12 +135,17 @@ class Body8 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'visitorId' => 'setVisitorId',
-        'text' => 'setText',
-        'agentId' => 'setAgentId',
-        'receivedFrom' => 'setReceivedFrom',
-        'agentEmail' => 'setAgentEmail',
-        'agentName' => 'setAgentName'
+        'name' => 'setName',
+        'duration' => 'setDuration',
+        'taskTypeId' => 'setTaskTypeId',
+        'date' => 'setDate',
+        'notes' => 'setNotes',
+        'done' => 'setDone',
+        'assignToId' => 'setAssignToId',
+        'contactsIds' => 'setContactsIds',
+        'dealsIds' => 'setDealsIds',
+        'companiesIds' => 'setCompaniesIds',
+        'reminder' => 'setReminder'
     ];
 
     /**
@@ -134,12 +154,17 @@ class Body8 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'visitorId' => 'getVisitorId',
-        'text' => 'getText',
-        'agentId' => 'getAgentId',
-        'receivedFrom' => 'getReceivedFrom',
-        'agentEmail' => 'getAgentEmail',
-        'agentName' => 'getAgentName'
+        'name' => 'getName',
+        'duration' => 'getDuration',
+        'taskTypeId' => 'getTaskTypeId',
+        'date' => 'getDate',
+        'notes' => 'getNotes',
+        'done' => 'getDone',
+        'assignToId' => 'getAssignToId',
+        'contactsIds' => 'getContactsIds',
+        'dealsIds' => 'getDealsIds',
+        'companiesIds' => 'getCompaniesIds',
+        'reminder' => 'getReminder'
     ];
 
     /**
@@ -202,12 +227,17 @@ class Body8 implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['visitorId'] = isset($data['visitorId']) ? $data['visitorId'] : null;
-        $this->container['text'] = isset($data['text']) ? $data['text'] : null;
-        $this->container['agentId'] = isset($data['agentId']) ? $data['agentId'] : null;
-        $this->container['receivedFrom'] = isset($data['receivedFrom']) ? $data['receivedFrom'] : null;
-        $this->container['agentEmail'] = isset($data['agentEmail']) ? $data['agentEmail'] : null;
-        $this->container['agentName'] = isset($data['agentName']) ? $data['agentName'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['duration'] = isset($data['duration']) ? $data['duration'] : null;
+        $this->container['taskTypeId'] = isset($data['taskTypeId']) ? $data['taskTypeId'] : null;
+        $this->container['date'] = isset($data['date']) ? $data['date'] : null;
+        $this->container['notes'] = isset($data['notes']) ? $data['notes'] : null;
+        $this->container['done'] = isset($data['done']) ? $data['done'] : null;
+        $this->container['assignToId'] = isset($data['assignToId']) ? $data['assignToId'] : null;
+        $this->container['contactsIds'] = isset($data['contactsIds']) ? $data['contactsIds'] : null;
+        $this->container['dealsIds'] = isset($data['dealsIds']) ? $data['dealsIds'] : null;
+        $this->container['companiesIds'] = isset($data['companiesIds']) ? $data['companiesIds'] : null;
+        $this->container['reminder'] = isset($data['reminder']) ? $data['reminder'] : null;
     }
 
     /**
@@ -219,11 +249,18 @@ class Body8 implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['visitorId'] === null) {
-            $invalidProperties[] = "'visitorId' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['text'] === null) {
-            $invalidProperties[] = "'text' can't be null";
+        if (!is_null($this->container['duration']) && ($this->container['duration'] < 0)) {
+            $invalidProperties[] = "invalid value for 'duration', must be bigger than or equal to 0.";
+        }
+
+        if ($this->container['taskTypeId'] === null) {
+            $invalidProperties[] = "'taskTypeId' can't be null";
+        }
+        if ($this->container['date'] === null) {
+            $invalidProperties[] = "'date' can't be null";
         }
         return $invalidProperties;
     }
@@ -241,145 +278,270 @@ class Body8 implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets visitorId
+     * Gets name
      *
      * @return string
      */
-    public function getVisitorId()
+    public function getName()
     {
-        return $this->container['visitorId'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets visitorId
+     * Sets name
      *
-     * @param string $visitorId visitor’s ID received <a href=\"https://developers.brevo.com/docs/conversations-webhooks\">from a webhook</a> or generated by you to <a href=\"https://developers.brevo.com/docs/customize-the-widget#identifying-existing-users\">bind existing user account to Conversations</a>
+     * @param string $name Name of task
      *
      * @return $this
      */
-    public function setVisitorId($visitorId)
+    public function setName($name)
     {
-        $this->container['visitorId'] = $visitorId;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets text
+     * Gets duration
      *
-     * @return string
+     * @return int
      */
-    public function getText()
+    public function getDuration()
     {
-        return $this->container['text'];
+        return $this->container['duration'];
     }
 
     /**
-     * Sets text
+     * Sets duration
      *
-     * @param string $text message text
+     * @param int $duration Duration of task in milliseconds [1 minute = 60000 ms]
      *
      * @return $this
      */
-    public function setText($text)
+    public function setDuration($duration)
     {
-        $this->container['text'] = $text;
+
+        if (!is_null($duration) && ($duration < 0)) {
+            throw new \InvalidArgumentException('invalid value for $duration when calling Body8., must be bigger than or equal to 0.');
+        }
+
+        $this->container['duration'] = $duration;
 
         return $this;
     }
 
     /**
-     * Gets agentId
+     * Gets taskTypeId
      *
      * @return string
      */
-    public function getAgentId()
+    public function getTaskTypeId()
     {
-        return $this->container['agentId'];
+        return $this->container['taskTypeId'];
     }
 
     /**
-     * Sets agentId
+     * Sets taskTypeId
      *
-     * @param string $agentId agent ID. It can be found on agent’s page or received <a href=\"https://developers.brevo.com/docs/conversations-webhooks\">from a webhook</a>. Alternatively, you can use `agentEmail` + `agentName` + `receivedFrom` instead (all 3 fields required).
+     * @param string $taskTypeId Id for type of task e.g Call / Email / Meeting etc.
      *
      * @return $this
      */
-    public function setAgentId($agentId)
+    public function setTaskTypeId($taskTypeId)
     {
-        $this->container['agentId'] = $agentId;
+        $this->container['taskTypeId'] = $taskTypeId;
 
         return $this;
     }
 
     /**
-     * Gets receivedFrom
+     * Gets date
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getReceivedFrom()
+    public function getDate()
     {
-        return $this->container['receivedFrom'];
+        return $this->container['date'];
     }
 
     /**
-     * Sets receivedFrom
+     * Sets date
      *
-     * @param string $receivedFrom mark your messages to distinguish messages created by you from the others.
+     * @param \DateTime $date Task due date and time
      *
      * @return $this
      */
-    public function setReceivedFrom($receivedFrom)
+    public function setDate($date)
     {
-        $this->container['receivedFrom'] = $receivedFrom;
+        $this->container['date'] = $date;
 
         return $this;
     }
 
     /**
-     * Gets agentEmail
+     * Gets notes
      *
      * @return string
      */
-    public function getAgentEmail()
+    public function getNotes()
     {
-        return $this->container['agentEmail'];
+        return $this->container['notes'];
     }
 
     /**
-     * Sets agentEmail
+     * Sets notes
      *
-     * @param string $agentEmail agent email. When sending messages from a standalone system, it’s hard to maintain a 1-to-1 relationship between the users of both systems. In this case, an agent can be specified by their email address.
+     * @param string $notes Notes added to a task
      *
      * @return $this
      */
-    public function setAgentEmail($agentEmail)
+    public function setNotes($notes)
     {
-        $this->container['agentEmail'] = $agentEmail;
+        $this->container['notes'] = $notes;
 
         return $this;
     }
 
     /**
-     * Gets agentName
+     * Gets done
      *
-     * @return string
+     * @return bool
      */
-    public function getAgentName()
+    public function getDone()
     {
-        return $this->container['agentName'];
+        return $this->container['done'];
     }
 
     /**
-     * Sets agentName
+     * Sets done
      *
-     * @param string $agentName agent name
+     * @param bool $done Task marked as done
      *
      * @return $this
      */
-    public function setAgentName($agentName)
+    public function setDone($done)
     {
-        $this->container['agentName'] = $agentName;
+        $this->container['done'] = $done;
+
+        return $this;
+    }
+
+    /**
+     * Gets assignToId
+     *
+     * @return string
+     */
+    public function getAssignToId()
+    {
+        return $this->container['assignToId'];
+    }
+
+    /**
+     * Sets assignToId
+     *
+     * @param string $assignToId User id to whom task is assigned
+     *
+     * @return $this
+     */
+    public function setAssignToId($assignToId)
+    {
+        $this->container['assignToId'] = $assignToId;
+
+        return $this;
+    }
+
+    /**
+     * Gets contactsIds
+     *
+     * @return int[]
+     */
+    public function getContactsIds()
+    {
+        return $this->container['contactsIds'];
+    }
+
+    /**
+     * Sets contactsIds
+     *
+     * @param int[] $contactsIds Contact ids for contacts linked to this task
+     *
+     * @return $this
+     */
+    public function setContactsIds($contactsIds)
+    {
+        $this->container['contactsIds'] = $contactsIds;
+
+        return $this;
+    }
+
+    /**
+     * Gets dealsIds
+     *
+     * @return string[]
+     */
+    public function getDealsIds()
+    {
+        return $this->container['dealsIds'];
+    }
+
+    /**
+     * Sets dealsIds
+     *
+     * @param string[] $dealsIds Deal ids for deals a task is linked to
+     *
+     * @return $this
+     */
+    public function setDealsIds($dealsIds)
+    {
+        $this->container['dealsIds'] = $dealsIds;
+
+        return $this;
+    }
+
+    /**
+     * Gets companiesIds
+     *
+     * @return string[]
+     */
+    public function getCompaniesIds()
+    {
+        return $this->container['companiesIds'];
+    }
+
+    /**
+     * Sets companiesIds
+     *
+     * @param string[] $companiesIds Companies ids for companies a task is linked to
+     *
+     * @return $this
+     */
+    public function setCompaniesIds($companiesIds)
+    {
+        $this->container['companiesIds'] = $companiesIds;
+
+        return $this;
+    }
+
+    /**
+     * Gets reminder
+     *
+     * @return \Brevo\Client\Model\TaskReminder
+     */
+    public function getReminder()
+    {
+        return $this->container['reminder'];
+    }
+
+    /**
+     * Sets reminder
+     *
+     * @param \Brevo\Client\Model\TaskReminder $reminder reminder
+     *
+     * @return $this
+     */
+    public function setReminder($reminder)
+    {
+        $this->container['reminder'] = $reminder;
 
         return $this;
     }

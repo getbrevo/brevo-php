@@ -126,6 +126,13 @@ class RequestContactImportTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "disableNotification"
+     */
+    public function testPropertyDisableNotification()
+    {
+    }
+
+    /**
      * Test attribute "smsBlacklist"
      */
     public function testPropertySmsBlacklist()

@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**ecommerceActivatePost**](EcommerceApi.md#ecommerceActivatePost) | **POST** /ecommerce/activate | Activate the eCommerce app
 [**getCategories**](EcommerceApi.md#getCategories) | **GET** /categories | Return all your categories
 [**getCategoryInfo**](EcommerceApi.md#getCategoryInfo) | **GET** /categories/{id} | Get a category details
+[**getOrders**](EcommerceApi.md#getOrders) | **GET** /orders | Get order details
 [**getProductInfo**](EcommerceApi.md#getProductInfo) | **GET** /products/{id} | Get a product&#39;s details
 [**getProducts**](EcommerceApi.md#getProducts) | **GET** /products | Return all your products
 
@@ -416,7 +417,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getCategories**
-> \Brevo\Client\Model\GetCategories getCategories($limit, $offset, $sort, $ids, $name)
+> \Brevo\Client\Model\GetCategories getCategories($limit, $offset, $sort, $ids, $name, $modifiedSince, $createdSince)
 
 Return all your categories
 
@@ -445,9 +446,11 @@ $offset = 0; // int | Index of the first document in the page
 $sort = "desc"; // string | Sort the results in the ascending/descending order of record creation. Default order is **descending** if `sort` is not passed
 $ids = array("ids_example"); // string[] | Filter by category ids
 $name = "name_example"; // string | Filter by category name
+$modifiedSince = "modifiedSince_example"; // string | Filter (urlencoded) the categories modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.**
+$createdSince = "createdSince_example"; // string | Filter (urlencoded) the categories created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.**
 
 try {
-    $result = $apiInstance->getCategories($limit, $offset, $sort, $ids, $name);
+    $result = $apiInstance->getCategories($limit, $offset, $sort, $ids, $name, $modifiedSince, $createdSince);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EcommerceApi->getCategories: ', $e->getMessage(), PHP_EOL;
@@ -464,6 +467,8 @@ Name | Type | Description  | Notes
  **sort** | **string**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [optional] [default to desc]
  **ids** | [**string[]**](../Model/string.md)| Filter by category ids | [optional]
  **name** | **string**| Filter by category name | [optional]
+ **modifiedSince** | **string**| Filter (urlencoded) the categories modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** | [optional]
+ **createdSince** | **string**| Filter (urlencoded) the categories created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** | [optional]
 
 ### Return type
 
@@ -537,6 +542,73 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **getOrders**
+> \Brevo\Client\Model\GetOrders getOrders($limit, $offset, $sort, $modifiedSince, $createdSince)
+
+Get order details
+
+Get all the orders
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: api-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: partner-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
+
+$apiInstance = new Brevo\Client\Api\EcommerceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$limit = 50; // int | Number of documents per page
+$offset = 0; // int | Index of the first document in the page
+$sort = "desc"; // string | Sort the results in the ascending/descending order of record creation. Default order is **descending** if `sort` is not passed
+$modifiedSince = "modifiedSince_example"; // string | Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.**
+$createdSince = "createdSince_example"; // string | Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.**
+
+try {
+    $result = $apiInstance->getOrders($limit, $offset, $sort, $modifiedSince, $createdSince);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling EcommerceApi->getOrders: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int**| Number of documents per page | [optional] [default to 50]
+ **offset** | **int**| Index of the first document in the page | [optional] [default to 0]
+ **sort** | **string**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [optional] [default to desc]
+ **modifiedSince** | **string**| Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** | [optional]
+ **createdSince** | **string**| Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** | [optional]
+
+### Return type
+
+[**\Brevo\Client\Model\GetOrders**](../Model/GetOrders.md)
+
+### Authorization
+
+[api-key](../../README.md#api-key), [partner-key](../../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **getProductInfo**
 > \Brevo\Client\Model\GetProductDetails getProductInfo($id)
 
@@ -595,7 +667,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getProducts**
-> \Brevo\Client\Model\GetProducts getProducts($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories)
+> \Brevo\Client\Model\GetProducts getProducts($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories, $modifiedSince, $createdSince)
 
 Return all your products
 
@@ -631,9 +703,11 @@ $priceGt = 8.14; // float | Price filter for products greater than particular am
 $priceEq = 8.14; // float | Price filter for products equals to particular amount
 $priceNe = 8.14; // float | Price filter for products not equals to particular amount
 $categories = array("categories_example"); // string[] | Filter by category ids
+$modifiedSince = "modifiedSince_example"; // string | Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.**
+$createdSince = "createdSince_example"; // string | Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.**
 
 try {
-    $result = $apiInstance->getProducts($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories);
+    $result = $apiInstance->getProducts($limit, $offset, $sort, $ids, $name, $priceLte, $priceGte, $priceLt, $priceGt, $priceEq, $priceNe, $categories, $modifiedSince, $createdSince);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EcommerceApi->getProducts: ', $e->getMessage(), PHP_EOL;
@@ -657,6 +731,8 @@ Name | Type | Description  | Notes
  **priceEq** | **float**| Price filter for products equals to particular amount | [optional]
  **priceNe** | **float**| Price filter for products not equals to particular amount | [optional]
  **categories** | [**string[]**](../Model/string.md)| Filter by category ids | [optional]
+ **modifiedSince** | **string**| Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** | [optional]
+ **createdSince** | **string**| Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.** | [optional]
 
 ### Return type
 

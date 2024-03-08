@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**inbox** | **bool** | Set this field to enable or disable Inbox on the sub-account | [optional] 
+**inbox** | **bool** | Set this field to enable or disable Inbox on the sub-account / Not applicable on ENTv2 | [optional] 
 **whatsapp** | **bool** | Set this field to enable or disable Whatsapp campaigns on the sub-account | [optional] 
 **automation** | **bool** | Set this field to enable or disable Automation on the sub-account | [optional] 
 **emailCampaigns** | **bool** | Set this field to enable or disable Email Campaigns on the sub-account | [optional] 

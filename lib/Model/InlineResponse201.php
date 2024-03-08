@@ -36,7 +36,6 @@ use \Brevo\Client\ObjectSerializer;
  * InlineResponse201 Class Doc Comment
  *
  * @category Class
- * @description Created deal id
  * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -190,9 +189,6 @@ class InlineResponse201 implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -221,7 +217,7 @@ class InlineResponse201 implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string $id Unique deal id
+     * @param string $id id
      *
      * @return $this
      */

@@ -124,4 +124,25 @@ class GetWebhookTest extends \PHPUnit_Framework_TestCase
     public function testPropertyModifiedAt()
     {
     }
+
+    /**
+     * Test attribute "batched"
+     */
+    public function testPropertyBatched()
+    {
+    }
+
+    /**
+     * Test attribute "auth"
+     */
+    public function testPropertyAuth()
+    {
+    }
+
+    /**
+     * Test attribute "headers"
+     */
+    public function testPropertyHeaders()
+    {
+    }
 }

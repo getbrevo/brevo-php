@@ -98,9 +98,23 @@ class Body10Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "groupId"
+     * Test attribute "receivedFrom"
      */
-    public function testPropertyGroupId()
+    public function testPropertyReceivedFrom()
+    {
+    }
+
+    /**
+     * Test attribute "agentEmail"
+     */
+    public function testPropertyAgentEmail()
+    {
+    }
+
+    /**
+     * Test attribute "agentName"
+     */
+    public function testPropertyAgentName()
     {
     }
 }

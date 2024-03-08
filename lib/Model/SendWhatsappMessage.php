@@ -60,6 +60,7 @@ class SendWhatsappMessage implements ModelInterface, ArrayAccess
         'templateId' => 'int',
         'text' => 'string',
         'senderNumber' => 'string',
+        'params' => 'object',
         'contactNumbers' => 'string[]'
     ];
 
@@ -72,6 +73,7 @@ class SendWhatsappMessage implements ModelInterface, ArrayAccess
         'templateId' => null,
         'text' => null,
         'senderNumber' => 'mobile',
+        'params' => null,
         'contactNumbers' => 'mobile'
     ];
 
@@ -105,6 +107,7 @@ class SendWhatsappMessage implements ModelInterface, ArrayAccess
         'templateId' => 'templateId',
         'text' => 'text',
         'senderNumber' => 'senderNumber',
+        'params' => 'params',
         'contactNumbers' => 'contactNumbers'
     ];
 
@@ -117,6 +120,7 @@ class SendWhatsappMessage implements ModelInterface, ArrayAccess
         'templateId' => 'setTemplateId',
         'text' => 'setText',
         'senderNumber' => 'setSenderNumber',
+        'params' => 'setParams',
         'contactNumbers' => 'setContactNumbers'
     ];
 
@@ -129,6 +133,7 @@ class SendWhatsappMessage implements ModelInterface, ArrayAccess
         'templateId' => 'getTemplateId',
         'text' => 'getText',
         'senderNumber' => 'getSenderNumber',
+        'params' => 'getParams',
         'contactNumbers' => 'getContactNumbers'
     ];
 
@@ -195,6 +200,7 @@ class SendWhatsappMessage implements ModelInterface, ArrayAccess
         $this->container['templateId'] = isset($data['templateId']) ? $data['templateId'] : null;
         $this->container['text'] = isset($data['text']) ? $data['text'] : null;
         $this->container['senderNumber'] = isset($data['senderNumber']) ? $data['senderNumber'] : null;
+        $this->container['params'] = isset($data['params']) ? $data['params'] : null;
         $this->container['contactNumbers'] = isset($data['contactNumbers']) ? $data['contactNumbers'] : null;
     }
 
@@ -296,6 +302,30 @@ class SendWhatsappMessage implements ModelInterface, ArrayAccess
     public function setSenderNumber($senderNumber)
     {
         $this->container['senderNumber'] = $senderNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets params
+     *
+     * @return object
+     */
+    public function getParams()
+    {
+        return $this->container['params'];
+    }
+
+    /**
+     * Sets params
+     *
+     * @param object $params Pass the set of attributes to customize the template. For example, {\"FNAME\":\"Joe\", \"LNAME\":\"Doe\"}.
+     *
+     * @return $this
+     */
+    public function setParams($params)
+    {
+        $this->container['params'] = $params;
 
         return $this;
     }

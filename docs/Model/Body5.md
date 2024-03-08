@@ -3,10 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**linkContactIds** | **int[]** | Contact ids for contacts to be linked with deal | [optional] 
-**unlinkContactIds** | **int[]** | Contact ids for contacts to be unlinked from deal | [optional] 
-**linkCompanyIds** | **string[]** | Company ids to be linked with deal | [optional] 
-**unlinkCompanyIds** | **string[]** | Company ids to be unlinked from deal | [optional] 
+**name** | **string** | Name of deal | 
+**attributes** | **object** | Attributes for deal creation  If you want to create a deal on a specific pipeline and stage you can use the following attributes &#x60;pipeline&#x60; and &#x60;deal_stage&#x60;.  Pipeline and deal_stage are ids you can fetch using this endpoint &#x60;/crm/pipeline/details/{pipelineID}&#x60; | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

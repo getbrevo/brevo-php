@@ -64,6 +64,7 @@ class RequestContactImport implements ModelInterface, ArrayAccess
         'notifyUrl' => 'string',
         'newList' => '\Brevo\Client\Model\RequestContactImportNewList',
         'emailBlacklist' => 'bool',
+        'disableNotification' => 'bool',
         'smsBlacklist' => 'bool',
         'updateExistingContacts' => 'bool',
         'emptyContactsAttributes' => 'bool'
@@ -82,6 +83,7 @@ class RequestContactImport implements ModelInterface, ArrayAccess
         'notifyUrl' => 'url',
         'newList' => null,
         'emailBlacklist' => null,
+        'disableNotification' => null,
         'smsBlacklist' => null,
         'updateExistingContacts' => null,
         'emptyContactsAttributes' => null
@@ -121,6 +123,7 @@ class RequestContactImport implements ModelInterface, ArrayAccess
         'notifyUrl' => 'notifyUrl',
         'newList' => 'newList',
         'emailBlacklist' => 'emailBlacklist',
+        'disableNotification' => 'disableNotification',
         'smsBlacklist' => 'smsBlacklist',
         'updateExistingContacts' => 'updateExistingContacts',
         'emptyContactsAttributes' => 'emptyContactsAttributes'
@@ -139,6 +142,7 @@ class RequestContactImport implements ModelInterface, ArrayAccess
         'notifyUrl' => 'setNotifyUrl',
         'newList' => 'setNewList',
         'emailBlacklist' => 'setEmailBlacklist',
+        'disableNotification' => 'setDisableNotification',
         'smsBlacklist' => 'setSmsBlacklist',
         'updateExistingContacts' => 'setUpdateExistingContacts',
         'emptyContactsAttributes' => 'setEmptyContactsAttributes'
@@ -157,6 +161,7 @@ class RequestContactImport implements ModelInterface, ArrayAccess
         'notifyUrl' => 'getNotifyUrl',
         'newList' => 'getNewList',
         'emailBlacklist' => 'getEmailBlacklist',
+        'disableNotification' => 'getDisableNotification',
         'smsBlacklist' => 'getSmsBlacklist',
         'updateExistingContacts' => 'getUpdateExistingContacts',
         'emptyContactsAttributes' => 'getEmptyContactsAttributes'
@@ -229,6 +234,7 @@ class RequestContactImport implements ModelInterface, ArrayAccess
         $this->container['notifyUrl'] = isset($data['notifyUrl']) ? $data['notifyUrl'] : null;
         $this->container['newList'] = isset($data['newList']) ? $data['newList'] : null;
         $this->container['emailBlacklist'] = isset($data['emailBlacklist']) ? $data['emailBlacklist'] : false;
+        $this->container['disableNotification'] = isset($data['disableNotification']) ? $data['disableNotification'] : false;
         $this->container['smsBlacklist'] = isset($data['smsBlacklist']) ? $data['smsBlacklist'] : false;
         $this->container['updateExistingContacts'] = isset($data['updateExistingContacts']) ? $data['updateExistingContacts'] : true;
         $this->container['emptyContactsAttributes'] = isset($data['emptyContactsAttributes']) ? $data['emptyContactsAttributes'] : false;
@@ -422,6 +428,30 @@ class RequestContactImport implements ModelInterface, ArrayAccess
     public function setEmailBlacklist($emailBlacklist)
     {
         $this->container['emailBlacklist'] = $emailBlacklist;
+
+        return $this;
+    }
+
+    /**
+     * Gets disableNotification
+     *
+     * @return bool
+     */
+    public function getDisableNotification()
+    {
+        return $this->container['disableNotification'];
+    }
+
+    /**
+     * Sets disableNotification
+     *
+     * @param bool $disableNotification To disable email notification
+     *
+     * @return $this
+     */
+    public function setDisableNotification($disableNotification)
+    {
+        $this->container['disableNotification'] = $disableNotification;
 
         return $this;
     }

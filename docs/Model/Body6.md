@@ -3,17 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **string** | Name of task | 
-**duration** | **int** | Duration of task in milliseconds [1 minute &#x3D; 60000 ms] | [optional] 
-**taskTypeId** | **string** | Id for type of task e.g Call / Email / Meeting etc. | 
-**date** | [**\DateTime**] | Task due date and time | 
-**notes** | **string** | Notes added to a task | [optional] 
-**done** | **bool** | Task marked as done | [optional] 
-**assignToId** | **string** | User id to whom task is assigned | [optional] 
-**contactsIds** | **int[]** | Contact ids for contacts linked to this task | [optional] 
-**dealsIds** | **string[]** | Deal ids for deals a task is linked to | [optional] 
-**companiesIds** | **string[]** | Companies ids for companies a task is linked to | [optional] 
-**reminder** | [**\Brevo\Client\Model\TaskReminder**](TaskReminder.md) |  | [optional] 
+**name** | **string** | Name of deal | [optional] 
+**attributes** | **object** | Attributes for deal update  If you wish to update the pipeline of a deal you need to provide the &#x60;pipeline&#x60; and the &#x60;deal_stage&#x60;.  Pipeline and deal_stage are ids you can fetch using this endpoint &#x60;/crm/pipeline/details/{pipelineID}&#x60; | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

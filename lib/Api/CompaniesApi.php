@@ -1237,7 +1237,7 @@ class CompaniesApi
      * Update a company
      *
      * @param  string $id id (required)
-     * @param  \Brevo\Client\Model\Body1 $body Updated company details. (required)
+     * @param  \Brevo\Client\Model\Body3 $body Updated company details. (required)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1255,7 +1255,7 @@ class CompaniesApi
      * Update a company
      *
      * @param  string $id (required)
-     * @param  \Brevo\Client\Model\Body1 $body Updated company details. (required)
+     * @param  \Brevo\Client\Model\Body3 $body Updated company details. (required)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1347,7 +1347,7 @@ class CompaniesApi
      * Update a company
      *
      * @param  string $id (required)
-     * @param  \Brevo\Client\Model\Body1 $body Updated company details. (required)
+     * @param  \Brevo\Client\Model\Body3 $body Updated company details. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1368,7 +1368,7 @@ class CompaniesApi
      * Update a company
      *
      * @param  string $id (required)
-     * @param  \Brevo\Client\Model\Body1 $body Updated company details. (required)
+     * @param  \Brevo\Client\Model\Body3 $body Updated company details. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1419,7 +1419,7 @@ class CompaniesApi
      * Create request for operation 'companiesIdPatch'
      *
      * @param  string $id (required)
-     * @param  \Brevo\Client\Model\Body1 $body Updated company details. (required)
+     * @param  \Brevo\Client\Model\Body3 $body Updated company details. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1546,7 +1546,7 @@ class CompaniesApi
      * Link and Unlink company with contacts and deals
      *
      * @param  string $id id (required)
-     * @param  \Brevo\Client\Model\Body2 $body Linked / Unlinked contacts and deals ids. (required)
+     * @param  \Brevo\Client\Model\Body4 $body Linked / Unlinked contacts and deals ids. (required)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1563,7 +1563,7 @@ class CompaniesApi
      * Link and Unlink company with contacts and deals
      *
      * @param  string $id (required)
-     * @param  \Brevo\Client\Model\Body2 $body Linked / Unlinked contacts and deals ids. (required)
+     * @param  \Brevo\Client\Model\Body4 $body Linked / Unlinked contacts and deals ids. (required)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1625,7 +1625,7 @@ class CompaniesApi
      * Link and Unlink company with contacts and deals
      *
      * @param  string $id (required)
-     * @param  \Brevo\Client\Model\Body2 $body Linked / Unlinked contacts and deals ids. (required)
+     * @param  \Brevo\Client\Model\Body4 $body Linked / Unlinked contacts and deals ids. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1646,7 +1646,7 @@ class CompaniesApi
      * Link and Unlink company with contacts and deals
      *
      * @param  string $id (required)
-     * @param  \Brevo\Client\Model\Body2 $body Linked / Unlinked contacts and deals ids. (required)
+     * @param  \Brevo\Client\Model\Body4 $body Linked / Unlinked contacts and deals ids. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1683,7 +1683,7 @@ class CompaniesApi
      * Create request for operation 'companiesLinkUnlinkIdPatch'
      *
      * @param  string $id (required)
-     * @param  \Brevo\Client\Model\Body2 $body Linked / Unlinked contacts and deals ids. (required)
+     * @param  \Brevo\Client\Model\Body4 $body Linked / Unlinked contacts and deals ids. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1809,11 +1809,11 @@ class CompaniesApi
      *
      * Create a company
      *
-     * @param  \Brevo\Client\Model\Body $body Company create data. (required)
+     * @param  \Brevo\Client\Model\Body2 $body Company create data. (required)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Brevo\Client\Model\InlineResponse200
+     * @return \Brevo\Client\Model\InlineResponse2001
      */
     public function companiesPost($body)
     {
@@ -1826,15 +1826,15 @@ class CompaniesApi
      *
      * Create a company
      *
-     * @param  \Brevo\Client\Model\Body $body Company create data. (required)
+     * @param  \Brevo\Client\Model\Body2 $body Company create data. (required)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Brevo\Client\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Brevo\Client\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      */
     public function companiesPostWithHttpInfo($body)
     {
-        $returnType = '\Brevo\Client\Model\InlineResponse200';
+        $returnType = '\Brevo\Client\Model\InlineResponse2001';
         $request = $this->companiesPostRequest($body);
 
         try {
@@ -1886,7 +1886,7 @@ class CompaniesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Brevo\Client\Model\InlineResponse200',
+                        '\Brevo\Client\Model\InlineResponse2001',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1901,7 +1901,7 @@ class CompaniesApi
      *
      * Create a company
      *
-     * @param  \Brevo\Client\Model\Body $body Company create data. (required)
+     * @param  \Brevo\Client\Model\Body2 $body Company create data. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1921,14 +1921,14 @@ class CompaniesApi
      *
      * Create a company
      *
-     * @param  \Brevo\Client\Model\Body $body Company create data. (required)
+     * @param  \Brevo\Client\Model\Body2 $body Company create data. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function companiesPostAsyncWithHttpInfo($body)
     {
-        $returnType = '\Brevo\Client\Model\InlineResponse200';
+        $returnType = '\Brevo\Client\Model\InlineResponse2001';
         $request = $this->companiesPostRequest($body);
 
         return $this->client
@@ -1971,7 +1971,7 @@ class CompaniesApi
     /**
      * Create request for operation 'companiesPost'
      *
-     * @param  \Brevo\Client\Model\Body $body Company create data. (required)
+     * @param  \Brevo\Client\Model\Body2 $body Company create data. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

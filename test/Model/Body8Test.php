@@ -77,44 +77,79 @@ class Body8Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "visitorId"
+     * Test attribute "name"
      */
-    public function testPropertyVisitorId()
+    public function testPropertyName()
     {
     }
 
     /**
-     * Test attribute "text"
+     * Test attribute "duration"
      */
-    public function testPropertyText()
+    public function testPropertyDuration()
     {
     }
 
     /**
-     * Test attribute "agentId"
+     * Test attribute "taskTypeId"
      */
-    public function testPropertyAgentId()
+    public function testPropertyTaskTypeId()
     {
     }
 
     /**
-     * Test attribute "receivedFrom"
+     * Test attribute "date"
      */
-    public function testPropertyReceivedFrom()
+    public function testPropertyDate()
     {
     }
 
     /**
-     * Test attribute "agentEmail"
+     * Test attribute "notes"
      */
-    public function testPropertyAgentEmail()
+    public function testPropertyNotes()
     {
     }
 
     /**
-     * Test attribute "agentName"
+     * Test attribute "done"
      */
-    public function testPropertyAgentName()
+    public function testPropertyDone()
+    {
+    }
+
+    /**
+     * Test attribute "assignToId"
+     */
+    public function testPropertyAssignToId()
+    {
+    }
+
+    /**
+     * Test attribute "contactsIds"
+     */
+    public function testPropertyContactsIds()
+    {
+    }
+
+    /**
+     * Test attribute "dealsIds"
+     */
+    public function testPropertyDealsIds()
+    {
+    }
+
+    /**
+     * Test attribute "companiesIds"
+     */
+    public function testPropertyCompaniesIds()
+    {
+    }
+
+    /**
+     * Test attribute "reminder"
+     */
+    public function testPropertyReminder()
     {
     }
 }

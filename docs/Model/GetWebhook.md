@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **type** | **string** | Type of webhook (marketing or transactional) | 
 **createdAt** | **string** | Creation UTC date-time of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ) | 
 **modifiedAt** | **string** | Last modification UTC date-time of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ) | 
+**batched** | **bool** | To send batched webhooks | [optional] 
+**auth** | [**\Brevo\Client\Model\GetWebhookAuth**](GetWebhookAuth.md) |  | [optional] 
+**headers** | [**\Brevo\Client\Model\GetWebhookHeaders[]**](GetWebhookHeaders.md) | Custom headers to be send with webhooks | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
