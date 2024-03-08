@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.3 (2024-03-11)
+## 1.0.3 (2024-03-08)
 - Modification in Get all the contacts, contact can be filtered by segmentId and listIds as well
  **segmentId** | **int**| Id of the segment. **Either listIds or segmentId can be passed.** | [optional]
  **listIds** | [**int[]**](../Model/int.md)| Ids of the list. **Either listIds or segmentId can be passed.** | [optional]
