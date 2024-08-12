@@ -197,6 +197,7 @@ Class | Method | HTTP request | Description
 *EmailCampaignsApi* | [**updateCampaignStatus**](docs/Api/EmailCampaignsApi.md#updatecampaignstatus) | **PUT** /emailCampaigns/{campaignId}/status | Update an email campaign status
 *EmailCampaignsApi* | [**updateEmailCampaign**](docs/Api/EmailCampaignsApi.md#updateemailcampaign) | **PUT** /emailCampaigns/{campaignId} | Update an email campaign
 *EmailCampaignsApi* | [**uploadImageToGallery**](docs/Api/EmailCampaignsApi.md#uploadimagetogallery) | **POST** /emailCampaigns/images | Upload an image to your account&#39;s image gallery
+*EventsApi* | [**createEvent**](docs/Api/EventsApi.md#createEvent) | **POST** /events | Create an event
 *FoldersApi* | [**createFolder**](docs/Api/FoldersApi.md#createfolder) | **POST** /contacts/folders | Create a folder
 *FoldersApi* | [**deleteFolder**](docs/Api/FoldersApi.md#deletefolder) | **DELETE** /contacts/folders/{folderId} | Delete a folder (and all its lists)
 *FoldersApi* | [**getFolder**](docs/Api/FoldersApi.md#getfolder) | **GET** /contacts/folders/{folderId} | Returns a folder&#39;s details
@@ -430,6 +431,7 @@ Class | Method | HTTP request | Description
  - [DeleteHardbounces](docs/Model/DeleteHardbounces.md)
  - [EmailExportRecipients](docs/Model/EmailExportRecipients.md)
  - [ErrorModel](docs/Model/ErrorModel.md)
+ - [Event](docs/Model/Event.md)
  - [ExportWebhooksHistory](docs/Model/ExportWebhooksHistory.md)
  - [FileData](docs/Model/FileData.md)
  - [FileDownloadableLink](docs/Model/FileDownloadableLink.md)
