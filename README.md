@@ -431,7 +431,7 @@ Class | Method | HTTP request | Description
  - [DeleteHardbounces](docs/Model/DeleteHardbounces.md)
  - [EmailExportRecipients](docs/Model/EmailExportRecipients.md)
  - [ErrorModel](docs/Model/ErrorModel.md)
- - [Event](docs/Model/ErrorModel.md)
+ - [Event](docs/Model/Event.md)
  - [ExportWebhooksHistory](docs/Model/ExportWebhooksHistory.md)
  - [FileData](docs/Model/FileData.md)
  - [FileDownloadableLink](docs/Model/FileDownloadableLink.md)
