@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**deleteContact**](ContactsApi.md#deleteContact) | **DELETE** /contacts/{identifier} | Delete a contact
 [**deleteFolder**](ContactsApi.md#deleteFolder) | **DELETE** /contacts/folders/{folderId} | Delete a folder (and all its lists)
 [**deleteList**](ContactsApi.md#deleteList) | **DELETE** /contacts/lists/{listId} | Delete a list
+[**deleteMultiAttributeOptions**](ContactsApi.md#deleteMultiAttributeOptions) | **DELETE** /contacts/attributes/{attributeType}/{multipleChoiceAttribute}/{multipleChoiceAttributeOption} | Delete a multiple-choice attribute option
 [**getAttributes**](ContactsApi.md#getAttributes) | **GET** /contacts/attributes | List all attributes
 [**getContactInfo**](ContactsApi.md#getContactInfo) | **GET** /contacts/{identifier} | Get a contact&#39;s details
 [**getContactStats**](ContactsApi.md#getContactStats) | **GET** /contacts/{identifier}/campaignStats | Get email campaigns&#39; statistics for a contact
@@ -158,6 +159,8 @@ void (empty response body)
 > \Brevo\Client\Model\CreateUpdateContactModel createContact($createContact)
 
 Create a contact
+
+Creates new contacts on Brevo. Contacts can be created by passing either - <br><br> 1. email address of the contact (email_id),  <br> 2. phone number of the contact (to be passed as \"SMS\" field in \"attributes\" along with proper country code), For example- {\"SMS\":\"+91xxxxxxxxxx\"} or {\"SMS\":\"0091xxxxxxxxxx\"} <br> 3. ext_id <br>
 
 ### Example
 ```php
@@ -440,9 +443,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteContact**
-> deleteContact($identifier)
+> deleteContact($identifier, $identifierType)
 
 Delete a contact
+
+There are 2 ways to delete a contact <br><br> Option 1- https://api.brevo.com/v3/contacts/{identifier} <br><br> Option 2- https://api.brevo.com/v3/contacts/{identifier}?identifierType={} <br> <br> Option 1 only works if identifierType is email_id (for EMAIL) or contact_id (for ID of the contact),where you can directly pass the value of EMAIL and ID of the contact.   <br><br> Option 2 works for all identifierType, use email_id for EMAIL attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute.
 
 ### Example
 ```php
@@ -464,10 +469,11 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$identifier = "identifier_example"; // string | Email (urlencoded) OR ID of the contact
+$identifier = "identifier_example"; // string | Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded)
+$identifierType = new \stdClass; // object | email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute
 
 try {
-    $apiInstance->deleteContact($identifier);
+    $apiInstance->deleteContact($identifier, $identifierType);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->deleteContact: ', $e->getMessage(), PHP_EOL;
 }
@@ -478,7 +484,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **identifier** | **string**| Email (urlencoded) OR ID of the contact |
+ **identifier** | **string**| Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) |
+ **identifierType** | [**object**](../Model/.md)| email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute | [optional]
 
 ### Return type
 
@@ -607,6 +614,66 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **deleteMultiAttributeOptions**
+> deleteMultiAttributeOptions($attributeType, $multipleChoiceAttribute, $multipleChoiceAttributeOption)
+
+Delete a multiple-choice attribute option
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: api-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: partner-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
+
+$apiInstance = new Brevo\Client\Api\ContactsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$attributeType = "attributeType_example"; // string | Type of the attribute
+$multipleChoiceAttribute = "multipleChoiceAttribute_example"; // string | Name of the existing multiple-choice attribute
+$multipleChoiceAttributeOption = "multipleChoiceAttributeOption_example"; // string | Name of the existing multiple-choice attribute option that you want to delete
+
+try {
+    $apiInstance->deleteMultiAttributeOptions($attributeType, $multipleChoiceAttribute, $multipleChoiceAttributeOption);
+} catch (Exception $e) {
+    echo 'Exception when calling ContactsApi->deleteMultiAttributeOptions: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **attributeType** | **string**| Type of the attribute |
+ **multipleChoiceAttribute** | **string**| Name of the existing multiple-choice attribute |
+ **multipleChoiceAttributeOption** | **string**| Name of the existing multiple-choice attribute option that you want to delete |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api-key](../../README.md#api-key), [partner-key](../../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **getAttributes**
 > \Brevo\Client\Model\GetAttributes getAttributes()
 
@@ -661,11 +728,11 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getContactInfo**
-> \Brevo\Client\Model\GetExtendedContactDetails getContactInfo($identifier, $startDate, $endDate)
+> \Brevo\Client\Model\GetExtendedContactDetails getContactInfo($identifier, $identifierType, $startDate, $endDate)
 
 Get a contact's details
 
-Along with the contact details, this endpoint will show the statistics of contact for the recent 90 days by default. To fetch the earlier statistics, please use Get contact campaign stats (https://developers.brevo.com/reference/contacts-7#getcontactstats) endpoint with the appropriate date ranges.
+There are 2 ways to get a contact <br><br> Option 1- https://api.brevo.com/v3/contacts/{identifier} <br><br> Option 2- https://api.brevo.com/v3/contacts/{identifier}?identifierType={} <br> <br> Option 1 only works if identifierType is email_id (for EMAIL), phone_id (for SMS) or contact_id (for ID of the contact),where you can directly pass the value of EMAIL, SMS and ID of the contact.   <br><br> Option 2 works for all identifierType, use email_id for EMAIL attribute, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute <br><br>Along with the contact details, this endpoint will show the statistics of contact for the recent 90 days by default. To fetch the earlier statistics, please use Get contact campaign stats ``https://developers.brevo.com/reference/contacts-7#getcontactstats`` endpoint with the appropriate date ranges.
 
 ### Example
 ```php
@@ -687,12 +754,13 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$identifier = "identifier_example"; // string | Email (urlencoded) OR ID of the contact OR its SMS attribute value
+$identifier = "identifier_example"; // string | Email (urlencoded) OR ID of the contact OR its SMS attribute value OR EXT_ID attribute (urlencoded)
+$identifierType = new \stdClass; // object | email_id for Email, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute
 $startDate = "startDate_example"; // string | **Mandatory if endDate is used.** Starting date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be lower than equal to endDate
 $endDate = "endDate_example"; // string | **Mandatory if startDate is used.** Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate.
 
 try {
-    $result = $apiInstance->getContactInfo($identifier, $startDate, $endDate);
+    $result = $apiInstance->getContactInfo($identifier, $identifierType, $startDate, $endDate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->getContactInfo: ', $e->getMessage(), PHP_EOL;
@@ -704,7 +772,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **identifier** | **string**| Email (urlencoded) OR ID of the contact OR its SMS attribute value |
+ **identifier** | **string**| Email (urlencoded) OR ID of the contact OR its SMS attribute value OR EXT_ID attribute (urlencoded) |
+ **identifierType** | [**object**](../Model/.md)| email_id for Email, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute | [optional]
  **startDate** | **string**| **Mandatory if endDate is used.** Starting date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be lower than equal to endDate | [optional]
  **endDate** | **string**| **Mandatory if startDate is used.** Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate. | [optional]
 
@@ -785,7 +854,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getContacts**
-> \Brevo\Client\Model\GetContacts getContacts($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds)
+> \Brevo\Client\Model\GetContacts getContacts($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds, $filter)
 
 Get all the contacts
 
@@ -816,9 +885,10 @@ $createdSince = "createdSince_example"; // string | Filter (urlencoded) the cont
 $sort = "desc"; // string | Sort the results in the ascending/descending order of record creation. Default order is **descending** if `sort` is not passed
 $segmentId = 789; // int | Id of the segment. **Either listIds or segmentId can be passed.**
 $listIds = array(56); // int[] | Ids of the list. **Either listIds or segmentId can be passed.**
+$filter = "filter_example"; // string | Filter the contacts on the basis of attributes. **Allowed operator: equals. (e.g. filter=equals(FIRSTNAME,\"Antoine\"), filter=equals(B1, true), filter=equals(DOB, \"1989-11-23\"))**
 
 try {
-    $result = $apiInstance->getContacts($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds);
+    $result = $apiInstance->getContacts($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds, $filter);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->getContacts: ', $e->getMessage(), PHP_EOL;
@@ -837,6 +907,7 @@ Name | Type | Description  | Notes
  **sort** | **string**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [optional] [default to desc]
  **segmentId** | **int**| Id of the segment. **Either listIds or segmentId can be passed.** | [optional]
  **listIds** | [**int[]**](../Model/int.md)| Ids of the list. **Either listIds or segmentId can be passed.** | [optional]
+ **filter** | **string**| Filter the contacts on the basis of attributes. **Allowed operator: equals. (e.g. filter&#x3D;equals(FIRSTNAME,\&quot;Antoine\&quot;), filter&#x3D;equals(B1, true), filter&#x3D;equals(DOB, \&quot;1989-11-23\&quot;))** | [optional]
 
 ### Return type
 
@@ -1287,7 +1358,7 @@ Name | Type | Description  | Notes
 
 Import contacts
 
-It returns the background process ID which on completion calls the notify URL that you have set in the input.
+It returns the background process ID which on completion calls the notify URL that you have set in the input.  **Note**: - Any contact attribute that doesn't exist in your account will be ignored at import end.
 
 ### Example
 ```php
@@ -1576,9 +1647,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateContact**
-> updateContact($identifier, $updateContact)
+> updateContact($identifier, $updateContact, $identifierType)
 
 Update a contact
+
+There are 2 ways to update a contact <br><br> Option 1- https://api.brevo.com/v3/contacts/{identifier} <br><br> Option 2- https://api.brevo.com/v3/contacts/{identifier}?identifierType={} <br> <br> Option 1 only works if identifierType is email_id (for EMAIL) or contact_id (for ID of the contact),where you can directly pass the value of EMAIL and ID of the contact.   <br><br> Option 2 works for all identifierType, use email_id for EMAIL attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute
 
 ### Example
 ```php
@@ -1600,11 +1673,12 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$identifier = "identifier_example"; // string | Email (urlencoded) OR ID of the contact
+$identifier = "identifier_example"; // string | Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE attribute value
 $updateContact = new \Brevo\Client\Model\UpdateContact(); // \Brevo\Client\Model\UpdateContact | Values to update a contact
+$identifierType = new \stdClass; // object | email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute
 
 try {
-    $apiInstance->updateContact($identifier, $updateContact);
+    $apiInstance->updateContact($identifier, $updateContact, $identifierType);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->updateContact: ', $e->getMessage(), PHP_EOL;
 }
@@ -1615,8 +1689,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **identifier** | **string**| Email (urlencoded) OR ID of the contact |
+ **identifier** | **string**| Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE attribute value |
  **updateContact** | [**\Brevo\Client\Model\UpdateContact**](../Model/UpdateContact.md)| Values to update a contact |
+ **identifierType** | [**object**](../Model/.md)| email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute | [optional]
 
 ### Return type
 
