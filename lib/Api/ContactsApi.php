@@ -12,7 +12,7 @@
 /**
  * Brevo API
  *
- * Brevo provide a RESTFul API that can be used with any languages. With this API, you will be able to :   - Manage your campaigns and get the statistics   - Manage your contacts   - Send transactional Emails and SMS   - and much more...  You can download our wrappers at https://github.com/orgs/brevo  **Possible responses**   | Code | Message |   | :-------------: | ------------- |   | 200  | OK. Successful Request  |   | 201  | OK. Successful Creation |   | 202  | OK. Request accepted |   | 204  | OK. Successful Update/Deletion  |   | 400  | Error. Bad Request  |   | 401  | Error. Authentication Needed  |   | 402  | Error. Not enough credit, plan upgrade needed  |   | 403  | Error. Permission denied  |   | 404  | Error. Object does not exist |   | 405  | Error. Method not allowed  |   | 406  | Error. Not Acceptable  |
+ * Brevo provide a RESTFul API that can be used with any languages. With this API, you will be able to :   - Manage your campaigns and get the statistics   - Manage your contacts   - Send transactional Emails and SMS   - and much more...  You can download our wrappers at https://github.com/orgs/brevo  **Possible responses**   | Code | Message |   | :-------------: | ------------- |   | 200  | OK. Successful Request  |   | 201  | OK. Successful Creation |   | 202  | OK. Request accepted |   | 204  | OK. Successful Update/Deletion  |   | 400  | Error. Bad Request  |   | 401  | Error. Authentication Needed  |   | 402  | Error. Not enough credit, plan upgrade needed  |   | 403  | Error. Permission denied  |   | 404  | Error. Object does not exist |   | 405  | Error. Method not allowed  |   | 406  | Error. Not Acceptable  |   | 422  | Error. Unprocessable Entity |
  *
  * OpenAPI spec version: 3.0.0
  * Contact: contact@brevo.com
@@ -767,6 +767,14 @@ class ContactsApi
                     $e->setResponseObject($data);
                     break;
                 case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Brevo\Client\Model\ErrorModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 425:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Brevo\Client\Model\ErrorModel',
@@ -2052,15 +2060,16 @@ class ContactsApi
      *
      * Delete a contact
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) (required)
+     * @param  object $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteContact($identifier)
+    public function deleteContact($identifier, $identifierType = null)
     {
-        $this->deleteContactWithHttpInfo($identifier);
+        $this->deleteContactWithHttpInfo($identifier, $identifierType);
     }
 
     /**
@@ -2068,16 +2077,17 @@ class ContactsApi
      *
      * Delete a contact
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) (required)
+     * @param  object $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteContactWithHttpInfo($identifier)
+    public function deleteContactWithHttpInfo($identifier, $identifierType = null)
     {
         $returnType = '';
-        $request = $this->deleteContactRequest($identifier);
+        $request = $this->deleteContactRequest($identifier, $identifierType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2145,14 +2155,15 @@ class ContactsApi
      *
      * Delete a contact
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) (required)
+     * @param  object $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteContactAsync($identifier)
+    public function deleteContactAsync($identifier, $identifierType = null)
     {
-        return $this->deleteContactAsyncWithHttpInfo($identifier)
+        return $this->deleteContactAsyncWithHttpInfo($identifier, $identifierType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2165,15 +2176,16 @@ class ContactsApi
      *
      * Delete a contact
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) (required)
+     * @param  object $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteContactAsyncWithHttpInfo($identifier)
+    public function deleteContactAsyncWithHttpInfo($identifier, $identifierType = null)
     {
         $returnType = '';
-        $request = $this->deleteContactRequest($identifier);
+        $request = $this->deleteContactRequest($identifier, $identifierType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2201,12 +2213,13 @@ class ContactsApi
     /**
      * Create request for operation 'deleteContact'
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) (required)
+     * @param  object $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteContactRequest($identifier)
+    protected function deleteContactRequest($identifier, $identifierType = null)
     {
         // verify the required parameter 'identifier' is set
         if ($identifier === null || (is_array($identifier) && count($identifier) === 0)) {
@@ -2222,6 +2235,10 @@ class ContactsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($identifierType !== null) {
+            $queryParams['identifierType'] = ObjectSerializer::toQueryValue($identifierType);
+        }
 
         // path params
         if ($identifier !== null) {
@@ -2830,6 +2847,302 @@ class ContactsApi
     }
 
     /**
+     * Operation deleteMultiAttributeOptions
+     *
+     * Delete a multiple-choice attribute option
+     *
+     * @param  string $attributeType Type of the attribute (required)
+     * @param  string $multipleChoiceAttribute Name of the existing multiple-choice attribute (required)
+     * @param  string $multipleChoiceAttributeOption Name of the existing multiple-choice attribute option that you want to delete (required)
+     *
+     * @throws \Brevo\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteMultiAttributeOptions($attributeType, $multipleChoiceAttribute, $multipleChoiceAttributeOption)
+    {
+        $this->deleteMultiAttributeOptionsWithHttpInfo($attributeType, $multipleChoiceAttribute, $multipleChoiceAttributeOption);
+    }
+
+    /**
+     * Operation deleteMultiAttributeOptionsWithHttpInfo
+     *
+     * Delete a multiple-choice attribute option
+     *
+     * @param  string $attributeType Type of the attribute (required)
+     * @param  string $multipleChoiceAttribute Name of the existing multiple-choice attribute (required)
+     * @param  string $multipleChoiceAttributeOption Name of the existing multiple-choice attribute option that you want to delete (required)
+     *
+     * @throws \Brevo\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteMultiAttributeOptionsWithHttpInfo($attributeType, $multipleChoiceAttribute, $multipleChoiceAttributeOption)
+    {
+        $returnType = '';
+        $request = $this->deleteMultiAttributeOptionsRequest($attributeType, $multipleChoiceAttribute, $multipleChoiceAttributeOption);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Brevo\Client\Model\ErrorModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Brevo\Client\Model\ErrorModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteMultiAttributeOptionsAsync
+     *
+     * Delete a multiple-choice attribute option
+     *
+     * @param  string $attributeType Type of the attribute (required)
+     * @param  string $multipleChoiceAttribute Name of the existing multiple-choice attribute (required)
+     * @param  string $multipleChoiceAttributeOption Name of the existing multiple-choice attribute option that you want to delete (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteMultiAttributeOptionsAsync($attributeType, $multipleChoiceAttribute, $multipleChoiceAttributeOption)
+    {
+        return $this->deleteMultiAttributeOptionsAsyncWithHttpInfo($attributeType, $multipleChoiceAttribute, $multipleChoiceAttributeOption)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteMultiAttributeOptionsAsyncWithHttpInfo
+     *
+     * Delete a multiple-choice attribute option
+     *
+     * @param  string $attributeType Type of the attribute (required)
+     * @param  string $multipleChoiceAttribute Name of the existing multiple-choice attribute (required)
+     * @param  string $multipleChoiceAttributeOption Name of the existing multiple-choice attribute option that you want to delete (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteMultiAttributeOptionsAsyncWithHttpInfo($attributeType, $multipleChoiceAttribute, $multipleChoiceAttributeOption)
+    {
+        $returnType = '';
+        $request = $this->deleteMultiAttributeOptionsRequest($attributeType, $multipleChoiceAttribute, $multipleChoiceAttributeOption);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteMultiAttributeOptions'
+     *
+     * @param  string $attributeType Type of the attribute (required)
+     * @param  string $multipleChoiceAttribute Name of the existing multiple-choice attribute (required)
+     * @param  string $multipleChoiceAttributeOption Name of the existing multiple-choice attribute option that you want to delete (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function deleteMultiAttributeOptionsRequest($attributeType, $multipleChoiceAttribute, $multipleChoiceAttributeOption)
+    {
+        // verify the required parameter 'attributeType' is set
+        if ($attributeType === null || (is_array($attributeType) && count($attributeType) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $attributeType when calling deleteMultiAttributeOptions'
+            );
+        }
+        // verify the required parameter 'multipleChoiceAttribute' is set
+        if ($multipleChoiceAttribute === null || (is_array($multipleChoiceAttribute) && count($multipleChoiceAttribute) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $multipleChoiceAttribute when calling deleteMultiAttributeOptions'
+            );
+        }
+        // verify the required parameter 'multipleChoiceAttributeOption' is set
+        if ($multipleChoiceAttributeOption === null || (is_array($multipleChoiceAttributeOption) && count($multipleChoiceAttributeOption) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $multipleChoiceAttributeOption when calling deleteMultiAttributeOptions'
+            );
+        }
+
+        $resourcePath = '/contacts/attributes/{attributeType}/{multipleChoiceAttribute}/{multipleChoiceAttributeOption}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($attributeType !== null) {
+            $resourcePath = str_replace(
+                '{' . 'attributeType' . '}',
+                ObjectSerializer::toPathValue($attributeType),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($multipleChoiceAttribute !== null) {
+            $resourcePath = str_replace(
+                '{' . 'multipleChoiceAttribute' . '}',
+                ObjectSerializer::toPathValue($multipleChoiceAttribute),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($multipleChoiceAttributeOption !== null) {
+            $resourcePath = str_replace(
+                '{' . 'multipleChoiceAttributeOption' . '}',
+                ObjectSerializer::toPathValue($multipleChoiceAttributeOption),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            
+            if($headers['Content-Type'] === 'application/json') {
+                // \stdClass has no __toString(), so we should encode it manually
+                if ($httpBody instanceof \stdClass) {
+                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                }
+                // array has no __toString(), so we should encode it manually
+                if(is_array($httpBody)) {
+                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                }
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
+        if ($apiKey !== null) {
+            $headers['api-key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('partner-key');
+        if ($apiKey !== null) {
+            $headers['partner-key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getAttributes
      *
      * List all attributes
@@ -3094,7 +3407,8 @@ class ContactsApi
      *
      * Get a contact's details
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value OR EXT_ID attribute (urlencoded) (required)
+     * @param  object $identifierType email_id for Email, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute (optional)
      * @param  string $startDate **Mandatory if endDate is used.** Starting date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be lower than equal to endDate (optional)
      * @param  string $endDate **Mandatory if startDate is used.** Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate. (optional)
      *
@@ -3102,9 +3416,9 @@ class ContactsApi
      * @throws \InvalidArgumentException
      * @return \Brevo\Client\Model\GetExtendedContactDetails
      */
-    public function getContactInfo($identifier, $startDate = null, $endDate = null)
+    public function getContactInfo($identifier, $identifierType = null, $startDate = null, $endDate = null)
     {
-        list($response) = $this->getContactInfoWithHttpInfo($identifier, $startDate, $endDate);
+        list($response) = $this->getContactInfoWithHttpInfo($identifier, $identifierType, $startDate, $endDate);
         return $response;
     }
 
@@ -3113,7 +3427,8 @@ class ContactsApi
      *
      * Get a contact's details
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value OR EXT_ID attribute (urlencoded) (required)
+     * @param  object $identifierType email_id for Email, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute (optional)
      * @param  string $startDate **Mandatory if endDate is used.** Starting date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be lower than equal to endDate (optional)
      * @param  string $endDate **Mandatory if startDate is used.** Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate. (optional)
      *
@@ -3121,10 +3436,10 @@ class ContactsApi
      * @throws \InvalidArgumentException
      * @return array of \Brevo\Client\Model\GetExtendedContactDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getContactInfoWithHttpInfo($identifier, $startDate = null, $endDate = null)
+    public function getContactInfoWithHttpInfo($identifier, $identifierType = null, $startDate = null, $endDate = null)
     {
         $returnType = '\Brevo\Client\Model\GetExtendedContactDetails';
-        $request = $this->getContactInfoRequest($identifier, $startDate, $endDate);
+        $request = $this->getContactInfoRequest($identifier, $identifierType, $startDate, $endDate);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3206,16 +3521,17 @@ class ContactsApi
      *
      * Get a contact's details
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value OR EXT_ID attribute (urlencoded) (required)
+     * @param  object $identifierType email_id for Email, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute (optional)
      * @param  string $startDate **Mandatory if endDate is used.** Starting date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be lower than equal to endDate (optional)
      * @param  string $endDate **Mandatory if startDate is used.** Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getContactInfoAsync($identifier, $startDate = null, $endDate = null)
+    public function getContactInfoAsync($identifier, $identifierType = null, $startDate = null, $endDate = null)
     {
-        return $this->getContactInfoAsyncWithHttpInfo($identifier, $startDate, $endDate)
+        return $this->getContactInfoAsyncWithHttpInfo($identifier, $identifierType, $startDate, $endDate)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3228,17 +3544,18 @@ class ContactsApi
      *
      * Get a contact's details
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value OR EXT_ID attribute (urlencoded) (required)
+     * @param  object $identifierType email_id for Email, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute (optional)
      * @param  string $startDate **Mandatory if endDate is used.** Starting date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be lower than equal to endDate (optional)
      * @param  string $endDate **Mandatory if startDate is used.** Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getContactInfoAsyncWithHttpInfo($identifier, $startDate = null, $endDate = null)
+    public function getContactInfoAsyncWithHttpInfo($identifier, $identifierType = null, $startDate = null, $endDate = null)
     {
         $returnType = '\Brevo\Client\Model\GetExtendedContactDetails';
-        $request = $this->getContactInfoRequest($identifier, $startDate, $endDate);
+        $request = $this->getContactInfoRequest($identifier, $identifierType, $startDate, $endDate);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3280,14 +3597,15 @@ class ContactsApi
     /**
      * Create request for operation 'getContactInfo'
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value OR EXT_ID attribute (urlencoded) (required)
+     * @param  object $identifierType email_id for Email, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute (optional)
      * @param  string $startDate **Mandatory if endDate is used.** Starting date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be lower than equal to endDate (optional)
      * @param  string $endDate **Mandatory if startDate is used.** Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getContactInfoRequest($identifier, $startDate = null, $endDate = null)
+    protected function getContactInfoRequest($identifier, $identifierType = null, $startDate = null, $endDate = null)
     {
         // verify the required parameter 'identifier' is set
         if ($identifier === null || (is_array($identifier) && count($identifier) === 0)) {
@@ -3303,6 +3621,10 @@ class ContactsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($identifierType !== null) {
+            $queryParams['identifierType'] = ObjectSerializer::toQueryValue($identifierType);
+        }
         // query params
         if ($startDate !== null) {
             $queryParams['startDate'] = ObjectSerializer::toQueryValue($startDate);
@@ -3727,14 +4049,15 @@ class ContactsApi
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      * @param  int $segmentId Id of the segment. **Either listIds or segmentId can be passed.** (optional)
      * @param  int[] $listIds Ids of the list. **Either listIds or segmentId can be passed.** (optional)
+     * @param  string $filter Filter the contacts on the basis of attributes. **Allowed operator: equals. (e.g. filter&#x3D;equals(FIRSTNAME,\&quot;Antoine\&quot;), filter&#x3D;equals(B1, true), filter&#x3D;equals(DOB, \&quot;1989-11-23\&quot;))** (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Brevo\Client\Model\GetContacts
      */
-    public function getContacts($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null)
+    public function getContacts($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null, $filter = null)
     {
-        list($response) = $this->getContactsWithHttpInfo($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds);
+        list($response) = $this->getContactsWithHttpInfo($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds, $filter);
         return $response;
     }
 
@@ -3750,15 +4073,16 @@ class ContactsApi
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      * @param  int $segmentId Id of the segment. **Either listIds or segmentId can be passed.** (optional)
      * @param  int[] $listIds Ids of the list. **Either listIds or segmentId can be passed.** (optional)
+     * @param  string $filter Filter the contacts on the basis of attributes. **Allowed operator: equals. (e.g. filter&#x3D;equals(FIRSTNAME,\&quot;Antoine\&quot;), filter&#x3D;equals(B1, true), filter&#x3D;equals(DOB, \&quot;1989-11-23\&quot;))** (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Brevo\Client\Model\GetContacts, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getContactsWithHttpInfo($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null)
+    public function getContactsWithHttpInfo($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null, $filter = null)
     {
         $returnType = '\Brevo\Client\Model\GetContacts';
-        $request = $this->getContactsRequest($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds);
+        $request = $this->getContactsRequest($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds, $filter);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3822,6 +4146,14 @@ class ContactsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 429:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Brevo\Client\Model\ErrorModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -3839,13 +4171,14 @@ class ContactsApi
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      * @param  int $segmentId Id of the segment. **Either listIds or segmentId can be passed.** (optional)
      * @param  int[] $listIds Ids of the list. **Either listIds or segmentId can be passed.** (optional)
+     * @param  string $filter Filter the contacts on the basis of attributes. **Allowed operator: equals. (e.g. filter&#x3D;equals(FIRSTNAME,\&quot;Antoine\&quot;), filter&#x3D;equals(B1, true), filter&#x3D;equals(DOB, \&quot;1989-11-23\&quot;))** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getContactsAsync($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null)
+    public function getContactsAsync($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null, $filter = null)
     {
-        return $this->getContactsAsyncWithHttpInfo($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds)
+        return $this->getContactsAsyncWithHttpInfo($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds, $filter)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3865,14 +4198,15 @@ class ContactsApi
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      * @param  int $segmentId Id of the segment. **Either listIds or segmentId can be passed.** (optional)
      * @param  int[] $listIds Ids of the list. **Either listIds or segmentId can be passed.** (optional)
+     * @param  string $filter Filter the contacts on the basis of attributes. **Allowed operator: equals. (e.g. filter&#x3D;equals(FIRSTNAME,\&quot;Antoine\&quot;), filter&#x3D;equals(B1, true), filter&#x3D;equals(DOB, \&quot;1989-11-23\&quot;))** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getContactsAsyncWithHttpInfo($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null)
+    public function getContactsAsyncWithHttpInfo($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null, $filter = null)
     {
         $returnType = '\Brevo\Client\Model\GetContacts';
-        $request = $this->getContactsRequest($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds);
+        $request = $this->getContactsRequest($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds, $filter);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3921,11 +4255,12 @@ class ContactsApi
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      * @param  int $segmentId Id of the segment. **Either listIds or segmentId can be passed.** (optional)
      * @param  int[] $listIds Ids of the list. **Either listIds or segmentId can be passed.** (optional)
+     * @param  string $filter Filter the contacts on the basis of attributes. **Allowed operator: equals. (e.g. filter&#x3D;equals(FIRSTNAME,\&quot;Antoine\&quot;), filter&#x3D;equals(B1, true), filter&#x3D;equals(DOB, \&quot;1989-11-23\&quot;))** (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getContactsRequest($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null)
+    protected function getContactsRequest($limit = '50', $offset = '0', $modifiedSince = null, $createdSince = null, $sort = 'desc', $segmentId = null, $listIds = null, $filter = null)
     {
         if ($limit !== null && $limit > 1000) {
             throw new \InvalidArgumentException('invalid value for "$limit" when calling ContactsApi.getContacts, must be smaller than or equal to 1000.');
@@ -3972,6 +4307,10 @@ class ContactsApi
         } else
         if ($listIds !== null) {
             $queryParams['listIds'] = ObjectSerializer::toQueryValue($listIds);
+        }
+        // query params
+        if ($filter !== null) {
+            $queryParams['filter'] = ObjectSerializer::toQueryValue($filter);
         }
 
 
@@ -6947,6 +7286,14 @@ class ContactsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 429:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Brevo\Client\Model\ErrorModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -7675,16 +8022,17 @@ class ContactsApi
      *
      * Update a contact
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE attribute value (required)
      * @param  \Brevo\Client\Model\UpdateContact $updateContact Values to update a contact (required)
+     * @param  object $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function updateContact($identifier, $updateContact)
+    public function updateContact($identifier, $updateContact, $identifierType = null)
     {
-        $this->updateContactWithHttpInfo($identifier, $updateContact);
+        $this->updateContactWithHttpInfo($identifier, $updateContact, $identifierType);
     }
 
     /**
@@ -7692,17 +8040,18 @@ class ContactsApi
      *
      * Update a contact
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE attribute value (required)
      * @param  \Brevo\Client\Model\UpdateContact $updateContact Values to update a contact (required)
+     * @param  object $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute (optional)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateContactWithHttpInfo($identifier, $updateContact)
+    public function updateContactWithHttpInfo($identifier, $updateContact, $identifierType = null)
     {
         $returnType = '';
-        $request = $this->updateContactRequest($identifier, $updateContact);
+        $request = $this->updateContactRequest($identifier, $updateContact, $identifierType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7752,6 +8101,14 @@ class ContactsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 425:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Brevo\Client\Model\ErrorModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -7762,15 +8119,16 @@ class ContactsApi
      *
      * Update a contact
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE attribute value (required)
      * @param  \Brevo\Client\Model\UpdateContact $updateContact Values to update a contact (required)
+     * @param  object $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateContactAsync($identifier, $updateContact)
+    public function updateContactAsync($identifier, $updateContact, $identifierType = null)
     {
-        return $this->updateContactAsyncWithHttpInfo($identifier, $updateContact)
+        return $this->updateContactAsyncWithHttpInfo($identifier, $updateContact, $identifierType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7783,16 +8141,17 @@ class ContactsApi
      *
      * Update a contact
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE attribute value (required)
      * @param  \Brevo\Client\Model\UpdateContact $updateContact Values to update a contact (required)
+     * @param  object $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateContactAsyncWithHttpInfo($identifier, $updateContact)
+    public function updateContactAsyncWithHttpInfo($identifier, $updateContact, $identifierType = null)
     {
         $returnType = '';
-        $request = $this->updateContactRequest($identifier, $updateContact);
+        $request = $this->updateContactRequest($identifier, $updateContact, $identifierType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7820,13 +8179,14 @@ class ContactsApi
     /**
      * Create request for operation 'updateContact'
      *
-     * @param  string $identifier Email (urlencoded) OR ID of the contact (required)
+     * @param  string $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE attribute value (required)
      * @param  \Brevo\Client\Model\UpdateContact $updateContact Values to update a contact (required)
+     * @param  object $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function updateContactRequest($identifier, $updateContact)
+    protected function updateContactRequest($identifier, $updateContact, $identifierType = null)
     {
         // verify the required parameter 'identifier' is set
         if ($identifier === null || (is_array($identifier) && count($identifier) === 0)) {
@@ -7848,6 +8208,10 @@ class ContactsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($identifierType !== null) {
+            $queryParams['identifierType'] = ObjectSerializer::toQueryValue($identifierType);
+        }
 
         // path params
         if ($identifier !== null) {
