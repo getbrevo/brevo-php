@@ -1,7 +1,7 @@
 # config-openapi-generator.yml
 generatorName: php-nextgen
 outputDir: .
-inputSpec: https://api.brevo.com/v3/swagger_definition_v3.yml
+inputSpec: swagger_definition_v3.yml
 gitHost: github.com
 gitUserId: getbrevo
 gitRepoId: brevo-php
