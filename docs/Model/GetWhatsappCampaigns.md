@@ -1,11 +1,10 @@
-# GetWhatsappCampaigns
+# # GetWhatsappCampaigns
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**campaigns** | [**\Brevo\Client\Model\GetWhatsappCampaignsCampaigns[]**](GetWhatsappCampaignsCampaigns.md) |  | [optional] 
-**count** | **int** | Number of WhatsApp campaigns retrived | [optional] 
+**campaigns** | [**\Brevo\Client\Models\GetWhatsappCampaignsCampaignsInner[]**](GetWhatsappCampaignsCampaignsInner.md) |  | [optional]
+**count** | **int** | Number of WhatsApp campaigns retrieved | [optional]
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
-
-
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

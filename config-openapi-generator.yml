@@ -1,0 +1,70 @@
+# config-openapi-generator.yml
+generatorName: php-nextgen
+outputDir: .
+inputSpec: swagger_definition_v3.yml
+gitHost: github.com
+gitUserId: getbrevo
+gitRepoId: brevo-php
+templateDirectory: ./template/php-nextgen
+templateDir: ./template/php-nextgen
+
+# Package configuration
+invokerPackage: Brevo\Client
+artifactVersion: 3.0.0
+packageName: Brevo\Client
+srcBasePath: lib
+variableNamingConvention: camelCase
+
+# Server configuration
+serverVariables:
+  host: https://api.brevo.com/v3
+
+# HTTP client configuration
+httpUserAgent: brevo_clientAPI/v3.0.0/php
+
+# PHP specific configurations
+modelPackage: Models
+apiPackage: Api
+composerVendorName: getbrevo
+composerProjectName: brevo-php
+
+# Composer metadata
+artifactDescription: "Brevo's API v3 Php Library"
+infoEmail: contact@brevo.com
+infoName: "Brevo Developers"
+infoUrl: https://www.brevo.com/
+licenseName: MIT
+licenseUrl: https://raw.githubusercontent.com/getbrevo/brevo-php/refs/heads/main/LICENSE.md
+artifactKeywords:
+  - brevo
+  - swagger
+  - php
+  - sdk
+  - api
+composerAuthorName: "Brevo Developers"
+composerAuthorEmail: contact@brevo.com
+composerHomepage: https://github.com/getbrevo/brevo-php
+
+# Organization information
+developerOrganization: "Brevo Developers"
+developerOrganizationUrl: https://www.brevo.com/
+artifactUrl: https://github.com/getbrevo/brevo-php
+
+# Code generation options
+sortParamsByRequiredFlag: true
+sortModelPropertiesByRequiredFlag: true
+ensureUniqueParams: true
+hideGenerationTimestamp: true
+legacyDiscriminatorBehavior: true
+
+# PHP quality settings
+phpLegacySupport: false
+phpUnitVer: 9.5.0
+disallowAdditionalPropertiesIfNotPresent: false
+
+
+files:
+  model_abstract.mustache:
+    destinationFilename: lib/Models/AbstractModel.php
+    templateType: "SupportingFiles"
+

@@ -1,10 +1,9 @@
-# GetInboundEmailEvents
+# # GetInboundEmailEvents
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**events** | [**\Brevo\Client\Model\GetInboundEmailEventsEvents[]**](GetInboundEmailEventsEvents.md) |  | [optional] 
+**events** | [**\Brevo\Client\Models\GetInboundEmailEventsEventsInner[]**](GetInboundEmailEventsEventsInner.md) |  | [optional]
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
-
-
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

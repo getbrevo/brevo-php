@@ -1,10 +1,13 @@
-# GetExtendedClient
+# # GetExtendedClient
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**\Brevo\Client\Model\GetExtendedClientAddress**](GetExtendedClientAddress.md) |  | 
+**email** | **string** | Login Email |
+**firstName** | **string** | First Name |
+**lastName** | **string** | Last Name |
+**companyName** | **string** | Name of the company |
+**address** | [**\Brevo\Client\Models\GetExtendedClientAllOfAddress**](GetExtendedClientAllOfAddress.md) |  |
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
-
-
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

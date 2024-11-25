@@ -1,11 +1,10 @@
-# GetEmailCampaigns
+# # GetEmailCampaigns
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**campaigns** | **object[]** |  | [optional] 
-**count** | **int** | Number of Email campaigns retrieved | [optional] 
+**campaigns** | [**\Brevo\Client\Models\GetEmailCampaignsCampaignsInner[]**](GetEmailCampaignsCampaignsInner.md) |  | [optional]
+**count** | **int** | Number of Email campaigns retrieved | [optional]
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
-
-
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

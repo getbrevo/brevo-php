@@ -1,11 +1,13 @@
-# SubAccountDetailsResponsePlanInfoCredits
+# # SubAccountDetailsResponsePlanInfoCredits
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sms** | **int** | SMS credits remaining on the sub-account | [optional] 
-**emails** | [**\Brevo\Client\Model\SubAccountDetailsResponsePlanInfoCreditsEmails**](SubAccountDetailsResponsePlanInfoCreditsEmails.md) |  | [optional] 
+**emails** | [**\Brevo\Client\Models\SubAccountDetailsResponsePlanInfoCreditsEmails**](SubAccountDetailsResponsePlanInfoCreditsEmails.md) |  | [optional]
+**sms** | [**\Brevo\Client\Models\SubAccountDetailsResponsePlanInfoCreditsSms**](SubAccountDetailsResponsePlanInfoCreditsSms.md) |  | [optional]
+**wpSubscribers** | [**\Brevo\Client\Models\SubAccountDetailsResponsePlanInfoCreditsWpSubscribers**](SubAccountDetailsResponsePlanInfoCreditsWpSubscribers.md) |  | [optional]
+**whatsapp** | [**\Brevo\Client\Models\SubAccountDetailsResponsePlanInfoCreditsWhatsapp**](SubAccountDetailsResponsePlanInfoCreditsWhatsapp.md) |  | [optional]
+**externalFeeds** | [**\Brevo\Client\Models\SubAccountDetailsResponsePlanInfoCreditsExternalFeeds**](SubAccountDetailsResponsePlanInfoCreditsExternalFeeds.md) |  | [optional]
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
-
-
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
