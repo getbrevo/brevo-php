@@ -1,18 +1,17 @@
-# GetContactCampaignStats
+# # GetContactCampaignStats
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**messagesSent** | [**\Brevo\Client\Model\GetExtendedContactDetailsStatisticsMessagesSent[]**](GetExtendedContactDetailsStatisticsMessagesSent.md) |  | [optional] 
-**hardBounces** | [**\Brevo\Client\Model\GetExtendedContactDetailsStatisticsMessagesSent[]**](GetExtendedContactDetailsStatisticsMessagesSent.md) |  | [optional] 
-**softBounces** | [**\Brevo\Client\Model\GetExtendedContactDetailsStatisticsMessagesSent[]**](GetExtendedContactDetailsStatisticsMessagesSent.md) |  | [optional] 
-**complaints** | [**\Brevo\Client\Model\GetExtendedContactDetailsStatisticsMessagesSent[]**](GetExtendedContactDetailsStatisticsMessagesSent.md) |  | [optional] 
-**unsubscriptions** | [**\Brevo\Client\Model\GetContactCampaignStatsUnsubscriptions**](GetContactCampaignStatsUnsubscriptions.md) |  | [optional] 
-**opened** | [**\Brevo\Client\Model\GetContactCampaignStatsOpened[]**](GetContactCampaignStatsOpened.md) |  | [optional] 
-**clicked** | [**\Brevo\Client\Model\GetContactCampaignStatsClicked[]**](GetContactCampaignStatsClicked.md) |  | [optional] 
-**transacAttributes** | [**\Brevo\Client\Model\GetContactCampaignStatsTransacAttributes[]**](GetContactCampaignStatsTransacAttributes.md) |  | [optional] 
-**delivered** | [**\Brevo\Client\Model\GetExtendedContactDetailsStatisticsMessagesSent[]**](GetExtendedContactDetailsStatisticsMessagesSent.md) |  | [optional] 
+**messagesSent** | [**\Brevo\Client\Models\GetExtendedContactDetailsAllOfStatisticsMessagesSent[]**](GetExtendedContactDetailsAllOfStatisticsMessagesSent.md) |  | [optional]
+**hardBounces** | [**\Brevo\Client\Models\GetExtendedContactDetailsAllOfStatisticsMessagesSent[]**](GetExtendedContactDetailsAllOfStatisticsMessagesSent.md) |  | [optional]
+**softBounces** | [**\Brevo\Client\Models\GetExtendedContactDetailsAllOfStatisticsMessagesSent[]**](GetExtendedContactDetailsAllOfStatisticsMessagesSent.md) |  | [optional]
+**complaints** | [**\Brevo\Client\Models\GetExtendedContactDetailsAllOfStatisticsMessagesSent[]**](GetExtendedContactDetailsAllOfStatisticsMessagesSent.md) |  | [optional]
+**unsubscriptions** | [**\Brevo\Client\Models\GetContactCampaignStatsUnsubscriptions**](GetContactCampaignStatsUnsubscriptions.md) |  | [optional]
+**opened** | [**\Brevo\Client\Models\GetContactCampaignStatsOpenedInner[]**](GetContactCampaignStatsOpenedInner.md) |  | [optional]
+**clicked** | [**\Brevo\Client\Models\GetContactCampaignStatsClickedInner[]**](GetContactCampaignStatsClickedInner.md) |  | [optional]
+**transacAttributes** | [**\Brevo\Client\Models\GetContactCampaignStatsTransacAttributesInner[]**](GetContactCampaignStatsTransacAttributesInner.md) |  | [optional]
+**delivered** | [**\Brevo\Client\Models\GetExtendedContactDetailsAllOfStatisticsMessagesSent[]**](GetExtendedContactDetailsAllOfStatisticsMessagesSent.md) |  | [optional]
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
-
-
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

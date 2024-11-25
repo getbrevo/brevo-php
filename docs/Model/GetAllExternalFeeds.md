@@ -1,11 +1,10 @@
-# GetAllExternalFeeds
+# # GetAllExternalFeeds
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | **int** | Total number of batches | [optional] 
-**feeds** | [**\Brevo\Client\Model\GetAllExternalFeedsFeeds[]**](GetAllExternalFeedsFeeds.md) |  | [optional] 
+**count** | **int** | Total number of batches | [optional]
+**feeds** | [**\Brevo\Client\Models\GetAllExternalFeedsFeedsInner[]**](GetAllExternalFeedsFeedsInner.md) |  | [optional]
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
-
-
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

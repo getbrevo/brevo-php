@@ -1,11 +1,10 @@
-# GetCategories
+# # GetCategories
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**categories** | **object[]** |  | 
-**count** | **int** | Number of categories | 
+**categories** | [**GetCategoryDetails[]**](GetCategoryDetails.md) |  |
+**count** | **int** | Number of categories |
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
-
-
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

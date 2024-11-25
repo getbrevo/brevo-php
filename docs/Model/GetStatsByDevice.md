@@ -1,13 +1,12 @@
-# GetStatsByDevice
+# # GetStatsByDevice
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**desktop** | [**map[string,\Brevo\Client\Model\GetDeviceBrowserStats]**](GetDeviceBrowserStats.md) | Statistics of the campaign on the basis of desktop devices | [optional] 
-**mobile** | [**map[string,\Brevo\Client\Model\GetDeviceBrowserStats]**](GetDeviceBrowserStats.md) | Statistics of the campaign on the basis of mobile devices | [optional] 
-**tablet** | [**map[string,\Brevo\Client\Model\GetDeviceBrowserStats]**](GetDeviceBrowserStats.md) | Statistics of the campaign on the basis of tablet devices | [optional] 
-**unknown** | [**map[string,\Brevo\Client\Model\GetDeviceBrowserStats]**](GetDeviceBrowserStats.md) | Statistics of the campaign on the basis of unknown devices | [optional] 
+**desktop** | [**array<string,\Brevo\Client\Models\GetDeviceBrowserStats>**](GetDeviceBrowserStats.md) | Statistics of the campaign on the basis of desktop devices | [optional]
+**mobile** | [**array<string,\Brevo\Client\Models\GetDeviceBrowserStats>**](GetDeviceBrowserStats.md) | Statistics of the campaign on the basis of mobile devices | [optional]
+**tablet** | [**array<string,\Brevo\Client\Models\GetDeviceBrowserStats>**](GetDeviceBrowserStats.md) | Statistics of the campaign on the basis of tablet devices | [optional]
+**unknown** | [**array<string,\Brevo\Client\Models\GetDeviceBrowserStats>**](GetDeviceBrowserStats.md) | Statistics of the campaign on the basis of unknown devices | [optional]
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
-
-
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
