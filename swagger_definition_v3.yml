@@ -7337,7 +7337,7 @@ paths:
           description: Number of documents per page
           required: false
           schema:
-            type: string
+            type: integer
             format: integer
             default: 100
             minimum: 1
@@ -7347,7 +7347,7 @@ paths:
           description: Index of the first document in the page
           required: false
           schema:
-            type: string
+            type: integer
             format: integer
             default: 0
         - name: balanceDefinitionId
@@ -20184,6 +20184,32 @@ components:
           description: Number of lists in your account
           format: int64
           example: 150
+    Segment:
+      type: object
+      required:
+        - id
+        - name
+        - segmentName
+        - categoryName
+      properties:
+        id:
+          type: integer
+          description: ID of the list
+          format: int64
+          example: 23
+        segmentName:
+          type: string
+          description: Name of the Segment
+          example: My Segment
+        categoryName:
+          type: string
+          description: Name of the Segment Category
+          format: string
+          example: New Category
+        updatedAt:
+          type: string
+          description: Updation UTC date-time of the segment (YYYY-MM-DDTHH:mm:ss.SSSZ)
+          example: '2017-03-13T17:05:09Z'
     getSegments:
       type: object
       properties:
@@ -20192,30 +20218,8 @@ components:
           description: Listing of all the segments available in your account
           items:
             type: object
-            required:
-              - id
-              - name
-              - segmentName
-              - categoryName
-          properties:
-            id:
-              type: integer
-              description: ID of the list
-              format: int64
-              example: 23
-            segmentName:
-              type: string
-              description: Name of the Segment
-              example: My Segment
-            categoryName:
-              type: string
-              description: Name of the Segment Category
-              format: string
-              example: New Category
-            updatedAt:
-              type: string
-              description: Updation UTC date-time of the segment (YYYY-MM-DDTHH:mm:ss.SSSZ)
-              example: '2017-03-13T17:05:09Z'
+            allOf:
+              - $ref: '#/components/schemas/Segment'
         count:
           type: integer
           description: Number of Segments in your account
