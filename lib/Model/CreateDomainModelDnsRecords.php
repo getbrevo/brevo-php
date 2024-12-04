@@ -58,7 +58,8 @@ class CreateDomainModelDnsRecords implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'dkimRecord' => '\Brevo\Client\Model\CreateDomainModelDnsRecordsDkimRecord',
-        'brevoCode' => '\Brevo\Client\Model\CreateDomainModelDnsRecordsDkimRecord'
+        'brevoCode' => '\Brevo\Client\Model\CreateDomainModelDnsRecordsDkimRecord',
+        'dmarcRecord' => '\Brevo\Client\Model\CreateDomainModelDnsRecordsDkimRecord'
     ];
 
     /**
@@ -68,7 +69,8 @@ class CreateDomainModelDnsRecords implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'dkimRecord' => null,
-        'brevoCode' => null
+        'brevoCode' => null,
+        'dmarcRecord' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class CreateDomainModelDnsRecords implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'dkimRecord' => 'dkim_record',
-        'brevoCode' => 'brevo_code'
+        'brevoCode' => 'brevo_code',
+        'dmarcRecord' => 'dmarc_record'
     ];
 
     /**
@@ -109,7 +112,8 @@ class CreateDomainModelDnsRecords implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'dkimRecord' => 'setDkimRecord',
-        'brevoCode' => 'setBrevoCode'
+        'brevoCode' => 'setBrevoCode',
+        'dmarcRecord' => 'setDmarcRecord'
     ];
 
     /**
@@ -119,7 +123,8 @@ class CreateDomainModelDnsRecords implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'dkimRecord' => 'getDkimRecord',
-        'brevoCode' => 'getBrevoCode'
+        'brevoCode' => 'getBrevoCode',
+        'dmarcRecord' => 'getDmarcRecord'
     ];
 
     /**
@@ -163,9 +168,9 @@ class CreateDomainModelDnsRecords implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -184,6 +189,7 @@ class CreateDomainModelDnsRecords implements ModelInterface, ArrayAccess
     {
         $this->container['dkimRecord'] = isset($data['dkimRecord']) ? $data['dkimRecord'] : null;
         $this->container['brevoCode'] = isset($data['brevoCode']) ? $data['brevoCode'] : null;
+        $this->container['dmarcRecord'] = isset($data['dmarcRecord']) ? $data['dmarcRecord'] : null;
     }
 
     /**
@@ -254,6 +260,31 @@ class CreateDomainModelDnsRecords implements ModelInterface, ArrayAccess
     public function setBrevoCode($brevoCode)
     {
         $this->container['brevoCode'] = $brevoCode;
+
+        return $this;
+    }
+
+
+    /**
+     * Gets dmarcRecord
+     *
+     * @return \Brevo\Client\Model\CreateDomainModelDnsRecordsDkimRecord
+     */
+    public function getDmarcRecord()
+    {
+        return $this->container['dmarcRecord'];
+    }
+
+    /**
+     * Sets dmarcRecord
+     *
+     * @param \Brevo\Client\Model\CreateDomainModelDnsRecordsDkimRecord $dmarcRecord dmarcRecord
+     *
+     * @return $this
+     */
+    public function setDmarcRecord($dmarcRecord)
+    {
+        $this->container['dmarcRecord'] = $dmarcRecord;
 
         return $this;
     }
