@@ -13,7 +13,7 @@
 /**
  * Brevo API
  *
- * Brevo provide a RESTFul API that can be used with any languages. With this API, you will be able to :   - Manage your campaigns and get the statistics   - Manage your contacts   - Send transactional Emails and SMS   - and much more...  You can download our wrappers at https://github.com/orgs/brevo  **Possible responses**   | Code | Message |   | :-------------: | ------------- |   | 200  | OK. Successful Request  |   | 201  | OK. Successful Creation |   | 202  | OK. Request accepted |   | 204  | OK. Successful Update/Deletion  |   | 400  | Error. Bad Request  |   | 401  | Error. Authentication Needed  |   | 402  | Error. Not enough credit, plan upgrade needed  |   | 403  | Error. Permission denied  |   | 404  | Error. Object does not exist |   | 405  | Error. Method not allowed  |   | 406  | Error. Not Acceptable  |
+ * Brevo provide a RESTFul API that can be used with any languages. With this API, you will be able to :   - Manage your campaigns and get the statistics   - Manage your contacts   - Send transactional Emails and SMS   - and much more...  You can download our wrappers at https://github.com/orgs/brevo  **Possible responses**   | Code | Message |   | :-------------: | ------------- |   | 200  | OK. Successful Request  |   | 201  | OK. Successful Creation |   | 202  | OK. Request accepted |   | 204  | OK. Successful Update/Deletion  |   | 400  | Error. Bad Request  |   | 401  | Error. Authentication Needed  |   | 402  | Error. Not enough credit, plan upgrade needed  |   | 403  | Error. Permission denied  |   | 404  | Error. Object does not exist |   | 405  | Error. Method not allowed  |   | 406  | Error. Not Acceptable  |   | 422  | Error. Unprocessable Entity |
  *
  * OpenAPI spec version: 3.0.0
  * Contact: contact@brevo.com
@@ -60,6 +60,7 @@ class CreateAttribute implements ModelInterface, ArrayAccess
         'value' => 'string',
         'isRecurring' => 'bool',
         'enumeration' => '\Brevo\Client\Model\CreateAttributeEnumeration[]',
+        'multiCategoryOptions' => 'string[]',
         'type' => 'string'
     ];
 
@@ -72,6 +73,7 @@ class CreateAttribute implements ModelInterface, ArrayAccess
         'value' => null,
         'isRecurring' => null,
         'enumeration' => null,
+        'multiCategoryOptions' => null,
         'type' => null
     ];
 
@@ -105,6 +107,7 @@ class CreateAttribute implements ModelInterface, ArrayAccess
         'value' => 'value',
         'isRecurring' => 'isRecurring',
         'enumeration' => 'enumeration',
+        'multiCategoryOptions' => 'multiCategoryOptions',
         'type' => 'type'
     ];
 
@@ -117,6 +120,7 @@ class CreateAttribute implements ModelInterface, ArrayAccess
         'value' => 'setValue',
         'isRecurring' => 'setIsRecurring',
         'enumeration' => 'setEnumeration',
+        'multiCategoryOptions' => 'setMultiCategoryOptions',
         'type' => 'setType'
     ];
 
@@ -129,6 +133,7 @@ class CreateAttribute implements ModelInterface, ArrayAccess
         'value' => 'getValue',
         'isRecurring' => 'getIsRecurring',
         'enumeration' => 'getEnumeration',
+        'multiCategoryOptions' => 'getMultiCategoryOptions',
         'type' => 'getType'
     ];
 
@@ -179,6 +184,7 @@ class CreateAttribute implements ModelInterface, ArrayAccess
     const TYPE_BOOLEAN = 'boolean';
     const TYPE_ID = 'id';
     const TYPE_CATEGORY = 'category';
+    const TYPE_MULTIPLE_CHOICE = 'multiple-choice';
     
 
     
@@ -196,6 +202,7 @@ class CreateAttribute implements ModelInterface, ArrayAccess
             self::TYPE_BOOLEAN,
             self::TYPE_ID,
             self::TYPE_CATEGORY,
+            self::TYPE_MULTIPLE_CHOICE,
         ];
     }
     
@@ -218,6 +225,7 @@ class CreateAttribute implements ModelInterface, ArrayAccess
         $this->container['value'] = isset($data['value']) ? $data['value'] : null;
         $this->container['isRecurring'] = isset($data['isRecurring']) ? $data['isRecurring'] : null;
         $this->container['enumeration'] = isset($data['enumeration']) ? $data['enumeration'] : null;
+        $this->container['multiCategoryOptions'] = isset($data['multiCategoryOptions']) ? $data['multiCategoryOptions'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
@@ -326,6 +334,30 @@ class CreateAttribute implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets multiCategoryOptions
+     *
+     * @return string[]
+     */
+    public function getMultiCategoryOptions()
+    {
+        return $this->container['multiCategoryOptions'];
+    }
+
+    /**
+     * Sets multiCategoryOptions
+     *
+     * @param string[] $multiCategoryOptions List of options you want to add for multiple-choice attribute. **Use only if the attribute's category is \"normal\" and attribute's type is \"multiple-choice\".** For example: **[\"USA\",\"INDIA\"]**
+     *
+     * @return $this
+     */
+    public function setMultiCategoryOptions($multiCategoryOptions)
+    {
+        $this->container['multiCategoryOptions'] = $multiCategoryOptions;
+
+        return $this;
+    }
+
+    /**
      * Gets type
      *
      * @return string
@@ -338,7 +370,7 @@ class CreateAttribute implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string $type Type of the attribute. Use only if the attribute's category is 'normal', 'category' or 'transactional' ( type 'boolean' is only available if the category is 'normal' attribute, type 'id' is only available if the category is 'transactional' attribute & type 'category' is only available if the category is 'category' attribute )
+     * @param string $type Type of the attribute. Use only if the attribute's category is 'normal', 'category' or 'transactional' ( type 'boolean' and 'multiple-choice' is only available if the category is 'normal' attribute, type 'id' is only available if the category is 'transactional' attribute & type 'category' is only available if the category is 'category' attribute )
      *
      * @return $this
      */
