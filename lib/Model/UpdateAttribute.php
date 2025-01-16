@@ -13,7 +13,7 @@
 /**
  * Brevo API
  *
- * Brevo provide a RESTFul API that can be used with any languages. With this API, you will be able to :   - Manage your campaigns and get the statistics   - Manage your contacts   - Send transactional Emails and SMS   - and much more...  You can download our wrappers at https://github.com/orgs/brevo  **Possible responses**   | Code | Message |   | :-------------: | ------------- |   | 200  | OK. Successful Request  |   | 201  | OK. Successful Creation |   | 202  | OK. Request accepted |   | 204  | OK. Successful Update/Deletion  |   | 400  | Error. Bad Request  |   | 401  | Error. Authentication Needed  |   | 402  | Error. Not enough credit, plan upgrade needed  |   | 403  | Error. Permission denied  |   | 404  | Error. Object does not exist |   | 405  | Error. Method not allowed  |   | 406  | Error. Not Acceptable  |
+ * Brevo provide a RESTFul API that can be used with any languages. With this API, you will be able to :   - Manage your campaigns and get the statistics   - Manage your contacts   - Send transactional Emails and SMS   - and much more...  You can download our wrappers at https://github.com/orgs/brevo  **Possible responses**   | Code | Message |   | :-------------: | ------------- |   | 200  | OK. Successful Request  |   | 201  | OK. Successful Creation |   | 202  | OK. Request accepted |   | 204  | OK. Successful Update/Deletion  |   | 400  | Error. Bad Request  |   | 401  | Error. Authentication Needed  |   | 402  | Error. Not enough credit, plan upgrade needed  |   | 403  | Error. Permission denied  |   | 404  | Error. Object does not exist |   | 405  | Error. Method not allowed  |   | 406  | Error. Not Acceptable  |   | 422  | Error. Unprocessable Entity |
  *
  * OpenAPI spec version: 3.0.0
  * Contact: contact@brevo.com
@@ -58,7 +58,8 @@ class UpdateAttribute implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'value' => 'string',
-        'enumeration' => '\Brevo\Client\Model\UpdateAttributeEnumeration[]'
+        'enumeration' => '\Brevo\Client\Model\UpdateAttributeEnumeration[]',
+        'multiCategoryOptions' => 'string[]'
     ];
 
     /**
@@ -68,7 +69,8 @@ class UpdateAttribute implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'value' => null,
-        'enumeration' => null
+        'enumeration' => null,
+        'multiCategoryOptions' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class UpdateAttribute implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'value' => 'value',
-        'enumeration' => 'enumeration'
+        'enumeration' => 'enumeration',
+        'multiCategoryOptions' => 'multiCategoryOptions'
     ];
 
     /**
@@ -109,7 +112,8 @@ class UpdateAttribute implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'value' => 'setValue',
-        'enumeration' => 'setEnumeration'
+        'enumeration' => 'setEnumeration',
+        'multiCategoryOptions' => 'setMultiCategoryOptions'
     ];
 
     /**
@@ -119,7 +123,8 @@ class UpdateAttribute implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'value' => 'getValue',
-        'enumeration' => 'getEnumeration'
+        'enumeration' => 'getEnumeration',
+        'multiCategoryOptions' => 'getMultiCategoryOptions'
     ];
 
     /**
@@ -184,6 +189,7 @@ class UpdateAttribute implements ModelInterface, ArrayAccess
     {
         $this->container['value'] = isset($data['value']) ? $data['value'] : null;
         $this->container['enumeration'] = isset($data['enumeration']) ? $data['enumeration'] : null;
+        $this->container['multiCategoryOptions'] = isset($data['multiCategoryOptions']) ? $data['multiCategoryOptions'] : null;
     }
 
     /**
@@ -254,6 +260,30 @@ class UpdateAttribute implements ModelInterface, ArrayAccess
     public function setEnumeration($enumeration)
     {
         $this->container['enumeration'] = $enumeration;
+
+        return $this;
+    }
+
+    /**
+     * Gets multiCategoryOptions
+     *
+     * @return string[]
+     */
+    public function getMultiCategoryOptions()
+    {
+        return $this->container['multiCategoryOptions'];
+    }
+
+    /**
+     * Sets multiCategoryOptions
+     *
+     * @param string[] $multiCategoryOptions Use this option to add multiple-choice attributes options only if the attribute's category is \"normal\". **This option is specifically designed for updating multiple-choice attributes**. For example: **[\"USA\",\"INDIA\"]**
+     *
+     * @return $this
+     */
+    public function setMultiCategoryOptions($multiCategoryOptions)
+    {
+        $this->container['multiCategoryOptions'] = $multiCategoryOptions;
 
         return $this;
     }
