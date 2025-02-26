@@ -61,7 +61,8 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
         'category' => 'string',
         'type' => 'string',
         'enumeration' => '\Brevo\Client\Model\GetAttributesEnumeration[]',
-        'calculatedValue' => 'string'
+        'calculatedValue' => 'string',
+        'multiCategoryOptions' => 'string[]'
     ];
 
     /**
@@ -74,7 +75,8 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
         'category' => null,
         'type' => null,
         'enumeration' => null,
-        'calculatedValue' => null
+        'calculatedValue' => null,
+        'multiCategoryOptions' => null
     ];
 
     /**
@@ -108,7 +110,8 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
         'category' => 'category',
         'type' => 'type',
         'enumeration' => 'enumeration',
-        'calculatedValue' => 'calculatedValue'
+        'calculatedValue' => 'calculatedValue',
+        'multiCategoryOptions' => 'multiCategoryOptions'
     ];
 
     /**
@@ -121,7 +124,8 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
         'category' => 'setCategory',
         'type' => 'setType',
         'enumeration' => 'setEnumeration',
-        'calculatedValue' => 'setCalculatedValue'
+        'calculatedValue' => 'setCalculatedValue',
+        'multiCategoryOptions' => 'setMultiCategoryOptions'
     ];
 
     /**
@@ -134,7 +138,8 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
         'category' => 'getCategory',
         'type' => 'getType',
         'enumeration' => 'getEnumeration',
-        'calculatedValue' => 'getCalculatedValue'
+        'calculatedValue' => 'getCalculatedValue',
+        'multiCategoryOptions' => 'getMultiCategoryOptions'
     ];
 
     /**
@@ -188,6 +193,7 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
     const TYPE_FLOAT = 'float';
     const TYPE_ID = 'id';
     const TYPE_BOOLEAN = 'boolean';
+    const TYPE_MULTIPLE_CHOICE = 'multiple-choice';
     
 
     
@@ -220,6 +226,7 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
             self::TYPE_FLOAT,
             self::TYPE_ID,
             self::TYPE_BOOLEAN,
+            self::MULTIPLE_CHOICE
         ];
     }
     
@@ -244,6 +251,7 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
         $this->container['enumeration'] = isset($data['enumeration']) ? $data['enumeration'] : null;
         $this->container['calculatedValue'] = isset($data['calculatedValue']) ? $data['calculatedValue'] : null;
+        $this->container['multiCategoryOptions'] = isset($data['multiCategoryOptions']) ? $data['multiCategoryOptions'] : null;
     }
 
     /**
@@ -312,6 +320,25 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
     public function setName($name)
     {
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    public function getMultiCategoryOptions()
+    {
+        return $this->container['multiCategoryOptions'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string $name Name of the attribute
+     *
+     * @return $this
+     */
+    public function setMultiCategoryOptions($name)
+    {
+        $this->container['multiCategoryOptions'] = $name;
 
         return $this;
     }
