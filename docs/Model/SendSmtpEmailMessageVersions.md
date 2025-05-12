@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **cc** | [**\Brevo\Client\Model\SendSmtpEmailCc[]**](SendSmtpEmailCc.md) | List of email addresses and names (optional) of the recipients in cc | [optional] 
 **replyTo** | [**\Brevo\Client\Model\SendSmtpEmailReplyTo1**](SendSmtpEmailReplyTo1.md) |  | [optional] 
 **subject** | **string** | Custom subject specific to message version | [optional] 
+**htmlContent** | **string** | HTML body of the message. **Mandatory if &#x27;templateId&#x27; is not passed, ignored if &#x27;templateId&#x27; is passed** | [optional] 
+**textContent** | **string** | Plain Text body of the message. **Ignored if &#x27;templateId&#x27; is passed** | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
