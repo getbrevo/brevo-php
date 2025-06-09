@@ -4,40 +4,39 @@ All URIs are relative to *https://api.brevo.com/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addContactToList**](ContactsApi.md#addContactToList) | **POST** /contacts/lists/{listId}/contacts/add | Add existing contacts to a list
-[**createAttribute**](ContactsApi.md#createAttribute) | **POST** /contacts/attributes/{attributeCategory}/{attributeName} | Create contact attribute
-[**createContact**](ContactsApi.md#createContact) | **POST** /contacts | Create a contact
-[**createDoiContact**](ContactsApi.md#createDoiContact) | **POST** /contacts/doubleOptinConfirmation | Create Contact via DOI (Double-Opt-In) Flow
-[**createFolder**](ContactsApi.md#createFolder) | **POST** /contacts/folders | Create a folder
-[**createList**](ContactsApi.md#createList) | **POST** /contacts/lists | Create a list
-[**deleteAttribute**](ContactsApi.md#deleteAttribute) | **DELETE** /contacts/attributes/{attributeCategory}/{attributeName} | Delete an attribute
-[**deleteContact**](ContactsApi.md#deleteContact) | **DELETE** /contacts/{identifier} | Delete a contact
-[**deleteFolder**](ContactsApi.md#deleteFolder) | **DELETE** /contacts/folders/{folderId} | Delete a folder (and all its lists)
-[**deleteList**](ContactsApi.md#deleteList) | **DELETE** /contacts/lists/{listId} | Delete a list
-[**deleteMultiAttributeOptions**](ContactsApi.md#deleteMultiAttributeOptions) | **DELETE** /contacts/attributes/{attributeType}/{multipleChoiceAttribute}/{multipleChoiceAttributeOption} | Delete a multiple-choice attribute option
-[**getAttributes**](ContactsApi.md#getAttributes) | **GET** /contacts/attributes | List all attributes
-[**getContactInfo**](ContactsApi.md#getContactInfo) | **GET** /contacts/{identifier} | Get a contact&#39;s details
-[**getContactStats**](ContactsApi.md#getcontactstats) | **GET** /contacts/{identifier}/campaignStats | Get email campaigns&#39; statistics for a contact
-[**getContacts**](ContactsApi.md#getContacts) | **GET** /contacts | Get all the contacts
-[**getContactsFromList**](ContactsApi.md#getContactsFromList) | **GET** /contacts/lists/{listId}/contacts | Get contacts in a list
-[**getFolder**](ContactsApi.md#getFolder) | **GET** /contacts/folders/{folderId} | Returns a folder&#39;s details
-[**getFolderLists**](ContactsApi.md#getFolderLists) | **GET** /contacts/folders/{folderId}/lists | Get lists in a folder
-[**getFolders**](ContactsApi.md#getFolders) | **GET** /contacts/folders | Get all folders
-[**getList**](ContactsApi.md#getList) | **GET** /contacts/lists/{listId} | Get a list&#39;s details
-[**getLists**](ContactsApi.md#getLists) | **GET** /contacts/lists | Get all the lists
-[**getSegments**](ContactsApi.md#getSegments) | **GET** /contacts/segments | Get all the Segments
-[**importContacts**](ContactsApi.md#importContacts) | **POST** /contacts/import | Import contacts
-[**removeContactFromList**](ContactsApi.md#removeContactFromList) | **POST** /contacts/lists/{listId}/contacts/remove | Delete a contact from a list
-[**requestContactExport**](ContactsApi.md#requestContactExport) | **POST** /contacts/export | Export contacts
-[**updateAttribute**](ContactsApi.md#updateAttribute) | **PUT** /contacts/attributes/{attributeCategory}/{attributeName} | Update contact attribute
-[**updateBatchContacts**](ContactsApi.md#updateBatchContacts) | **POST** /contacts/batch | Update multiple contacts
-[**updateContact**](ContactsApi.md#updateContact) | **PUT** /contacts/{identifier} | Update a contact
-[**updateFolder**](ContactsApi.md#updateFolder) | **PUT** /contacts/folders/{folderId} | Update a folder
-[**updateList**](ContactsApi.md#updateList) | **PUT** /contacts/lists/{listId} | Update a list
-
+[**addContactToList**](ContactsApi.md#addcontacttolist) | **POST** /contacts/lists/{listId}/contacts/add | Add existing contacts to a list
+[**createAttribute**](ContactsApi.md#createattribute) | **POST** /contacts/attributes/{attributeCategory}/{attributeName} | Create contact attribute
+[**createContact**](ContactsApi.md#createcontact) | **POST** /contacts | Create a contact
+[**createDoiContact**](ContactsApi.md#createdoicontact) | **POST** /contacts/doubleOptinConfirmation | Create Contact via DOI (Double-Opt-In) Flow
+[**createFolder**](ContactsApi.md#createfolder) | **POST** /contacts/folders | Create a folder
+[**createList**](ContactsApi.md#createlist) | **POST** /contacts/lists | Create a list
+[**deleteAttribute**](ContactsApi.md#deleteattribute) | **DELETE** /contacts/attributes/{attributeCategory}/{attributeName} | Delete an attribute
+[**deleteContact**](ContactsApi.md#deletecontact) | **DELETE** /contacts/{identifier} | Delete a contact
+[**deleteFolder**](ContactsApi.md#deletefolder) | **DELETE** /contacts/folders/{folderId} | Delete a folder (and all its lists)
+[**deleteList**](ContactsApi.md#deletelist) | **DELETE** /contacts/lists/{listId} | Delete a list
+[**deleteMultiAttributeOptions**](ContactsApi.md#deletemultiattributeoptions) | **DELETE** /contacts/attributes/{attributeType}/{multipleChoiceAttribute}/{multipleChoiceAttributeOption} | Delete a multiple-choice attribute option
+[**getAttributes**](ContactsApi.md#getattributes) | **GET** /contacts/attributes | List all attributes
+[**getContactInfo**](ContactsApi.md#getcontactinfo) | **GET** /contacts/{identifier} | Get a contact&#x27;s details
+[**getContactStats**](ContactsApi.md#getcontactstats) | **GET** /contacts/{identifier}/campaignStats | Get email campaigns&#x27; statistics for a contact
+[**getContacts**](ContactsApi.md#getcontacts) | **GET** /contacts | Get all the contacts
+[**getContactsFromList**](ContactsApi.md#getcontactsfromlist) | **GET** /contacts/lists/{listId}/contacts | Get contacts in a list
+[**getFolder**](ContactsApi.md#getfolder) | **GET** /contacts/folders/{folderId} | Returns a folder&#x27;s details
+[**getFolderLists**](ContactsApi.md#getfolderlists) | **GET** /contacts/folders/{folderId}/lists | Get lists in a folder
+[**getFolders**](ContactsApi.md#getfolders) | **GET** /contacts/folders | Get all folders
+[**getList**](ContactsApi.md#getlist) | **GET** /contacts/lists/{listId} | Get a list&#x27;s details
+[**getLists**](ContactsApi.md#getlists) | **GET** /contacts/lists | Get all the lists
+[**getSegments**](ContactsApi.md#getsegments) | **GET** /contacts/segments | Get all the Segments
+[**importContacts**](ContactsApi.md#importcontacts) | **POST** /contacts/import | Import contacts
+[**removeContactFromList**](ContactsApi.md#removecontactfromlist) | **POST** /contacts/lists/{listId}/contacts/remove | Delete a contact from a list
+[**requestContactExport**](ContactsApi.md#requestcontactexport) | **POST** /contacts/export | Export contacts
+[**updateAttribute**](ContactsApi.md#updateattribute) | **PUT** /contacts/attributes/{attributeCategory}/{attributeName} | Update contact attribute
+[**updateBatchContacts**](ContactsApi.md#updatebatchcontacts) | **POST** /contacts/batch | Update multiple contacts
+[**updateContact**](ContactsApi.md#updatecontact) | **PUT** /contacts/{identifier} | Update a contact
+[**updateFolder**](ContactsApi.md#updatefolder) | **PUT** /contacts/folders/{folderId} | Update a folder
+[**updateList**](ContactsApi.md#updatelist) | **PUT** /contacts/lists/{listId} | Update a list
 
 # **addContactToList**
-> \Brevo\Client\Model\PostContactInfo addContactToList($listId, $contactEmails)
+> \Brevo\Client\Model\PostContactInfo addContactToList($body, $listId)
 
 Add existing contacts to a list
 
@@ -45,12 +44,10 @@ Add existing contacts to a list
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -61,11 +58,11 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \Brevo\Client\Model\AddContactToList(); // \Brevo\Client\Model\AddContactToList | Emails addresses OR IDs OR EXT_ID attributes of the contacts
 $listId = 789; // int | Id of the list
-$contactEmails = new \Brevo\Client\Model\AddContactToList(); // \Brevo\Client\Model\AddContactToList | Emails addresses OR IDs of the contacts
 
 try {
-    $result = $apiInstance->addContactToList($listId, $contactEmails);
+    $result = $apiInstance->addContactToList($body, $listId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->addContactToList: ', $e->getMessage(), PHP_EOL;
@@ -77,8 +74,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**\Brevo\Client\Model\AddContactToList**](../Model/AddContactToList.md)| Emails addresses OR IDs OR EXT_ID attributes of the contacts |
  **listId** | **int**| Id of the list |
- **contactEmails** | [**\Brevo\Client\Model\AddContactToList**](../Model/AddContactToList.md)| Emails addresses OR IDs of the contacts |
 
 ### Return type
 
@@ -96,7 +93,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createAttribute**
-> createAttribute($attributeCategory, $attributeName, $createAttribute)
+> createAttribute($body, $attributeCategory, $attributeName)
 
 Create contact attribute
 
@@ -104,12 +101,10 @@ Create contact attribute
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -120,12 +115,12 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \Brevo\Client\Model\CreateAttribute(); // \Brevo\Client\Model\CreateAttribute | Values to create an attribute
 $attributeCategory = "attributeCategory_example"; // string | Category of the attribute
 $attributeName = "attributeName_example"; // string | Name of the attribute
-$createAttribute = new \Brevo\Client\Model\CreateAttribute(); // \Brevo\Client\Model\CreateAttribute | Values to create an attribute
 
 try {
-    $apiInstance->createAttribute($attributeCategory, $attributeName, $createAttribute);
+    $apiInstance->createAttribute($body, $attributeCategory, $attributeName);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->createAttribute: ', $e->getMessage(), PHP_EOL;
 }
@@ -136,9 +131,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**\Brevo\Client\Model\CreateAttribute**](../Model/CreateAttribute.md)| Values to create an attribute |
  **attributeCategory** | **string**| Category of the attribute |
  **attributeName** | **string**| Name of the attribute |
- **createAttribute** | [**\Brevo\Client\Model\CreateAttribute**](../Model/CreateAttribute.md)| Values to create an attribute |
 
 ### Return type
 
@@ -156,7 +151,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createContact**
-> \Brevo\Client\Model\CreateUpdateContactModel createContact($createContact)
+> \Brevo\Client\Model\CreateUpdateContactModel createContact($body)
 
 Create a contact
 
@@ -166,12 +161,10 @@ Creates new contacts on Brevo. Contacts can be created by passing either - <br><
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -182,10 +175,10 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$createContact = new \Brevo\Client\Model\CreateContact(); // \Brevo\Client\Model\CreateContact | Values to create a contact
+$body = new \Brevo\Client\Model\CreateContact(); // \Brevo\Client\Model\CreateContact | Values to create a contact
 
 try {
-    $result = $apiInstance->createContact($createContact);
+    $result = $apiInstance->createContact($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->createContact: ', $e->getMessage(), PHP_EOL;
@@ -197,7 +190,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createContact** | [**\Brevo\Client\Model\CreateContact**](../Model/CreateContact.md)| Values to create a contact |
+ **body** | [**\Brevo\Client\Model\CreateContact**](../Model/CreateContact.md)| Values to create a contact |
 
 ### Return type
 
@@ -215,7 +208,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createDoiContact**
-> createDoiContact($createDoiContact)
+> createDoiContact($body)
 
 Create Contact via DOI (Double-Opt-In) Flow
 
@@ -223,12 +216,10 @@ Create Contact via DOI (Double-Opt-In) Flow
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -239,10 +230,10 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$createDoiContact = new \Brevo\Client\Model\CreateDoiContact(); // \Brevo\Client\Model\CreateDoiContact | Values to create the Double opt-in (DOI) contact
+$body = new \Brevo\Client\Model\CreateDoiContact(); // \Brevo\Client\Model\CreateDoiContact | Values to create the Double opt-in (DOI) contact
 
 try {
-    $apiInstance->createDoiContact($createDoiContact);
+    $apiInstance->createDoiContact($body);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->createDoiContact: ', $e->getMessage(), PHP_EOL;
 }
@@ -253,7 +244,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createDoiContact** | [**\Brevo\Client\Model\CreateDoiContact**](../Model/CreateDoiContact.md)| Values to create the Double opt-in (DOI) contact |
+ **body** | [**\Brevo\Client\Model\CreateDoiContact**](../Model/CreateDoiContact.md)| Values to create the Double opt-in (DOI) contact |
 
 ### Return type
 
@@ -271,7 +262,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createFolder**
-> \Brevo\Client\Model\CreateModel createFolder($createFolder)
+> \Brevo\Client\Model\CreateModel createFolder($body)
 
 Create a folder
 
@@ -279,12 +270,10 @@ Create a folder
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -295,10 +284,10 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$createFolder = new \Brevo\Client\Model\CreateUpdateFolder(); // \Brevo\Client\Model\CreateUpdateFolder | Name of the folder
+$body = new \Brevo\Client\Model\CreateUpdateFolder(); // \Brevo\Client\Model\CreateUpdateFolder | Name of the folder
 
 try {
-    $result = $apiInstance->createFolder($createFolder);
+    $result = $apiInstance->createFolder($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->createFolder: ', $e->getMessage(), PHP_EOL;
@@ -310,7 +299,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createFolder** | [**\Brevo\Client\Model\CreateUpdateFolder**](../Model/CreateUpdateFolder.md)| Name of the folder |
+ **body** | [**\Brevo\Client\Model\CreateUpdateFolder**](../Model/CreateUpdateFolder.md)| Name of the folder |
 
 ### Return type
 
@@ -328,7 +317,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createList**
-> \Brevo\Client\Model\CreateModel createList($createList)
+> \Brevo\Client\Model\CreateModel createList($body)
 
 Create a list
 
@@ -336,12 +325,10 @@ Create a list
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -352,10 +339,10 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$createList = new \Brevo\Client\Model\CreateList(); // \Brevo\Client\Model\CreateList | Values to create a list
+$body = new \Brevo\Client\Model\CreateList(); // \Brevo\Client\Model\CreateList | Values to create a list
 
 try {
-    $result = $apiInstance->createList($createList);
+    $result = $apiInstance->createList($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->createList: ', $e->getMessage(), PHP_EOL;
@@ -367,7 +354,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createList** | [**\Brevo\Client\Model\CreateList**](../Model/CreateList.md)| Values to create a list |
+ **body** | [**\Brevo\Client\Model\CreateList**](../Model/CreateList.md)| Values to create a list |
 
 ### Return type
 
@@ -393,12 +380,10 @@ Delete an attribute
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -453,12 +438,10 @@ There are 2 ways to delete a contact <br><br> Option 1- https://api.brevo.com/v3
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -470,7 +453,7 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     $config
 );
 $identifier = "identifier_example"; // string | Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded)
-$identifierType = new \stdClass; // object | email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute
+$identifierType = "identifierType_example"; // string | email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute
 
 try {
     $apiInstance->deleteContact($identifier, $identifierType);
@@ -485,7 +468,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identifier** | **string**| Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) |
- **identifierType** | [**object**](../Model/.md)| email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute | [optional]
+ **identifierType** | **string**| email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute | [optional]
 
 ### Return type
 
@@ -511,12 +494,10 @@ Delete a folder (and all its lists)
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -567,12 +548,10 @@ Delete a list
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -623,12 +602,10 @@ Delete a multiple-choice attribute option
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -683,12 +660,10 @@ List all attributes
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -732,18 +707,16 @@ This endpoint does not need any parameter.
 
 Get a contact's details
 
-There are 2 ways to get a contact <br><br> Option 1- https://api.brevo.com/v3/contacts/{identifier} <br><br> Option 2- https://api.brevo.com/v3/contacts/{identifier}?identifierType={} <br> <br> Option 1 only works if identifierType is email_id (for EMAIL), phone_id (for SMS) or contact_id (for ID of the contact),where you can directly pass the value of EMAIL, SMS and ID of the contact.   <br><br> Option 2 works for all identifierType, use email_id for EMAIL attribute, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute <br><br>Along with the contact details, this endpoint will show the statistics of contact for the recent 90 days by default. To fetch the earlier statistics, please use Get contact campaign stats ``https://developers.brevo.com/reference/contacts-7#getcontactstats`` endpoint with the appropriate date ranges.
+There are 2 ways to get a contact <br><br> Option 1- https://api.brevo.com/v3/contacts/{identifier} <br><br> Option 2- https://api.brevo.com/v3/contacts/{identifier}?identifierType={} <br> <br> Option 1 only works if identifierType is email_id (for EMAIL), phone_id (for SMS) or contact_id (for ID of the contact),where you can directly pass the value of EMAIL, SMS and ID of the contact.   <br><br> Option 2 works for all identifierType, use email_id for EMAIL attribute, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute <br><br>Along with the contact details, this endpoint will show the statistics of contact for the recent 90 days by default. To fetch the earlier statistics, please use Get contact campaign stats ``https://developers.brevo.com/reference/contacts-7#getcontactstats`` endpoint with the appropriate date ranges.
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -755,7 +728,7 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     $config
 );
 $identifier = "identifier_example"; // string | Email (urlencoded) OR ID of the contact OR its SMS attribute value OR EXT_ID attribute (urlencoded)
-$identifierType = new \stdClass; // object | email_id for Email, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute
+$identifierType = "identifierType_example"; // string | email_id for Email, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute
 $startDate = "startDate_example"; // string | **Mandatory if endDate is used.** Starting date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be lower than equal to endDate
 $endDate = "endDate_example"; // string | **Mandatory if startDate is used.** Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate.
 
@@ -773,7 +746,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identifier** | **string**| Email (urlencoded) OR ID of the contact OR its SMS attribute value OR EXT_ID attribute (urlencoded) |
- **identifierType** | [**object**](../Model/.md)| email_id for Email, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute | [optional]
+ **identifierType** | **string**| email_id for Email, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute | [optional]
  **startDate** | **string**| **Mandatory if endDate is used.** Starting date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be lower than equal to endDate | [optional]
  **endDate** | **string**| **Mandatory if startDate is used.** Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate. | [optional]
 
@@ -801,12 +774,10 @@ Get email campaigns' statistics for a contact
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -862,12 +833,10 @@ Get all the contacts
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -885,7 +854,7 @@ $createdSince = "createdSince_example"; // string | Filter (urlencoded) the cont
 $sort = "desc"; // string | Sort the results in the ascending/descending order of record creation. Default order is **descending** if `sort` is not passed
 $segmentId = 789; // int | Id of the segment. **Either listIds or segmentId can be passed.**
 $listIds = array(56); // int[] | Ids of the list. **Either listIds or segmentId can be passed.**
-$filter = "filter_example"; // string | Filter the contacts on the basis of attributes. **Allowed operator: equals. (e.g. filter=equals(FIRSTNAME,\"Antoine\"), filter=equals(B1, true), filter=equals(DOB, \"1989-11-23\"))**
+$filter = "filter_example"; // string | Filter the contacts on the basis of attributes. **Allowed operator: equals. For multiple-choice options, the filter will apply an AND condition between the options. For category attributes, the filter will work with both id and value. (e.g. filter=equals(FIRSTNAME,\"Antoine\"), filter=equals(B1, true), filter=equals(DOB, \"1989-11-23\"), filter=equals(GENDER, \"1\"), filter=equals(GENDER, \"MALE\"), filter=equals(COUNTRY,\"USA, INDIA\")**
 
 try {
     $result = $apiInstance->getContacts($limit, $offset, $modifiedSince, $createdSince, $sort, $segmentId, $listIds, $filter);
@@ -907,7 +876,7 @@ Name | Type | Description  | Notes
  **sort** | **string**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [optional] [default to desc]
  **segmentId** | **int**| Id of the segment. **Either listIds or segmentId can be passed.** | [optional]
  **listIds** | [**int[]**](../Model/int.md)| Ids of the list. **Either listIds or segmentId can be passed.** | [optional]
- **filter** | **string**| Filter the contacts on the basis of attributes. **Allowed operator: equals. (e.g. filter&#x3D;equals(FIRSTNAME,\&quot;Antoine\&quot;), filter&#x3D;equals(B1, true), filter&#x3D;equals(DOB, \&quot;1989-11-23\&quot;))** | [optional]
+ **filter** | **string**| Filter the contacts on the basis of attributes. **Allowed operator: equals. For multiple-choice options, the filter will apply an AND condition between the options. For category attributes, the filter will work with both id and value. (e.g. filter&#x3D;equals(FIRSTNAME,\&quot;Antoine\&quot;), filter&#x3D;equals(B1, true), filter&#x3D;equals(DOB, \&quot;1989-11-23\&quot;), filter&#x3D;equals(GENDER, \&quot;1\&quot;), filter&#x3D;equals(GENDER, \&quot;MALE\&quot;), filter&#x3D;equals(COUNTRY,\&quot;USA, INDIA\&quot;)** | [optional]
 
 ### Return type
 
@@ -933,12 +902,10 @@ Get contacts in a list
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -998,12 +965,10 @@ Returns a folder's details
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1055,12 +1020,10 @@ Get lists in a folder
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1118,12 +1081,10 @@ Get all folders
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1151,8 +1112,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int**| Number of documents per page | [default to 10]
- **offset** | **int**| Index of the first document of the page | [default to 0]
+ **limit** | **int**| Number of documents per page | [optional] [default to 10]
+ **offset** | **int**| Index of the first document of the page | [optional] [default to 0]
  **sort** | **string**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [optional] [default to desc]
 
 ### Return type
@@ -1179,12 +1140,10 @@ Get a list's details
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1240,12 +1199,10 @@ Get all the lists
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1301,12 +1258,10 @@ Get all the Segments
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1354,7 +1309,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **importContacts**
-> \Brevo\Client\Model\CreatedProcessId importContacts($requestContactImport)
+> \Brevo\Client\Model\CreatedProcessId importContacts($body)
 
 Import contacts
 
@@ -1364,12 +1319,10 @@ It returns the background process ID which on completion calls the notify URL th
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1380,10 +1333,10 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$requestContactImport = new \Brevo\Client\Model\RequestContactImport(); // \Brevo\Client\Model\RequestContactImport | Values to import contacts in Brevo. To know more about the expected format, please have a look at ``https://help.brevo.com/hc/en-us/articles/209499265-Build-contacts-lists-for-your-email-marketing-campaigns``
+$body = new \Brevo\Client\Model\RequestContactImport(); // \Brevo\Client\Model\RequestContactImport | Values to import contacts in Brevo. To know more about the expected format, please have a look at ``https://help.brevo.com/hc/en-us/articles/209499265-Build-contacts-lists-for-your-email-marketing-campaigns``
 
 try {
-    $result = $apiInstance->importContacts($requestContactImport);
+    $result = $apiInstance->importContacts($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->importContacts: ', $e->getMessage(), PHP_EOL;
@@ -1395,7 +1348,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestContactImport** | [**\Brevo\Client\Model\RequestContactImport**](../Model/RequestContactImport.md)| Values to import contacts in Brevo. To know more about the expected format, please have a look at &#x60;&#x60;https://help.brevo.com/hc/en-us/articles/209499265-Build-contacts-lists-for-your-email-marketing-campaigns&#x60;&#x60; |
+ **body** | [**\Brevo\Client\Model\RequestContactImport**](../Model/RequestContactImport.md)| Values to import contacts in Brevo. To know more about the expected format, please have a look at &#x60;&#x60;https://help.brevo.com/hc/en-us/articles/209499265-Build-contacts-lists-for-your-email-marketing-campaigns&#x60;&#x60; |
 
 ### Return type
 
@@ -1413,7 +1366,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **removeContactFromList**
-> \Brevo\Client\Model\PostContactInfo removeContactFromList($listId, $contactEmails)
+> \Brevo\Client\Model\PostContactInfo removeContactFromList($body, $listId)
 
 Delete a contact from a list
 
@@ -1421,12 +1374,10 @@ Delete a contact from a list
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1437,11 +1388,11 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \Brevo\Client\Model\RemoveContactFromList(); // \Brevo\Client\Model\RemoveContactFromList | Emails addresses OR IDs OR EXT_ID attributes of the contacts
 $listId = 789; // int | Id of the list
-$contactEmails = new \Brevo\Client\Model\RemoveContactFromList(); // \Brevo\Client\Model\RemoveContactFromList | Emails addresses OR IDs of the contacts
 
 try {
-    $result = $apiInstance->removeContactFromList($listId, $contactEmails);
+    $result = $apiInstance->removeContactFromList($body, $listId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->removeContactFromList: ', $e->getMessage(), PHP_EOL;
@@ -1453,8 +1404,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**\Brevo\Client\Model\RemoveContactFromList**](../Model/RemoveContactFromList.md)| Emails addresses OR IDs OR EXT_ID attributes of the contacts |
  **listId** | **int**| Id of the list |
- **contactEmails** | [**\Brevo\Client\Model\RemoveContactFromList**](../Model/RemoveContactFromList.md)| Emails addresses OR IDs of the contacts |
 
 ### Return type
 
@@ -1472,7 +1423,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **requestContactExport**
-> \Brevo\Client\Model\CreatedProcessId requestContactExport($requestContactExport)
+> \Brevo\Client\Model\CreatedProcessId requestContactExport($body)
 
 Export contacts
 
@@ -1482,12 +1433,10 @@ It returns the background process ID which on completion calls the notify URL th
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1498,10 +1447,10 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$requestContactExport = new \Brevo\Client\Model\RequestContactExport(); // \Brevo\Client\Model\RequestContactExport | Values to request a contact export
+$body = new \Brevo\Client\Model\RequestContactExport(); // \Brevo\Client\Model\RequestContactExport | Values to request a contact export
 
 try {
-    $result = $apiInstance->requestContactExport($requestContactExport);
+    $result = $apiInstance->requestContactExport($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->requestContactExport: ', $e->getMessage(), PHP_EOL;
@@ -1513,7 +1462,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestContactExport** | [**\Brevo\Client\Model\RequestContactExport**](../Model/RequestContactExport.md)| Values to request a contact export |
+ **body** | [**\Brevo\Client\Model\RequestContactExport**](../Model/RequestContactExport.md)| Values to request a contact export |
 
 ### Return type
 
@@ -1531,7 +1480,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateAttribute**
-> updateAttribute($attributeCategory, $attributeName, $updateAttribute)
+> updateAttribute($body, $attributeCategory, $attributeName)
 
 Update contact attribute
 
@@ -1539,12 +1488,10 @@ Update contact attribute
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1555,12 +1502,12 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \Brevo\Client\Model\UpdateAttribute(); // \Brevo\Client\Model\UpdateAttribute | Values to update an attribute
 $attributeCategory = "attributeCategory_example"; // string | Category of the attribute
 $attributeName = "attributeName_example"; // string | Name of the existing attribute
-$updateAttribute = new \Brevo\Client\Model\UpdateAttribute(); // \Brevo\Client\Model\UpdateAttribute | Values to update an attribute
 
 try {
-    $apiInstance->updateAttribute($attributeCategory, $attributeName, $updateAttribute);
+    $apiInstance->updateAttribute($body, $attributeCategory, $attributeName);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->updateAttribute: ', $e->getMessage(), PHP_EOL;
 }
@@ -1571,9 +1518,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**\Brevo\Client\Model\UpdateAttribute**](../Model/UpdateAttribute.md)| Values to update an attribute |
  **attributeCategory** | **string**| Category of the attribute |
  **attributeName** | **string**| Name of the existing attribute |
- **updateAttribute** | [**\Brevo\Client\Model\UpdateAttribute**](../Model/UpdateAttribute.md)| Values to update an attribute |
 
 ### Return type
 
@@ -1591,7 +1538,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateBatchContacts**
-> updateBatchContacts($updateBatchContacts)
+> updateBatchContacts($body)
 
 Update multiple contacts
 
@@ -1599,12 +1546,10 @@ Update multiple contacts
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1615,10 +1560,10 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$updateBatchContacts = new \Brevo\Client\Model\UpdateBatchContacts(); // \Brevo\Client\Model\UpdateBatchContacts | Values to update multiple contacts
+$body = new \Brevo\Client\Model\UpdateBatchContacts(); // \Brevo\Client\Model\UpdateBatchContacts | Values to update multiple contacts
 
 try {
-    $apiInstance->updateBatchContacts($updateBatchContacts);
+    $apiInstance->updateBatchContacts($body);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->updateBatchContacts: ', $e->getMessage(), PHP_EOL;
 }
@@ -1629,7 +1574,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateBatchContacts** | [**\Brevo\Client\Model\UpdateBatchContacts**](../Model/UpdateBatchContacts.md)| Values to update multiple contacts |
+ **body** | [**\Brevo\Client\Model\UpdateBatchContacts**](../Model/UpdateBatchContacts.md)| Values to update multiple contacts |
 
 ### Return type
 
@@ -1647,7 +1592,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateContact**
-> updateContact($identifier, $updateContact, $identifierType)
+> updateContact($body, $identifier, $identifierType)
 
 Update a contact
 
@@ -1657,12 +1602,10 @@ There are 2 ways to update a contact <br><br> Option 1- https://api.brevo.com/v3
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1673,12 +1616,12 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \Brevo\Client\Model\UpdateContact(); // \Brevo\Client\Model\UpdateContact | Values to update a contact
 $identifier = "identifier_example"; // string | Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE attribute value
-$updateContact = new \Brevo\Client\Model\UpdateContact(); // \Brevo\Client\Model\UpdateContact | Values to update a contact
-$identifierType = new \stdClass; // object | email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute
+$identifierType = "identifierType_example"; // string | email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute
 
 try {
-    $apiInstance->updateContact($identifier, $updateContact, $identifierType);
+    $apiInstance->updateContact($body, $identifier, $identifierType);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->updateContact: ', $e->getMessage(), PHP_EOL;
 }
@@ -1689,9 +1632,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**\Brevo\Client\Model\UpdateContact**](../Model/UpdateContact.md)| Values to update a contact |
  **identifier** | **string**| Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE attribute value |
- **updateContact** | [**\Brevo\Client\Model\UpdateContact**](../Model/UpdateContact.md)| Values to update a contact |
- **identifierType** | [**object**](../Model/.md)| email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute | [optional]
+ **identifierType** | **string**| email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute | [optional]
 
 ### Return type
 
@@ -1709,7 +1652,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateFolder**
-> updateFolder($folderId, $updateFolder)
+> updateFolder($body, $folderId)
 
 Update a folder
 
@@ -1717,12 +1660,10 @@ Update a folder
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1733,11 +1674,11 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \Brevo\Client\Model\CreateUpdateFolder(); // \Brevo\Client\Model\CreateUpdateFolder | Name of the folder
 $folderId = 789; // int | Id of the folder
-$updateFolder = new \Brevo\Client\Model\CreateUpdateFolder(); // \Brevo\Client\Model\CreateUpdateFolder | Name of the folder
 
 try {
-    $apiInstance->updateFolder($folderId, $updateFolder);
+    $apiInstance->updateFolder($body, $folderId);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->updateFolder: ', $e->getMessage(), PHP_EOL;
 }
@@ -1748,8 +1689,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**\Brevo\Client\Model\CreateUpdateFolder**](../Model/CreateUpdateFolder.md)| Name of the folder |
  **folderId** | **int**| Id of the folder |
- **updateFolder** | [**\Brevo\Client\Model\CreateUpdateFolder**](../Model/CreateUpdateFolder.md)| Name of the folder |
 
 ### Return type
 
@@ -1767,7 +1708,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateList**
-> updateList($listId, $updateList)
+> updateList($body, $listId)
 
 Update a list
 
@@ -1775,12 +1716,10 @@ Update a list
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -1791,11 +1730,11 @@ $apiInstance = new Brevo\Client\Api\ContactsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \Brevo\Client\Model\UpdateList(); // \Brevo\Client\Model\UpdateList | Values to update a list
 $listId = 789; // int | Id of the list
-$updateList = new \Brevo\Client\Model\UpdateList(); // \Brevo\Client\Model\UpdateList | Values to update a list
 
 try {
-    $apiInstance->updateList($listId, $updateList);
+    $apiInstance->updateList($body, $listId);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->updateList: ', $e->getMessage(), PHP_EOL;
 }
@@ -1806,8 +1745,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**\Brevo\Client\Model\UpdateList**](../Model/UpdateList.md)| Values to update a list |
  **listId** | **int**| Id of the list |
- **updateList** | [**\Brevo\Client\Model\UpdateList**](../Model/UpdateList.md)| Values to update a list |
 
 ### Return type
 
