@@ -1,6 +1,6 @@
 <?php
 /**
- * ErrorModel
+ * ContactErrorModel
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Brevo\Client\ObjectSerializer;
 
 /**
- * ErrorModel Class Doc Comment
+ * ContactErrorModel Class Doc Comment
  *
  * @category Class
  * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ErrorModel implements ModelInterface, ArrayAccess
+class ContactErrorModel implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'errorModel';
+    protected static $swaggerModelName = 'contactErrorModel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,8 @@ class ErrorModel implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'code' => 'string',
-        'message' => 'string'
+        'message' => 'string',
+        'metadata' => 'object'
     ];
 
     /**
@@ -67,7 +68,8 @@ class ErrorModel implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'code' => null,
-        'message' => null
+        'message' => null,
+        'metadata' => null
     ];
 
     /**
@@ -98,7 +100,8 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'code' => 'code',
-        'message' => 'message'
+        'message' => 'message',
+        'metadata' => 'metadata'
     ];
 
     /**
@@ -108,7 +111,8 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'code' => 'setCode',
-        'message' => 'setMessage'
+        'message' => 'setMessage',
+        'metadata' => 'setMetadata'
     ];
 
     /**
@@ -118,7 +122,8 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'code' => 'getCode',
-        'message' => 'getMessage'
+        'message' => 'getMessage',
+        'metadata' => 'getMetadata'
     ];
 
     /**
@@ -164,20 +169,11 @@ class ErrorModel implements ModelInterface, ArrayAccess
 
     const CODE_INVALID_PARAMETER = 'invalid_parameter';
     const CODE_MISSING_PARAMETER = 'missing_parameter';
-    const CODE_OUT_OF_RANGE = 'out_of_range';
-    const CODE_CAMPAIGN_PROCESSING = 'campaign_processing';
-    const CODE_CAMPAIGN_SENT = 'campaign_sent';
     const CODE_DOCUMENT_NOT_FOUND = 'document_not_found';
-    const CODE_NOT_ENOUGH_CREDITS = 'not_enough_credits';
-    const CODE_PERMISSION_DENIED = 'permission_denied';
+    const CODE_ACCOUNT_IN_PROCESS = 'account_in_process';
     const CODE_DUPLICATE_PARAMETER = 'duplicate_parameter';
-    const CODE_DUPLICATE_REQUEST = 'duplicate_request';
     const CODE_METHOD_NOT_ALLOWED = 'method_not_allowed';
-    const CODE_UNAUTHORIZED = 'unauthorized';
-    const CODE_ACCOUNT_UNDER_VALIDATION = 'account_under_validation';
-    const CODE_NOT_ACCEPTABLE = 'not_acceptable';
-    const CODE_BAD_REQUEST = 'bad_request';
-    const CODE_UNPROCESSABLE_ENTITY = 'unprocessable_entity';
+    const CODE_OUT_OF_RANGE = 'out_of_range';
 
     /**
      * Gets allowable values of the enum
@@ -189,20 +185,11 @@ class ErrorModel implements ModelInterface, ArrayAccess
         return [
             self::CODE_INVALID_PARAMETER,
             self::CODE_MISSING_PARAMETER,
-            self::CODE_OUT_OF_RANGE,
-            self::CODE_CAMPAIGN_PROCESSING,
-            self::CODE_CAMPAIGN_SENT,
             self::CODE_DOCUMENT_NOT_FOUND,
-            self::CODE_NOT_ENOUGH_CREDITS,
-            self::CODE_PERMISSION_DENIED,
+            self::CODE_ACCOUNT_IN_PROCESS,
             self::CODE_DUPLICATE_PARAMETER,
-            self::CODE_DUPLICATE_REQUEST,
             self::CODE_METHOD_NOT_ALLOWED,
-            self::CODE_UNAUTHORIZED,
-            self::CODE_ACCOUNT_UNDER_VALIDATION,
-            self::CODE_NOT_ACCEPTABLE,
-            self::CODE_BAD_REQUEST,
-            self::CODE_UNPROCESSABLE_ENTITY,
+            self::CODE_OUT_OF_RANGE,
         ];
     }
 
@@ -223,6 +210,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
     {
         $this->container['code'] = isset($data['code']) ? $data['code'] : null;
         $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
     }
 
     /**
@@ -316,6 +304,30 @@ class ErrorModel implements ModelInterface, ArrayAccess
     public function setMessage($message)
     {
         $this->container['message'] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Gets metadata
+     *
+     * @return object
+     */
+    public function getMetadata()
+    {
+        return $this->container['metadata'];
+    }
+
+    /**
+     * Sets metadata
+     *
+     * @param object $metadata Additional information about the error
+     *
+     * @return $this
+     */
+    public function setMetadata($metadata)
+    {
+        $this->container['metadata'] = $metadata;
 
         return $this;
     }

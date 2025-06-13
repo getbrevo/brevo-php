@@ -1,6 +1,6 @@
 <?php
 /**
- * ErrorModelTest
+ * ContactErrorModelTest
  *
  * PHP version 5
  *
@@ -31,15 +31,15 @@ namespace Brevo\Client;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ErrorModelTest Class Doc Comment
+ * ContactErrorModelTest Class Doc Comment
  *
  * @category    Class
- * @description ErrorModel
+ * @description ContactErrorModel
  * @package     Brevo\Client
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ErrorModelTest extends TestCase
+class ContactErrorModelTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class ErrorModelTest extends TestCase
     }
 
     /**
-     * Test "ErrorModel"
+     * Test "ContactErrorModel"
      */
-    public function testErrorModel()
+    public function testContactErrorModel()
     {
     }
 
@@ -88,6 +88,13 @@ class ErrorModelTest extends TestCase
      * Test attribute "message"
      */
     public function testPropertyMessage()
+    {
+    }
+
+    /**
+     * Test attribute "metadata"
+     */
+    public function testPropertyMetadata()
     {
     }
 }
