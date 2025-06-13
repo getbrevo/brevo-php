@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateContact
+ * ContactErrorModel
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Brevo\Client\ObjectSerializer;
 
 /**
- * CreateContact Class Doc Comment
+ * ContactErrorModel Class Doc Comment
  *
  * @category Class
  * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CreateContact implements ModelInterface, ArrayAccess
+class ContactErrorModel implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class CreateContact implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'createContact';
+    protected static $swaggerModelName = 'contactErrorModel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,14 +56,9 @@ class CreateContact implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'email' => 'string',
-        'extId' => 'string',
-        'attributes' => 'map[string,object]',
-        'emailBlacklisted' => 'bool',
-        'smsBlacklisted' => 'bool',
-        'listIds' => 'int[]',
-        'updateEnabled' => 'bool',
-        'smtpBlacklistSender' => 'string[]'
+        'code' => 'string',
+        'message' => 'string',
+        'metadata' => 'object'
     ];
 
     /**
@@ -72,14 +67,9 @@ class CreateContact implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'email' => 'email',
-        'extId' => null,
-        'attributes' => null,
-        'emailBlacklisted' => null,
-        'smsBlacklisted' => null,
-        'listIds' => 'int64',
-        'updateEnabled' => null,
-        'smtpBlacklistSender' => 'email'
+        'code' => null,
+        'message' => null,
+        'metadata' => null
     ];
 
     /**
@@ -109,14 +99,9 @@ class CreateContact implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'email' => 'email',
-        'extId' => 'ext_id',
-        'attributes' => 'attributes',
-        'emailBlacklisted' => 'emailBlacklisted',
-        'smsBlacklisted' => 'smsBlacklisted',
-        'listIds' => 'listIds',
-        'updateEnabled' => 'updateEnabled',
-        'smtpBlacklistSender' => 'smtpBlacklistSender'
+        'code' => 'code',
+        'message' => 'message',
+        'metadata' => 'metadata'
     ];
 
     /**
@@ -125,14 +110,9 @@ class CreateContact implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'email' => 'setEmail',
-        'extId' => 'setExtId',
-        'attributes' => 'setAttributes',
-        'emailBlacklisted' => 'setEmailBlacklisted',
-        'smsBlacklisted' => 'setSmsBlacklisted',
-        'listIds' => 'setListIds',
-        'updateEnabled' => 'setUpdateEnabled',
-        'smtpBlacklistSender' => 'setSmtpBlacklistSender'
+        'code' => 'setCode',
+        'message' => 'setMessage',
+        'metadata' => 'setMetadata'
     ];
 
     /**
@@ -141,14 +121,9 @@ class CreateContact implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'email' => 'getEmail',
-        'extId' => 'getExtId',
-        'attributes' => 'getAttributes',
-        'emailBlacklisted' => 'getEmailBlacklisted',
-        'smsBlacklisted' => 'getSmsBlacklisted',
-        'listIds' => 'getListIds',
-        'updateEnabled' => 'getUpdateEnabled',
-        'smtpBlacklistSender' => 'getSmtpBlacklistSender'
+        'code' => 'getCode',
+        'message' => 'getMessage',
+        'metadata' => 'getMetadata'
     ];
 
     /**
@@ -192,7 +167,31 @@ class CreateContact implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
+    const CODE_INVALID_PARAMETER = 'invalid_parameter';
+    const CODE_MISSING_PARAMETER = 'missing_parameter';
+    const CODE_DOCUMENT_NOT_FOUND = 'document_not_found';
+    const CODE_ACCOUNT_IN_PROCESS = 'account_in_process';
+    const CODE_DUPLICATE_PARAMETER = 'duplicate_parameter';
+    const CODE_METHOD_NOT_ALLOWED = 'method_not_allowed';
+    const CODE_OUT_OF_RANGE = 'out_of_range';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCodeAllowableValues()
+    {
+        return [
+            self::CODE_INVALID_PARAMETER,
+            self::CODE_MISSING_PARAMETER,
+            self::CODE_DOCUMENT_NOT_FOUND,
+            self::CODE_ACCOUNT_IN_PROCESS,
+            self::CODE_DUPLICATE_PARAMETER,
+            self::CODE_METHOD_NOT_ALLOWED,
+            self::CODE_OUT_OF_RANGE,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -209,14 +208,9 @@ class CreateContact implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
-        $this->container['extId'] = isset($data['extId']) ? $data['extId'] : null;
-        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
-        $this->container['emailBlacklisted'] = isset($data['emailBlacklisted']) ? $data['emailBlacklisted'] : null;
-        $this->container['smsBlacklisted'] = isset($data['smsBlacklisted']) ? $data['smsBlacklisted'] : null;
-        $this->container['listIds'] = isset($data['listIds']) ? $data['listIds'] : null;
-        $this->container['updateEnabled'] = isset($data['updateEnabled']) ? $data['updateEnabled'] : false;
-        $this->container['smtpBlacklistSender'] = isset($data['smtpBlacklistSender']) ? $data['smtpBlacklistSender'] : null;
+        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
+        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
     }
 
     /**
@@ -228,6 +222,20 @@ class CreateContact implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['code'] === null) {
+            $invalidProperties[] = "'code' can't be null";
+        }
+        $allowedValues = $this->getCodeAllowableValues();
+        if (!is_null($this->container['code']) && !in_array($this->container['code'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'code', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -244,193 +252,82 @@ class CreateContact implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets email
+     * Gets code
      *
      * @return string
      */
-    public function getEmail()
+    public function getCode()
     {
-        return $this->container['email'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets email
+     * Sets code
      *
-     * @param string $email Email address of the user. **Mandatory if \"ext_id\"  & \"SMS\" field is not passed.**
+     * @param string $code Error code displayed in case of a failure
      *
      * @return $this
      */
-    public function setEmail($email)
+    public function setCode($code)
     {
-        $this->container['email'] = $email;
+        $allowedValues = $this->getCodeAllowableValues();
+        if (!in_array($code, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'code', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['code'] = $code;
 
         return $this;
     }
 
     /**
-     * Gets extId
+     * Gets message
      *
      * @return string
      */
-    public function getExtId()
+    public function getMessage()
     {
-        return $this->container['extId'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets extId
+     * Sets message
      *
-     * @param string $extId Pass your own Id to create a contact.
+     * @param string $message Readable message associated to the failure
      *
      * @return $this
      */
-    public function setExtId($extId)
+    public function setMessage($message)
     {
-        $this->container['extId'] = $extId;
+        $this->container['message'] = $message;
 
         return $this;
     }
 
     /**
-     * Gets attributes
+     * Gets metadata
      *
-     * @return map[string,object]
+     * @return object
      */
-    public function getAttributes()
+    public function getMetadata()
     {
-        return $this->container['attributes'];
+        return $this->container['metadata'];
     }
 
     /**
-     * Sets attributes
+     * Sets metadata
      *
-     * @param map[string,object] $attributes Pass the set of attributes and their values. These attributes must be present in your Brevo account. For eg. {'FNAME':'Elly', 'LNAME':'Roger', 'COUNTRIES':['India','China']}
+     * @param object $metadata Additional information about the error
      *
      * @return $this
      */
-    public function setAttributes($attributes)
+    public function setMetadata($metadata)
     {
-        $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
-
-    /**
-     * Gets emailBlacklisted
-     *
-     * @return bool
-     */
-    public function getEmailBlacklisted()
-    {
-        return $this->container['emailBlacklisted'];
-    }
-
-    /**
-     * Sets emailBlacklisted
-     *
-     * @param bool $emailBlacklisted Set this field to blacklist the contact for emails (emailBlacklisted = true)
-     *
-     * @return $this
-     */
-    public function setEmailBlacklisted($emailBlacklisted)
-    {
-        $this->container['emailBlacklisted'] = $emailBlacklisted;
-
-        return $this;
-    }
-
-    /**
-     * Gets smsBlacklisted
-     *
-     * @return bool
-     */
-    public function getSmsBlacklisted()
-    {
-        return $this->container['smsBlacklisted'];
-    }
-
-    /**
-     * Sets smsBlacklisted
-     *
-     * @param bool $smsBlacklisted Set this field to blacklist the contact for SMS (smsBlacklisted = true)
-     *
-     * @return $this
-     */
-    public function setSmsBlacklisted($smsBlacklisted)
-    {
-        $this->container['smsBlacklisted'] = $smsBlacklisted;
-
-        return $this;
-    }
-
-    /**
-     * Gets listIds
-     *
-     * @return int[]
-     */
-    public function getListIds()
-    {
-        return $this->container['listIds'];
-    }
-
-    /**
-     * Sets listIds
-     *
-     * @param int[] $listIds Ids of the lists to add the contact to
-     *
-     * @return $this
-     */
-    public function setListIds($listIds)
-    {
-        $this->container['listIds'] = $listIds;
-
-        return $this;
-    }
-
-    /**
-     * Gets updateEnabled
-     *
-     * @return bool
-     */
-    public function getUpdateEnabled()
-    {
-        return $this->container['updateEnabled'];
-    }
-
-    /**
-     * Sets updateEnabled
-     *
-     * @param bool $updateEnabled Facilitate to update the existing contact in the same request (updateEnabled = true)
-     *
-     * @return $this
-     */
-    public function setUpdateEnabled($updateEnabled)
-    {
-        $this->container['updateEnabled'] = $updateEnabled;
-
-        return $this;
-    }
-
-    /**
-     * Gets smtpBlacklistSender
-     *
-     * @return string[]
-     */
-    public function getSmtpBlacklistSender()
-    {
-        return $this->container['smtpBlacklistSender'];
-    }
-
-    /**
-     * Sets smtpBlacklistSender
-     *
-     * @param string[] $smtpBlacklistSender transactional email forbidden sender for contact. Use only for email Contact ( only available if updateEnabled = true )
-     *
-     * @return $this
-     */
-    public function setSmtpBlacklistSender($smtpBlacklistSender)
-    {
-        $this->container['smtpBlacklistSender'] = $smtpBlacklistSender;
+        $this->container['metadata'] = $metadata;
 
         return $this;
     }

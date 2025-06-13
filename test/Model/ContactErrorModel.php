@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateContactTest
+ * ContactErrorModelTest
  *
  * PHP version 5
  *
@@ -31,15 +31,15 @@ namespace Brevo\Client;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreateContactTest Class Doc Comment
+ * ContactErrorModelTest Class Doc Comment
  *
  * @category    Class
- * @description CreateContact
+ * @description ContactErrorModel
  * @package     Brevo\Client
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class CreateContactTest extends TestCase
+class ContactErrorModelTest extends TestCase
 {
 
     /**
@@ -71,65 +71,30 @@ class CreateContactTest extends TestCase
     }
 
     /**
-     * Test "CreateContact"
+     * Test "ContactErrorModel"
      */
-    public function testCreateContact()
+    public function testContactErrorModel()
     {
     }
 
     /**
-     * Test attribute "email"
+     * Test attribute "code"
      */
-    public function testPropertyEmail()
+    public function testPropertyCode()
     {
     }
 
     /**
-     * Test attribute "extId"
+     * Test attribute "message"
      */
-    public function testPropertyExtId()
+    public function testPropertyMessage()
     {
     }
 
     /**
-     * Test attribute "attributes"
+     * Test attribute "metadata"
      */
-    public function testPropertyAttributes()
-    {
-    }
-
-    /**
-     * Test attribute "emailBlacklisted"
-     */
-    public function testPropertyEmailBlacklisted()
-    {
-    }
-
-    /**
-     * Test attribute "smsBlacklisted"
-     */
-    public function testPropertySmsBlacklisted()
-    {
-    }
-
-    /**
-     * Test attribute "listIds"
-     */
-    public function testPropertyListIds()
-    {
-    }
-
-    /**
-     * Test attribute "updateEnabled"
-     */
-    public function testPropertyUpdateEnabled()
-    {
-    }
-
-    /**
-     * Test attribute "smtpBlacklistSender"
-     */
-    public function testPropertySmtpBlacklistSender()
+    public function testPropertyMetadata()
     {
     }
 }
