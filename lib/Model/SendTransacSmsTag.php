@@ -1,6 +1,6 @@
 <?php
 /**
- * SendSms
+ * SendTransacSmsTag
  *
  * PHP version 5
  *
@@ -32,14 +32,15 @@ use \ArrayAccess;
 use \Brevo\Client\ObjectSerializer;
 
 /**
- * SendSms Class Doc Comment
+ * SendTransacSmsTag Class Doc Comment
  *
  * @category Class
+ * @description Tag of the message
  * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class SendSms implements ModelInterface, ArrayAccess
+class SendTransacSmsTag implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +49,7 @@ class SendSms implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'sendSms';
+    protected static $swaggerModelName = 'sendTransacSms_tag';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,11 +57,7 @@ class SendSms implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'reference' => 'string',
-        'messageId' => 'int',
-        'smsCount' => 'int',
-        'usedCredits' => 'float',
-        'remainingCredits' => 'float'
+        'field' => 'object'
     ];
 
     /**
@@ -69,11 +66,7 @@ class SendSms implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'reference' => null,
-        'messageId' => 'int64',
-        'smsCount' => 'int64',
-        'usedCredits' => 'float',
-        'remainingCredits' => 'float'
+        'field' => null
     ];
 
     /**
@@ -103,11 +96,7 @@ class SendSms implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'reference' => 'reference',
-        'messageId' => 'messageId',
-        'smsCount' => 'smsCount',
-        'usedCredits' => 'usedCredits',
-        'remainingCredits' => 'remainingCredits'
+        'field' => 'field'
     ];
 
     /**
@@ -116,11 +105,7 @@ class SendSms implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'reference' => 'setReference',
-        'messageId' => 'setMessageId',
-        'smsCount' => 'setSmsCount',
-        'usedCredits' => 'setUsedCredits',
-        'remainingCredits' => 'setRemainingCredits'
+        'field' => 'setField'
     ];
 
     /**
@@ -129,11 +114,7 @@ class SendSms implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'reference' => 'getReference',
-        'messageId' => 'getMessageId',
-        'smsCount' => 'getSmsCount',
-        'usedCredits' => 'getUsedCredits',
-        'remainingCredits' => 'getRemainingCredits'
+        'field' => 'getField'
     ];
 
     /**
@@ -194,11 +175,7 @@ class SendSms implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['reference'] = isset($data['reference']) ? $data['reference'] : null;
-        $this->container['messageId'] = isset($data['messageId']) ? $data['messageId'] : null;
-        $this->container['smsCount'] = isset($data['smsCount']) ? $data['smsCount'] : null;
-        $this->container['usedCredits'] = isset($data['usedCredits']) ? $data['usedCredits'] : null;
-        $this->container['remainingCredits'] = isset($data['remainingCredits']) ? $data['remainingCredits'] : null;
+        $this->container['field'] = isset($data['field']) ? $data['field'] : null;
     }
 
     /**
@@ -210,12 +187,6 @@ class SendSms implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['reference'] === null) {
-            $invalidProperties[] = "'reference' can't be null";
-        }
-        if ($this->container['messageId'] === null) {
-            $invalidProperties[] = "'messageId' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -232,121 +203,25 @@ class SendSms implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets reference
+     * Gets field
      *
-     * @return string
+     * @return object
      */
-    public function getReference()
+    public function getField()
     {
-        return $this->container['reference'];
+        return $this->container['field'];
     }
 
     /**
-     * Sets reference
+     * Sets field
      *
-     * @param string $reference reference
+     * @param object $field A tag can be a string or an array of strings.
      *
      * @return $this
      */
-    public function setReference($reference)
+    public function setField($field)
     {
-        $this->container['reference'] = $reference;
-
-        return $this;
-    }
-
-    /**
-     * Gets messageId
-     *
-     * @return int
-     */
-    public function getMessageId()
-    {
-        return $this->container['messageId'];
-    }
-
-    /**
-     * Sets messageId
-     *
-     * @param int $messageId messageId
-     *
-     * @return $this
-     */
-    public function setMessageId($messageId)
-    {
-        $this->container['messageId'] = $messageId;
-
-        return $this;
-    }
-
-    /**
-     * Gets smsCount
-     *
-     * @return int
-     */
-    public function getSmsCount()
-    {
-        return $this->container['smsCount'];
-    }
-
-    /**
-     * Sets smsCount
-     *
-     * @param int $smsCount Count of SMS's to send multiple text messages
-     *
-     * @return $this
-     */
-    public function setSmsCount($smsCount)
-    {
-        $this->container['smsCount'] = $smsCount;
-
-        return $this;
-    }
-
-    /**
-     * Gets usedCredits
-     *
-     * @return float
-     */
-    public function getUsedCredits()
-    {
-        return $this->container['usedCredits'];
-    }
-
-    /**
-     * Sets usedCredits
-     *
-     * @param float $usedCredits SMS credits used per text message
-     *
-     * @return $this
-     */
-    public function setUsedCredits($usedCredits)
-    {
-        $this->container['usedCredits'] = $usedCredits;
-
-        return $this;
-    }
-
-    /**
-     * Gets remainingCredits
-     *
-     * @return float
-     */
-    public function getRemainingCredits()
-    {
-        return $this->container['remainingCredits'];
-    }
-
-    /**
-     * Sets remainingCredits
-     *
-     * @param float $remainingCredits Remaining SMS credits of the user
-     *
-     * @return $this
-     */
-    public function setRemainingCredits($remainingCredits)
-    {
-        $this->container['remainingCredits'] = $remainingCredits;
+        $this->container['field'] = $field;
 
         return $this;
     }
