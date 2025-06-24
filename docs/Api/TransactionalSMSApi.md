@@ -4,11 +4,11 @@ All URIs are relative to *https://api.brevo.com/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getSmsEvents**](TransactionalSMSApi.md#getSmsEvents) | **GET** /transactionalSMS/statistics/events | Get all your SMS activity (unaggregated events)
-[**getTransacAggregatedSmsReport**](TransactionalSMSApi.md#getTransacAggregatedSmsReport) | **GET** /transactionalSMS/statistics/aggregatedReport | Get your SMS activity aggregated over a period of time
-[**getTransacSmsReport**](TransactionalSMSApi.md#getTransacSmsReport) | **GET** /transactionalSMS/statistics/reports | Get your SMS activity aggregated per day
-[**sendTransacSms**](TransactionalSMSApi.md#sendTransacSms) | **POST** /transactionalSMS/sms | Send SMS message to a mobile number
-
+[**getSmsEvents**](TransactionalSMSApi.md#getsmsevents) | **GET** /transactionalSMS/statistics/events | Get all your SMS activity (unaggregated events)
+[**getTransacAggregatedSmsReport**](TransactionalSMSApi.md#gettransacaggregatedsmsreport) | **GET** /transactionalSMS/statistics/aggregatedReport | Get your SMS activity aggregated over a period of time
+[**getTransacSmsReport**](TransactionalSMSApi.md#gettransacsmsreport) | **GET** /transactionalSMS/statistics/reports | Get your SMS activity aggregated per day
+[**sendAsyncTransactionalSms**](TransactionalSMSApi.md#sendasynctransactionalsms) | **POST** /transactionalSMS/send | Send SMS message asynchronously to a mobile number
+[**sendTransacSms**](TransactionalSMSApi.md#sendtransacsms) | **POST** /transactionalSMS/sms | Send SMS message to a mobile number
 
 # **getSmsEvents**
 > \Brevo\Client\Model\GetSmsEventReport getSmsEvents($limit, $startDate, $endDate, $offset, $days, $phoneNumber, $event, $tags, $sort)
@@ -19,12 +19,10 @@ Get all your SMS activity (unaggregated events)
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -92,12 +90,10 @@ Get your SMS activity aggregated over a period of time
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -155,12 +151,10 @@ Get your SMS activity aggregated per day
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -211,21 +205,19 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **sendTransacSms**
-> \Brevo\Client\Model\SendSms sendTransacSms($sendTransacSms)
+# **sendAsyncTransactionalSms**
+> sendAsyncTransactionalSms()
 
-Send SMS message to a mobile number
+Send SMS message asynchronously to a mobile number
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -236,10 +228,60 @@ $apiInstance = new Brevo\Client\Api\TransactionalSMSApi(
     new GuzzleHttp\Client(),
     $config
 );
-$sendTransacSms = new \Brevo\Client\Model\SendTransacSms(); // \Brevo\Client\Model\SendTransacSms | Values to send a transactional SMS
 
 try {
-    $result = $apiInstance->sendTransacSms($sendTransacSms);
+    $apiInstance->sendAsyncTransactionalSms();
+} catch (Exception $e) {
+    echo 'Exception when calling TransactionalSMSApi->sendAsyncTransactionalSms: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api-key](../../README.md#api-key), [partner-key](../../README.md#partner-key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **sendTransacSms**
+> \Brevo\Client\Model\SendSms sendTransacSms($body)
+
+Send SMS message to a mobile number
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+// Configure API key authorization: api-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
+$config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
+
+$apiInstance = new Brevo\Client\Api\TransactionalSMSApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$body = new \Brevo\Client\Model\SendTransacSms(); // \Brevo\Client\Model\SendTransacSms | Values to send a transactional SMS
+
+try {
+    $result = $apiInstance->sendTransacSms($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TransactionalSMSApi->sendTransacSms: ', $e->getMessage(), PHP_EOL;
@@ -251,7 +293,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendTransacSms** | [**\Brevo\Client\Model\SendTransacSms**](../Model/SendTransacSms.md)| Values to send a transactional SMS |
+ **body** | [**\Brevo\Client\Model\SendTransacSms**](../Model/SendTransacSms.md)| Values to send a transactional SMS |
 
 ### Return type
 
