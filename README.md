@@ -26,14 +26,14 @@ Create a ```composer.json``` file in any directory & add below code in composer.
 ```
 {
 "require": {
-"getbrevo/brevo-php": "1.x.x"
+"getbrevo/brevo-php": "2.x.x"
 }
 }
 ```
 
 Then run below commands in the same directory
 ```
-composer require getbrevo/brevo-php "1.x.x"
+composer require getbrevo/brevo-php "2.x.x"
 ```
 
 Further do:
