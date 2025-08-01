@@ -1,11 +1,11 @@
 <?php
 /**
- * ErrorModel
+ * AllOfgetEmailCampaignsCampaignsItems
  *
  * PHP version 5
  *
  * @category Class
- * @package  Brevo\Client
+ * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,20 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace Brevo\Client\Model;
-
-use \ArrayAccess;
-use \Brevo\Client\ObjectSerializer;
+namespace Swagger\Client\Model;
+use \Swagger\Client\ObjectSerializer;
 
 /**
- * ErrorModel Class Doc Comment
+ * AllOfgetEmailCampaignsCampaignsItems Class Doc Comment
  *
  * @category Class
- * @package  Brevo\Client
+ * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ErrorModel implements ModelInterface, ArrayAccess
+class AllOfgetEmailCampaignsCampaignsItems extends GetExtendedCampaignOverview 
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +46,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'errorModel';
+    protected static $swaggerModelName = 'AllOfgetEmailCampaignsCampaignsItems';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,8 +54,9 @@ class ErrorModel implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'code' => 'string',
-        'message' => 'string'
+        'recipients' => 'object',
+        'statistics' => 'object',
+        'share_link' => 'string'
     ];
 
     /**
@@ -66,8 +65,9 @@ class ErrorModel implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'code' => null,
-        'message' => null
+        'recipients' => null,
+        'statistics' => null,
+        'share_link' => 'url'
     ];
 
     /**
@@ -77,7 +77,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes;
+        return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /**
@@ -87,7 +87,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats;
+        return self::$swaggerFormats + parent::swaggerFormats();
     }
 
     /**
@@ -97,8 +97,9 @@ class ErrorModel implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'message' => 'message'
+        'recipients' => 'recipients',
+        'statistics' => 'statistics',
+        'share_link' => 'shareLink'
     ];
 
     /**
@@ -107,8 +108,9 @@ class ErrorModel implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'recipients' => 'setRecipients',
+        'statistics' => 'setStatistics',
+        'share_link' => 'setShareLink'
     ];
 
     /**
@@ -117,8 +119,9 @@ class ErrorModel implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'recipients' => 'getRecipients',
+        'statistics' => 'getStatistics',
+        'share_link' => 'getShareLink'
     ];
 
     /**
@@ -129,7 +132,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -139,7 +142,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -149,7 +152,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -162,56 +165,8 @@ class ErrorModel implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const CODE_INVALID_PARAMETER = 'invalid_parameter';
-    const CODE_MISSING_PARAMETER = 'missing_parameter';
-    const CODE_OUT_OF_RANGE = 'out_of_range';
-    const CODE_CAMPAIGN_PROCESSING = 'campaign_processing';
-    const CODE_CAMPAIGN_SENT = 'campaign_sent';
-    const CODE_DOCUMENT_NOT_FOUND = 'document_not_found';
-    const CODE_NOT_ENOUGH_CREDITS = 'not_enough_credits';
-    const CODE_PERMISSION_DENIED = 'permission_denied';
-    const CODE_DUPLICATE_PARAMETER = 'duplicate_parameter';
-    const CODE_DUPLICATE_REQUEST = 'duplicate_request';
-    const CODE_METHOD_NOT_ALLOWED = 'method_not_allowed';
-    const CODE_UNAUTHORIZED = 'unauthorized';
-    const CODE_ACCOUNT_UNDER_VALIDATION = 'account_under_validation';
-    const CODE_NOT_ACCEPTABLE = 'not_acceptable';
-    const CODE_BAD_REQUEST = 'bad_request';
-    const CODE_UNPROCESSABLE_ENTITY = 'unprocessable_entity';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getCodeAllowableValues()
-    {
-        return [
-            self::CODE_INVALID_PARAMETER,
-            self::CODE_MISSING_PARAMETER,
-            self::CODE_OUT_OF_RANGE,
-            self::CODE_CAMPAIGN_PROCESSING,
-            self::CODE_CAMPAIGN_SENT,
-            self::CODE_DOCUMENT_NOT_FOUND,
-            self::CODE_NOT_ENOUGH_CREDITS,
-            self::CODE_PERMISSION_DENIED,
-            self::CODE_DUPLICATE_PARAMETER,
-            self::CODE_DUPLICATE_REQUEST,
-            self::CODE_METHOD_NOT_ALLOWED,
-            self::CODE_UNAUTHORIZED,
-            self::CODE_ACCOUNT_UNDER_VALIDATION,
-            self::CODE_NOT_ACCEPTABLE,
-            self::CODE_BAD_REQUEST,
-            self::CODE_UNPROCESSABLE_ENTITY,
-        ];
-    }
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -219,10 +174,13 @@ class ErrorModel implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(?array $data = null)
+    public function __construct(array $data = null)
     {
-        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        parent::__construct($data);
+
+        $this->container['recipients'] = isset($data['recipients']) ? $data['recipients'] : null;
+        $this->container['statistics'] = isset($data['statistics']) ? $data['statistics'] : null;
+        $this->container['share_link'] = isset($data['share_link']) ? $data['share_link'] : null;
     }
 
     /**
@@ -232,21 +190,13 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
+        if ($this->container['recipients'] === null) {
+            $invalidProperties[] = "'recipients' can't be null";
         }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!is_null($this->container['code']) && !in_array($this->container['code'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'code', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['statistics'] === null) {
+            $invalidProperties[] = "'statistics' can't be null";
         }
         return $invalidProperties;
     }
@@ -264,58 +214,73 @@ class ErrorModel implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets code
+     * Gets recipients
      *
-     * @return string
+     * @return object
      */
-    public function getCode()
+    public function getRecipients()
     {
-        return $this->container['code'];
+        return $this->container['recipients'];
     }
 
     /**
-     * Sets code
+     * Sets recipients
      *
-     * @param string $code Error code displayed in case of a failure
+     * @param object $recipients recipients
      *
      * @return $this
      */
-    public function setCode($code)
+    public function setRecipients($recipients)
     {
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!in_array($code, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'code', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['code'] = $code;
+        $this->container['recipients'] = $recipients;
 
         return $this;
     }
 
     /**
-     * Gets message
+     * Gets statistics
      *
-     * @return string
+     * @return object
      */
-    public function getMessage()
+    public function getStatistics()
     {
-        return $this->container['message'];
+        return $this->container['statistics'];
     }
 
     /**
-     * Sets message
+     * Sets statistics
      *
-     * @param string $message Readable message associated to the failure
+     * @param object $statistics statistics
      *
      * @return $this
      */
-    public function setMessage($message)
+    public function setStatistics($statistics)
     {
-        $this->container['message'] = $message;
+        $this->container['statistics'] = $statistics;
+
+        return $this;
+    }
+
+    /**
+     * Gets share_link
+     *
+     * @return string
+     */
+    public function getShareLink()
+    {
+        return $this->container['share_link'];
+    }
+
+    /**
+     * Sets share_link
+     *
+     * @param string $share_link Link to share the campaign on social medias
+     *
+     * @return $this
+     */
+    public function setShareLink($share_link)
+    {
+        $this->container['share_link'] = $share_link;
 
         return $this;
     }
