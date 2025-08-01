@@ -1,11 +1,11 @@
 <?php
 /**
- * ErrorModel
+ * AllOfgetContactsContactsItems
  *
  * PHP version 5
  *
  * @category Class
- * @package  Brevo\Client
+ * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,20 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace Brevo\Client\Model;
-
-use \ArrayAccess;
-use \Brevo\Client\ObjectSerializer;
+namespace Swagger\Client\Model;
+use \Swagger\Client\ObjectSerializer;
 
 /**
- * ErrorModel Class Doc Comment
+ * AllOfgetContactsContactsItems Class Doc Comment
  *
  * @category Class
- * @package  Brevo\Client
+ * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ErrorModel implements ModelInterface, ArrayAccess
+class AllOfgetContactsContactsItems extends GetContactDetails 
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +46,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'errorModel';
+    protected static $swaggerModelName = 'AllOfgetContactsContactsItems';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,8 +54,6 @@ class ErrorModel implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'code' => 'string',
-        'message' => 'string'
     ];
 
     /**
@@ -66,8 +62,6 @@ class ErrorModel implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'code' => null,
-        'message' => null
     ];
 
     /**
@@ -77,7 +71,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes;
+        return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /**
@@ -87,7 +81,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats;
+        return self::$swaggerFormats + parent::swaggerFormats();
     }
 
     /**
@@ -97,8 +91,6 @@ class ErrorModel implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'message' => 'message'
     ];
 
     /**
@@ -107,8 +99,6 @@ class ErrorModel implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'message' => 'setMessage'
     ];
 
     /**
@@ -117,8 +107,6 @@ class ErrorModel implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'message' => 'getMessage'
     ];
 
     /**
@@ -129,7 +117,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -139,7 +127,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -149,7 +137,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -162,56 +150,8 @@ class ErrorModel implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const CODE_INVALID_PARAMETER = 'invalid_parameter';
-    const CODE_MISSING_PARAMETER = 'missing_parameter';
-    const CODE_OUT_OF_RANGE = 'out_of_range';
-    const CODE_CAMPAIGN_PROCESSING = 'campaign_processing';
-    const CODE_CAMPAIGN_SENT = 'campaign_sent';
-    const CODE_DOCUMENT_NOT_FOUND = 'document_not_found';
-    const CODE_NOT_ENOUGH_CREDITS = 'not_enough_credits';
-    const CODE_PERMISSION_DENIED = 'permission_denied';
-    const CODE_DUPLICATE_PARAMETER = 'duplicate_parameter';
-    const CODE_DUPLICATE_REQUEST = 'duplicate_request';
-    const CODE_METHOD_NOT_ALLOWED = 'method_not_allowed';
-    const CODE_UNAUTHORIZED = 'unauthorized';
-    const CODE_ACCOUNT_UNDER_VALIDATION = 'account_under_validation';
-    const CODE_NOT_ACCEPTABLE = 'not_acceptable';
-    const CODE_BAD_REQUEST = 'bad_request';
-    const CODE_UNPROCESSABLE_ENTITY = 'unprocessable_entity';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getCodeAllowableValues()
-    {
-        return [
-            self::CODE_INVALID_PARAMETER,
-            self::CODE_MISSING_PARAMETER,
-            self::CODE_OUT_OF_RANGE,
-            self::CODE_CAMPAIGN_PROCESSING,
-            self::CODE_CAMPAIGN_SENT,
-            self::CODE_DOCUMENT_NOT_FOUND,
-            self::CODE_NOT_ENOUGH_CREDITS,
-            self::CODE_PERMISSION_DENIED,
-            self::CODE_DUPLICATE_PARAMETER,
-            self::CODE_DUPLICATE_REQUEST,
-            self::CODE_METHOD_NOT_ALLOWED,
-            self::CODE_UNAUTHORIZED,
-            self::CODE_ACCOUNT_UNDER_VALIDATION,
-            self::CODE_NOT_ACCEPTABLE,
-            self::CODE_BAD_REQUEST,
-            self::CODE_UNPROCESSABLE_ENTITY,
-        ];
-    }
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -219,10 +159,10 @@ class ErrorModel implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(?array $data = null)
+    public function __construct(array $data = null)
     {
-        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        parent::__construct($data);
+
     }
 
     /**
@@ -232,22 +172,8 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
-        }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!is_null($this->container['code']) && !in_array($this->container['code'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'code', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -262,63 +188,6 @@ class ErrorModel implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets code
-     *
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->container['code'];
-    }
-
-    /**
-     * Sets code
-     *
-     * @param string $code Error code displayed in case of a failure
-     *
-     * @return $this
-     */
-    public function setCode($code)
-    {
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!in_array($code, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'code', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['code'] = $code;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message Readable message associated to the failure
-     *
-     * @return $this
-     */
-    public function setMessage($message)
-    {
-        $this->container['message'] = $message;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *

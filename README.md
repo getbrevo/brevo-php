@@ -352,6 +352,8 @@ Class | Method | HTTP request | Description
  - [AddContactToList](docs/Model/AddContactToList.md)
  - [AddCredits](docs/Model/AddCredits.md)
  - [AuthenticateDomainModel](docs/Model/AuthenticateDomainModel.md)
+ - [AllOfgetContactsContactsItems](docs/Model/AllOfgetContactsContactsItems.md)
+ - [AllOfgetEmailCampaignsCampaignsItems](docs/Model/AllOfgetEmailCampaignsCampaignsItems.md)
  - [BlockDomain](docs/Model/BlockDomain.md)
  - [Body](docs/Model/Body.md)
  - [Body1](docs/Model/Body1.md)
