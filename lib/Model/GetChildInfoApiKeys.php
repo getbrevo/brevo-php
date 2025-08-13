@@ -181,7 +181,7 @@ class GetChildInfoApiKeys implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['v2'] = isset($data['v2']) ? $data['v2'] : null;
         $this->container['v3'] = isset($data['v3']) ? $data['v3'] : null;

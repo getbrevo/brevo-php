@@ -220,7 +220,7 @@ class CreateAttribute implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['value'] = isset($data['value']) ? $data['value'] : null;
         $this->container['isRecurring'] = isset($data['isRecurring']) ? $data['isRecurring'] : null;

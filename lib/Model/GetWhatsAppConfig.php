@@ -234,7 +234,7 @@ class GetWhatsAppConfig implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['whatsappBusinessAccountId'] = isset($data['whatsappBusinessAccountId']) ? $data['whatsappBusinessAccountId'] : null;
         $this->container['sendingLimit'] = isset($data['sendingLimit']) ? $data['sendingLimit'] : null;
