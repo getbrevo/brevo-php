@@ -235,7 +235,7 @@ class GetAggregatedReport implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['range'] = isset($data['range']) ? $data['range'] : null;
         $this->container['requests'] = isset($data['requests']) ? $data['requests'] : null;

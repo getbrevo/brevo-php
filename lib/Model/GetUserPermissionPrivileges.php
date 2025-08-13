@@ -180,7 +180,7 @@ class GetUserPermissionPrivileges implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['feature'] = isset($data['feature']) ? $data['feature'] : null;
         $this->container['permissions'] = isset($data['permissions']) ? $data['permissions'] : null;

@@ -180,7 +180,7 @@ class GetCategories implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['categories'] = isset($data['categories']) ? $data['categories'] : null;
         $this->container['count'] = isset($data['count']) ? $data['count'] : null;

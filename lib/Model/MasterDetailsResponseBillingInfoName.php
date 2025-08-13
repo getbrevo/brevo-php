@@ -181,7 +181,7 @@ class MasterDetailsResponseBillingInfoName implements ModelInterface, ArrayAcces
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['givenName'] = isset($data['givenName']) ? $data['givenName'] : null;
         $this->container['familyName'] = isset($data['familyName']) ? $data['familyName'] : null;

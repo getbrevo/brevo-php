@@ -181,7 +181,7 @@ class SendReportEmail implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['to'] = isset($data['to']) ? $data['to'] : null;
         $this->container['body'] = isset($data['body']) ? $data['body'] : null;

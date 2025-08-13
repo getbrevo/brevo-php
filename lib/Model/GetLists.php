@@ -180,7 +180,7 @@ class GetLists implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['lists'] = isset($data['lists']) ? $data['lists'] : null;
         $this->container['count'] = isset($data['count']) ? $data['count'] : null;

@@ -180,7 +180,7 @@ class UpdateBatchContactsModel implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['successIds'] = isset($data['successIds']) ? $data['successIds'] : null;
         $this->container['failureIds'] = isset($data['failureIds']) ? $data['failureIds'] : null;

@@ -195,7 +195,7 @@ class WhatsappCampStats implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['sent'] = isset($data['sent']) ? $data['sent'] : null;
         $this->container['delivered'] = isset($data['delivered']) ? $data['delivered'] : null;
