@@ -179,9 +179,9 @@ class CompanyAttributesInner implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -196,7 +196,7 @@ class CompanyAttributesInner implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['internalName'] = isset($data['internalName']) ? $data['internalName'] : null;
         $this->container['label'] = isset($data['label']) ? $data['label'] : null;
@@ -422,5 +422,3 @@ class CompanyAttributesInner implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

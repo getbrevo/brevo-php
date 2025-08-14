@@ -175,7 +175,7 @@ class GetInvitedUsersList implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['users'] = isset($data['users']) ? $data['users'] : null;
     }

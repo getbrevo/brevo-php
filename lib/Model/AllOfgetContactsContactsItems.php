@@ -37,7 +37,7 @@ use \Swagger\Client\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class AllOfgetContactsContactsItems extends GetContactDetails 
+class AllOfgetContactsContactsItems extends GetContactDetails
 {
     const DISCRIMINATOR = null;
 
@@ -159,7 +159,7 @@ class AllOfgetContactsContactsItems extends GetContactDetails
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         parent::__construct($data);
 

@@ -175,7 +175,7 @@ class CreatedProcessId implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['processId'] = isset($data['processId']) ? $data['processId'] : null;
     }

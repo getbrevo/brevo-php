@@ -198,9 +198,9 @@ class RequestContactExportCustomContactFilter implements ModelInterface, ArrayAc
     const ACTION_FOR_SMS_CAMPAIGNS_HARD_BOUNCES = 'hardBounces';
     const ACTION_FOR_SMS_CAMPAIGNS_SOFT_BOUNCES = 'softBounces';
     const ACTION_FOR_SMS_CAMPAIGNS_UNSUBSCRIBED = 'unsubscribed';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -215,7 +215,7 @@ class RequestContactExportCustomContactFilter implements ModelInterface, ArrayAc
             self::ACTION_FOR_CONTACTS_UNSUBSCRIBED_PER_LIST,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -233,7 +233,7 @@ class RequestContactExportCustomContactFilter implements ModelInterface, ArrayAc
             self::ACTION_FOR_EMAIL_CAMPAIGNS_SOFT_BOUNCES,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -247,7 +247,7 @@ class RequestContactExportCustomContactFilter implements ModelInterface, ArrayAc
             self::ACTION_FOR_SMS_CAMPAIGNS_UNSUBSCRIBED,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -262,7 +262,7 @@ class RequestContactExportCustomContactFilter implements ModelInterface, ArrayAc
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['actionForContacts'] = isset($data['actionForContacts']) ? $data['actionForContacts'] : null;
         $this->container['actionForEmailCampaigns'] = isset($data['actionForEmailCampaigns']) ? $data['actionForEmailCampaigns'] : null;
@@ -564,5 +564,3 @@ class RequestContactExportCustomContactFilter implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

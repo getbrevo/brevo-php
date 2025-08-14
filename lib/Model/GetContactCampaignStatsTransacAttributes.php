@@ -168,9 +168,9 @@ class GetContactCampaignStatsTransacAttributes implements ModelInterface, ArrayA
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -185,7 +185,7 @@ class GetContactCampaignStatsTransacAttributes implements ModelInterface, ArrayA
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['orderDate'] = isset($data['orderDate']) ? $data['orderDate'] : null;
         $this->container['orderPrice'] = isset($data['orderPrice']) ? $data['orderPrice'] : null;
@@ -370,5 +370,3 @@ class GetContactCampaignStatsTransacAttributes implements ModelInterface, ArrayA
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

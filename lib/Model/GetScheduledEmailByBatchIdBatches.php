@@ -172,9 +172,9 @@ class GetScheduledEmailByBatchIdBatches implements ModelInterface, ArrayAccess
     const STATUS_QUEUED = 'queued';
     const STATUS_PROCESSED = 'processed';
     const STATUS_ERROR = 'error';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -189,7 +189,7 @@ class GetScheduledEmailByBatchIdBatches implements ModelInterface, ArrayAccess
             self::STATUS_ERROR,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -204,7 +204,7 @@ class GetScheduledEmailByBatchIdBatches implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['scheduledAt'] = isset($data['scheduledAt']) ? $data['scheduledAt'] : null;
         $this->container['createdAt'] = isset($data['createdAt']) ? $data['createdAt'] : null;
@@ -406,5 +406,3 @@ class GetScheduledEmailByBatchIdBatches implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

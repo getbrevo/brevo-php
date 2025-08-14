@@ -198,9 +198,9 @@ class GetSmsEventReportEvents implements ModelInterface, ArrayAccess
     const EVENT_REPLIES = 'replies';
     const EVENT_BLOCKED = 'blocked';
     const EVENT_REJECTED = 'rejected';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -221,7 +221,7 @@ class GetSmsEventReportEvents implements ModelInterface, ArrayAccess
             self::EVENT_REJECTED,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -236,7 +236,7 @@ class GetSmsEventReportEvents implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['phoneNumber'] = isset($data['phoneNumber']) ? $data['phoneNumber'] : null;
         $this->container['date'] = isset($data['date']) ? $data['date'] : null;
@@ -529,5 +529,3 @@ class GetSmsEventReportEvents implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

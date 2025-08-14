@@ -37,7 +37,7 @@ use \Swagger\Client\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class AllOfgetEmailCampaignsCampaignsItems extends GetExtendedCampaignOverview 
+class AllOfgetEmailCampaignsCampaignsItems extends GetExtendedCampaignOverview
 {
     const DISCRIMINATOR = null;
 
@@ -174,7 +174,7 @@ class AllOfgetEmailCampaignsCampaignsItems extends GetExtendedCampaignOverview
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         parent::__construct($data);
 

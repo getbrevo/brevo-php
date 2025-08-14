@@ -173,9 +173,9 @@ class TaskReminder implements ModelInterface, ArrayAccess
     const UNIT_HOURS = 'hours';
     const UNIT_WEEKS = 'weeks';
     const UNIT_DAYS = 'days';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -190,7 +190,7 @@ class TaskReminder implements ModelInterface, ArrayAccess
             self::UNIT_DAYS,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -205,7 +205,7 @@ class TaskReminder implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['value'] = isset($data['value']) ? $data['value'] : null;
         $this->container['unit'] = isset($data['unit']) ? $data['unit'] : null;
@@ -407,5 +407,3 @@ class TaskReminder implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

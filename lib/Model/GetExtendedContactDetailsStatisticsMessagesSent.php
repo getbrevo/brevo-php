@@ -163,9 +163,9 @@ class GetExtendedContactDetailsStatisticsMessagesSent implements ModelInterface,
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -180,7 +180,7 @@ class GetExtendedContactDetailsStatisticsMessagesSent implements ModelInterface,
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['campaignId'] = isset($data['campaignId']) ? $data['campaignId'] : null;
         $this->container['eventTime'] = isset($data['eventTime']) ? $data['eventTime'] : null;
@@ -337,5 +337,3 @@ class GetExtendedContactDetailsStatisticsMessagesSent implements ModelInterface,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

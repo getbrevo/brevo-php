@@ -222,9 +222,9 @@ class GetEmailEventReportEvents implements ModelInterface, ArrayAccess
     const EVENT_UNSUBSCRIBED = 'unsubscribed';
     const EVENT_ERROR = 'error';
     const EVENT_LOADED_BY_PROXY = 'loadedByProxy';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -249,7 +249,7 @@ class GetEmailEventReportEvents implements ModelInterface, ArrayAccess
             self::EVENT_LOADED_BY_PROXY,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -264,7 +264,7 @@ class GetEmailEventReportEvents implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['email'] = isset($data['email']) ? $data['email'] : null;
         $this->container['date'] = isset($data['date']) ? $data['date'] : null;
@@ -669,5 +669,3 @@ class GetEmailEventReportEvents implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

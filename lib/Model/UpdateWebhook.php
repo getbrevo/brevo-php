@@ -205,9 +205,9 @@ class UpdateWebhook implements ModelInterface, ArrayAccess
     const EVENTS_CONTACT_UPDATED = 'contactUpdated';
     const EVENTS_CONTACT_DELETED = 'contactDeleted';
     const EVENTS_INBOUND_EMAIL_PROCESSED = 'inboundEmailProcessed';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -235,7 +235,7 @@ class UpdateWebhook implements ModelInterface, ArrayAccess
             self::EVENTS_INBOUND_EMAIL_PROCESSED,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -250,7 +250,7 @@ class UpdateWebhook implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
@@ -535,5 +535,3 @@ class UpdateWebhook implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

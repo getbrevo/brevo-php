@@ -169,9 +169,9 @@ class Pipeline implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -186,7 +186,7 @@ class Pipeline implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['pipeline'] = isset($data['pipeline']) ? $data['pipeline'] : null;
         $this->container['pipelineName'] = isset($data['pipelineName']) ? $data['pipelineName'] : null;
@@ -362,5 +362,3 @@ class Pipeline implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
