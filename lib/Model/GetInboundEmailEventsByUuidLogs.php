@@ -167,9 +167,9 @@ class GetInboundEmailEventsByUuidLogs implements ModelInterface, ArrayAccess
     const TYPE_PROCESSED = 'processed';
     const TYPE_WEBHOOK_FAILED = 'webhookFailed';
     const TYPE_WEBHOOK_DELIVERED = 'webhookDelivered';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -184,7 +184,7 @@ class GetInboundEmailEventsByUuidLogs implements ModelInterface, ArrayAccess
             self::TYPE_WEBHOOK_DELIVERED,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -199,7 +199,7 @@ class GetInboundEmailEventsByUuidLogs implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['date'] = isset($data['date']) ? $data['date'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
@@ -367,5 +367,3 @@ class GetInboundEmailEventsByUuidLogs implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

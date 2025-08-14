@@ -222,9 +222,9 @@ class ExportWebhooksHistory implements ModelInterface, ArrayAccess
     const EVENT_UNIQUE_OPENED = 'uniqueOpened';
     const EVENT_LOADED_BY_PROXY = 'loadedByProxy';
     const EVENT_ALL_EVENTS = 'allEvents';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -237,7 +237,7 @@ class ExportWebhooksHistory implements ModelInterface, ArrayAccess
             self::TYPE_MARKETING,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -265,7 +265,7 @@ class ExportWebhooksHistory implements ModelInterface, ArrayAccess
             self::EVENT_ALL_EVENTS,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -280,7 +280,7 @@ class ExportWebhooksHistory implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['days'] = isset($data['days']) ? $data['days'] : null;
         $this->container['startDate'] = isset($data['startDate']) ? $data['startDate'] : null;
@@ -674,5 +674,3 @@ class ExportWebhooksHistory implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

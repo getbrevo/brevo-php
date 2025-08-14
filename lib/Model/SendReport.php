@@ -169,9 +169,9 @@ class SendReport implements ModelInterface, ArrayAccess
     const LANGUAGE_IT = 'it';
     const LANGUAGE_DE = 'de';
     const LANGUAGE_EN = 'en';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -188,7 +188,7 @@ class SendReport implements ModelInterface, ArrayAccess
             self::LANGUAGE_EN,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -203,7 +203,7 @@ class SendReport implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['language'] = isset($data['language']) ? $data['language'] : 'fr';
         $this->container['email'] = isset($data['email']) ? $data['email'] : null;
@@ -374,5 +374,3 @@ class SendReport implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

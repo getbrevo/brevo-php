@@ -163,9 +163,9 @@ class CreateCouponCollection implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -180,7 +180,7 @@ class CreateCouponCollection implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['defaultCoupon'] = isset($data['defaultCoupon']) ? $data['defaultCoupon'] : null;
@@ -337,5 +337,3 @@ class CreateCouponCollection implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

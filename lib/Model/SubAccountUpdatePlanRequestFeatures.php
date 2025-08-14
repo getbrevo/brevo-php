@@ -169,9 +169,9 @@ class SubAccountUpdatePlanRequestFeatures implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -186,7 +186,7 @@ class SubAccountUpdatePlanRequestFeatures implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['users'] = isset($data['users']) ? $data['users'] : null;
         $this->container['landingPage'] = isset($data['landingPage']) ? $data['landingPage'] : null;
@@ -362,5 +362,3 @@ class SubAccountUpdatePlanRequestFeatures implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -163,9 +163,9 @@ class CreateSmsCampaignRecipients implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -180,7 +180,7 @@ class CreateSmsCampaignRecipients implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['listIds'] = isset($data['listIds']) ? $data['listIds'] : null;
         $this->container['exclusionListIds'] = isset($data['exclusionListIds']) ? $data['exclusionListIds'] : null;
@@ -334,5 +334,3 @@ class CreateSmsCampaignRecipients implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

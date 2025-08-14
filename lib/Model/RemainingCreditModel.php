@@ -163,9 +163,9 @@ class RemainingCreditModel implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -180,7 +180,7 @@ class RemainingCreditModel implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['child'] = isset($data['child']) ? $data['child'] : null;
         $this->container['reseller'] = isset($data['reseller']) ? $data['reseller'] : null;
@@ -337,5 +337,3 @@ class RemainingCreditModel implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

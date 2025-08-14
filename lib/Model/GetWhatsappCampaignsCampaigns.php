@@ -216,9 +216,9 @@ class GetWhatsappCampaignsCampaigns implements ModelInterface, ArrayAccess
     const CAMPAIGN_STATUS_SUSPENDED = 'suspended';
     const CAMPAIGN_STATUS_REJECTED = 'rejected';
     const CAMPAIGN_STATUS_SENT = 'sent';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -237,7 +237,7 @@ class GetWhatsappCampaignsCampaigns implements ModelInterface, ArrayAccess
             self::CAMPAIGN_STATUS_SENT,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -252,7 +252,7 @@ class GetWhatsappCampaignsCampaigns implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['campaignName'] = isset($data['campaignName']) ? $data['campaignName'] : null;
@@ -666,5 +666,3 @@ class GetWhatsappCampaignsCampaigns implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

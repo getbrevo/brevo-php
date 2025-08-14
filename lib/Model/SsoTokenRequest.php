@@ -181,9 +181,9 @@ class SsoTokenRequest implements ModelInterface, ArrayAccess
     const TARGET_SENDERS = 'senders';
     const TARGET_SMS_CAMPAIGN = 'sms_campaign';
     const TARGET_SMS_TRANSACTIONAL = 'sms_transactional';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -202,7 +202,7 @@ class SsoTokenRequest implements ModelInterface, ArrayAccess
             self::TARGET_SMS_TRANSACTIONAL,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -217,7 +217,7 @@ class SsoTokenRequest implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['email'] = isset($data['email']) ? $data['email'] : null;
@@ -438,5 +438,3 @@ class SsoTokenRequest implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

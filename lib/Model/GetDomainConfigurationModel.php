@@ -173,9 +173,9 @@ class GetDomainConfigurationModel implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -190,7 +190,7 @@ class GetDomainConfigurationModel implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['domain'] = isset($data['domain']) ? $data['domain'] : null;
         $this->container['verified'] = isset($data['verified']) ? $data['verified'] : null;
@@ -403,5 +403,3 @@ class GetDomainConfigurationModel implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

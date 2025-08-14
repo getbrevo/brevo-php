@@ -173,9 +173,9 @@ class GetInboundEmailEventsEvents implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -190,7 +190,7 @@ class GetInboundEmailEventsEvents implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
         $this->container['date'] = isset($data['date']) ? $data['date'] : null;
@@ -403,5 +403,3 @@ class GetInboundEmailEventsEvents implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

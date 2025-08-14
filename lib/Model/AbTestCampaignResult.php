@@ -200,9 +200,9 @@ class AbTestCampaignResult implements ModelInterface, ArrayAccess
     const WINNING_VERSION_B = 'B';
     const WINNING_CRITERIA_OPEN = 'Open';
     const WINNING_CRITERIA_CLICK = 'Click';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -218,7 +218,7 @@ class AbTestCampaignResult implements ModelInterface, ArrayAccess
             self::WINNING_VERSION_B,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -231,7 +231,7 @@ class AbTestCampaignResult implements ModelInterface, ArrayAccess
             self::WINNING_CRITERIA_CLICK,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -246,7 +246,7 @@ class AbTestCampaignResult implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['winningVersion'] = isset($data['winningVersion']) ? $data['winningVersion'] : null;
         $this->container['winningCriteria'] = isset($data['winningCriteria']) ? $data['winningCriteria'] : null;
@@ -581,5 +581,3 @@ class AbTestCampaignResult implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

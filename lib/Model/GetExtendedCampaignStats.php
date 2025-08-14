@@ -193,9 +193,9 @@ class GetExtendedCampaignStats implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -210,7 +210,7 @@ class GetExtendedCampaignStats implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['globalStats'] = isset($data['globalStats']) ? $data['globalStats'] : null;
         $this->container['campaignStats'] = isset($data['campaignStats']) ? $data['campaignStats'] : null;
@@ -535,5 +535,3 @@ class GetExtendedCampaignStats implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

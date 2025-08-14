@@ -188,9 +188,9 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
     const TYPE_FLOAT = 'float';
     const TYPE_ID = 'id';
     const TYPE_BOOLEAN = 'boolean';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -206,7 +206,7 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
             self::CATEGORY__GLOBAL,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -222,7 +222,7 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
             self::TYPE_BOOLEAN,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -237,7 +237,7 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['category'] = isset($data['category']) ? $data['category'] : null;
@@ -503,5 +503,3 @@ class GetAttributesAttributes implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

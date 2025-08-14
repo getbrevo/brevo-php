@@ -37,7 +37,7 @@ use \Brevo\Client\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class GetEmailCampaign extends GetExtendedCampaignOverview 
+class GetEmailCampaign extends GetExtendedCampaignOverview
 {
     const DISCRIMINATOR = null;
 
@@ -169,7 +169,7 @@ class GetEmailCampaign extends GetExtendedCampaignOverview
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         parent::__construct($data);
 

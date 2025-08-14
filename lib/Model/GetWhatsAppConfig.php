@@ -189,9 +189,9 @@ class GetWhatsAppConfig implements ModelInterface, ArrayAccess
     const PHONE_NUMBER_NAME_STATUS_APPROVED = 'APPROVED';
     const PHONE_NUMBER_NAME_STATUS_PENDING = 'PENDING';
     const PHONE_NUMBER_NAME_STATUS_REJECTED = 'REJECTED';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -205,7 +205,7 @@ class GetWhatsAppConfig implements ModelInterface, ArrayAccess
             self::PHONE_NUMBER_QUALITY_RED,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -219,7 +219,7 @@ class GetWhatsAppConfig implements ModelInterface, ArrayAccess
             self::PHONE_NUMBER_NAME_STATUS_REJECTED,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -234,7 +234,7 @@ class GetWhatsAppConfig implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['whatsappBusinessAccountId'] = isset($data['whatsappBusinessAccountId']) ? $data['whatsappBusinessAccountId'] : null;
         $this->container['sendingLimit'] = isset($data['sendingLimit']) ? $data['sendingLimit'] : null;
@@ -519,5 +519,3 @@ class GetWhatsAppConfig implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

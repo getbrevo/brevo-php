@@ -219,9 +219,9 @@ class SubAccountAppsToggleRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -236,7 +236,7 @@ class SubAccountAppsToggleRequest implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['inbox'] = isset($data['inbox']) ? $data['inbox'] : null;
         $this->container['whatsapp'] = isset($data['whatsapp']) ? $data['whatsapp'] : null;
@@ -662,5 +662,3 @@ class SubAccountAppsToggleRequest implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
