@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,14 +26,14 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
-use \Swagger\Client\ObjectSerializer;
+namespace Brevo\Client\Model;
+use \Brevo\Client\ObjectSerializer;
 
 /**
  * AllOfgetEmailCampaignsCampaignsItems Class Doc Comment
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -56,7 +56,7 @@ class AllOfgetEmailCampaignsCampaignsItems extends GetExtendedCampaignOverview
     protected static $swaggerTypes = [
         'recipients' => 'object',
         'statistics' => 'object',
-        'share_link' => 'string'
+        'shareLink' => 'string'
     ];
 
     /**
@@ -67,7 +67,7 @@ class AllOfgetEmailCampaignsCampaignsItems extends GetExtendedCampaignOverview
     protected static $swaggerFormats = [
         'recipients' => null,
         'statistics' => null,
-        'share_link' => 'url'
+        'shareLink' => 'url'
     ];
 
     /**
@@ -99,7 +99,7 @@ class AllOfgetEmailCampaignsCampaignsItems extends GetExtendedCampaignOverview
     protected static $attributeMap = [
         'recipients' => 'recipients',
         'statistics' => 'statistics',
-        'share_link' => 'shareLink'
+        'shareLink' => 'shareLink'
     ];
 
     /**
@@ -110,7 +110,7 @@ class AllOfgetEmailCampaignsCampaignsItems extends GetExtendedCampaignOverview
     protected static $setters = [
         'recipients' => 'setRecipients',
         'statistics' => 'setStatistics',
-        'share_link' => 'setShareLink'
+        'shareLink' => 'setShareLink'
     ];
 
     /**
@@ -121,7 +121,7 @@ class AllOfgetEmailCampaignsCampaignsItems extends GetExtendedCampaignOverview
     protected static $getters = [
         'recipients' => 'getRecipients',
         'statistics' => 'getStatistics',
-        'share_link' => 'getShareLink'
+        'shareLink' => 'getShareLink'
     ];
 
     /**
@@ -180,7 +180,7 @@ class AllOfgetEmailCampaignsCampaignsItems extends GetExtendedCampaignOverview
 
         $this->container['recipients'] = isset($data['recipients']) ? $data['recipients'] : null;
         $this->container['statistics'] = isset($data['statistics']) ? $data['statistics'] : null;
-        $this->container['share_link'] = isset($data['share_link']) ? $data['share_link'] : null;
+        $this->container['shareLink'] = isset($data['shareLink']) ? $data['shareLink'] : null;
     }
 
     /**
@@ -262,25 +262,25 @@ class AllOfgetEmailCampaignsCampaignsItems extends GetExtendedCampaignOverview
     }
 
     /**
-     * Gets share_link
+     * Gets shareLink
      *
      * @return string
      */
     public function getShareLink()
     {
-        return $this->container['share_link'];
+        return $this->container['shareLink'];
     }
 
     /**
-     * Sets share_link
+     * Sets shareLink
      *
-     * @param string $share_link Link to share the campaign on social medias
+     * @param string $shareLink Link to share the campaign on social medias
      *
      * @return $this
      */
-    public function setShareLink($share_link)
+    public function setShareLink($shareLink)
     {
-        $this->container['share_link'] = $share_link;
+        $this->container['shareLink'] = $shareLink;
 
         return $this;
     }

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,14 +26,14 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
-use \Swagger\Client\ObjectSerializer;
+namespace Brevo\Client\Model;
+use \Brevo\Client\ObjectSerializer;
 
 /**
  * AllOfgetContactsContactsItems Class Doc Comment
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
