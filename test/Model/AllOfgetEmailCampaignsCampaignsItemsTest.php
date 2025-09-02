@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Brevo\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace Swagger\Client;
+namespace Brevo\Client;
 
 use PHPUnit\Framework\TestCase;
 
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description AllOfgetEmailCampaignsCampaignsItems
- * @package     Swagger\Client
+ * @package     Brevo\Client
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
@@ -92,7 +92,7 @@ class AllOfgetEmailCampaignsCampaignsItemsTest extends TestCase
     }
 
     /**
-     * Test attribute "share_link"
+     * Test attribute "shareLink"
      */
     public function testPropertyShareLink()
     {
