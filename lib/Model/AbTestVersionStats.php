@@ -164,9 +164,9 @@ class AbTestVersionStats implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -181,7 +181,7 @@ class AbTestVersionStats implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['versionA'] = isset($data['versionA']) ? $data['versionA'] : null;
         $this->container['versionB'] = isset($data['versionB']) ? $data['versionB'] : null;
@@ -338,5 +338,3 @@ class AbTestVersionStats implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

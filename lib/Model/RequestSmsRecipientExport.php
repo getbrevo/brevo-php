@@ -169,9 +169,9 @@ class RequestSmsRecipientExport implements ModelInterface, ArrayAccess
     const RECIPIENTS_TYPE_SOFT_BOUNCES = 'softBounces';
     const RECIPIENTS_TYPE_HARD_BOUNCES = 'hardBounces';
     const RECIPIENTS_TYPE_UNSUBSCRIBED = 'unsubscribed';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -188,7 +188,7 @@ class RequestSmsRecipientExport implements ModelInterface, ArrayAccess
             self::RECIPIENTS_TYPE_UNSUBSCRIBED,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -203,7 +203,7 @@ class RequestSmsRecipientExport implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['notifyURL'] = isset($data['notifyURL']) ? $data['notifyURL'] : null;
         $this->container['recipientsType'] = isset($data['recipientsType']) ? $data['recipientsType'] : null;
@@ -374,5 +374,3 @@ class RequestSmsRecipientExport implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

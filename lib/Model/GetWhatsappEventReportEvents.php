@@ -200,9 +200,9 @@ class GetWhatsappEventReportEvents implements ModelInterface, ArrayAccess
     const EVENT_UNSUBSCRIBE = 'unsubscribe';
     const EVENT_REPLY = 'reply';
     const EVENT_SOFT_BOUNCE = 'soft-bounce';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -220,7 +220,7 @@ class GetWhatsappEventReportEvents implements ModelInterface, ArrayAccess
             self::EVENT_SOFT_BOUNCE,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -235,7 +235,7 @@ class GetWhatsappEventReportEvents implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['contactNumber'] = isset($data['contactNumber']) ? $data['contactNumber'] : null;
         $this->container['date'] = isset($data['date']) ? $data['date'] : null;
@@ -568,5 +568,3 @@ class GetWhatsappEventReportEvents implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

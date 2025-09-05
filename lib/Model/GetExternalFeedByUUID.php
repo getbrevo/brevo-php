@@ -216,9 +216,9 @@ class GetExternalFeedByUUID implements ModelInterface, ArrayAccess
     const AUTH_TYPE_BASIC = 'basic';
     const AUTH_TYPE_TOKEN = 'token';
     const AUTH_TYPE_NO_AUTH = 'noAuth';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -232,7 +232,7 @@ class GetExternalFeedByUUID implements ModelInterface, ArrayAccess
             self::AUTH_TYPE_NO_AUTH,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -247,7 +247,7 @@ class GetExternalFeedByUUID implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
@@ -708,5 +708,3 @@ class GetExternalFeedByUUID implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

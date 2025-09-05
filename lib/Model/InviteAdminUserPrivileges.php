@@ -170,9 +170,9 @@ class InviteAdminUserPrivileges implements ModelInterface, ArrayAccess
     const FEATURE_APP_MANAGEMENT = 'app_management';
     const PERMISSIONS_ALL = 'all';
     const PERMISSIONS_NONE = 'none';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -187,7 +187,7 @@ class InviteAdminUserPrivileges implements ModelInterface, ArrayAccess
             self::FEATURE_APP_MANAGEMENT,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -200,7 +200,7 @@ class InviteAdminUserPrivileges implements ModelInterface, ArrayAccess
             self::PERMISSIONS_NONE,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -215,7 +215,7 @@ class InviteAdminUserPrivileges implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['feature'] = isset($data['feature']) ? $data['feature'] : null;
         $this->container['permissions'] = isset($data['permissions']) ? $data['permissions'] : null;
@@ -392,5 +392,3 @@ class InviteAdminUserPrivileges implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

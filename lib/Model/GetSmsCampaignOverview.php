@@ -199,9 +199,9 @@ class GetSmsCampaignOverview implements ModelInterface, ArrayAccess
     const STATUS_QUEUED = 'queued';
     const STATUS_SUSPENDED = 'suspended';
     const STATUS_IN_PROCESS = 'inProcess';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -218,7 +218,7 @@ class GetSmsCampaignOverview implements ModelInterface, ArrayAccess
             self::STATUS_IN_PROCESS,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -233,7 +233,7 @@ class GetSmsCampaignOverview implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
@@ -572,5 +572,3 @@ class GetSmsCampaignOverview implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

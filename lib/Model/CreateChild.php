@@ -189,9 +189,9 @@ class CreateChild implements ModelInterface, ArrayAccess
     const LANGUAGE_IT = 'it';
     const LANGUAGE_DE = 'de';
     const LANGUAGE_EN = 'en';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -208,7 +208,7 @@ class CreateChild implements ModelInterface, ArrayAccess
             self::LANGUAGE_EN,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -223,7 +223,7 @@ class CreateChild implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['email'] = isset($data['email']) ? $data['email'] : null;
         $this->container['firstName'] = isset($data['firstName']) ? $data['firstName'] : null;
@@ -506,5 +506,3 @@ class CreateChild implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

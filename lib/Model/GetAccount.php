@@ -38,7 +38,7 @@ use \Brevo\Client\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class GetAccount extends GetExtendedClient 
+class GetAccount extends GetExtendedClient
 {
     const DISCRIMINATOR = null;
 
@@ -166,9 +166,9 @@ class GetAccount extends GetExtendedClient
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
 
     /**
@@ -177,7 +177,7 @@ class GetAccount extends GetExtendedClient
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         parent::__construct($data);
 
@@ -361,5 +361,3 @@ class GetAccount extends GetExtendedClient
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

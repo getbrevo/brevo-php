@@ -173,9 +173,9 @@ class Body4 implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -190,7 +190,7 @@ class Body4 implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['linkContactIds'] = isset($data['linkContactIds']) ? $data['linkContactIds'] : null;
         $this->container['unlinkContactIds'] = isset($data['unlinkContactIds']) ? $data['unlinkContactIds'] : null;
@@ -391,5 +391,3 @@ class Body4 implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
