@@ -4179,7 +4179,7 @@ class TransactionalEmailsApi
      * @param  string $endDate Mandatory if startDate is used. Ending date (YYYY-MM-DD) till which you want to fetch the blocked or unsubscribed contacts (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document on the page (optional, default to 0)
-     * @param  string[] $senders Comma separated list of emails of the senders from which contacts are blocked or unsubscribed (optional)
+     * @param  string[] $senders Array of emails of the senders from which contacts are blocked or unsubscribed (optional)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
@@ -4201,7 +4201,7 @@ class TransactionalEmailsApi
      * @param  string $endDate Mandatory if startDate is used. Ending date (YYYY-MM-DD) till which you want to fetch the blocked or unsubscribed contacts (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document on the page (optional, default to 0)
-     * @param  string[] $senders Comma separated list of emails of the senders from which contacts are blocked or unsubscribed (optional)
+     * @param  string[] $senders Array of emails of the senders from which contacts are blocked or unsubscribed (optional)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
@@ -4289,7 +4289,7 @@ class TransactionalEmailsApi
      * @param  string $endDate Mandatory if startDate is used. Ending date (YYYY-MM-DD) till which you want to fetch the blocked or unsubscribed contacts (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document on the page (optional, default to 0)
-     * @param  string[] $senders Comma separated list of emails of the senders from which contacts are blocked or unsubscribed (optional)
+     * @param  string[] $senders Array of emails of the senders from which contacts are blocked or unsubscribed (optional)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      *
      * @throws \InvalidArgumentException
@@ -4314,7 +4314,7 @@ class TransactionalEmailsApi
      * @param  string $endDate Mandatory if startDate is used. Ending date (YYYY-MM-DD) till which you want to fetch the blocked or unsubscribed contacts (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document on the page (optional, default to 0)
-     * @param  string[] $senders Comma separated list of emails of the senders from which contacts are blocked or unsubscribed (optional)
+     * @param  string[] $senders Array of emails of the senders from which contacts are blocked or unsubscribed (optional)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      *
      * @throws \InvalidArgumentException
@@ -4369,7 +4369,7 @@ class TransactionalEmailsApi
      * @param  string $endDate Mandatory if startDate is used. Ending date (YYYY-MM-DD) till which you want to fetch the blocked or unsubscribed contacts (optional)
      * @param  int $limit Number of documents returned per page (optional, default to 50)
      * @param  int $offset Index of the first document on the page (optional, default to 0)
-     * @param  string[] $senders Comma separated list of emails of the senders from which contacts are blocked or unsubscribed (optional)
+     * @param  string[] $senders Array of emails of the senders from which contacts are blocked or unsubscribed (optional)
      * @param  string $sort Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed (optional, default to desc)
      *
      * @throws \InvalidArgumentException
@@ -4409,9 +4409,6 @@ class TransactionalEmailsApi
             $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
         }
         // query params
-        if (is_array($senders)) {
-            $queryParams['senders'] = $senders;
-        } else
         if ($senders !== null) {
             $queryParams['senders'] = ObjectSerializer::toQueryValue($senders);
         }
