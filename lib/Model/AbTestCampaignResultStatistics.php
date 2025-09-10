@@ -200,7 +200,7 @@ class AbTestCampaignResultStatistics implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['openers'] = isset($data['openers']) ? $data['openers'] : null;
         $this->container['clicks'] = isset($data['clicks']) ? $data['clicks'] : null;

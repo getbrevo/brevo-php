@@ -191,7 +191,7 @@ class GetCorporateInvitedUsersListFeatureAccess implements ModelInterface, Array
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['userManagement'] = isset($data['userManagement']) ? $data['userManagement'] : null;
         $this->container['apiKeys'] = isset($data['apiKeys']) ? $data['apiKeys'] : null;

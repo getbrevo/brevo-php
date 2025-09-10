@@ -180,7 +180,7 @@ class GetExtendedContactDetailsStatisticsUnsubscriptionsAdminUnsubscription impl
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['eventTime'] = isset($data['eventTime']) ? $data['eventTime'] : null;
         $this->container['ip'] = isset($data['ip']) ? $data['ip'] : null;
