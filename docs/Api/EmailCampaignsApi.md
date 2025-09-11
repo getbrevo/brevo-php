@@ -4,23 +4,22 @@ All URIs are relative to *https://api.brevo.com/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createEmailCampaign**](EmailCampaignsApi.md#createEmailCampaign) | **POST** /emailCampaigns | Create an email campaign
-[**deleteEmailCampaign**](EmailCampaignsApi.md#deleteEmailCampaign) | **DELETE** /emailCampaigns/{campaignId} | Delete an email campaign
-[**emailExportRecipients**](EmailCampaignsApi.md#emailExportRecipients) | **POST** /emailCampaigns/{campaignId}/exportRecipients | Export the recipients of an email campaign
-[**getAbTestCampaignResult**](EmailCampaignsApi.md#getAbTestCampaignResult) | **GET** /emailCampaigns/{campaignId}/abTestCampaignResult | Get an A/B test email campaign results
-[**getEmailCampaign**](EmailCampaignsApi.md#getEmailCampaign) | **GET** /emailCampaigns/{campaignId} | Get an email campaign report
-[**getEmailCampaigns**](EmailCampaignsApi.md#getEmailCampaigns) | **GET** /emailCampaigns | Return all your created email campaigns
-[**getSharedTemplateUrl**](EmailCampaignsApi.md#getSharedTemplateUrl) | **GET** /emailCampaigns/{campaignId}/sharedUrl | Get a shared template url
-[**sendEmailCampaignNow**](EmailCampaignsApi.md#sendEmailCampaignNow) | **POST** /emailCampaigns/{campaignId}/sendNow | Send an email campaign immediately, based on campaignId
-[**sendReport**](EmailCampaignsApi.md#sendReport) | **POST** /emailCampaigns/{campaignId}/sendReport | Send the report of a campaign
-[**sendTestEmail**](EmailCampaignsApi.md#sendTestEmail) | **POST** /emailCampaigns/{campaignId}/sendTest | Send an email campaign to your test list
-[**updateCampaignStatus**](EmailCampaignsApi.md#updateCampaignStatus) | **PUT** /emailCampaigns/{campaignId}/status | Update an email campaign status
-[**updateEmailCampaign**](EmailCampaignsApi.md#updateEmailCampaign) | **PUT** /emailCampaigns/{campaignId} | Update an email campaign
-[**uploadImageToGallery**](EmailCampaignsApi.md#uploadImageToGallery) | **POST** /emailCampaigns/images | Upload an image to your account&#39;s image gallery
-
+[**createEmailCampaign**](EmailCampaignsApi.md#createemailcampaign) | **POST** /emailCampaigns | Create an email campaign
+[**deleteEmailCampaign**](EmailCampaignsApi.md#deleteemailcampaign) | **DELETE** /emailCampaigns/{campaignId} | Delete an email campaign
+[**emailExportRecipients**](EmailCampaignsApi.md#emailexportrecipients) | **POST** /emailCampaigns/{campaignId}/exportRecipients | Export the recipients of an email campaign
+[**getAbTestCampaignResult**](EmailCampaignsApi.md#getabtestcampaignresult) | **GET** /emailCampaigns/{campaignId}/abTestCampaignResult | Get an A/B test email campaign results
+[**getEmailCampaign**](EmailCampaignsApi.md#getemailcampaign) | **GET** /emailCampaigns/{campaignId} | Get an email campaign report
+[**getEmailCampaigns**](EmailCampaignsApi.md#getemailcampaigns) | **GET** /emailCampaigns | Return all your created email campaigns
+[**getSharedTemplateUrl**](EmailCampaignsApi.md#getsharedtemplateurl) | **GET** /emailCampaigns/{campaignId}/sharedUrl | Get a shared template url
+[**sendEmailCampaignNow**](EmailCampaignsApi.md#sendemailcampaignnow) | **POST** /emailCampaigns/{campaignId}/sendNow | Send an email campaign immediately, based on campaignId
+[**sendReport**](EmailCampaignsApi.md#sendreport) | **POST** /emailCampaigns/{campaignId}/sendReport | Send the report of a campaign
+[**sendTestEmail**](EmailCampaignsApi.md#sendtestemail) | **POST** /emailCampaigns/{campaignId}/sendTest | Send an email campaign to your test list
+[**updateCampaignStatus**](EmailCampaignsApi.md#updatecampaignstatus) | **PUT** /emailCampaigns/{campaignId}/status | Update an email campaign status
+[**updateEmailCampaign**](EmailCampaignsApi.md#updateemailcampaign) | **PUT** /emailCampaigns/{campaignId} | Update an email campaign
+[**uploadImageToGallery**](EmailCampaignsApi.md#uploadimagetogallery) | **POST** /emailCampaigns/images | Upload an image to your account&#x27;s image gallery
 
 # **createEmailCampaign**
-> \Brevo\Client\Model\CreateModel createEmailCampaign($emailCampaigns)
+> \Brevo\Client\Model\CreateModel createEmailCampaign($body)
 
 Create an email campaign
 
@@ -28,12 +27,10 @@ Create an email campaign
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -44,10 +41,10 @@ $apiInstance = new Brevo\Client\Api\EmailCampaignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$emailCampaigns = new \Brevo\Client\Model\CreateEmailCampaign(); // \Brevo\Client\Model\CreateEmailCampaign | Values to create a campaign
+$body = new \Brevo\Client\Model\CreateEmailCampaign(); // \Brevo\Client\Model\CreateEmailCampaign | Values to create a campaign
 
 try {
-    $result = $apiInstance->createEmailCampaign($emailCampaigns);
+    $result = $apiInstance->createEmailCampaign($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailCampaignsApi->createEmailCampaign: ', $e->getMessage(), PHP_EOL;
@@ -59,7 +56,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailCampaigns** | [**\Brevo\Client\Model\CreateEmailCampaign**](../Model/CreateEmailCampaign.md)| Values to create a campaign |
+ **body** | [**\Brevo\Client\Model\CreateEmailCampaign**](../Model/CreateEmailCampaign.md)| Values to create a campaign |
 
 ### Return type
 
@@ -85,12 +82,10 @@ Delete an email campaign
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -127,13 +122,13 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **emailExportRecipients**
-> \Brevo\Client\Model\CreatedProcessId emailExportRecipients($campaignId, $recipientExport)
+> \Brevo\Client\Model\CreatedProcessId emailExportRecipients($campaignId, $body)
 
 Export the recipients of an email campaign
 
@@ -141,12 +136,10 @@ Export the recipients of an email campaign
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -158,10 +151,10 @@ $apiInstance = new Brevo\Client\Api\EmailCampaignsApi(
     $config
 );
 $campaignId = 789; // int | Id of the campaign
-$recipientExport = new \Brevo\Client\Model\EmailExportRecipients(); // \Brevo\Client\Model\EmailExportRecipients | Values to send for a recipient export request
+$body = new \Brevo\Client\Model\EmailExportRecipients(); // \Brevo\Client\Model\EmailExportRecipients | Values to send for a recipient export request
 
 try {
-    $result = $apiInstance->emailExportRecipients($campaignId, $recipientExport);
+    $result = $apiInstance->emailExportRecipients($campaignId, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailCampaignsApi->emailExportRecipients: ', $e->getMessage(), PHP_EOL;
@@ -174,7 +167,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **campaignId** | **int**| Id of the campaign |
- **recipientExport** | [**\Brevo\Client\Model\EmailExportRecipients**](../Model/EmailExportRecipients.md)| Values to send for a recipient export request | [optional]
+ **body** | [**\Brevo\Client\Model\EmailExportRecipients**](../Model/EmailExportRecipients.md)| Values to send for a recipient export request | [optional]
 
 ### Return type
 
@@ -202,12 +195,10 @@ Obtain winning version of an A/B test email campaign
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -245,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -259,12 +250,10 @@ Get an email campaign report
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -304,7 +293,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -318,12 +307,10 @@ Return all your created email campaigns
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -336,7 +323,7 @@ $apiInstance = new Brevo\Client\Api\EmailCampaignsApi(
 );
 $type = "type_example"; // string | Filter on the type of the campaigns
 $status = "status_example"; // string | Filter on the status of the campaign
-$statistics = "statistics_example"; // string | Filter on the type of statistics required. Example **globalStats** value will only fetch globalStats info of the campaign in returned response.
+$statistics = "statistics_example"; // string | Filter on the type of statistics required. Example **globalStats** value will only fetch globalStats info of the campaign in returned response.This option only returns data for events occurred in the last 6 months.For older campaigns, it’s advisable to use the **Get Campaign Report** endpoint.
 $startDate = "startDate_example"; // string | Mandatory if endDate is used. Starting (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either 'status' not passed and if passed is set to 'sent' )
 $endDate = "endDate_example"; // string | Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either 'status' not passed and if passed is set to 'sent' )
 $limit = 50; // int | Number of documents per page
@@ -359,9 +346,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **string**| Filter on the type of the campaigns | [optional]
  **status** | **string**| Filter on the status of the campaign | [optional]
- **statistics** | **string**| Filter on the type of statistics required. Example **globalStats** value will only fetch globalStats info of the campaign in returned response. | [optional]
- **startDate** | **string**| Mandatory if endDate is used. Starting (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either &#39;status&#39; not passed and if passed is set to &#39;sent&#39; ) | [optional]
- **endDate** | **string**| Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either &#39;status&#39; not passed and if passed is set to &#39;sent&#39; ) | [optional]
+ **statistics** | **string**| Filter on the type of statistics required. Example **globalStats** value will only fetch globalStats info of the campaign in returned response.This option only returns data for events occurred in the last 6 months.For older campaigns, it’s advisable to use the **Get Campaign Report** endpoint. | [optional]
+ **startDate** | **string**| Mandatory if endDate is used. Starting (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either &#x27;status&#x27; not passed and if passed is set to &#x27;sent&#x27; ) | [optional]
+ **endDate** | **string**| Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either &#x27;status&#x27; not passed and if passed is set to &#x27;sent&#x27; ) | [optional]
  **limit** | **int**| Number of documents per page | [optional] [default to 50]
  **offset** | **int**| Index of the first document in the page | [optional] [default to 0]
  **sort** | **string**| Sort the results in the ascending/descending order of record creation. Default order is **descending** if &#x60;sort&#x60; is not passed | [optional] [default to desc]
@@ -377,8 +364,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, applications/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -393,12 +380,10 @@ Get a unique URL to share & import an email template from one Brevo account to a
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -436,7 +421,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -450,12 +435,10 @@ Send an email campaign immediately, based on campaignId
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -492,13 +475,13 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **sendReport**
-> sendReport($campaignId, $sendReport)
+> sendReport($body, $campaignId)
 
 Send the report of a campaign
 
@@ -508,12 +491,10 @@ A PDF will be sent to the specified email addresses
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -524,11 +505,11 @@ $apiInstance = new Brevo\Client\Api\EmailCampaignsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \Brevo\Client\Model\SendReport(); // \Brevo\Client\Model\SendReport | Values for send a report
 $campaignId = 789; // int | Id of the campaign
-$sendReport = new \Brevo\Client\Model\SendReport(); // \Brevo\Client\Model\SendReport | Values for send a report
 
 try {
-    $apiInstance->sendReport($campaignId, $sendReport);
+    $apiInstance->sendReport($body, $campaignId);
 } catch (Exception $e) {
     echo 'Exception when calling EmailCampaignsApi->sendReport: ', $e->getMessage(), PHP_EOL;
 }
@@ -539,8 +520,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**\Brevo\Client\Model\SendReport**](../Model/SendReport.md)| Values for send a report |
  **campaignId** | **int**| Id of the campaign |
- **sendReport** | [**\Brevo\Client\Model\SendReport**](../Model/SendReport.md)| Values for send a report |
 
 ### Return type
 
@@ -558,7 +539,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **sendTestEmail**
-> sendTestEmail($campaignId, $emailTo)
+> sendTestEmail($body, $campaignId)
 
 Send an email campaign to your test list
 
@@ -566,12 +547,10 @@ Send an email campaign to your test list
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -582,11 +561,11 @@ $apiInstance = new Brevo\Client\Api\EmailCampaignsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \Brevo\Client\Model\SendTestEmail(); // \Brevo\Client\Model\SendTestEmail | 
 $campaignId = 789; // int | Id of the campaign
-$emailTo = new \Brevo\Client\Model\SendTestEmail(); // \Brevo\Client\Model\SendTestEmail | 
 
 try {
-    $apiInstance->sendTestEmail($campaignId, $emailTo);
+    $apiInstance->sendTestEmail($body, $campaignId);
 } catch (Exception $e) {
     echo 'Exception when calling EmailCampaignsApi->sendTestEmail: ', $e->getMessage(), PHP_EOL;
 }
@@ -597,8 +576,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**\Brevo\Client\Model\SendTestEmail**](../Model/SendTestEmail.md)|  |
  **campaignId** | **int**| Id of the campaign |
- **emailTo** | [**\Brevo\Client\Model\SendTestEmail**](../Model/SendTestEmail.md)|  |
 
 ### Return type
 
@@ -616,7 +595,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateCampaignStatus**
-> updateCampaignStatus($campaignId, $status)
+> updateCampaignStatus($body, $campaignId)
 
 Update an email campaign status
 
@@ -624,12 +603,10 @@ Update an email campaign status
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -640,11 +617,11 @@ $apiInstance = new Brevo\Client\Api\EmailCampaignsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \Brevo\Client\Model\UpdateCampaignStatus(); // \Brevo\Client\Model\UpdateCampaignStatus | Status of the campaign
 $campaignId = 789; // int | Id of the campaign
-$status = new \Brevo\Client\Model\UpdateCampaignStatus(); // \Brevo\Client\Model\UpdateCampaignStatus | Status of the campaign
 
 try {
-    $apiInstance->updateCampaignStatus($campaignId, $status);
+    $apiInstance->updateCampaignStatus($body, $campaignId);
 } catch (Exception $e) {
     echo 'Exception when calling EmailCampaignsApi->updateCampaignStatus: ', $e->getMessage(), PHP_EOL;
 }
@@ -655,8 +632,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**\Brevo\Client\Model\UpdateCampaignStatus**](../Model/UpdateCampaignStatus.md)| Status of the campaign |
  **campaignId** | **int**| Id of the campaign |
- **status** | [**\Brevo\Client\Model\UpdateCampaignStatus**](../Model/UpdateCampaignStatus.md)| Status of the campaign |
 
 ### Return type
 
@@ -674,7 +651,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailCampaign**
-> updateEmailCampaign($campaignId, $emailCampaign)
+> updateEmailCampaign($body, $campaignId)
 
 Update an email campaign
 
@@ -682,12 +659,10 @@ Update an email campaign
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -698,11 +673,11 @@ $apiInstance = new Brevo\Client\Api\EmailCampaignsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \Brevo\Client\Model\UpdateEmailCampaign(); // \Brevo\Client\Model\UpdateEmailCampaign | Values to update a campaign
 $campaignId = 789; // int | Id of the campaign
-$emailCampaign = new \Brevo\Client\Model\UpdateEmailCampaign(); // \Brevo\Client\Model\UpdateEmailCampaign | Values to update a campaign
 
 try {
-    $apiInstance->updateEmailCampaign($campaignId, $emailCampaign);
+    $apiInstance->updateEmailCampaign($body, $campaignId);
 } catch (Exception $e) {
     echo 'Exception when calling EmailCampaignsApi->updateEmailCampaign: ', $e->getMessage(), PHP_EOL;
 }
@@ -713,8 +688,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**\Brevo\Client\Model\UpdateEmailCampaign**](../Model/UpdateEmailCampaign.md)| Values to update a campaign |
  **campaignId** | **int**| Id of the campaign |
- **emailCampaign** | [**\Brevo\Client\Model\UpdateEmailCampaign**](../Model/UpdateEmailCampaign.md)| Values to update a campaign |
 
 ### Return type
 
@@ -732,7 +707,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **uploadImageToGallery**
-> \Brevo\Client\Model\UploadImageModel uploadImageToGallery($uploadImage)
+> \Brevo\Client\Model\UploadImageModel uploadImageToGallery($body)
 
 Upload an image to your account's image gallery
 
@@ -740,12 +715,10 @@ Upload an image to your account's image gallery
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: api-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
-// Configure API key authorization: partner-key
+// $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');// Configure API key authorization: partner-key
 $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('partner-key', 'Bearer');
@@ -756,10 +729,10 @@ $apiInstance = new Brevo\Client\Api\EmailCampaignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$uploadImage = new \Brevo\Client\Model\UploadImageToGallery(); // \Brevo\Client\Model\UploadImageToGallery | Parameters to upload an image
+$body = new \Brevo\Client\Model\UploadImageToGallery(); // \Brevo\Client\Model\UploadImageToGallery | Parameters to upload an image
 
 try {
-    $result = $apiInstance->uploadImageToGallery($uploadImage);
+    $result = $apiInstance->uploadImageToGallery($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailCampaignsApi->uploadImageToGallery: ', $e->getMessage(), PHP_EOL;
@@ -771,7 +744,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uploadImage** | [**\Brevo\Client\Model\UploadImageToGallery**](../Model/UploadImageToGallery.md)| Parameters to upload an image |
+ **body** | [**\Brevo\Client\Model\UploadImageToGallery**](../Model/UploadImageToGallery.md)| Parameters to upload an image |
 
 ### Return type
 
