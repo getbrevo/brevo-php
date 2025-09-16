@@ -230,6 +230,7 @@ class GetCampaignOverview implements ModelInterface, ArrayAccess
     const STATUS_QUEUED = 'queued';
     const STATUS_SUSPENDED = 'suspended';
     const STATUS_IN_PROCESS = 'in_process';
+    const STATUS_IN_REVIEW = 'in_review';
 
     /**
      * Gets allowable values of the enum
@@ -257,6 +258,7 @@ class GetCampaignOverview implements ModelInterface, ArrayAccess
             self::STATUS_QUEUED,
             self::STATUS_SUSPENDED,
             self::STATUS_IN_PROCESS,
+            self::STATUS_IN_REVIEW,
         ];
     }
 
