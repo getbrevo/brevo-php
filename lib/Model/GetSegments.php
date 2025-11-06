@@ -57,7 +57,7 @@ class GetSegments implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'segments' => '\Brevo\Client\Model\GetSegmentsSegments',
+        'segments' => '\Brevo\Client\Model\GetSegmentsSegments[]',
         'count' => 'int'
     ];
 
