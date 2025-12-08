@@ -229,6 +229,7 @@ class GetCampaignOverview implements ModelInterface, ArrayAccess
     const STATUS_ARCHIVE = 'archive';
     const STATUS_QUEUED = 'queued';
     const STATUS_SUSPENDED = 'suspended';
+    const STATUS_REJECTED = 'rejected';
     const STATUS_IN_PROCESS = 'in_process';
     const STATUS_IN_REVIEW = 'in_review';
 
@@ -257,6 +258,7 @@ class GetCampaignOverview implements ModelInterface, ArrayAccess
             self::STATUS_ARCHIVE,
             self::STATUS_QUEUED,
             self::STATUS_SUSPENDED,
+            self::STATUS_REJECTED,
             self::STATUS_IN_PROCESS,
             self::STATUS_IN_REVIEW,
         ];
