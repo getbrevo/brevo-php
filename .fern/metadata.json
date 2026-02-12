@@ -1,0 +1,15 @@
+{
+  "cliVersion": "3.63.0",
+  "generatorName": "fernapi/fern-php-sdk",
+  "generatorVersion": "1.29.0",
+  "generatorConfig": {
+    "clientName": "Brevo",
+    "namespace": "Brevo",
+    "enable-wire-tests": true,
+    "propertyAccess": "public",
+    "packageName": "getbrevo/brevo-php",
+    "generateClientInterfaces": true,
+    "useDefaultRequestParameterValues": true
+  },
+  "sdkVersion": "0.0.62"
+}

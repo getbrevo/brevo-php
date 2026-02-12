@@ -1,0 +1,61 @@
+<?php
+
+namespace Brevo\Account\Requests;
+
+use Brevo\Core\Json\JsonSerializableType;
+
+class GetAccountActivityRequest extends JsonSerializableType
+{
+    /**
+     * Mandatory if endDate is used. Enter start date in UTC date (YYYY-MM-DD)
+     * format to filter the activity in your account. Maximum time period that
+     * can be selected is one month. Additionally, you can retrieve activity
+     * logs from the past 12 months from the date of your search.
+     *
+     * @var ?string $startDate
+     */
+    public ?string $startDate;
+
+    /**
+     * Mandatory if startDate is used. Enter end date in UTC date (YYYY-MM-DD)
+     * format to filter the activity in your account. Maximum time period that
+     * can be selected is one month.
+     *
+     * @var ?string $endDate
+     */
+    public ?string $endDate;
+
+    /**
+     * @var ?string $email Enter the user's email address to filter their activity in the account.
+     */
+    public ?string $email;
+
+    /**
+     * @var ?int $limit Number of documents per page
+     */
+    public ?int $limit = 10;
+
+    /**
+     * @var ?int $offset Index of the first document in the page.
+     */
+    public ?int $offset = 0;
+
+    /**
+     * @param array{
+     *   startDate?: ?string,
+     *   endDate?: ?string,
+     *   email?: ?string,
+     *   limit?: ?int,
+     *   offset?: ?int,
+     * } $values
+     */
+    public function __construct(
+        array $values = [],
+    ) {
+        $this->startDate = $values['startDate'] ?? null;
+        $this->endDate = $values['endDate'] ?? null;
+        $this->email = $values['email'] ?? null;
+        $this->limit = $values['limit'] ?? null;
+        $this->offset = $values['offset'] ?? null;
+    }
+}
