@@ -11,5 +11,5 @@
     "generateClientInterfaces": true,
     "useDefaultRequestParameterValues": true
   },
-  "sdkVersion": "0.0.66"
+  "sdkVersion": "4.0.0"
 }
