@@ -52,6 +52,7 @@ interface InboundParsingClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
+     * @return string
      */
-    public function getInboundEmailAttachment(string $downloadToken, ?array $options = null): void;
+    public function getInboundEmailAttachment(string $downloadToken, ?array $options = null): string;
 }

@@ -5257,8 +5257,8 @@
         }
       },
       "response": {
-        "status": 204,
-        "body": "\"string\"",
+        "status": 200,
+        "body": "\"\"",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -5390,8 +5390,8 @@
         }
       },
       "response": {
-        "status": 204,
-        "body": "\"string\"",
+        "status": 200,
+        "body": "\"\"",
         "headers": {
           "Content-Type": "application/json"
         }

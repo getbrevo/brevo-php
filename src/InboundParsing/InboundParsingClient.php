@@ -173,10 +173,11 @@ class InboundParsingClient implements InboundParsingClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
+     * @return string
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getInboundEmailAttachment(string $downloadToken, ?array $options = null): void
+    public function getInboundEmailAttachment(string $downloadToken, ?array $options = null): string
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -189,6 +190,9 @@ class InboundParsingClient implements InboundParsingClientInterface
                 $options,
             );
             $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                return $response->getBody()->getContents();
+            }
         } catch (ClientExceptionInterface $e) {
             throw new BrevoException(message: $e->getMessage(), previous: $e);
         }
