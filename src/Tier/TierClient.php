@@ -18,7 +18,6 @@ use Brevo\Tier\Requests\CreateTierGroupRequest;
 use Brevo\Types\TierGroup;
 use Brevo\Tier\Requests\GetTierGroupRequest;
 use Brevo\Tier\Requests\UpdateTierGroupRequest;
-use Brevo\Core\Json\JsonDecoder;
 use Brevo\Tier\Requests\CreateTierForTierGroupRequest;
 use Brevo\Types\Tier;
 use Brevo\Tier\Requests\GetLoyaltyProgramTierRequest;
@@ -319,11 +318,10 @@ class TierClient implements TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return string
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function deleteTierGroup(string $pid, string $gid, ?array $options = null): string
+    public function deleteTierGroup(string $pid, string $gid, ?array $options = null): void
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -337,11 +335,8 @@ class TierClient implements TierClientInterface
             );
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                return JsonDecoder::decodeString($json);
+                return;
             }
-        } catch (JsonException $e) {
-            throw new BrevoException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
         } catch (ClientExceptionInterface $e) {
             throw new BrevoException(message: $e->getMessage(), previous: $e);
         }
@@ -512,11 +507,10 @@ class TierClient implements TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return string
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function deleteTier(string $pid, string $tid, ?array $options = null): string
+    public function deleteTier(string $pid, string $tid, ?array $options = null): void
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -530,11 +524,8 @@ class TierClient implements TierClientInterface
             );
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                return JsonDecoder::decodeString($json);
+                return;
             }
-        } catch (JsonException $e) {
-            throw new BrevoException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
         } catch (ClientExceptionInterface $e) {
             throw new BrevoException(message: $e->getMessage(), previous: $e);
         }

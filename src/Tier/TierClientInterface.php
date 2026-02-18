@@ -118,9 +118,8 @@ interface TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return string
      */
-    public function deleteTierGroup(string $pid, string $gid, ?array $options = null): string;
+    public function deleteTierGroup(string $pid, string $gid, ?array $options = null): void;
 
     /**
      * Creates a new tier in a loyalty program tier group. *(The changes will take effect with the next publication of the loyalty program)*
@@ -188,7 +187,6 @@ interface TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return string
      */
-    public function deleteTier(string $pid, string $tid, ?array $options = null): string;
+    public function deleteTier(string $pid, string $tid, ?array $options = null): void;
 }

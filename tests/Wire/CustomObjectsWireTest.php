@@ -75,7 +75,11 @@ class CustomObjectsWireTest extends WireMockTestCase
         $this->client->customObjects->batchDeleteObjectRecords(
             'vehicle',
             new BatchDeleteObjectRecordsRequest([
-                'identifiers' => new BatchDeleteObjectRecordsRequestIdentifiersIds([]),
+                'identifiers' => new BatchDeleteObjectRecordsRequestIdentifiersIds([
+                    'ids' => [
+                        1,
+                    ],
+                ]),
             ]),
             [
                 'headers' => [

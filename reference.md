@@ -5078,7 +5078,11 @@ The request is accepted and processed asynchronously.   You can track the status
 $client->customObjects->batchDeleteObjectRecords(
     'vehicle',
     new BatchDeleteObjectRecordsRequest([
-        'identifiers' => new BatchDeleteObjectRecordsRequestIdentifiersIds([]),
+        'identifiers' => new BatchDeleteObjectRecordsRequestIdentifiersIds([
+            'ids' => [
+                1,
+            ],
+        ]),
     ]),
 );
 ```
@@ -9916,7 +9920,7 @@ $client->inboundParsing->getInboundEmailEventsByUuid(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inboundParsing-&gt;getInboundEmailAttachment($downloadToken)</code></summary>
+<details><summary><code>$client-&gt;inboundParsing-&gt;getInboundEmailAttachment($downloadToken) -> string</code></summary>
 <dl>
 <dd>
 
@@ -13929,7 +13933,7 @@ $client->tier->updateTierGroup(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;tier-&gt;deleteTierGroup($pid, $gid) -> string</code></summary>
+<details><summary><code>$client-&gt;tier-&gt;deleteTierGroup($pid, $gid)</code></summary>
 <dl>
 <dd>
 
@@ -14268,7 +14272,7 @@ $client->tier->updateTier(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;tier-&gt;deleteTier($pid, $tid) -> string</code></summary>
+<details><summary><code>$client-&gt;tier-&gt;deleteTier($pid, $tid)</code></summary>
 <dl>
 <dd>
 
