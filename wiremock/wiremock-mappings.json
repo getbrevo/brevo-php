@@ -1744,7 +1744,7 @@
       },
       "response": {
         "status": 200,
-        "body": "{\n  \"count\": 350,\n  \"records\": [\n    {\n      \"associations\": [\n        {\n          \"object_type\": \"garage\"\n        }\n      ],\n      \"attributes\": {\n        \"color\": \"Black\",\n        \"engine_type\": \"Hybrid\",\n        \"make\": \"Toyoto\",\n        \"model\": \"Corolla\",\n        \"year\": 2020\n      },\n      \"createdAt\": \"2025-07-22T10:20:30Z\",\n      \"identifiers\": {\n        \"ext_id\": \"507f1f77bc\",\n        \"id\": 16789\n      },\n      \"updatedAt\": \"2025-07-22T10:20:30Z\"\n    }\n  ]\n}",
+        "body": "{\n  \"count\": 350,\n  \"records\": [\n    {\n      \"associations\": [\n        {\n          \"object_type\": \"garage\",\n          \"records\": [\n            {\n              \"identifiers\": {\n                \"id\": 12345\n              }\n            }\n          ]\n        }\n      ],\n      \"attributes\": {\n        \"color\": \"Black\",\n        \"engine_type\": \"Hybrid\",\n        \"make\": \"Toyoto\",\n        \"model\": \"Corolla\",\n        \"year\": 2020\n      },\n      \"createdAt\": \"2025-07-22T10:20:30Z\",\n      \"identifiers\": {\n        \"ext_id\": \"507f1f77bc\",\n        \"id\": 16789\n      },\n      \"updatedAt\": \"2025-07-22T10:20:30Z\"\n    }\n  ]\n}",
         "headers": {
           "Content-Type": "application/json"
         }
