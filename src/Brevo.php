@@ -36,8 +36,40 @@ use Brevo\TransactionalSms\TransactionalSmsClient;
 use Brevo\SmsTemplates\SmsTemplatesClient;
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Account\AccountClientInterface;
+use Brevo\MasterAccount\MasterAccountClientInterface;
+use Brevo\User\UserClientInterface;
+use Brevo\Process\ProcessClientInterface;
+use Brevo\Senders\SendersClientInterface;
+use Brevo\Domains\DomainsClientInterface;
+use Brevo\Webhooks\WebhooksClientInterface;
+use Brevo\ExternalFeeds\ExternalFeedsClientInterface;
+use Brevo\CustomObjects\CustomObjectsClientInterface;
+use Brevo\Contacts\ContactsClientInterface;
+use Brevo\Conversations\ConversationsClientInterface;
+use Brevo\Ecommerce\EcommerceClientInterface;
+use Brevo\Coupons\CouponsClientInterface;
+use Brevo\Payments\PaymentsClientInterface;
+use Brevo\Event\EventClientInterface;
+use Brevo\InboundParsing\InboundParsingClientInterface;
+use Brevo\Balance\BalanceClientInterface;
+use Brevo\Program\ProgramClientInterface;
+use Brevo\Reward\RewardClientInterface;
+use Brevo\Tier\TierClientInterface;
+use Brevo\EmailCampaigns\EmailCampaignsClientInterface;
+use Brevo\SmsCampaigns\SmsCampaignsClientInterface;
+use Brevo\WhatsAppCampaigns\WhatsAppCampaignsClientInterface;
+use Brevo\Companies\CompaniesClientInterface;
+use Brevo\Deals\DealsClientInterface;
+use Brevo\Files\FilesClientInterface;
+use Brevo\Notes\NotesClientInterface;
+use Brevo\Tasks\TasksClientInterface;
+use Brevo\TransactionalWhatsApp\TransactionalWhatsAppClientInterface;
+use Brevo\TransactionalEmails\TransactionalEmailsClientInterface;
+use Brevo\TransactionalSms\TransactionalSmsClientInterface;
+use Brevo\SmsTemplates\SmsTemplatesClientInterface;
 
-class Brevo
+class Brevo implements BrevoInterface
 {
     /**
      * @var AccountClient $account
@@ -280,5 +312,261 @@ class Brevo
         $this->transactionalEmails = new TransactionalEmailsClient($this->client, $this->options);
         $this->transactionalSms = new TransactionalSmsClient($this->client, $this->options);
         $this->smsTemplates = new SmsTemplatesClient($this->client, $this->options);
+    }
+
+    /**
+     * @return AccountClientInterface
+     */
+    public function getAccount(): AccountClientInterface
+    {
+        return $this->account;
+    }
+
+    /**
+     * @return MasterAccountClientInterface
+     */
+    public function getMasterAccount(): MasterAccountClientInterface
+    {
+        return $this->masterAccount;
+    }
+
+    /**
+     * @return UserClientInterface
+     */
+    public function getUser(): UserClientInterface
+    {
+        return $this->user;
+    }
+
+    /**
+     * @return ProcessClientInterface
+     */
+    public function getProcess(): ProcessClientInterface
+    {
+        return $this->process;
+    }
+
+    /**
+     * @return SendersClientInterface
+     */
+    public function getSenders(): SendersClientInterface
+    {
+        return $this->senders;
+    }
+
+    /**
+     * @return DomainsClientInterface
+     */
+    public function getDomains(): DomainsClientInterface
+    {
+        return $this->domains;
+    }
+
+    /**
+     * @return WebhooksClientInterface
+     */
+    public function getWebhooks(): WebhooksClientInterface
+    {
+        return $this->webhooks;
+    }
+
+    /**
+     * @return ExternalFeedsClientInterface
+     */
+    public function getExternalFeeds(): ExternalFeedsClientInterface
+    {
+        return $this->externalFeeds;
+    }
+
+    /**
+     * @return CustomObjectsClientInterface
+     */
+    public function getCustomObjects(): CustomObjectsClientInterface
+    {
+        return $this->customObjects;
+    }
+
+    /**
+     * @return ContactsClientInterface
+     */
+    public function getContacts(): ContactsClientInterface
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * @return ConversationsClientInterface
+     */
+    public function getConversations(): ConversationsClientInterface
+    {
+        return $this->conversations;
+    }
+
+    /**
+     * @return EcommerceClientInterface
+     */
+    public function getEcommerce(): EcommerceClientInterface
+    {
+        return $this->ecommerce;
+    }
+
+    /**
+     * @return CouponsClientInterface
+     */
+    public function getCoupons(): CouponsClientInterface
+    {
+        return $this->coupons;
+    }
+
+    /**
+     * @return PaymentsClientInterface
+     */
+    public function getPayments(): PaymentsClientInterface
+    {
+        return $this->payments;
+    }
+
+    /**
+     * @return EventClientInterface
+     */
+    public function getEvent(): EventClientInterface
+    {
+        return $this->event;
+    }
+
+    /**
+     * @return InboundParsingClientInterface
+     */
+    public function getInboundParsing(): InboundParsingClientInterface
+    {
+        return $this->inboundParsing;
+    }
+
+    /**
+     * @return BalanceClientInterface
+     */
+    public function getBalance(): BalanceClientInterface
+    {
+        return $this->balance;
+    }
+
+    /**
+     * @return ProgramClientInterface
+     */
+    public function getProgram(): ProgramClientInterface
+    {
+        return $this->program;
+    }
+
+    /**
+     * @return RewardClientInterface
+     */
+    public function getReward(): RewardClientInterface
+    {
+        return $this->reward;
+    }
+
+    /**
+     * @return TierClientInterface
+     */
+    public function getTier(): TierClientInterface
+    {
+        return $this->tier;
+    }
+
+    /**
+     * @return EmailCampaignsClientInterface
+     */
+    public function getEmailCampaigns(): EmailCampaignsClientInterface
+    {
+        return $this->emailCampaigns;
+    }
+
+    /**
+     * @return SmsCampaignsClientInterface
+     */
+    public function getSmsCampaigns(): SmsCampaignsClientInterface
+    {
+        return $this->smsCampaigns;
+    }
+
+    /**
+     * @return WhatsAppCampaignsClientInterface
+     */
+    public function getWhatsAppCampaigns(): WhatsAppCampaignsClientInterface
+    {
+        return $this->whatsAppCampaigns;
+    }
+
+    /**
+     * @return CompaniesClientInterface
+     */
+    public function getCompanies(): CompaniesClientInterface
+    {
+        return $this->companies;
+    }
+
+    /**
+     * @return DealsClientInterface
+     */
+    public function getDeals(): DealsClientInterface
+    {
+        return $this->deals;
+    }
+
+    /**
+     * @return FilesClientInterface
+     */
+    public function getFiles(): FilesClientInterface
+    {
+        return $this->files;
+    }
+
+    /**
+     * @return NotesClientInterface
+     */
+    public function getNotes(): NotesClientInterface
+    {
+        return $this->notes;
+    }
+
+    /**
+     * @return TasksClientInterface
+     */
+    public function getTasks(): TasksClientInterface
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * @return TransactionalWhatsAppClientInterface
+     */
+    public function getTransactionalWhatsApp(): TransactionalWhatsAppClientInterface
+    {
+        return $this->transactionalWhatsApp;
+    }
+
+    /**
+     * @return TransactionalEmailsClientInterface
+     */
+    public function getTransactionalEmails(): TransactionalEmailsClientInterface
+    {
+        return $this->transactionalEmails;
+    }
+
+    /**
+     * @return TransactionalSmsClientInterface
+     */
+    public function getTransactionalSms(): TransactionalSmsClientInterface
+    {
+        return $this->transactionalSms;
+    }
+
+    /**
+     * @return SmsTemplatesClientInterface
+     */
+    public function getSmsTemplates(): SmsTemplatesClientInterface
+    {
+        return $this->smsTemplates;
     }
 }
