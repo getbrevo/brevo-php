@@ -15,7 +15,7 @@ use Brevo\Ecommerce\Types\GetEcommerceAttributionProductsConversionSourceConvers
 use Brevo\Ecommerce\Requests\SetConfigDisplayCurrencyRequest;
 use Brevo\Ecommerce\Requests\GetOrdersRequest;
 use Brevo\Types\Order;
-use Brevo\Types\OrderProductsItem;
+use Brevo\Types\OrderProductsItemQuantity;
 use Brevo\Ecommerce\Requests\CreateBatchOrderRequest;
 use Brevo\Ecommerce\Requests\GetProductsRequest;
 use Brevo\Ecommerce\Requests\CreateUpdateProductRequest;
@@ -284,9 +284,7 @@ class EcommerceWireTest extends WireMockTestCase
                 'createdAt' => '2021-07-29T20:59:23.383Z',
                 'id' => '14',
                 'products' => [
-                    new OrderProductsItem([
-                        'price' => 99.99,
-                        'productId' => 'P1',
+                    new OrderProductsItemQuantity([
                         'quantity' => 10,
                     ]),
                 ],
@@ -320,9 +318,7 @@ class EcommerceWireTest extends WireMockTestCase
                         'createdAt' => '2021-07-29T20:59:23.383Z',
                         'id' => '14',
                         'products' => [
-                            new OrderProductsItem([
-                                'price' => 99.99,
-                                'productId' => 'P1',
+                            new OrderProductsItemQuantity([
                                 'quantity' => 10,
                             ]),
                         ],

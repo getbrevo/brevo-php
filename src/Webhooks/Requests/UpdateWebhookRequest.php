@@ -44,6 +44,7 @@ class UpdateWebhookRequest extends JsonSerializableType
      * #### `spam`, `opened`, `click`, `hardBounce`, `softBounce`,
      * `unsubscribed`, `listAddition` & `delivered` - Possible values
      * for **Inbound** type webhook: #### `inboundEmailProcessed`
+     * #### `reply`
      *
      * @var ?array<value-of<UpdateWebhookRequestEventsItem>> $events
      */

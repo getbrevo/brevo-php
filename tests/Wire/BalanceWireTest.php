@@ -385,7 +385,7 @@ class BalanceWireTest extends WireMockTestCase
             'pid',
             new GetLoyaltyBalanceProgramsPidTransactionHistoryRequest([
                 'contactId' => 1,
-                'balanceDefinitionId' => 'balance_definition_id',
+                'balanceDefinitionId' => 'balanceDefinitionId',
             ]),
             [
                 'headers' => [
@@ -397,7 +397,7 @@ class BalanceWireTest extends WireMockTestCase
             $testId,
             "GET",
             "/loyalty/balance/programs/pid/transaction-history",
-            ['contact_id' => '1', 'balance_definition_id' => 'balance_definition_id'],
+            ['contactId' => '1', 'balanceDefinitionId' => 'balanceDefinitionId'],
             1
         );
     }

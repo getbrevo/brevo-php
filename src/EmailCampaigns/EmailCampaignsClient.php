@@ -65,11 +65,8 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
     }
 
     /**
-     * <Note>
-     * The response payload for this endpoint has changed
-     *
-     * You now need to specify which type of statistics you would like to retrieve. For more information visit [this page](https://developers.brevo.com/changelog/get-all-marketing-campaigns).
-     * </Note>
+     * <Note>The response payload for this endpoint has changed
+     * You now need to specify which type of statistics you would like to retrieve. For more information visit [this page](https://developers.brevo.com/changelog/get-all-marketing-campaigns).</Note>
      *
      * @param GetEmailCampaignsRequest $request
      * @param ?array{

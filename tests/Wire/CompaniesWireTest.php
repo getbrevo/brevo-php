@@ -13,6 +13,7 @@ use Brevo\Companies\Requests\PatchCompaniesIdRequest;
 use Brevo\Companies\Requests\PostCrmAttributesRequest;
 use Brevo\Companies\Types\PostCrmAttributesRequestAttributeType;
 use Brevo\Companies\Types\PostCrmAttributesRequestObjectType;
+use Brevo\Companies\Requests\PatchCrmAttributesIdRequest;
 
 class CompaniesWireTest extends WireMockTestCase
 {
@@ -194,6 +195,49 @@ class CompaniesWireTest extends WireMockTestCase
             $testId,
             "POST",
             "/crm/attributes",
+            null,
+            1
+        );
+    }
+
+    /**
+     */
+    public function testDeleteAnAttribute(): void {
+        $testId = 'companies.delete_an_attribute.0';
+        $this->client->companies->deleteAnAttribute(
+            'id',
+            [
+                'headers' => [
+                    'X-Test-Id' => 'companies.delete_an_attribute.0',
+                ],
+            ],
+        );
+        $this->verifyRequestCount(
+            $testId,
+            "DELETE",
+            "/crm/attributes/id",
+            null,
+            1
+        );
+    }
+
+    /**
+     */
+    public function testUpdateAnAttribute(): void {
+        $testId = 'companies.update_an_attribute.0';
+        $this->client->companies->updateAnAttribute(
+            'id',
+            new PatchCrmAttributesIdRequest([]),
+            [
+                'headers' => [
+                    'X-Test-Id' => 'companies.update_an_attribute.0',
+                ],
+            ],
+        );
+        $this->verifyRequestCount(
+            $testId,
+            "PATCH",
+            "/crm/attributes/id",
             null,
             1
         );
