@@ -1,3 +1,14 @@
+> [!WARNING]
+> ## ⚠️ A New Version of this SDK is Available
+>
+> **[brevo-php v4](https://github.com/getbrevo/brevo-php/tree/v4)** is now the actively developed version of this library, built on a modern, unified client architecture with PHP 8.1+ support.
+>
+> This **v1.x** version will continue to receive **critical security updates only** — no new features will be added. We strongly recommend migrating to v4 at your earliest convenience.
+>
+> 📖 **[View the Migration Guide →](https://developers.brevo.com/docs/api-clients/php#migration-from-the-legacy-sdk)**
+
+---
+
 # Brevo's API v3 Php Library
 
 Brevo's API exposes the entire Brevo features via a standardized programmatic interface. Please refer to the full [documentation](https://developers.brevo.com) to learn more.
