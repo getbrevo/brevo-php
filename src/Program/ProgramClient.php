@@ -404,6 +404,48 @@ class ProgramClient implements ProgramClientInterface
     }
 
     /**
+     * Delete subscription for a contact
+     *
+     * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
+     * @param int $cid Contact ID.
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @throws BrevoException
+     * @throws BrevoApiException
+     */
+    public function deleteContactSubscription(string $pid, int $cid, ?array $options = null): void
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    path: "loyalty/config/programs/{$pid}/contact/{$cid}",
+                    method: HttpMethod::DELETE,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                return;
+            }
+        } catch (ClientExceptionInterface $e) {
+            throw new BrevoException(message: $e->getMessage(), previous: $e);
+        }
+        throw new BrevoApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
      * Publishes loyalty program
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.

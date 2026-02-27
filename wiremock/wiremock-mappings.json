@@ -1435,8 +1435,8 @@
       }
     },
     {
-      "id": "747584ac-68ed-4ed6-a905-9c093c09d9f6",
-      "name": "Export weekly events - default",
+      "id": "0bf6e8dd-41ac-4605-b444-f39fff877649",
+      "name": "This endpoint will submit a request to get the history of webhooks in the\nCSV file. The link to download the CSV file will be sent to the webhook that\nwas provided in the notifyURL. - default",
       "request": {
         "urlPathTemplate": "/webhooks/export",
         "method": "POST"
@@ -1448,7 +1448,7 @@
           "Content-Type": "application/json"
         }
       },
-      "uuid": "747584ac-68ed-4ed6-a905-9c093c09d9f6",
+      "uuid": "0bf6e8dd-41ac-4605-b444-f39fff877649",
       "persistent": true,
       "priority": 3,
       "metadata": {
@@ -3265,7 +3265,7 @@
       },
       "response": {
         "status": 200,
-        "body": "{\n  \"count\": 1,\n  \"orders\": [\n    {\n      \"amount\": 2000,\n      \"billing\": {\n        \"address\": \"Sec 62, Noida\",\n        \"city\": \"Noida\",\n        \"country\": \"India\",\n        \"countryCode\": \"IN\",\n        \"paymentMethod\": \"Net banking\",\n        \"phone\": 9238283982,\n        \"postCode\": 110001,\n        \"region\": \"North India\"\n      },\n      \"contact_id\": 2,\n      \"coupons\": [\n        \"flat50\",\n        \"flat40\"\n      ],\n      \"createdAt\": \"2021-12-31T11:42:35.638Z\",\n      \"email\": \"testvisitor@sendinblue.com\",\n      \"id\": \"order1803\",\n      \"identifiers\": {\n        \"ext_id\": \"ab12\",\n        \"loyalty_subscription_id\": \"1234\"\n      },\n      \"products\": [\n        {\n          \"price\": 100,\n          \"productId\": 21,\n          \"quantity\": 2,\n          \"variantId\": \"P100\"\n        },\n        {\n          \"price\": 100,\n          \"productId\": 21,\n          \"quantity\": 2,\n          \"variantId\": \"P15756\"\n        }\n      ],\n      \"status\": \"complete\",\n      \"storeId\": \"123\",\n      \"updatedAt\": \"2022-03-03T14:48:31.867Z\"\n    }\n  ]\n}",
+        "body": "{\n  \"count\": 1,\n  \"orders\": [\n    {\n      \"amount\": 2000,\n      \"billing\": {\n        \"address\": \"Sec 62, Noida\",\n        \"city\": \"Noida\",\n        \"country\": \"India\",\n        \"countryCode\": \"IN\",\n        \"paymentMethod\": \"Net banking\",\n        \"phone\": 9238283982,\n        \"postCode\": 110001,\n        \"region\": \"North India\"\n      },\n      \"contact_id\": 2,\n      \"coupons\": [\n        \"flat50\",\n        \"flat40\"\n      ],\n      \"createdAt\": \"2021-12-31T11:42:35.638Z\",\n      \"email\": \"testvisitor@sendinblue.com\",\n      \"id\": \"order1803\",\n      \"identifiers\": {\n        \"ext_id\": \"ab12\",\n        \"loyalty_subscription_id\": \"1234\"\n      },\n      \"products\": [\n        {\n          \"price\": 100,\n          \"productId\": 21,\n          \"quantity\": 2,\n          \"quantityFloat\": 0,\n          \"variantId\": \"P100\"\n        },\n        {\n          \"price\": 100,\n          \"productId\": 21,\n          \"quantity\": 0,\n          \"quantityFloat\": 2.52,\n          \"variantId\": \"P15756\"\n        }\n      ],\n      \"status\": \"complete\",\n      \"storeId\": \"123\",\n      \"updatedAt\": \"2022-03-03T14:48:31.867Z\"\n    }\n  ]\n}",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -4620,6 +4620,40 @@
         }
       },
       "uuid": "d32199cf-9ffa-4318-a330-2e9fda3da2d2",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0878ece4-9fe9-491a-9a7c-daaf7cf9c341",
+      "name": "Delete subscription - default",
+      "request": {
+        "urlPathTemplate": "/loyalty/config/programs/{pid}/contact/{cid}",
+        "method": "DELETE",
+        "pathParameters": {
+          "pid": {
+            "equalTo": "pid"
+          },
+          "cid": {
+            "equalTo": "1"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0878ece4-9fe9-491a-9a7c-daaf7cf9c341",
       "persistent": true,
       "priority": 3,
       "metadata": {
@@ -6585,6 +6619,68 @@
       }
     },
     {
+      "id": "360c88d6-c7bb-4c00-b1ab-146f803e9eff",
+      "name": "Delete an attribute - default",
+      "request": {
+        "urlPathTemplate": "/crm/attributes/{id}",
+        "method": "DELETE",
+        "pathParameters": {
+          "id": {
+            "equalTo": "id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "360c88d6-c7bb-4c00-b1ab-146f803e9eff",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "a9790cec-51da-4b91-ae52-a3b58fa8c717",
+      "name": "Update an attribute - default",
+      "request": {
+        "urlPathTemplate": "/crm/attributes/{id}",
+        "method": "PATCH",
+        "pathParameters": {
+          "id": {
+            "equalTo": "id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "a9790cec-51da-4b91-ae52-a3b58fa8c717",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
       "id": "696b098d-c426-490d-993d-82b72a9a6eec",
       "name": "Get company attributes - default",
       "request": {
@@ -8235,6 +8331,6 @@
     }
   ],
   "meta": {
-    "total": 279
+    "total": 282
   }
 }

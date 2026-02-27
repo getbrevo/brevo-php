@@ -71,9 +71,9 @@ interface WebhooksClientInterface
     public function createWebhook(CreateWebhookRequest $request, ?array $options = null): CreateWebhookResponse;
 
     /**
-     * <Note title="This feature is available for Professional and Enterprise plans">
-     * To have it activated please send us a request and we will activate it for your account.
-     * </Note>
+     * <Note>This is an enterprise feature.
+     *
+     * To have it activated please send us a request and we will activate it for your account.</Note>
      *
      * Exports webhook event history to CSV format for analysis and reporting.
      *
