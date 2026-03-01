@@ -1,5 +1,5 @@
 {
-  "cliVersion": "3.91.1",
+  "cliVersion": "3.91.2",
   "generatorName": "fernapi/fern-php-sdk",
   "generatorVersion": "2.1.4",
   "generatorConfig": {
@@ -20,5 +20,5 @@
     "generateClientInterfaces": true,
     "useDefaultRequestParameterValues": true
   },
-  "sdkVersion": "4.0.6"
+  "sdkVersion": "4.0.7"
 }
