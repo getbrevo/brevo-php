@@ -2,3 +2,9 @@
 README.md
 banner.png
 changelog.md
+
+# WireMock stubs for /ecommerce/attribution/metrics were generated with RFC3339_EXTENDED
+# datetime format (.000Z) but the PHP serializer uses RFC3339 (Z). The equalTo matchers
+# would never match, causing BrevoApiException in CI. Fixed to use Z without milliseconds.
+# Protected until Fern fixes the datetime format inconsistency in the PHP generator.
+wiremock/wiremock-mappings.json

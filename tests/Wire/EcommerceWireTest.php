@@ -15,7 +15,7 @@ use Brevo\Ecommerce\Types\GetEcommerceAttributionProductsConversionSourceConvers
 use Brevo\Ecommerce\Requests\SetConfigDisplayCurrencyRequest;
 use Brevo\Ecommerce\Requests\GetOrdersRequest;
 use Brevo\Types\Order;
-use Brevo\Types\OrderProductsItemQuantity;
+use Brevo\Types\OrderProductsItem;
 use Brevo\Ecommerce\Requests\CreateBatchOrderRequest;
 use Brevo\Ecommerce\Requests\GetProductsRequest;
 use Brevo\Ecommerce\Requests\CreateUpdateProductRequest;
@@ -284,8 +284,9 @@ class EcommerceWireTest extends WireMockTestCase
                 'createdAt' => '2021-07-29T20:59:23.383Z',
                 'id' => '14',
                 'products' => [
-                    new OrderProductsItemQuantity([
-                        'quantity' => 10,
+                    new OrderProductsItem([
+                        'price' => 99.99,
+                        'productId' => 'P1',
                     ]),
                 ],
                 'status' => 'completed',
@@ -318,8 +319,9 @@ class EcommerceWireTest extends WireMockTestCase
                         'createdAt' => '2021-07-29T20:59:23.383Z',
                         'id' => '14',
                         'products' => [
-                            new OrderProductsItemQuantity([
-                                'quantity' => 10,
+                            new OrderProductsItem([
+                                'price' => 99.99,
+                                'productId' => 'P1',
                             ]),
                         ],
                         'status' => 'completed',
@@ -466,7 +468,7 @@ class EcommerceWireTest extends WireMockTestCase
         $this->client = new Brevo(
             apiKey: 'test-apiKey',
         options: [
-            'baseUrl' => 'http://localhost:8080',
+            'baseUrl' => getenv('WIREMOCK_URL') ?: 'http://localhost:8080',
         ],
         );
     }

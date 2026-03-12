@@ -249,6 +249,9 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         if ($request->statistics != null) {
             $query['statistics'] = $request->statistics;
         }
+        if ($request->excludeHtmlContent != null) {
+            $query['excludeHtmlContent'] = $request->excludeHtmlContent;
+        }
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(

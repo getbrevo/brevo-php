@@ -9,12 +9,6 @@ use Brevo\Core\Types\ArrayType;
 class GetAccountResponse extends JsonSerializableType
 {
     /**
-     * @var ?array<GetAccountResponsePlanVerticalsItem> $planVerticals Detailed information about different plan categories
-     */
-    #[JsonProperty('planVerticals'), ArrayType([GetAccountResponsePlanVerticalsItem::class])]
-    public ?array $planVerticals;
-
-    /**
      * @var string $organizationId Unique identifier for the organization
      */
     #[JsonProperty('organization_id')]
@@ -81,6 +75,12 @@ class GetAccountResponse extends JsonSerializableType
     public array $plan;
 
     /**
+     * @var ?array<GetAccountResponsePlanVerticalsItem> $planVerticals Detailed information about different plan categories
+     */
+    #[JsonProperty('planVerticals'), ArrayType([GetAccountResponsePlanVerticalsItem::class])]
+    public ?array $planVerticals;
+
+    /**
      * @var GetAccountResponseRelay $relay Information about your transactional email account
      */
     #[JsonProperty('relay')]
@@ -99,14 +99,13 @@ class GetAccountResponse extends JsonSerializableType
      *   dateTimePreferences: GetAccountResponseDateTimePreferences,
      *   plan: array<GetAccountResponsePlanItem>,
      *   relay: GetAccountResponseRelay,
-     *   planVerticals?: ?array<GetAccountResponsePlanVerticalsItem>,
      *   marketingAutomation?: ?GetAccountResponseMarketingAutomation,
+     *   planVerticals?: ?array<GetAccountResponsePlanVerticalsItem>,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
-        $this->planVerticals = $values['planVerticals'] ?? null;
         $this->organizationId = $values['organizationId'];
         $this->userId = $values['userId'];
         $this->enterprise = $values['enterprise'];
@@ -118,6 +117,7 @@ class GetAccountResponse extends JsonSerializableType
         $this->dateTimePreferences = $values['dateTimePreferences'];
         $this->marketingAutomation = $values['marketingAutomation'] ?? null;
         $this->plan = $values['plan'];
+        $this->planVerticals = $values['planVerticals'] ?? null;
         $this->relay = $values['relay'];
     }
 

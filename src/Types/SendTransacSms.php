@@ -50,6 +50,18 @@ class SendTransacSms extends JsonSerializableType
     public ?string $webUrl;
 
     /**
+     * @var ?int $templateId Template ID to send SMS with the template. When provided, overrides the content parameter. Mandatory if 'content' is not passed.
+     */
+    #[JsonProperty('templateId')]
+    public ?int $templateId;
+
+    /**
+     * @var ?string $content Content of the message. If more than **160 characters** long, will be sent as multiple text messages. Mandatory if 'templateId' is not passed, ignored if 'templateId' is passed.
+     */
+    #[JsonProperty('content')]
+    public ?string $content;
+
+    /**
      * @param array{
      *   recipient: string,
      *   sender: string,
@@ -58,6 +70,8 @@ class SendTransacSms extends JsonSerializableType
      *   type?: ?value-of<SendTransacSmsType>,
      *   unicodeEnabled?: ?bool,
      *   webUrl?: ?string,
+     *   templateId?: ?int,
+     *   content?: ?string,
      * } $values
      */
     public function __construct(
@@ -70,6 +84,8 @@ class SendTransacSms extends JsonSerializableType
         $this->type = $values['type'] ?? null;
         $this->unicodeEnabled = $values['unicodeEnabled'] ?? null;
         $this->webUrl = $values['webUrl'] ?? null;
+        $this->templateId = $values['templateId'] ?? null;
+        $this->content = $values['content'] ?? null;
     }
 
     /**

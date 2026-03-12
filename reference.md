@@ -3806,6 +3806,7 @@ Possible values for type **Transactional** and channel **SMS**
 type **Marketing**  channel **SMS** ####
 `sent`,`delivered`,`softBounce`,`hardBounce`,`unsubscribe`,`reply`,
 `subscribe`,`skip`
+#### `reply`
     
 </dd>
 </dl>
@@ -3853,22 +3854,16 @@ type **Marketing**  channel **SMS** ####
 <dl>
 <dd>
 
-<Note>This is an enterprise feature.
+<Note>
+This is an enterprise feature. Contact us to activate it for your account.
+</Note>
 
-To have it activated please send us a request and we will activate it for your account.</Note>
+Submits a request to export webhook event history as a CSV file. The download link is sent to the `notifyURL` you provide in the request body.
 
-Exports webhook event history to CSV format for analysis and reporting.
-
-Use this to:
-- Generate comprehensive webhook event reports
-- Analyze webhook delivery patterns and success rates
-- Export event data for external analysis tools
-- Create historical reports for compliance and auditing
-- Track webhook performance and reliability metrics
-
-Key information returned:
-- Process ID for tracking export completion
-- CSV file will be delivered to specified webhook URL
+Use this endpoint to:
+- Export webhook event history filtered by date range, event type, or email address
+- Generate reports for compliance, auditing, or performance analysis
+- Track delivery patterns and webhook reliability over time
 </dd>
 </dl>
 </dd>
@@ -8549,8 +8544,9 @@ $client->ecommerce->createOrder(
         'createdAt' => '2021-07-29T20:59:23.383Z',
         'id' => '14',
         'products' => [
-            new OrderProductsItemQuantity([
-                'quantity' => 10,
+            new OrderProductsItem([
+                'price' => 99.99,
+                'productId' => 'P1',
             ]),
         ],
         'status' => 'completed',
@@ -8618,8 +8614,9 @@ $client->ecommerce->createBatchOrder(
                 'createdAt' => '2021-07-29T20:59:23.383Z',
                 'id' => '14',
                 'products' => [
-                    new OrderProductsItemQuantity([
-                        'quantity' => 10,
+                    new OrderProductsItem([
+                        'price' => 99.99,
+                        'productId' => 'P1',
                     ]),
                 ],
                 'status' => 'completed',
@@ -9703,6 +9700,67 @@ $client->event->createEvent(
 <dd>
 
 **$object:** `?CreateEventRequestObject` — Identifiers of the object record associated with this event. Ignored if the object type or identifier for this record does not exist on the account.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;event-&gt;createBatchEvents($request)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create multiple events to track contacts' interactions in a single request.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->event->createBatchEvents(
+    [
+        new CreateBatchEventsRequestItem([
+            'eventName' => 'order_created',
+            'identifiers' => new CreateBatchEventsRequestItemIdentifiers([]),
+        ]),
+    ],
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$request:** `array` 
     
 </dd>
 </dl>
@@ -14856,6 +14914,14 @@ $client->emailCampaigns->getEmailCampaign(
 <dd>
 
 **$statistics:** `?string` — Filter on type of the statistics required. Example **globalStats** value will only fetch globalStats info of the campaign in returned response.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$excludeHtmlContent:** `?bool` — Use this flag to exclude htmlContent from the response body. If set to **true**, htmlContent field will be returned as empty string in the response body
     
 </dd>
 </dl>
