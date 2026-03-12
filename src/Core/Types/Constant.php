@@ -8,5 +8,5 @@ class Constant
 {
     public const DateFormat = 'Y-m-d';
     public const DateDeserializationFormat = "!" . self::DateFormat;
-    public const DateTimeFormat = DateTimeInterface::RFC3339_EXTENDED;
+    public const DateTimeFormat = DateTimeInterface::RFC3339;
 }
