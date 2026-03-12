@@ -56,12 +56,9 @@ class Order extends JsonSerializableType
     public ?array $metaInfo;
 
     /**
-     * @var array<(
-     *    OrderProductsItemQuantity
-     *   |OrderProductsItemQuantityFloat
-     * )> $products
+     * @var array<OrderProductsItem> $products
      */
-    #[JsonProperty('products'), ArrayType([new Union(OrderProductsItemQuantity::class, OrderProductsItemQuantityFloat::class)])]
+    #[JsonProperty('products'), ArrayType([OrderProductsItem::class])]
     public array $products;
 
     /**
@@ -87,10 +84,7 @@ class Order extends JsonSerializableType
      *   amount: float,
      *   createdAt: string,
      *   id: string,
-     *   products: array<(
-     *    OrderProductsItemQuantity
-     *   |OrderProductsItemQuantityFloat
-     * )>,
+     *   products: array<OrderProductsItem>,
      *   status: string,
      *   updatedAt: string,
      *   billing?: ?OrderBilling,

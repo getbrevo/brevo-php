@@ -8,10 +8,10 @@ use Brevo\Core\Json\JsonProperty;
 class GetCampaignStats extends JsonSerializableType
 {
     /**
-     * @var int $appleMppOpens Numbers of times your email has been opened automatically through Apple MPP.
+     * @var ?int $appleMppOpens Numbers of times your email has been opened automatically through Apple MPP.
      */
     #[JsonProperty('appleMppOpens')]
-    public int $appleMppOpens;
+    public ?int $appleMppOpens;
 
     /**
      * @var int $clickers Number of total clicks for the campaign
@@ -56,10 +56,10 @@ class GetCampaignStats extends JsonSerializableType
     public ?int $listId;
 
     /**
-     * @var float $opensRate Percentage of recipients who open the email out of your total number of recipients. Depending on your Campaign settings, they may include Apple MPP opens.
+     * @var ?float $opensRate Percentage of recipients who open the email out of your total number of recipients. Depending on your Campaign settings, they may include Apple MPP opens.
      */
     #[JsonProperty('opensRate')]
-    public float $opensRate;
+    public ?float $opensRate;
 
     /**
      * @var ?int $returnBounce Total number of non-delivered campaigns for a particular campaign id.
@@ -117,12 +117,10 @@ class GetCampaignStats extends JsonSerializableType
 
     /**
      * @param array{
-     *   appleMppOpens: int,
      *   clickers: int,
      *   complaints: int,
      *   delivered: int,
      *   hardBounces: int,
-     *   opensRate: float,
      *   sent: int,
      *   softBounces: int,
      *   trackableViews: int,
@@ -130,9 +128,11 @@ class GetCampaignStats extends JsonSerializableType
      *   uniqueViews: int,
      *   unsubscriptions: int,
      *   viewed: int,
+     *   appleMppOpens?: ?int,
      *   deferred?: ?int,
      *   estimatedViews?: ?int,
      *   listId?: ?int,
+     *   opensRate?: ?float,
      *   returnBounce?: ?int,
      *   trackableViewsRate?: ?float,
      * } $values
@@ -140,7 +140,7 @@ class GetCampaignStats extends JsonSerializableType
     public function __construct(
         array $values,
     ) {
-        $this->appleMppOpens = $values['appleMppOpens'];
+        $this->appleMppOpens = $values['appleMppOpens'] ?? null;
         $this->clickers = $values['clickers'];
         $this->complaints = $values['complaints'];
         $this->deferred = $values['deferred'] ?? null;
@@ -148,7 +148,7 @@ class GetCampaignStats extends JsonSerializableType
         $this->estimatedViews = $values['estimatedViews'] ?? null;
         $this->hardBounces = $values['hardBounces'];
         $this->listId = $values['listId'] ?? null;
-        $this->opensRate = $values['opensRate'];
+        $this->opensRate = $values['opensRate'] ?? null;
         $this->returnBounce = $values['returnBounce'] ?? null;
         $this->sent = $values['sent'];
         $this->softBounces = $values['softBounces'];

@@ -9,7 +9,7 @@
       },
       "response": {
         "status": 200,
-        "body": "{\n  \"planVerticals\": [\n    {\n      \"planCategory\": \"Marketing\",\n      \"planType\": \"free\",\n      \"name\": \"Free\",\n      \"status\": \"active\",\n      \"startDate\": \"1751234567\",\n      \"endDate\": \"1753826567\",\n      \"users\": {\n        \"purchasedSeats\": \"1\",\n        \"usedSeats\": \"1\"\n      },\n      \"credits\": \"250\"\n    },\n    {\n      \"planCategory\": \"Chat\",\n      \"planType\": \"free\",\n      \"name\": \"Free\",\n      \"status\": \"active\",\n      \"startDate\": \"1735678901\",\n      \"endDate\": \"1767214901\",\n      \"users\": {\n        \"purchasedSeats\": \"1\",\n        \"usedSeats\": \"1\"\n      },\n      \"credits\": \"250\"\n    },\n    {\n      \"planCategory\": \"CRM\",\n      \"planType\": \"free\",\n      \"name\": \"Free\",\n      \"status\": \"active\",\n      \"startDate\": \"1735678900\",\n      \"endDate\": \"1767214900\",\n      \"users\": {\n        \"purchasedSeats\": \"1\",\n        \"usedSeats\": \"1\"\n      },\n      \"credits\": \"250\"\n    }\n  ],\n  \"organization_id\": \"5fa2b8c123456789abcdef01\",\n  \"user_id\": 1234567,\n  \"enterprise\": false,\n  \"companyName\": \"Acme Marketing Corp\",\n  \"email\": \"michael.davis@example.com\",\n  \"firstName\": \"Michael\",\n  \"lastName\": \"Davis\",\n  \"address\": {\n    \"city\": \"New York\",\n    \"country\": \"United States\",\n    \"street\": \"456 Business Ave\",\n    \"zipCode\": \"10001\"\n  },\n  \"dateTimePreferences\": {\n    \"timezone\": \"America/New_York\",\n    \"timeFormat\": \"12\",\n    \"dateFormat\": \"mm-dd-yyyy\"\n  },\n  \"marketingAutomation\": {\n    \"enabled\": true,\n    \"key\": \"ma8k2x9v4h7p3d6f1c5e8b2a\"\n  },\n  \"plan\": [\n    {\n      \"credits\": 250,\n      \"creditsType\": \"sendLimit\",\n      \"endDate\": \"1753826567\",\n      \"startDate\": \"1751234567\",\n      \"type\": \"free\"\n    },\n    {\n      \"credits\": 15,\n      \"creditsType\": \"sendLimit\",\n      \"endDate\": \"1753826567\",\n      \"startDate\": \"1751234567\",\n      \"type\": \"sms\"\n    }\n  ],\n  \"relay\": {\n    \"data\": {\n      \"port\": 587,\n      \"relay\": \"smtp-relay.brevo.com\",\n      \"userName\": \"michael.davis@example.com\"\n    },\n    \"enabled\": true\n  }\n}",
+        "body": "{\n  \"organization_id\": \"5fa2b8c123456789abcdef01\",\n  \"user_id\": 1234567,\n  \"enterprise\": false,\n  \"companyName\": \"Acme Marketing Corp\",\n  \"email\": \"michael.davis@example.com\",\n  \"firstName\": \"Michael\",\n  \"lastName\": \"Davis\",\n  \"address\": {\n    \"city\": \"New York\",\n    \"country\": \"United States\",\n    \"street\": \"456 Business Ave\",\n    \"zipCode\": \"10001\"\n  },\n  \"dateTimePreferences\": {\n    \"timezone\": \"America/New_York\",\n    \"timeFormat\": \"12\",\n    \"dateFormat\": \"mm-dd-yyyy\"\n  },\n  \"marketingAutomation\": {\n    \"enabled\": true,\n    \"key\": \"ma8k2x9v4h7p3d6f1c5e8b2a\"\n  },\n  \"plan\": [\n    {\n      \"credits\": 250,\n      \"creditsType\": \"sendLimit\",\n      \"endDate\": \"1753826567\",\n      \"startDate\": \"1751234567\",\n      \"type\": \"free\"\n    },\n    {\n      \"credits\": 15,\n      \"creditsType\": \"sendLimit\",\n      \"endDate\": \"1753826567\",\n      \"startDate\": \"1751234567\",\n      \"type\": \"sms\"\n    }\n  ],\n  \"planVerticals\": [\n    {\n      \"planCategory\": \"Marketing\",\n      \"planType\": \"free\",\n      \"name\": \"Free\",\n      \"status\": \"active\",\n      \"startDate\": \"1751234567\",\n      \"endDate\": \"1753826567\",\n      \"users\": {\n        \"purchasedSeats\": \"1\",\n        \"usedSeats\": \"1\"\n      },\n      \"credits\": \"250\"\n    },\n    {\n      \"planCategory\": \"Chat\",\n      \"planType\": \"free\",\n      \"name\": \"Free\",\n      \"status\": \"active\",\n      \"startDate\": \"1735678901\",\n      \"endDate\": \"1767214901\",\n      \"users\": {\n        \"purchasedSeats\": \"1\",\n        \"usedSeats\": \"1\"\n      },\n      \"credits\": \"250\"\n    },\n    {\n      \"planCategory\": \"CRM\",\n      \"planType\": \"free\",\n      \"name\": \"Free\",\n      \"status\": \"active\",\n      \"startDate\": \"1735678900\",\n      \"endDate\": \"1767214900\",\n      \"users\": {\n        \"purchasedSeats\": \"1\",\n        \"usedSeats\": \"1\"\n      },\n      \"credits\": \"250\"\n    }\n  ],\n  \"relay\": {\n    \"data\": {\n      \"port\": 587,\n      \"relay\": \"smtp-relay.brevo.com\",\n      \"userName\": \"michael.davis@example.com\"\n    },\n    \"enabled\": true\n  }\n}",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -343,7 +343,15 @@
       "name": "Get the list of all the sub-accounts of the master account. - default",
       "request": {
         "urlPathTemplate": "/corporate/subAccount",
-        "method": "GET"
+        "method": "GET",
+        "queryParameters": {
+          "offset": {
+            "equalTo": "1"
+          },
+          "limit": {
+            "equalTo": "1"
+          }
+        }
       },
       "response": {
         "status": 200,
@@ -1435,8 +1443,8 @@
       }
     },
     {
-      "id": "0bf6e8dd-41ac-4605-b444-f39fff877649",
-      "name": "This endpoint will submit a request to get the history of webhooks in the\nCSV file. The link to download the CSV file will be sent to the webhook that\nwas provided in the notifyURL. - default",
+      "id": "2ca5ef46-7340-4f7f-bb5f-a3f34383c9c8",
+      "name": "Export webhook history - default",
       "request": {
         "urlPathTemplate": "/webhooks/export",
         "method": "POST"
@@ -1448,7 +1456,7 @@
           "Content-Type": "application/json"
         }
       },
-      "uuid": "0bf6e8dd-41ac-4605-b444-f39fff877649",
+      "uuid": "2ca5ef46-7340-4f7f-bb5f-a3f34383c9c8",
       "persistent": true,
       "priority": 3,
       "metadata": {
@@ -1558,7 +1566,18 @@
       "name": "Get all external feeds - default",
       "request": {
         "urlPathTemplate": "/feeds",
-        "method": "GET"
+        "method": "GET",
+        "queryParameters": {
+          "search": {
+            "equalTo": "product"
+          },
+          "startDate": {
+            "equalTo": "2024-01-01"
+          },
+          "endDate": {
+            "equalTo": "2024-01-31"
+          }
+        }
       },
       "response": {
         "status": 200,
@@ -1739,6 +1758,14 @@
         "pathParameters": {
           "object_type": {
             "equalTo": "vehicle"
+          }
+        },
+        "queryParameters": {
+          "limit": {
+            "equalTo": "1000000"
+          },
+          "page_num": {
+            "equalTo": "1000000"
           }
         }
       },
@@ -3113,7 +3140,15 @@
       "name": "Get attribution metrics for one or more Brevo campaigns or workflows - default",
       "request": {
         "urlPathTemplate": "/ecommerce/attribution/metrics",
-        "method": "GET"
+        "method": "GET",
+        "queryParameters": {
+          "periodFrom": {
+            "equalTo": "2022-01-02T00:00:00.000Z"
+          },
+          "periodTo": {
+            "equalTo": "2022-01-03T00:00:00.000Z"
+          }
+        }
       },
       "response": {
         "status": 200,
@@ -3735,6 +3770,32 @@
       }
     },
     {
+      "id": "89ae63a4-2b31-419a-87b1-c44e0fa54de2",
+      "name": "Create events in batch - default",
+      "request": {
+        "urlPathTemplate": "/events/batch",
+        "method": "POST"
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "89ae63a4-2b31-419a-87b1-c44e0fa54de2",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
       "id": "09aa7143-15a9-433c-a1e0-3444863bbf64",
       "name": "Get the list of all the events for the received emails. - default",
       "request": {
@@ -3832,6 +3893,14 @@
         "pathParameters": {
           "pid": {
             "equalTo": "pid"
+          }
+        },
+        "queryParameters": {
+          "contact_id": {
+            "equalTo": "1"
+          },
+          "balance_definition_id": {
+            "equalTo": "balance_definition_id"
           }
         }
       },
@@ -4303,6 +4372,14 @@
           "pid": {
             "equalTo": "pid"
           }
+        },
+        "queryParameters": {
+          "contactId": {
+            "equalTo": "1"
+          },
+          "balanceDefinitionId": {
+            "equalTo": "balanceDefinitionId"
+          }
         }
       },
       "response": {
@@ -4737,6 +4814,11 @@
           "pid": {
             "equalTo": "pid"
           }
+        },
+        "queryParameters": {
+          "memberContactIds": {
+            "equalTo": "memberContactIds"
+          }
         }
       },
       "response": {
@@ -5086,6 +5168,11 @@
         "pathParameters": {
           "pid": {
             "equalTo": "pid"
+          }
+        },
+        "queryParameters": {
+          "contactId": {
+            "equalTo": "1"
           }
         }
       },
@@ -5451,7 +5538,7 @@
       },
       "response": {
         "status": 200,
-        "body": "{\n  \"campaigns\": [\n    {\n      \"abTesting\": true,\n      \"id\": 12,\n      \"name\": \"EN - Sales Summer 2017\",\n      \"previewText\": \"Don't miss the sale!\",\n      \"scheduledAt\": \"2017-06-01T12:30:00Z\",\n      \"sendAtBestTime\": true,\n      \"splitRule\": 25,\n      \"status\": \"sent\",\n      \"subject\": \"20% OFF for 2017 Summer Sales\",\n      \"subjectA\": \"Discover the New Collection!\",\n      \"subjectB\": \"Want to discover the New Collection?\",\n      \"type\": \"classic\",\n      \"winnerCriteria\": \"open\",\n      \"winnerDelay\": 50,\n      \"createdAt\": \"2017-05-01T12:30:00Z\",\n      \"footer\": \"[DEFAULT_FOOTER]\",\n      \"header\": \"[DEFAULT_HEADER]\",\n      \"htmlContent\": \"This is my HTML Content\",\n      \"inlineImageActivation\": true,\n      \"mirrorActive\": true,\n      \"modifiedAt\": \"2017-05-01T12:30:00Z\",\n      \"recurring\": false,\n      \"replyTo\": \"replyto@domain.com\",\n      \"returnBounce\": 5,\n      \"sender\": {\n        \"email\": \"marketing@mycompany.com\",\n        \"id\": 26,\n        \"name\": \"Marketing\"\n      },\n      \"sentDate\": \"2018-12-01T16:30:00Z\",\n      \"shareLink\": \"http://example.com/fhsgccc.html?t=9865448900\",\n      \"tag\": \"Newsletter\",\n      \"testSent\": true,\n      \"toField\": \"{FNAME} {LNAME}\",\n      \"utmCampaignValue\": \"myutm\",\n      \"utmIDActive\": true,\n      \"utmMedium\": \"EMAIL\",\n      \"utmSource\": \"Brevo\",\n      \"recipients\": {\n        \"exclusionLists\": [\n          13\n        ],\n        \"lists\": [\n          5\n        ]\n      },\n      \"statistics\": {\n        \"campaignStats\": [\n          {\n            \"appleMppOpens\": 10,\n            \"clickers\": 2665,\n            \"complaints\": 1,\n            \"deferred\": 30,\n            \"delivered\": 19765,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 87,\n            \"listId\": 5,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 19887,\n            \"softBounces\": 100,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"unsubscriptions\": 2,\n            \"viewed\": 8999\n          }\n        ],\n        \"globalStats\": {\n          \"appleMppOpens\": 10,\n          \"clickers\": 2665,\n          \"complaints\": 1,\n          \"deferred\": 30,\n          \"delivered\": 19765,\n          \"estimatedViews\": 560,\n          \"hardBounces\": 87,\n          \"listId\": 2,\n          \"opensRate\": 29.54,\n          \"returnBounce\": 5,\n          \"sent\": 19887,\n          \"softBounces\": 100,\n          \"trackableViews\": 5661,\n          \"trackableViewsRate\": 23.45,\n          \"uniqueClicks\": 2300,\n          \"uniqueViews\": 7779,\n          \"unsubscriptions\": 2,\n          \"viewed\": 8999\n        },\n        \"linksStats\": {},\n        \"mirrorClick\": 120,\n        \"remaining\": 1000,\n        \"statsByBrowser\": {\n          \"key\": {\n            \"clickers\": 2665,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"viewed\": 8999\n          }\n        },\n        \"statsByDevice\": {},\n        \"statsByDomain\": {\n          \"hotmail.co.uk\": {\n            \"appleMppOpens\": 10,\n            \"clickers\": 2720,\n            \"complaints\": 5,\n            \"deferred\": 30,\n            \"delivered\": 117056,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 0,\n            \"listId\": 2,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 117055,\n            \"softBounces\": 111,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 1970,\n            \"uniqueViews\": 21111,\n            \"unsubscriptions\": 105,\n            \"viewed\": 35251\n          },\n          \"yahoo.com\": {\n            \"appleMppOpens\": 10,\n            \"clickers\": 533,\n            \"complaints\": 0,\n            \"deferred\": 30,\n            \"delivered\": 25596,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 0,\n            \"listId\": 2,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 25601,\n            \"softBounces\": 5,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 298,\n            \"uniqueViews\": 3527,\n            \"unsubscriptions\": 17,\n            \"viewed\": 5255\n          }\n        }\n      }\n    },\n    {\n      \"abTesting\": true,\n      \"id\": 22,\n      \"name\": \"Weekly - 1\",\n      \"previewText\": \"your weekly newsletter!\",\n      \"scheduledAt\": \"\",\n      \"sendAtBestTime\": true,\n      \"splitRule\": 25,\n      \"status\": \"draft\",\n      \"subject\": \"Week 1 - Newsletter\",\n      \"subjectA\": \"Discover the New Collection!\",\n      \"subjectB\": \"Want to discover the New Collection?\",\n      \"type\": \"classic\",\n      \"winnerCriteria\": \"open\",\n      \"winnerDelay\": 50,\n      \"createdAt\": \"2017-05-01T12:30:00Z\",\n      \"footer\": \"[DEFAULT_FOOTER]\",\n      \"header\": \"[DEFAULT_HEADER]\",\n      \"htmlContent\": \"This is my HTML Content\",\n      \"inlineImageActivation\": true,\n      \"mirrorActive\": true,\n      \"modifiedAt\": \"2017-05-01T12:30:00Z\",\n      \"recurring\": false,\n      \"replyTo\": \"replyto@domain.com\",\n      \"returnBounce\": 5,\n      \"sender\": {\n        \"email\": \"newsletter@mycompany.com\",\n        \"id\": 26,\n        \"name\": \"Newsletter\"\n      },\n      \"sentDate\": \"2018-12-01T16:30:00Z\",\n      \"shareLink\": \"http://example.com/fhsgccc.html?t=9865448900\",\n      \"tag\": \"Newsletter\",\n      \"testSent\": false,\n      \"toField\": \"{FNAME} {LNAME}\",\n      \"utmCampaignValue\": \"myutm\",\n      \"utmIDActive\": true,\n      \"utmMedium\": \"EMAIL\",\n      \"utmSource\": \"Brevo\",\n      \"recipients\": {\n        \"exclusionLists\": [\n          45\n        ],\n        \"lists\": [\n          10\n        ]\n      },\n      \"statistics\": {\n        \"campaignStats\": [\n          {\n            \"appleMppOpens\": 10,\n            \"clickers\": 2665,\n            \"complaints\": 1,\n            \"deferred\": 30,\n            \"delivered\": 19765,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 87,\n            \"listId\": 10,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 19887,\n            \"softBounces\": 100,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"unsubscriptions\": 2,\n            \"viewed\": 8999\n          }\n        ],\n        \"globalStats\": {\n          \"appleMppOpens\": 10,\n          \"clickers\": 2665,\n          \"complaints\": 1,\n          \"deferred\": 30,\n          \"delivered\": 19765,\n          \"estimatedViews\": 560,\n          \"hardBounces\": 87,\n          \"listId\": 2,\n          \"opensRate\": 29.42,\n          \"returnBounce\": 5,\n          \"sent\": 19887,\n          \"softBounces\": 100,\n          \"trackableViews\": 5661,\n          \"trackableViewsRate\": 23.45,\n          \"uniqueClicks\": 2300,\n          \"uniqueViews\": 7779,\n          \"unsubscriptions\": 2,\n          \"viewed\": 8999\n        },\n        \"linksStats\": {},\n        \"mirrorClick\": 120,\n        \"remaining\": 1000,\n        \"statsByBrowser\": {\n          \"key\": {\n            \"clickers\": 2665,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"viewed\": 8999\n          }\n        },\n        \"statsByDevice\": {},\n        \"statsByDomain\": {\n          \"aol\": {\n            \"appleMppOpens\": 10,\n            \"clickers\": 2665,\n            \"complaints\": 1,\n            \"deferred\": 30,\n            \"delivered\": 19765,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 87,\n            \"listId\": 2,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 19887,\n            \"softBounces\": 100,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"unsubscriptions\": 2,\n            \"viewed\": 8999\n          },\n          \"gmail\": {\n            \"appleMppOpens\": 10,\n            \"clickers\": 2665,\n            \"complaints\": 1,\n            \"deferred\": 30,\n            \"delivered\": 19765,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 87,\n            \"listId\": 2,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 19887,\n            \"softBounces\": 100,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"unsubscriptions\": 2,\n            \"viewed\": 8999\n          }\n        }\n      }\n    }\n  ],\n  \"count\": 2\n}",
+        "body": "{\n  \"campaigns\": [\n    {\n      \"attachmentFile\": \"http://mydomain.com/campaign/attachment/file.pdf\",\n      \"abTesting\": true,\n      \"id\": 12,\n      \"name\": \"EN - Sales Summer 2017\",\n      \"previewText\": \"Don't miss the sale!\",\n      \"scheduledAt\": \"2017-06-01T12:30:00Z\",\n      \"sendAtBestTime\": true,\n      \"splitRule\": 25,\n      \"status\": \"sent\",\n      \"subject\": \"20% OFF for 2017 Summer Sales\",\n      \"subjectA\": \"Discover the New Collection!\",\n      \"subjectB\": \"Want to discover the New Collection?\",\n      \"type\": \"classic\",\n      \"winnerCriteria\": \"open\",\n      \"winnerDelay\": 50,\n      \"createdAt\": \"2017-05-01T12:30:00Z\",\n      \"footer\": \"[DEFAULT_FOOTER]\",\n      \"header\": \"[DEFAULT_HEADER]\",\n      \"htmlContent\": \"This is my HTML Content\",\n      \"inlineImageActivation\": true,\n      \"mirrorActive\": true,\n      \"modifiedAt\": \"2017-05-01T12:30:00Z\",\n      \"recurring\": false,\n      \"replyTo\": \"replyto@domain.com\",\n      \"returnBounce\": 5,\n      \"sender\": {\n        \"email\": \"marketing@mycompany.com\",\n        \"id\": 26,\n        \"name\": \"Marketing\"\n      },\n      \"sentDate\": \"2018-12-01T16:30:00Z\",\n      \"shareLink\": \"http://example.com/fhsgccc.html?t=9865448900\",\n      \"tag\": \"Newsletter\",\n      \"tags\": [\n        \"tag1\",\n        \"tag2\"\n      ],\n      \"testSent\": true,\n      \"toField\": \"{FNAME} {LNAME}\",\n      \"utmCampaignValue\": \"myutm\",\n      \"utmIDActive\": true,\n      \"utmMedium\": \"EMAIL\",\n      \"utmSource\": \"Brevo\",\n      \"recipients\": {\n        \"exclusionLists\": [\n          13\n        ],\n        \"lists\": [\n          5\n        ]\n      },\n      \"statistics\": {\n        \"campaignStats\": [\n          {\n            \"appleMppOpens\": 10,\n            \"clickers\": 2665,\n            \"complaints\": 1,\n            \"deferred\": 30,\n            \"delivered\": 19765,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 87,\n            \"listId\": 5,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 19887,\n            \"softBounces\": 100,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"unsubscriptions\": 2,\n            \"viewed\": 8999\n          }\n        ],\n        \"globalStats\": {\n          \"appleMppOpens\": 10,\n          \"clickers\": 2665,\n          \"complaints\": 1,\n          \"deferred\": 30,\n          \"delivered\": 19765,\n          \"estimatedViews\": 560,\n          \"hardBounces\": 87,\n          \"listId\": 2,\n          \"opensRate\": 29.54,\n          \"returnBounce\": 5,\n          \"sent\": 19887,\n          \"softBounces\": 100,\n          \"trackableViews\": 5661,\n          \"trackableViewsRate\": 23.45,\n          \"uniqueClicks\": 2300,\n          \"uniqueViews\": 7779,\n          \"unsubscriptions\": 2,\n          \"viewed\": 8999\n        },\n        \"linksStats\": {},\n        \"mirrorClick\": 120,\n        \"remaining\": 1000,\n        \"statsByBrowser\": {\n          \"key\": {\n            \"clickers\": 2665,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"viewed\": 8999\n          }\n        },\n        \"statsByDevice\": {},\n        \"statsByDomain\": {\n          \"hotmail.co.uk\": {\n            \"appleMppOpens\": 10,\n            \"clickers\": 2720,\n            \"complaints\": 5,\n            \"deferred\": 30,\n            \"delivered\": 117056,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 0,\n            \"listId\": 2,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 117055,\n            \"softBounces\": 111,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 1970,\n            \"uniqueViews\": 21111,\n            \"unsubscriptions\": 105,\n            \"viewed\": 35251\n          },\n          \"yahoo.com\": {\n            \"appleMppOpens\": 10,\n            \"clickers\": 533,\n            \"complaints\": 0,\n            \"deferred\": 30,\n            \"delivered\": 25596,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 0,\n            \"listId\": 2,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 25601,\n            \"softBounces\": 5,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 298,\n            \"uniqueViews\": 3527,\n            \"unsubscriptions\": 17,\n            \"viewed\": 5255\n          }\n        }\n      }\n    },\n    {\n      \"attachmentFile\": \"http://img.mailinblue.com/{clientID-campaignID}/attachments/{fileName}\",\n      \"abTesting\": true,\n      \"id\": 22,\n      \"name\": \"Weekly - 1\",\n      \"previewText\": \"your weekly newsletter!\",\n      \"scheduledAt\": \"\",\n      \"sendAtBestTime\": true,\n      \"splitRule\": 25,\n      \"status\": \"draft\",\n      \"subject\": \"Week 1 - Newsletter\",\n      \"subjectA\": \"Discover the New Collection!\",\n      \"subjectB\": \"Want to discover the New Collection?\",\n      \"type\": \"classic\",\n      \"winnerCriteria\": \"open\",\n      \"winnerDelay\": 50,\n      \"createdAt\": \"2017-05-01T12:30:00Z\",\n      \"footer\": \"[DEFAULT_FOOTER]\",\n      \"header\": \"[DEFAULT_HEADER]\",\n      \"htmlContent\": \"This is my HTML Content\",\n      \"inlineImageActivation\": true,\n      \"mirrorActive\": true,\n      \"modifiedAt\": \"2017-05-01T12:30:00Z\",\n      \"recurring\": false,\n      \"replyTo\": \"replyto@domain.com\",\n      \"returnBounce\": 5,\n      \"sender\": {\n        \"email\": \"newsletter@mycompany.com\",\n        \"id\": 26,\n        \"name\": \"Newsletter\"\n      },\n      \"sentDate\": \"2018-12-01T16:30:00Z\",\n      \"shareLink\": \"http://example.com/fhsgccc.html?t=9865448900\",\n      \"tag\": \"Newsletter\",\n      \"tags\": [\n        \"Newsletter\",\n        \"Weekly\"\n      ],\n      \"testSent\": false,\n      \"toField\": \"{FNAME} {LNAME}\",\n      \"utmCampaignValue\": \"myutm\",\n      \"utmIDActive\": true,\n      \"utmMedium\": \"EMAIL\",\n      \"utmSource\": \"Brevo\",\n      \"recipients\": {\n        \"exclusionLists\": [\n          45\n        ],\n        \"lists\": [\n          10\n        ]\n      },\n      \"statistics\": {\n        \"campaignStats\": [\n          {\n            \"appleMppOpens\": 10,\n            \"clickers\": 2665,\n            \"complaints\": 1,\n            \"deferred\": 30,\n            \"delivered\": 19765,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 87,\n            \"listId\": 10,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 19887,\n            \"softBounces\": 100,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"unsubscriptions\": 2,\n            \"viewed\": 8999\n          }\n        ],\n        \"globalStats\": {\n          \"appleMppOpens\": 10,\n          \"clickers\": 2665,\n          \"complaints\": 1,\n          \"deferred\": 30,\n          \"delivered\": 19765,\n          \"estimatedViews\": 560,\n          \"hardBounces\": 87,\n          \"listId\": 2,\n          \"opensRate\": 29.42,\n          \"returnBounce\": 5,\n          \"sent\": 19887,\n          \"softBounces\": 100,\n          \"trackableViews\": 5661,\n          \"trackableViewsRate\": 23.45,\n          \"uniqueClicks\": 2300,\n          \"uniqueViews\": 7779,\n          \"unsubscriptions\": 2,\n          \"viewed\": 8999\n        },\n        \"linksStats\": {},\n        \"mirrorClick\": 120,\n        \"remaining\": 1000,\n        \"statsByBrowser\": {\n          \"key\": {\n            \"clickers\": 2665,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"viewed\": 8999\n          }\n        },\n        \"statsByDevice\": {},\n        \"statsByDomain\": {\n          \"aol\": {\n            \"appleMppOpens\": 10,\n            \"clickers\": 2665,\n            \"complaints\": 1,\n            \"deferred\": 30,\n            \"delivered\": 19765,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 87,\n            \"listId\": 2,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 19887,\n            \"softBounces\": 100,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"unsubscriptions\": 2,\n            \"viewed\": 8999\n          },\n          \"gmail\": {\n            \"appleMppOpens\": 10,\n            \"clickers\": 2665,\n            \"complaints\": 1,\n            \"deferred\": 30,\n            \"delivered\": 19765,\n            \"estimatedViews\": 560,\n            \"hardBounces\": 87,\n            \"listId\": 2,\n            \"opensRate\": 29.54,\n            \"returnBounce\": 5,\n            \"sent\": 19887,\n            \"softBounces\": 100,\n            \"trackableViews\": 5661,\n            \"trackableViewsRate\": 23.45,\n            \"uniqueClicks\": 2300,\n            \"uniqueViews\": 7779,\n            \"unsubscriptions\": 2,\n            \"viewed\": 8999\n          }\n        }\n      }\n    }\n  ],\n  \"count\": 2\n}",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -5535,7 +5622,7 @@
       },
       "response": {
         "status": 200,
-        "body": "{\n  \"abTesting\": true,\n  \"id\": 22,\n  \"name\": \"Weekly - 1\",\n  \"previewText\": \"your weekly newsletter\",\n  \"scheduledAt\": \"2017-09-22T12:30:00Z\",\n  \"sendAtBestTime\": true,\n  \"splitRule\": 25,\n  \"status\": \"draft\",\n  \"subject\": \"Week 1 - Newsletter\",\n  \"subjectA\": \"Discover the New Collection!\",\n  \"subjectB\": \"Want to discover the New Collection?\",\n  \"type\": \"classic\",\n  \"winnerCriteria\": \"open\",\n  \"winnerDelay\": 50,\n  \"createdAt\": \"2017-05-01T12:30:00Z\",\n  \"footer\": \"[DEFAULT_FOOTER]\",\n  \"header\": \"[DEFAULT_HEADER]\",\n  \"htmlContent\": \"This is my HTML Content\",\n  \"inlineImageActivation\": true,\n  \"mirrorActive\": true,\n  \"modifiedAt\": \"2017-05-01T12:30:00Z\",\n  \"recurring\": false,\n  \"replyTo\": \"replyto@domain.com\",\n  \"returnBounce\": 5,\n  \"sender\": {\n    \"email\": \"newsletter@mycompany.com\",\n    \"id\": 26,\n    \"name\": \"Newsletter\"\n  },\n  \"sentDate\": \"2018-12-01T16:30:00Z\",\n  \"shareLink\": \"http://dhh.brevo.com/fhsgccc.html?t=9865448900\",\n  \"tag\": \"Newsletter\",\n  \"testSent\": false,\n  \"toField\": \"{FNAME} {LNAME}\",\n  \"utmCampaignValue\": \"myutm\",\n  \"utmIDActive\": true,\n  \"utmMedium\": \"EMAIL\",\n  \"utmSource\": \"Brevo\",\n  \"recipients\": {\n    \"exclusionLists\": [\n      45\n    ],\n    \"lists\": [\n      22\n    ]\n  },\n  \"statistics\": {\n    \"campaignStats\": [\n      {\n        \"appleMppOpens\": 10,\n        \"clickers\": 2665,\n        \"complaints\": 1,\n        \"deferred\": 30,\n        \"delivered\": 19765,\n        \"estimatedViews\": 560,\n        \"hardBounces\": 87,\n        \"listId\": 22,\n        \"opensRate\": 29.54,\n        \"returnBounce\": 5,\n        \"sent\": 19887,\n        \"softBounces\": 100,\n        \"trackableViews\": 5661,\n        \"trackableViewsRate\": 23.45,\n        \"uniqueClicks\": 2300,\n        \"uniqueViews\": 7779,\n        \"unsubscriptions\": 2,\n        \"viewed\": 8999\n      }\n    ],\n    \"globalStats\": {\n      \"appleMppOpens\": 10,\n      \"clickers\": 2665,\n      \"complaints\": 1,\n      \"deferred\": 30,\n      \"delivered\": 19765,\n      \"estimatedViews\": 560,\n      \"hardBounces\": 87,\n      \"listId\": 2,\n      \"opensRate\": 24.59,\n      \"returnBounce\": 5,\n      \"sent\": 19887,\n      \"softBounces\": 100,\n      \"trackableViews\": 5661,\n      \"trackableViewsRate\": 23.45,\n      \"uniqueClicks\": 2300,\n      \"uniqueViews\": 7779,\n      \"unsubscriptions\": 2,\n      \"viewed\": 8999\n    },\n    \"linksStats\": {},\n    \"mirrorClick\": 120,\n    \"remaining\": 1000,\n    \"statsByBrowser\": {\n      \"internetExplorer\": {\n        \"clickers\": 0,\n        \"uniqueClicks\": 0,\n        \"uniqueViews\": 0,\n        \"viewed\": 1\n      },\n      \"safari\": {\n        \"clickers\": 1,\n        \"uniqueClicks\": 0,\n        \"uniqueViews\": 0,\n        \"viewed\": 1\n      },\n      \"thunderbird\": {\n        \"clickers\": 1,\n        \"uniqueClicks\": 0,\n        \"uniqueViews\": 0,\n        \"viewed\": 1\n      }\n    },\n    \"statsByDevice\": {\n      \"desktop\": {\n        \"mac\": {\n          \"clickers\": 1,\n          \"uniqueClicks\": 0,\n          \"uniqueViews\": 1,\n          \"viewed\": 2\n        }\n      },\n      \"mobile\": {\n        \"androidMobile\": {\n          \"clickers\": 1,\n          \"uniqueClicks\": 0,\n          \"uniqueViews\": 0,\n          \"viewed\": 1\n        },\n        \"iPhone\": {\n          \"clickers\": 1,\n          \"uniqueClicks\": 0,\n          \"uniqueViews\": 0,\n          \"viewed\": 2\n        }\n      },\n      \"tablet\": {\n        \"key\": {\n          \"clickers\": 2665,\n          \"uniqueClicks\": 2300,\n          \"uniqueViews\": 7779,\n          \"viewed\": 8999\n        }\n      },\n      \"unknown\": {\n        \"key\": {\n          \"clickers\": 2665,\n          \"uniqueClicks\": 2300,\n          \"uniqueViews\": 7779,\n          \"viewed\": 8999\n        }\n      }\n    },\n    \"statsByDomain\": {\n      \"gmail\": {\n        \"appleMppOpens\": 10,\n        \"clickers\": 2665,\n        \"complaints\": 1,\n        \"deferred\": 30,\n        \"delivered\": 19765,\n        \"estimatedViews\": 560,\n        \"hardBounces\": 87,\n        \"listId\": 2,\n        \"opensRate\": 29.54,\n        \"returnBounce\": 5,\n        \"sent\": 19887,\n        \"softBounces\": 100,\n        \"trackableViews\": 5661,\n        \"trackableViewsRate\": 23.45,\n        \"uniqueClicks\": 2300,\n        \"uniqueViews\": 7779,\n        \"unsubscriptions\": 2,\n        \"viewed\": 8999\n      }\n    }\n  }\n}",
+        "body": "{\n  \"attachmentFile\": \"http://img.mailinblue.com/{clientID-campaignID}/attachments/{fileName}\",\n  \"abTesting\": true,\n  \"id\": 22,\n  \"name\": \"Weekly - 1\",\n  \"previewText\": \"your weekly newsletter\",\n  \"scheduledAt\": \"2017-09-22T12:30:00Z\",\n  \"sendAtBestTime\": true,\n  \"splitRule\": 25,\n  \"status\": \"draft\",\n  \"subject\": \"Week 1 - Newsletter\",\n  \"subjectA\": \"Discover the New Collection!\",\n  \"subjectB\": \"Want to discover the New Collection?\",\n  \"type\": \"classic\",\n  \"winnerCriteria\": \"open\",\n  \"winnerDelay\": 50,\n  \"createdAt\": \"2017-05-01T12:30:00Z\",\n  \"footer\": \"[DEFAULT_FOOTER]\",\n  \"header\": \"[DEFAULT_HEADER]\",\n  \"htmlContent\": \"This is my HTML Content\",\n  \"inlineImageActivation\": true,\n  \"mirrorActive\": true,\n  \"modifiedAt\": \"2017-05-01T12:30:00Z\",\n  \"recurring\": false,\n  \"replyTo\": \"replyto@domain.com\",\n  \"returnBounce\": 5,\n  \"sender\": {\n    \"email\": \"newsletter@mycompany.com\",\n    \"id\": 26,\n    \"name\": \"Newsletter\"\n  },\n  \"sentDate\": \"2018-12-01T16:30:00Z\",\n  \"shareLink\": \"http://dhh.brevo.com/fhsgccc.html?t=9865448900\",\n  \"tag\": \"Newsletter\",\n  \"tags\": [\n    \"Newsletter\",\n    \"Weekly\"\n  ],\n  \"testSent\": false,\n  \"toField\": \"{FNAME} {LNAME}\",\n  \"utmCampaignValue\": \"myutm\",\n  \"utmIDActive\": true,\n  \"utmMedium\": \"EMAIL\",\n  \"utmSource\": \"Brevo\",\n  \"recipients\": {\n    \"exclusionLists\": [\n      45\n    ],\n    \"lists\": [\n      22\n    ]\n  },\n  \"statistics\": {\n    \"campaignStats\": [\n      {\n        \"appleMppOpens\": 10,\n        \"clickers\": 2665,\n        \"complaints\": 1,\n        \"deferred\": 30,\n        \"delivered\": 19765,\n        \"estimatedViews\": 560,\n        \"hardBounces\": 87,\n        \"listId\": 22,\n        \"opensRate\": 29.54,\n        \"returnBounce\": 5,\n        \"sent\": 19887,\n        \"softBounces\": 100,\n        \"trackableViews\": 5661,\n        \"trackableViewsRate\": 23.45,\n        \"uniqueClicks\": 2300,\n        \"uniqueViews\": 7779,\n        \"unsubscriptions\": 2,\n        \"viewed\": 8999\n      }\n    ],\n    \"globalStats\": {\n      \"appleMppOpens\": 10,\n      \"clickers\": 2665,\n      \"complaints\": 1,\n      \"deferred\": 30,\n      \"delivered\": 19765,\n      \"estimatedViews\": 560,\n      \"hardBounces\": 87,\n      \"listId\": 2,\n      \"opensRate\": 24.59,\n      \"returnBounce\": 5,\n      \"sent\": 19887,\n      \"softBounces\": 100,\n      \"trackableViews\": 5661,\n      \"trackableViewsRate\": 23.45,\n      \"uniqueClicks\": 2300,\n      \"uniqueViews\": 7779,\n      \"unsubscriptions\": 2,\n      \"viewed\": 8999\n    },\n    \"linksStats\": {},\n    \"mirrorClick\": 120,\n    \"remaining\": 1000,\n    \"statsByBrowser\": {\n      \"internetExplorer\": {\n        \"clickers\": 0,\n        \"uniqueClicks\": 0,\n        \"uniqueViews\": 0,\n        \"viewed\": 1\n      },\n      \"safari\": {\n        \"clickers\": 1,\n        \"uniqueClicks\": 0,\n        \"uniqueViews\": 0,\n        \"viewed\": 1\n      },\n      \"thunderbird\": {\n        \"clickers\": 1,\n        \"uniqueClicks\": 0,\n        \"uniqueViews\": 0,\n        \"viewed\": 1\n      }\n    },\n    \"statsByDevice\": {\n      \"desktop\": {\n        \"mac\": {\n          \"clickers\": 1,\n          \"uniqueClicks\": 0,\n          \"uniqueViews\": 1,\n          \"viewed\": 2\n        }\n      },\n      \"mobile\": {\n        \"androidMobile\": {\n          \"clickers\": 1,\n          \"uniqueClicks\": 0,\n          \"uniqueViews\": 0,\n          \"viewed\": 1\n        },\n        \"iPhone\": {\n          \"clickers\": 1,\n          \"uniqueClicks\": 0,\n          \"uniqueViews\": 0,\n          \"viewed\": 2\n        }\n      },\n      \"tablet\": {\n        \"key\": {\n          \"clickers\": 2665,\n          \"uniqueClicks\": 2300,\n          \"uniqueViews\": 7779,\n          \"viewed\": 8999\n        }\n      },\n      \"unknown\": {\n        \"key\": {\n          \"clickers\": 2665,\n          \"uniqueClicks\": 2300,\n          \"uniqueViews\": 7779,\n          \"viewed\": 8999\n        }\n      }\n    },\n    \"statsByDomain\": {\n      \"gmail\": {\n        \"appleMppOpens\": 10,\n        \"clickers\": 2665,\n        \"complaints\": 1,\n        \"deferred\": 30,\n        \"delivered\": 19765,\n        \"estimatedViews\": 560,\n        \"hardBounces\": 87,\n        \"listId\": 2,\n        \"opensRate\": 29.54,\n        \"returnBounce\": 5,\n        \"sent\": 19887,\n        \"softBounces\": 100,\n        \"trackableViews\": 5661,\n        \"trackableViewsRate\": 23.45,\n        \"uniqueClicks\": 2300,\n        \"uniqueViews\": 7779,\n        \"unsubscriptions\": 2,\n        \"viewed\": 8999\n      }\n    }\n  }\n}",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -7319,7 +7406,12 @@
       "name": "Get all tasks - default",
       "request": {
         "urlPathTemplate": "/crm/tasks",
-        "method": "GET"
+        "method": "GET",
+        "queryParameters": {
+          "sortBy": {
+            "equalTo": "name"
+          }
+        }
       },
       "response": {
         "status": 200,
@@ -7774,6 +7866,14 @@
         "pathParameters": {
           "identifier": {
             "equalTo": "4320f270-a4e3-4a2e-b591-edfe30a5e627"
+          }
+        },
+        "queryParameters": {
+          "startDate": {
+            "equalTo": "2022-02-02"
+          },
+          "endDate": {
+            "equalTo": "2022-03-02"
           }
         }
       },
@@ -8331,6 +8431,6 @@
     }
   ],
   "meta": {
-    "total": 282
+    "total": 283
   }
 }
