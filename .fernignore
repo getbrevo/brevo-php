@@ -2,3 +2,8 @@
 README.md
 banner.png
 changelog.md
+
+# RFC3339_EXTENDED fix: Fern generates WireMock stubs with milliseconds (.000Z)
+# but the default RFC3339 format omits them, causing WireMock exact-match failures.
+# Protected until Fern fixes the PHP generator.
+src/Core/Types/Constant.php
