@@ -3143,10 +3143,10 @@
         "method": "GET",
         "queryParameters": {
           "periodFrom": {
-            "equalTo": "2022-01-02T00:00:00.000Z"
+            "equalTo": "2022-01-02T00:00:00Z"
           },
           "periodTo": {
-            "equalTo": "2022-01-03T00:00:00.000Z"
+            "equalTo": "2022-01-03T00:00:00Z"
           }
         }
       },
