@@ -1,3 +1,13 @@
+## 4.0.12 - 2026-03-12
+* fix: improve JSON serialization and test configuration
+* Fix boolean type handling in JSON serialization and deserialization by adding explicit checks for bool values, since PHP's gettype() returns "boolean" instead of "bool". Also improve property default value detection using hasDefaultValue() check to avoid potential warnings. Update test configuration to support external WireMock orchestration via WIREMOCK_URL environment variable.
+* Key changes:
+* Add special case handling for bool types in JsonSerializer and JsonDeserializer
+* Use hasDefaultValue() check before calling getDefaultValue() in JsonSerializableType
+* Make test suite configurable with WIREMOCK_URL environment variable
+* Support dynamic port discovery for WireMock container in bootstrap
+* 🌿 Generated with Fern
+
 ## 4.0.11 - 2026-03-12
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
