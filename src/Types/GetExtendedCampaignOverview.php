@@ -4,16 +4,9 @@ namespace Brevo\Types;
 
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
-use Brevo\Core\Types\ArrayType;
 
 class GetExtendedCampaignOverview extends JsonSerializableType
 {
-    /**
-     * @var ?string $attachmentFile Url of the attachment file. Only available if the campaign has an attachment.
-     */
-    #[JsonProperty('attachmentFile')]
-    public ?string $attachmentFile;
-
     /**
      * @var ?bool $abTesting Status of A/B Test for the campaign. abTesting = false means it is disabled, & abTesting = true means it is enabled.
      */
@@ -183,12 +176,6 @@ class GetExtendedCampaignOverview extends JsonSerializableType
     public ?string $tag;
 
     /**
-     * @var ?array<string> $tags List of tags of the campaign
-     */
-    #[JsonProperty('tags'), ArrayType(['string'])]
-    public ?array $tags;
-
-    /**
      * @var bool $testSent Retrieved the status of test email sending. (true=Test email has been sent  false=Test email has not been sent)
      */
     #[JsonProperty('testSent')]
@@ -238,7 +225,6 @@ class GetExtendedCampaignOverview extends JsonSerializableType
      *   replyTo: string,
      *   sender: GetExtendedCampaignOverviewSender,
      *   testSent: bool,
-     *   attachmentFile?: ?string,
      *   abTesting?: ?bool,
      *   previewText?: ?string,
      *   scheduledAt?: ?string,
@@ -256,7 +242,6 @@ class GetExtendedCampaignOverview extends JsonSerializableType
      *   sentDate?: ?string,
      *   shareLink?: ?string,
      *   tag?: ?string,
-     *   tags?: ?array<string>,
      *   toField?: ?string,
      *   utmCampaignValue?: ?string,
      *   utmIdActive?: ?bool,
@@ -267,7 +252,6 @@ class GetExtendedCampaignOverview extends JsonSerializableType
     public function __construct(
         array $values,
     ) {
-        $this->attachmentFile = $values['attachmentFile'] ?? null;
         $this->abTesting = $values['abTesting'] ?? null;
         $this->id = $values['id'];
         $this->name = $values['name'];
@@ -296,7 +280,6 @@ class GetExtendedCampaignOverview extends JsonSerializableType
         $this->sentDate = $values['sentDate'] ?? null;
         $this->shareLink = $values['shareLink'] ?? null;
         $this->tag = $values['tag'] ?? null;
-        $this->tags = $values['tags'] ?? null;
         $this->testSent = $values['testSent'];
         $this->toField = $values['toField'] ?? null;
         $this->utmCampaignValue = $values['utmCampaignValue'] ?? null;

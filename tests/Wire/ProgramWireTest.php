@@ -176,28 +176,6 @@ class ProgramWireTest extends WireMockTestCase
 
     /**
      */
-    public function testDeleteContactSubscription(): void {
-        $testId = 'program.delete_contact_subscription.0';
-        $this->client->program->deleteContactSubscription(
-            'pid',
-            1,
-            [
-                'headers' => [
-                    'X-Test-Id' => 'program.delete_contact_subscription.0',
-                ],
-            ],
-        );
-        $this->verifyRequestCount(
-            $testId,
-            "DELETE",
-            "/loyalty/config/programs/pid/contact/1",
-            null,
-            1
-        );
-    }
-
-    /**
-     */
     public function testPublishLoyaltyProgram(): void {
         $testId = 'program.publish_loyalty_program.0';
         $this->client->program->publishLoyaltyProgram(
@@ -298,7 +276,7 @@ class ProgramWireTest extends WireMockTestCase
         $this->client = new Brevo(
             apiKey: 'test-apiKey',
         options: [
-            'baseUrl' => getenv('WIREMOCK_URL') ?: 'http://localhost:8080',
+            'baseUrl' => 'http://localhost:8080',
         ],
         );
     }

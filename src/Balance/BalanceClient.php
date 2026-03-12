@@ -783,8 +783,8 @@ class BalanceClient implements BalanceClientInterface
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
-        $query['contactId'] = $request->contactId;
-        $query['balanceDefinitionId'] = $request->balanceDefinitionId;
+        $query['contact_id'] = $request->contactId;
+        $query['balance_definition_id'] = $request->balanceDefinitionId;
         if ($request->limit != null) {
             $query['limit'] = $request->limit;
         }
@@ -792,7 +792,7 @@ class BalanceClient implements BalanceClientInterface
             $query['offset'] = $request->offset;
         }
         if ($request->sortField != null) {
-            $query['sortField'] = $request->sortField;
+            $query['sort_field'] = $request->sortField;
         }
         if ($request->sort != null) {
             $query['sort'] = $request->sort;

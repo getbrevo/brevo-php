@@ -160,7 +160,7 @@ class UserWireTest extends WireMockTestCase
         $this->client = new Brevo(
             apiKey: 'test-apiKey',
         options: [
-            'baseUrl' => getenv('WIREMOCK_URL') ?: 'http://localhost:8080',
+            'baseUrl' => 'http://localhost:8080',
         ],
         );
     }

@@ -13,7 +13,6 @@ use Brevo\Types\Company;
 use Brevo\Companies\Requests\PatchCompaniesIdRequest;
 use Brevo\Companies\Requests\PostCrmAttributesRequest;
 use Brevo\Companies\Types\PostCrmAttributesResponse;
-use Brevo\Companies\Requests\PatchCrmAttributesIdRequest;
 use Brevo\Companies\Types\GetCrmAttributesCompaniesResponseItem;
 
 interface CompaniesClientInterface
@@ -130,33 +129,6 @@ interface CompaniesClientInterface
      * @return PostCrmAttributesResponse
      */
     public function createACompanyDealAttribute(PostCrmAttributesRequest $request, ?array $options = null): PostCrmAttributesResponse;
-
-    /**
-     * @param string $id Attribute ID
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     */
-    public function deleteAnAttribute(string $id, ?array $options = null): void;
-
-    /**
-     * @param string $id Attribute ID
-     * @param PatchCrmAttributesIdRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     */
-    public function updateAnAttribute(string $id, PatchCrmAttributesIdRequest $request = new PatchCrmAttributesIdRequest(), ?array $options = null): void;
 
     /**
      * @param ?array{

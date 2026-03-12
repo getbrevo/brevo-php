@@ -11,6 +11,4 @@ enum GetEmailCampaignsRequestStatus: string
     case Draft = "draft";
     case InProcess = "inProcess";
     case InReview = "inReview";
-    case Cancelling = "cancelling";
-    case Cancelled = "cancelled";
 }

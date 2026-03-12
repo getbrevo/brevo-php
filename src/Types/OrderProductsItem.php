@@ -23,38 +23,23 @@ class OrderProductsItem extends JsonSerializableType
     public string $productId;
 
     /**
+     * @var float $quantity How many pieces of the product the visitor has added to the cart.
+     */
+    #[JsonProperty('quantity')]
+    public float $quantity;
+
+    /**
      * @var ?string $variantId Product ID of the red color shirts.
      */
     #[JsonProperty('variantId')]
     public ?string $variantId;
 
     /**
-     * **Required if quantityFloat is empty.**
-     *
-     * Number of product units added to the cart (whole numbers only, e.g., 10)
-     *
-     * @var ?int $quantity
-     */
-    #[JsonProperty('quantity')]
-    public ?int $quantity;
-
-    /**
-     * **Required if quantity is empty.**
-     *
-     * Number of product units added to the cart(supports decimals, e.g., 20.52)
-     *
-     * @var ?float $quantityFloat
-     */
-    #[JsonProperty('quantityFloat')]
-    public ?float $quantityFloat;
-
-    /**
      * @param array{
      *   price: float,
      *   productId: string,
+     *   quantity: float,
      *   variantId?: ?string,
-     *   quantity?: ?int,
-     *   quantityFloat?: ?float,
      * } $values
      */
     public function __construct(
@@ -62,9 +47,8 @@ class OrderProductsItem extends JsonSerializableType
     ) {
         $this->price = $values['price'];
         $this->productId = $values['productId'];
+        $this->quantity = $values['quantity'];
         $this->variantId = $values['variantId'] ?? null;
-        $this->quantity = $values['quantity'] ?? null;
-        $this->quantityFloat = $values['quantityFloat'] ?? null;
     }
 
     /**

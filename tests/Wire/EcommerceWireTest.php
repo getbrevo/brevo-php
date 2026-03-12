@@ -287,6 +287,7 @@ class EcommerceWireTest extends WireMockTestCase
                     new OrderProductsItem([
                         'price' => 99.99,
                         'productId' => 'P1',
+                        'quantity' => 10,
                     ]),
                 ],
                 'status' => 'completed',
@@ -322,6 +323,7 @@ class EcommerceWireTest extends WireMockTestCase
                             new OrderProductsItem([
                                 'price' => 99.99,
                                 'productId' => 'P1',
+                                'quantity' => 10,
                             ]),
                         ],
                         'status' => 'completed',
@@ -468,7 +470,7 @@ class EcommerceWireTest extends WireMockTestCase
         $this->client = new Brevo(
             apiKey: 'test-apiKey',
         options: [
-            'baseUrl' => getenv('WIREMOCK_URL') ?: 'http://localhost:8080',
+            'baseUrl' => 'http://localhost:8080',
         ],
         );
     }

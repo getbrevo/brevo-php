@@ -21,5 +21,4 @@ enum CreateWebhookRequestEventsItem: string
     case ContactUpdated = "contactUpdated";
     case ContactDeleted = "contactDeleted";
     case InboundEmailProcessed = "inboundEmailProcessed";
-    case Reply = "reply";
 }

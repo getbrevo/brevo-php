@@ -62,7 +62,6 @@ class CreateWebhookRequest extends JsonSerializableType
      * type **Marketing**  channel **SMS** ####
      * `sent`,`delivered`,`softBounce`,`hardBounce`,`unsubscribe`,`reply`,
      * `subscribe`,`skip`
-     * #### `reply`
      *
      * @var array<value-of<CreateWebhookRequestEventsItem>> $events
      */

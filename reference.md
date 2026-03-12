@@ -3806,7 +3806,6 @@ Possible values for type **Transactional** and channel **SMS**
 type **Marketing**  channel **SMS** ####
 `sent`,`delivered`,`softBounce`,`hardBounce`,`unsubscribe`,`reply`,
 `subscribe`,`skip`
-#### `reply`
     
 </dd>
 </dl>
@@ -3854,16 +3853,22 @@ type **Marketing**  channel **SMS** ####
 <dl>
 <dd>
 
-<Note>
-This is an enterprise feature. Contact us to activate it for your account.
+<Note title="This feature is available for Professional and Enterprise plans">
+To have it activated please send us a request and we will activate it for your account.
 </Note>
 
-Submits a request to export webhook event history as a CSV file. The download link is sent to the `notifyURL` you provide in the request body.
+Exports webhook event history to CSV format for analysis and reporting.
 
-Use this endpoint to:
-- Export webhook event history filtered by date range, event type, or email address
-- Generate reports for compliance, auditing, or performance analysis
-- Track delivery patterns and webhook reliability over time
+Use this to:
+- Generate comprehensive webhook event reports
+- Analyze webhook delivery patterns and success rates
+- Export event data for external analysis tools
+- Create historical reports for compliance and auditing
+- Track webhook performance and reliability metrics
+
+Key information returned:
+- Process ID for tracking export completion
+- CSV file will be delivered to specified webhook URL
 </dd>
 </dl>
 </dd>
@@ -4170,7 +4175,6 @@ $client->webhooks->updateWebhook(
 #### `spam`, `opened`, `click`, `hardBounce`, `softBounce`,
 `unsubscribed`, `listAddition` & `delivered` - Possible values
 for **Inbound** type webhook: #### `inboundEmailProcessed`
-#### `reply`
     
 </dd>
 </dl>
@@ -4864,8 +4868,12 @@ $client->externalFeeds->deleteExternalFeed(
 <dl>
 <dd>
 
-<Note title="Enterprise access only">Custom objects are only available to Enterprise plans.
-This feature is in beta. These are subject to change.</Note>
+<Note title="Enterprise access only">
+Custom objects are only available to Enterprise plans.
+
+This feature is in beta. These are subject to change.
+</Note>
+
 This API allows bulk upsert of object records in a single request. Each object record may include
   - Attributes
   - Identifiers
@@ -4879,8 +4887,8 @@ This API allows bulk upsert of object records in a single request. Each object r
   - Max 500 attributes defined per object record upsert request
     - This is coherent with schema limitation: an object cannot have more than 500 attributes.
     - Worth noting: Nothing happens If an attribute is mentioned in the request, but was not previously defined for the object schema (no error, no attribute creation)
-  - Max 10 associations defined per associated object type, in each record of the request
-    - This is not a schema limitation. You can associate an object record to an unlimited number of other object records by running multiple requests.
+  - Max 10 associations defined per object record upsert request
+    - This is coherent with schema limitation: an object cannot have more than 10 associations with other objects. and each object record can be linked to max 10 other records.
 **Errors:**
     - Make sure both object records exist before associating them, else the API will return an error.
     - This route does not create objects. The object where the object records are upserted by this API must be created already else the API will return an error "invalid object type".
@@ -4952,8 +4960,12 @@ $client->customObjects->upsertrecords(
 <dl>
 <dd>
 
-<Note title="Enterprise access only">Custom objects are only available to Enterprise plans.
-This feature is in beta. These are subject to change.</Note>
+<Note title="Enterprise access only">
+Custom objects are only available to Enterprise plans.
+
+This feature is in beta. These are subject to change.
+</Note>
+
 This API retrieves a list of object records along with their associated records and provides the total count of records for the specified object. **Note**: Contact as object type is not supported in this endpoint.
 </dd>
 </dl>
@@ -5112,6 +5124,26 @@ $client->customObjects->batchDeleteObjectRecords(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+<Note title="Follow this format when passing a SMS phone number as an attribute">
+Accepted Number Formats
+
+91xxxxxxxxxx
++91xxxxxxxxxx
+0091xxxxxxxxxx
+</Note>
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -5218,8 +5250,6 @@ $client->contacts->getContacts(
 <dl>
 <dd>
 
-<Note>Follow this format when passing a "SMS" phone number as an attribute.
-Accepted Number Formats 91xxxxxxxxxx +91xxxxxxxxxx 0091xxxxxxxxxx</Note>
 Creates new contacts on Brevo. Contacts can be created by passing either - <br><br> 1. email address of the contact (email_id),  <br> 2. phone number of the contact (to be passed as "SMS" field in "attributes" along with proper country code), For example- {"SMS":"+91xxxxxxxxxx"} or {"SMS":"0091xxxxxxxxxx"} <br> 3. ext_id <br>
 </dd>
 </dl>
@@ -5678,7 +5708,9 @@ $client->contacts->updateBatchContacts(
 <dl>
 <dd>
 
-<Note title="How to use attributes param?">attributes param in this endpoint is an object containing key-value pairs where values can be either a string, integer, array, or boolean. You can create key-value pairs with these four datatypes. When a value is an array, it should be an array of strings.</Note>
+<Note title="How to use attributes param?">
+attributes param in this endpoint is an object containing key-value pairs where values can be either a string, integer, array, or boolean. You can create key-value pairs with these four datatypes. When a value is an array, it should be an array of strings.
+</Note>
 </dd>
 </dl>
 </dd>
@@ -5895,11 +5927,17 @@ $client->contacts->requestContactExport(
 <dl>
 <dd>
 
-<Note>Ongoing changes for this endpoint
+<Note>
+Ongoing changes for this endpoint
+
 We're dropping support for the response attributes totalSubscribers and totalBlacklisted.
+
 These are non breaking changes.
+
 The default value for the attributes will be 0.
-The uniqueSubscribers field is deprecated</Note>
+
+The uniqueSubscribers field is deprecated
+</Note>
 </dd>
 </dl>
 </dd>
@@ -6013,9 +6051,13 @@ $client->contacts->createFolder(
 <dl>
 <dd>
 
-<Note>Ongoing changes for this endpoint.
+<Note>
+Ongoing changes for this endpoint.
+
 We're dropping support for the response attributes totalSubscribers and totalBlacklisted.
-These are non breaking changes. The default value for the attributes will be 0.</Note>
+
+These are non breaking changes. The default value for the attributes will be 0.
+</Note>
 </dd>
 </dl>
 </dd>
@@ -6166,9 +6208,13 @@ $client->contacts->deleteFolder(
 <dl>
 <dd>
 
-<Note>Ongoing changes for this endpoint.
+<Note>
+Ongoing changes for this endpoint.
+
 We're dropping support for the response attributes totalSubscribers and totalBlacklisted.
-These are non breaking changes. The default value for the attributes will be 0.</Note>
+
+These are non breaking changes. The default value for the attributes will be 0.
+</Note>
 </dd>
 </dl>
 </dd>
@@ -6385,9 +6431,13 @@ $client->contacts->importContacts(
 <dl>
 <dd>
 
-<Note>Ongoing changes for this endpoint.
+<Note>
+Ongoing changes for this endpoint.
+
 We're dropping support for the response attributes totalSubscribers and totalBlacklisted.
-These are non breaking changes. The default value for the attributes will be 0.</Note>
+
+These are non breaking changes. The default value for the attributes will be 0.
+</Note>
 </dd>
 </dl>
 </dd>
@@ -6916,8 +6966,14 @@ $client->contacts->getSegments(
 <dl>
 <dd>
 
-<Note>Follow this format when passing a "SMS" phone number as an attribute.
-Accepted Number Formats 91xxxxxxxxxx +91xxxxxxxxxx 0091xxxxxxxxxx</Note>
+<Note title="Follow this format when passing a SMS phone number as an attribute">
+Accepted Number Formats
+
+91xxxxxxxxxx
++91xxxxxxxxxx
+0091xxxxxxxxxx
+</Note>
+
 There are 2 ways to get a contact <br><br> Option 1- https://api.brevo.com/v3/contacts/{identifier} <br><br> Option 2- https://api.brevo.com/v3/contacts/{identifier}?identifierType={} <br> <br> Option 1 only works if identifierType is email_id (for EMAIL), phone_id (for SMS) or contact_id (for ID of the contact),where you can directly pass the value of EMAIL, SMS and ID of the contact.   <br><br> Option 2 works for all identifierType, use email_id for EMAIL attribute, phone_id for SMS attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute <br><br>Along with the contact details, this endpoint will show the statistics of contact for the recent 90 days by default. To fetch the earlier statistics, please use Get contact campaign stats ``https://developers.brevo.com/reference/contacts-7#getcontactstats`` endpoint with the appropriate date ranges.
 </dd>
 </dl>
@@ -6999,8 +7055,6 @@ $client->contacts->getContactInfo(
 <dl>
 <dd>
 
-<Note>Follow this format when passing a "SMS" phone number as an attribute.
-Accepted Number Formats 91xxxxxxxxxx +91xxxxxxxxxx 0091xxxxxxxxxx</Note>
 There are 2 ways to update a contact <br><br> Option 1- https://api.brevo.com/v3/contacts/{identifier} <br><br> Option 2- https://api.brevo.com/v3/contacts/{identifier}?identifierType={} <br> <br> Option 1 only works if identifierType is email_id (for EMAIL) or contact_id (for ID of the contact),where you can directly pass the value of EMAIL and ID of the contact.   <br><br> Option 2 works for all identifierType, use email_id for EMAIL attribute, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute
 </dd>
 </dl>
@@ -8547,6 +8601,7 @@ $client->ecommerce->createOrder(
             new OrderProductsItem([
                 'price' => 99.99,
                 'productId' => 'P1',
+                'quantity' => 10,
             ]),
         ],
         'status' => 'completed',
@@ -8617,6 +8672,7 @@ $client->ecommerce->createBatchOrder(
                     new OrderProductsItem([
                         'price' => 99.99,
                         'productId' => 'P1',
+                        'quantity' => 10,
                     ]),
                 ],
                 'status' => 'completed',
@@ -9700,67 +9756,6 @@ $client->event->createEvent(
 <dd>
 
 **$object:** `?CreateEventRequestObject` — Identifiers of the object record associated with this event. Ignored if the object type or identifier for this record does not exist on the account.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;event-&gt;createBatchEvents($request)</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create multiple events to track contacts' interactions in a single request.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->event->createBatchEvents(
-    [
-        new CreateBatchEventsRequestItem([
-            'eventName' => 'order_created',
-            'identifiers' => new CreateBatchEventsRequestItemIdentifiers([]),
-        ]),
-    ],
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$request:** `array` 
     
 </dd>
 </dl>
@@ -11464,7 +11459,7 @@ $client->balance->getTransactionHistoryApi(
     'pid',
     new GetLoyaltyBalanceProgramsPidTransactionHistoryRequest([
         'contactId' => 1,
-        'balanceDefinitionId' => 'balanceDefinitionId',
+        'balanceDefinitionId' => 'balance_definition_id',
     ]),
 );
 ```
@@ -12320,71 +12315,6 @@ $client->program->getParameterSubscriptionInfo(
 <dd>
 
 **$loyaltySubscriptionId:** `?string` — The loyalty subscription ID to filter by.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;program-&gt;deleteContactSubscription($pid, $cid)</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete subscription for a contact
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->program->deleteContactSubscription(
-    'pid',
-    1,
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$pid:** `string` — Loyalty Program ID. A unique identifier for the loyalty program.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$cid:** `int` — Contact ID.
     
 </dd>
 </dl>
@@ -14420,8 +14350,11 @@ $client->tier->deleteTier(
 <dl>
 <dd>
 
-<Note>The response payload for this endpoint has changed
-You now need to specify which type of statistics you would like to retrieve. For more information visit [this page](https://developers.brevo.com/changelog/get-all-marketing-campaigns).</Note>
+<Note>
+The response payload for this endpoint has changed
+
+You now need to specify which type of statistics you would like to retrieve. For more information visit [this page](https://developers.brevo.com/changelog/get-all-marketing-campaigns).
+</Note>
 </dd>
 </dl>
 </dd>
@@ -14914,14 +14847,6 @@ $client->emailCampaigns->getEmailCampaign(
 <dd>
 
 **$statistics:** `?string` — Filter on type of the statistics required. Example **globalStats** value will only fetch globalStats info of the campaign in returned response.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$excludeHtmlContent:** `?bool` — Use this flag to exclude htmlContent from the response body. If set to **true**, htmlContent field will be returned as empty string in the response body
     
 </dd>
 </dl>
@@ -16427,11 +16352,19 @@ $client->whatsAppCampaigns->getWhatsAppCampaigns(
 <dl>
 <dd>
 
-<Note>You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
-[Activating Whatsapp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account</Note>
-<Note>This API requires the List and Segment ids as recipients in Body params.You can use the below Contact endpoints to get the required information.
+<Note>
+You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
+
+[Activating Whatsapp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account
+</Note>
+
+<Note>
+This API requires the List and Segment ids as recipients in Body params. You can use the below Contact endpoints to get the required information.
+
 [Get all the Lists](https://developers.brevo.com/reference/getlists-1)
-[Get all the Segments](https://developers.brevo.com/reference/getsegments)</Note>
+
+[Get all the Segments](https://developers.brevo.com/reference/getsegments)
+</Note>
 </dd>
 </dl>
 </dd>
@@ -16516,8 +16449,11 @@ $client->whatsAppCampaigns->createWhatsAppCampaign(
 <dl>
 <dd>
 
-<Note>You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
-[Activating WhatsApp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account</Note>
+<Note>
+You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
+
+[Activating WhatsApp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account
+</Note>
 </dd>
 </dl>
 </dd>
@@ -16556,8 +16492,11 @@ $client->whatsAppCampaigns->getWhatsAppConfig();
 <dl>
 <dd>
 
-<Note>You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
-[Activating WhatsApp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account</Note>
+<Note>
+You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
+
+[Activating WhatsApp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account
+</Note>
 </dd>
 </dl>
 </dd>
@@ -16751,8 +16690,11 @@ $client->whatsAppCampaigns->getWhatsAppTemplates(
 <dl>
 <dd>
 
-<Note>You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
-[Activating WhatsApp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account</Note>
+<Note>
+You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
+
+[Activating WhatsApp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account
+</Note>
 </dd>
 </dl>
 </dd>
@@ -16808,11 +16750,11 @@ $client->whatsAppCampaigns->sendWhatsAppTemplateApproval(
 <dl>
 <dd>
 
-<Note>You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
-[Activating Whatsapp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account</Note>
-<Note>This API requires the List and Segment ids as recipients in Body params.You can use the below Contact endpoints to get the required information.
-[Get all the Lists](https://developers.brevo.com/reference/getlists-1)
-[Get all the Segments](https://developers.brevo.com/reference/getsegments)</Note>
+<Note>
+You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
+
+[Activating Whatsapp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account
+</Note>
 </dd>
 </dl>
 </dd>
@@ -16868,11 +16810,19 @@ $client->whatsAppCampaigns->getWhatsAppCampaign(
 <dl>
 <dd>
 
-<Note>You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
-[Activating Whatsapp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account</Note>
-<Note>This API requires the List and Segment ids as recipients in Body params.You can use the below Contact endpoints to get the required information.
+<Note>
+You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
+
+[Activating Whatsapp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account
+</Note>
+
+<Note>
+This API requires the List and Segment ids as recipients in Body params. You can use the below Contact endpoints to get the required information.
+
 [Get all the Lists](https://developers.brevo.com/reference/getlists-1)
-[Get all the Segments](https://developers.brevo.com/reference/getsegments)</Note>
+
+[Get all the Segments](https://developers.brevo.com/reference/getsegments)
+</Note>
 </dd>
 </dl>
 </dd>
@@ -17526,115 +17476,6 @@ $client->companies->createACompanyDealAttribute(
 <dd>
 
 **$optionsLabels:** `?array` — Options for multi-choice or single-select attributes
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;companies-&gt;deleteAnAttribute($id)</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->companies->deleteAnAttribute(
-    'id',
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$id:** `string` — Attribute ID
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;companies-&gt;updateAnAttribute($id, $request)</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->companies->updateAnAttribute(
-    'id',
-    new PatchCrmAttributesIdRequest([]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$id:** `string` — Attribute ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$label:** `?string` — Attribute display label
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$optionsLabels:** `?array` — Updated labels for selectable options
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$objectType:** `?string` — The type of object the attribute belongs to, it cannot be updated after creation
     
 </dd>
 </dl>
@@ -19286,8 +19127,7 @@ $client->tasks->getAllTaskTypes();
 <dl>
 <dd>
 
-<Note>You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below.
-[Activating Whatsapp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account</Note>
+<Note>You can use this API for WhatsApp only if you have setup your WhatsApp account on Brevo platform. To setup your WhatsApp account, follow the steps in the guide below. [Activating Whatsapp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account</Note>
 This endpoint is used to send a WhatsApp message. <br/>(**The first message you send using the API must contain a Template ID. You must create a template on WhatsApp on the Brevo platform to fetch the Template ID.**)
 </dd>
 </dl>
@@ -20263,9 +20103,13 @@ $client->transactionalEmails->getTransacEmailsList(
 <dl>
 <dd>
 
-<Note title="How to get uuid">You can get the uuid using either of the following methods:
+<Note title="How to get uuid?">
+You can get the uuid using either of the following methods:
+
 Send a GET request to https://api.brevo.com/v3/smtp/emails and pass the message_id in the url. Use your api-key to authenticate the request and you will get your uuid as a response.
-The uuid can also be fetched from the transactional logs page in your Brevo account, from the address URL.</Note>
+
+The uuid can also be fetched from the transactional logs page in your Brevo account, from the address URL.
+</Note>
 </dd>
 </dl>
 </dd>
@@ -21158,9 +21002,15 @@ $client->transactionalEmails->sendTestTemplate(
 <dl>
 <dd>
 
-<Note>If the user includes stop code in the Transactional SMS, then it will be switched to Marketing SMS automatically and it will be interpreted as a Marketing SMS. To send Transactional SMS as Transactional, it is important not to use stop code.
-Note: For adding a stop code, client has to add reply STOP to [STOP_CODE] and the [STOP_CODE] will be replaced with the number.</Note>
-<Note title="For end users in France">Transactional SMS can be sent at any time without time restrictions. However, if a message is categorized as Marketing, it must adhere to specific time restrictions. Messages sent outside of these restricted hours will experience delays and will be processed during allowable times. Specifically, Marketing SMS cannot be processed between 10pm and 8am, on Sundays, and on French public holidays.</Note>
+<Note>
+If the user includes stop code in the Transactional SMS, then it will be switched to Marketing SMS automatically and it will be interpreted as a Marketing SMS. To send Transactional SMS as Transactional, it is important not to use stop code.
+
+Note: For adding a stop code, client has to add reply STOP to [STOP_CODE] and the [STOP_CODE] will be replaced with the number.
+</Note>
+
+<Note title="For end users in France">
+Transactional SMS can be sent at any time without time restrictions. However, if a message is categorized as Marketing, it must adhere to specific time restrictions. Messages sent outside of these restricted hours will experience delays and will be processed during allowable times. Specifically, Marketing SMS cannot be processed between 10pm and 8am, on Sundays, and on French public holidays.
+</Note>
 </dd>
 </dl>
 </dd>
@@ -21556,4 +21406,3 @@ $client->smsTemplates->getSmsTemplates(
 </dd>
 </dl>
 </details>
-

@@ -49,8 +49,7 @@ abstract class WireMockTestCase extends TestCase
             }
         }
 
-        $wiremockUrl = getenv('WIREMOCK_URL') ?: 'http://localhost:8080';
-        $request = $requestFactory->createRequest('POST', $wiremockUrl . '/__admin/requests/find')
+        $request = $requestFactory->createRequest('POST', 'http://localhost:8080/__admin/requests/find')
             ->withHeader('Content-Type', 'application/json')
             ->withBody($streamFactory->createStream(JsonEncoder::encode($body)));
         $response = $client->sendRequest($request);

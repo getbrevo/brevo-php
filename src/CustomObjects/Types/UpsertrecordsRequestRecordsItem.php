@@ -19,7 +19,7 @@ class UpsertrecordsRequestRecordsItem extends JsonSerializableType
     public ?array $associations;
 
     /**
-     * @var ?array<string, mixed> $attributes Attributes attached with the object record. Only the already created attributes will be used with records. Pass the value with the attributes key you want to set or update for the object record. Minimum 1 attribute is required.
+     * @var ?array<string, mixed> $attributes Attributes attached with the object record. Only the already created attributes will be used with records. Minimum 1 attribute is required.
      */
     #[JsonProperty('attributes'), ArrayType(['string' => 'mixed'])]
     public ?array $attributes;
