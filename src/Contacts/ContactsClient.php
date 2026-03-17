@@ -200,6 +200,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return new CreateContactResponse();
+                }
                 return CreateContactResponse::fromJson($json);
             }
         } catch (JsonException $e) {
