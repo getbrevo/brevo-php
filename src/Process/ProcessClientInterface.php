@@ -43,9 +43,9 @@ interface ProcessClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetProcessesResponse
+     * @return ?GetProcessesResponse
      */
-    public function getProcesses(GetProcessesRequest $request = new GetProcessesRequest(), ?array $options = null): GetProcessesResponse;
+    public function getProcesses(GetProcessesRequest $request = new GetProcessesRequest(), ?array $options = null): ?GetProcessesResponse;
 
     /**
      * Retrieves detailed information about a specific background process.
@@ -81,7 +81,7 @@ interface ProcessClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetProcessResponse
+     * @return ?GetProcessResponse
      */
-    public function getProcess(int $processId, ?array $options = null): GetProcessResponse;
+    public function getProcess(int $processId, ?array $options = null): ?GetProcessResponse;
 }

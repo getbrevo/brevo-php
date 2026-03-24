@@ -71,11 +71,11 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return SendWhatsappMessageResponse
+     * @return ?SendWhatsappMessageResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function sendWhatsappMessage(SendWhatsappMessageRequestParams|SendWhatsappMessageRequestText $request, ?array $options = null): SendWhatsappMessageResponse
+    public function sendWhatsappMessage(SendWhatsappMessageRequestParams|SendWhatsappMessageRequestText $request, ?array $options = null): ?SendWhatsappMessageResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -92,7 +92,7 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return SendWhatsappMessageResponse::fromJson($json);
             }
@@ -120,11 +120,11 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetWhatsappEventReportResponse
+     * @return ?GetWhatsappEventReportResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getWhatsappEventReport(GetWhatsappEventReportRequest $request = new GetWhatsappEventReportRequest(), ?array $options = null): GetWhatsappEventReportResponse
+    public function getWhatsappEventReport(GetWhatsappEventReportRequest $request = new GetWhatsappEventReportRequest(), ?array $options = null): ?GetWhatsappEventReportResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -166,7 +166,7 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetWhatsappEventReportResponse::fromJson($json);
             }

@@ -22,9 +22,9 @@ interface CouponsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCouponCollection
+     * @return ?GetCouponCollection
      */
-    public function getCouponCollections(GetCouponCollectionsRequest $request = new GetCouponCollectionsRequest(), ?array $options = null): GetCouponCollection;
+    public function getCouponCollections(GetCouponCollectionsRequest $request = new GetCouponCollectionsRequest(), ?array $options = null): ?GetCouponCollection;
 
     /**
      * @param CreateCouponCollectionRequest $request
@@ -36,9 +36,9 @@ interface CouponsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateCouponCollectionResponse
+     * @return ?CreateCouponCollectionResponse
      */
-    public function createCouponCollection(CreateCouponCollectionRequest $request, ?array $options = null): CreateCouponCollectionResponse;
+    public function createCouponCollection(CreateCouponCollectionRequest $request, ?array $options = null): ?CreateCouponCollectionResponse;
 
     /**
      * @param string $id Id of the collection to return
@@ -50,9 +50,9 @@ interface CouponsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCouponCollection
+     * @return ?GetCouponCollection
      */
-    public function getCouponCollection(string $id, ?array $options = null): GetCouponCollection;
+    public function getCouponCollection(string $id, ?array $options = null): ?GetCouponCollection;
 
     /**
      * @param string $id Id of the collection to update
@@ -65,9 +65,9 @@ interface CouponsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return UpdateCouponCollectionResponse
+     * @return ?UpdateCouponCollectionResponse
      */
-    public function updateCouponCollection(string $id, UpdateCouponCollectionRequest $request = new UpdateCouponCollectionRequest(), ?array $options = null): UpdateCouponCollectionResponse;
+    public function updateCouponCollection(string $id, UpdateCouponCollectionRequest $request = new UpdateCouponCollectionRequest(), ?array $options = null): ?UpdateCouponCollectionResponse;
 
     /**
      * @param CreateCouponsRequest $request

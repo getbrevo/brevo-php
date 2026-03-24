@@ -26,9 +26,9 @@ interface SmsCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSmsCampaignsResponse
+     * @return ?GetSmsCampaignsResponse
      */
-    public function getSmsCampaigns(GetSmsCampaignsRequest $request = new GetSmsCampaignsRequest(), ?array $options = null): GetSmsCampaignsResponse;
+    public function getSmsCampaigns(GetSmsCampaignsRequest $request = new GetSmsCampaignsRequest(), ?array $options = null): ?GetSmsCampaignsResponse;
 
     /**
      * @param CreateSmsCampaignRequest $request
@@ -40,9 +40,9 @@ interface SmsCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateSmsCampaignResponse
+     * @return ?CreateSmsCampaignResponse
      */
-    public function createSmsCampaign(CreateSmsCampaignRequest $request, ?array $options = null): CreateSmsCampaignResponse;
+    public function createSmsCampaign(CreateSmsCampaignRequest $request, ?array $options = null): ?CreateSmsCampaignResponse;
 
     /**
      * @param int $campaignId id of the SMS campaign
@@ -54,9 +54,9 @@ interface SmsCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSmsCampaignResponse
+     * @return ?GetSmsCampaignResponse
      */
-    public function getSmsCampaign(int $campaignId, ?array $options = null): GetSmsCampaignResponse;
+    public function getSmsCampaign(int $campaignId, ?array $options = null): ?GetSmsCampaignResponse;
 
     /**
      * @param int $campaignId id of the SMS campaign
@@ -98,9 +98,9 @@ interface SmsCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return RequestSmsRecipientExportResponse
+     * @return ?RequestSmsRecipientExportResponse
      */
-    public function requestSmsRecipientExport(int $campaignId, RequestSmsRecipientExportRequest $request, ?array $options = null): RequestSmsRecipientExportResponse;
+    public function requestSmsRecipientExport(int $campaignId, RequestSmsRecipientExportRequest $request, ?array $options = null): ?RequestSmsRecipientExportResponse;
 
     /**
      * @param int $campaignId id of the campaign

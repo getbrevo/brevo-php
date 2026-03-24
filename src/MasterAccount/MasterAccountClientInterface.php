@@ -48,9 +48,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCorporateGroupResponse
+     * @return ?PostCorporateGroupResponse
      */
-    public function createANewGroupOfSubAccounts(PostCorporateGroupRequest $request, ?array $options = null): PostCorporateGroupResponse;
+    public function createANewGroupOfSubAccounts(PostCorporateGroupRequest $request, ?array $options = null): ?PostCorporateGroupResponse;
 
     /**
      * This endpoint allows you to remove a sub-organization from a group.
@@ -81,9 +81,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateGroupIdResponse
+     * @return ?GetCorporateGroupIdResponse
      */
-    public function getAGroupDetails(string $id, ?array $options = null): GetCorporateGroupIdResponse;
+    public function getAGroupDetails(string $id, ?array $options = null): ?GetCorporateGroupIdResponse;
 
     /**
      * This endpoint allows to update a group of sub-accounts
@@ -130,9 +130,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<GetSubAccountGroupsResponseItem>
+     * @return ?array<GetSubAccountGroupsResponseItem>
      */
-    public function getSubAccountGroups(?array $options = null): array;
+    public function getSubAccountGroups(?array $options = null): ?array;
 
     /**
      * This endpoint allows you to list all Admin users of your Admin account. You
@@ -148,9 +148,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateInvitedUsersListResponse
+     * @return ?GetCorporateInvitedUsersListResponse
      */
-    public function getCorporateInvitedUsersList(GetCorporateInvitedUsersListRequest $request = new GetCorporateInvitedUsersListRequest(), ?array $options = null): GetCorporateInvitedUsersListResponse;
+    public function getCorporateInvitedUsersList(GetCorporateInvitedUsersListRequest $request = new GetCorporateInvitedUsersListRequest(), ?array $options = null): ?GetCorporateInvitedUsersListResponse;
 
     /**
      * This endpoint allows you to retrieve the list of active IPs on your Admin
@@ -164,9 +164,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<GetCorporateIpResponseItem>
+     * @return ?array<GetCorporateIpResponseItem>
      */
-    public function listOfAllIPs(?array $options = null): array;
+    public function listOfAllIPs(?array $options = null): ?array;
 
     /**
      * This endpoint will provide the details of the master account.
@@ -179,9 +179,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateMasterAccountResponse
+     * @return ?GetCorporateMasterAccountResponse
      */
-    public function getTheDetailsOfRequestedMasterAccount(?array $options = null): GetCorporateMasterAccountResponse;
+    public function getTheDetailsOfRequestedMasterAccount(?array $options = null): ?GetCorporateMasterAccountResponse;
 
     /**
      * This endpoint generates an SSO token to authenticate and access the admin
@@ -198,9 +198,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSsoToken
+     * @return ?GetSsoToken
      */
-    public function generateSsoTokenToAccessAdminAccount(PostCorporateSsoTokenRequest $request, ?array $options = null): GetSsoToken;
+    public function generateSsoTokenToAccessAdminAccount(PostCorporateSsoTokenRequest $request, ?array $options = null): ?GetSsoToken;
 
     /**
      * This endpoint will provide the list all the sub-accounts of the master
@@ -215,9 +215,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateSubAccountResponse
+     * @return ?GetCorporateSubAccountResponse
      */
-    public function getTheListOfAllTheSubAccountsOfTheMasterAccount(GetCorporateSubAccountRequest $request, ?array $options = null): GetCorporateSubAccountResponse;
+    public function getTheListOfAllTheSubAccountsOfTheMasterAccount(GetCorporateSubAccountRequest $request, ?array $options = null): ?GetCorporateSubAccountResponse;
 
     /**
      * This endpoint will create a new sub-account under a master account
@@ -231,9 +231,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCorporateSubAccountResponse
+     * @return ?PostCorporateSubAccountResponse
      */
-    public function createANewSubAccountUnderAMasterAccount(PostCorporateSubAccountRequest $request, ?array $options = null): PostCorporateSubAccountResponse;
+    public function createANewSubAccountUnderAMasterAccount(PostCorporateSubAccountRequest $request, ?array $options = null): ?PostCorporateSubAccountResponse;
 
     /**
      * This endpoint allows to associate an IP to sub-accounts
@@ -247,9 +247,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<string, mixed>
+     * @return ?array<string, mixed>
      */
-    public function associateAnIpToSubAccounts(PostCorporateSubAccountIpAssociateRequest $request, ?array $options = null): array;
+    public function associateAnIpToSubAccounts(PostCorporateSubAccountIpAssociateRequest $request, ?array $options = null): ?array;
 
     /**
      * This endpoint allows to dissociate an IP from sub-accounts
@@ -278,9 +278,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCorporateSubAccountKeyResponse
+     * @return ?PostCorporateSubAccountKeyResponse
      */
-    public function createAnApiKeyForASubAccount(PostCorporateSubAccountKeyRequest $request, ?array $options = null): PostCorporateSubAccountKeyResponse;
+    public function createAnApiKeyForASubAccount(PostCorporateSubAccountKeyRequest $request, ?array $options = null): ?PostCorporateSubAccountKeyResponse;
 
     /**
      * This endpoint generates an sso token to authenticate and access a
@@ -297,9 +297,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSsoToken
+     * @return ?GetSsoToken
      */
-    public function generateSsoTokenToAccessSubAccount(PostCorporateSubAccountSsoTokenRequest $request, ?array $options = null): GetSsoToken;
+    public function generateSsoTokenToAccessSubAccount(PostCorporateSubAccountSsoTokenRequest $request, ?array $options = null): ?GetSsoToken;
 
     /**
      * This endpoint will provide the details for the specified sub-account company
@@ -313,9 +313,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateSubAccountIdResponse
+     * @return ?GetCorporateSubAccountIdResponse
      */
-    public function getSubAccountDetails(int $id, ?array $options = null): GetCorporateSubAccountIdResponse;
+    public function getSubAccountDetails(int $id, ?array $options = null): ?GetCorporateSubAccountIdResponse;
 
     /**
      * @param int $id Id of the sub-account organization to be deleted
@@ -421,9 +421,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return InviteAdminUserResponse
+     * @return ?InviteAdminUserResponse
      */
-    public function inviteAdminUser(InviteAdminUserRequest $request, ?array $options = null): InviteAdminUserResponse;
+    public function inviteAdminUser(InviteAdminUserRequest $request, ?array $options = null): ?InviteAdminUserResponse;
 
     /**
      * This endpoint will allow the user to:
@@ -440,9 +440,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PutCorporateUserInvitationActionEmailResponse
+     * @return ?PutCorporateUserInvitationActionEmailResponse
      */
-    public function resendCancelAdminUserInvitation(string $action, string $email, ?array $options = null): PutCorporateUserInvitationActionEmailResponse;
+    public function resendCancelAdminUserInvitation(string $action, string $email, ?array $options = null): ?PutCorporateUserInvitationActionEmailResponse;
 
     /**
      * This endpoint allows to revoke/remove an invited member of your Admin
@@ -472,9 +472,9 @@ interface MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateUserPermissionResponse
+     * @return ?GetCorporateUserPermissionResponse
      */
-    public function getCorporateUserPermission(string $email, ?array $options = null): GetCorporateUserPermissionResponse;
+    public function getCorporateUserPermission(string $email, ?array $options = null): ?GetCorporateUserPermissionResponse;
 
     /**
      * This endpoint will allow you to change the permissions of Admin users of

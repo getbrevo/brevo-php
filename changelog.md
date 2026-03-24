@@ -1,3 +1,7 @@
+## 4.2.0 - 2026-03-24
+* ### Changed
+* **API methods** now return `null` instead of throwing `BrevoException` when the server responds with empty content for successful requests, providing more graceful error handling across all clients.
+
 ## 4.1.0 - 2026-03-24
 * ### Added
 * **BrevoException** now provides more descriptive error messages when API calls succeed but return empty response bodies, replacing generic JsonException errors and improving debugging experience.

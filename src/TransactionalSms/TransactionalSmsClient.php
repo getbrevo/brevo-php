@@ -77,11 +77,11 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return SendAsyncTransactionalSmsResponse
+     * @return ?SendAsyncTransactionalSmsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function sendAsyncTransactionalSms(SendTransacSms $request, ?array $options = null): SendAsyncTransactionalSmsResponse
+    public function sendAsyncTransactionalSms(SendTransacSms $request, ?array $options = null): ?SendAsyncTransactionalSmsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -98,7 +98,7 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return SendAsyncTransactionalSmsResponse::fromJson($json);
             }
@@ -124,11 +124,11 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return SendTransacSmsResponse
+     * @return ?SendTransacSmsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function sendTransacSms(SendTransacSms $request, ?array $options = null): SendTransacSmsResponse
+    public function sendTransacSms(SendTransacSms $request, ?array $options = null): ?SendTransacSmsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -145,7 +145,7 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return SendTransacSmsResponse::fromJson($json);
             }
@@ -171,11 +171,11 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetTransacAggregatedSmsReportResponse
+     * @return ?GetTransacAggregatedSmsReportResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getTransacAggregatedSmsReport(GetTransacAggregatedSmsReportRequest $request = new GetTransacAggregatedSmsReportRequest(), ?array $options = null): GetTransacAggregatedSmsReportResponse
+    public function getTransacAggregatedSmsReport(GetTransacAggregatedSmsReportRequest $request = new GetTransacAggregatedSmsReportRequest(), ?array $options = null): ?GetTransacAggregatedSmsReportResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -205,7 +205,7 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetTransacAggregatedSmsReportResponse::fromJson($json);
             }
@@ -231,11 +231,11 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSmsEventsResponse
+     * @return ?GetSmsEventsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getSmsEvents(GetSmsEventsRequest $request = new GetSmsEventsRequest(), ?array $options = null): GetSmsEventsResponse
+    public function getSmsEvents(GetSmsEventsRequest $request = new GetSmsEventsRequest(), ?array $options = null): ?GetSmsEventsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -280,7 +280,7 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetSmsEventsResponse::fromJson($json);
             }
@@ -306,11 +306,11 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetTransacSmsReportResponse
+     * @return ?GetTransacSmsReportResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getTransacSmsReport(GetTransacSmsReportRequest $request = new GetTransacSmsReportRequest(), ?array $options = null): GetTransacSmsReportResponse
+    public function getTransacSmsReport(GetTransacSmsReportRequest $request = new GetTransacSmsReportRequest(), ?array $options = null): ?GetTransacSmsReportResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -343,7 +343,7 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetTransacSmsReportResponse::fromJson($json);
             }

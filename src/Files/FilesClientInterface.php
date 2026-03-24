@@ -19,9 +19,9 @@ interface FilesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<FileData>
+     * @return ?array<FileData>
      */
-    public function getAllFiles(GetCrmFilesRequest $request = new GetCrmFilesRequest(), ?array $options = null): array;
+    public function getAllFiles(GetCrmFilesRequest $request = new GetCrmFilesRequest(), ?array $options = null): ?array;
 
     /**
      * @param PostCrmFilesRequest $request
@@ -32,9 +32,9 @@ interface FilesClientInterface
      *   headers?: array<string, string>,
      *   queryParameters?: array<string, mixed>,
      * } $options
-     * @return FileData
+     * @return ?FileData
      */
-    public function uploadAFile(PostCrmFilesRequest $request, ?array $options = null): FileData;
+    public function uploadAFile(PostCrmFilesRequest $request, ?array $options = null): ?FileData;
 
     /**
      * @param string $id File id to download.
@@ -46,9 +46,9 @@ interface FilesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCrmFilesIdResponse
+     * @return ?GetCrmFilesIdResponse
      */
-    public function downloadAFile(string $id, ?array $options = null): GetCrmFilesIdResponse;
+    public function downloadAFile(string $id, ?array $options = null): ?GetCrmFilesIdResponse;
 
     /**
      * @param string $id File id to delete.
@@ -73,7 +73,7 @@ interface FilesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return FileData
+     * @return ?FileData
      */
-    public function getFileDetails(string $id, ?array $options = null): FileData;
+    public function getFileDetails(string $id, ?array $options = null): ?FileData;
 }

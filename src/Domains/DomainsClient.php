@@ -78,11 +78,11 @@ class DomainsClient implements DomainsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetDomainsResponse
+     * @return ?GetDomainsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getDomains(?array $options = null): GetDomainsResponse
+    public function getDomains(?array $options = null): ?GetDomainsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -98,7 +98,7 @@ class DomainsClient implements DomainsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetDomainsResponse::fromJson($json);
             }
@@ -138,11 +138,11 @@ class DomainsClient implements DomainsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateDomainResponse
+     * @return ?CreateDomainResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createDomain(CreateDomainRequest $request, ?array $options = null): CreateDomainResponse
+    public function createDomain(CreateDomainRequest $request, ?array $options = null): ?CreateDomainResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -159,7 +159,7 @@ class DomainsClient implements DomainsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return CreateDomainResponse::fromJson($json);
             }
@@ -198,11 +198,11 @@ class DomainsClient implements DomainsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetDomainConfigurationResponse
+     * @return ?GetDomainConfigurationResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getDomainConfiguration(string $domainName, ?array $options = null): GetDomainConfigurationResponse
+    public function getDomainConfiguration(string $domainName, ?array $options = null): ?GetDomainConfigurationResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -218,7 +218,7 @@ class DomainsClient implements DomainsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetDomainConfigurationResponse::fromJson($json);
             }
@@ -305,11 +305,11 @@ class DomainsClient implements DomainsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return AuthenticateDomainResponse
+     * @return ?AuthenticateDomainResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function authenticateDomain(string $domainName, ?array $options = null): AuthenticateDomainResponse
+    public function authenticateDomain(string $domainName, ?array $options = null): ?AuthenticateDomainResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -325,7 +325,7 @@ class DomainsClient implements DomainsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return AuthenticateDomainResponse::fromJson($json);
             }

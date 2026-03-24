@@ -22,9 +22,9 @@ interface TasksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCrmTasksResponse
+     * @return ?GetCrmTasksResponse
      */
-    public function getAllTasks(GetCrmTasksRequest $request = new GetCrmTasksRequest(), ?array $options = null): GetCrmTasksResponse;
+    public function getAllTasks(GetCrmTasksRequest $request = new GetCrmTasksRequest(), ?array $options = null): ?GetCrmTasksResponse;
 
     /**
      * @param PostCrmTasksRequest $request
@@ -36,9 +36,9 @@ interface TasksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCrmTasksResponse
+     * @return ?PostCrmTasksResponse
      */
-    public function createATask(PostCrmTasksRequest $request, ?array $options = null): PostCrmTasksResponse;
+    public function createATask(PostCrmTasksRequest $request, ?array $options = null): ?PostCrmTasksResponse;
 
     /**
      * @param string $id
@@ -50,9 +50,9 @@ interface TasksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Task
+     * @return ?Task
      */
-    public function getATask(string $id, ?array $options = null): Task;
+    public function getATask(string $id, ?array $options = null): ?Task;
 
     /**
      * @param string $id
@@ -90,7 +90,7 @@ interface TasksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCrmTasktypesResponse
+     * @return ?GetCrmTasktypesResponse
      */
-    public function getAllTaskTypes(?array $options = null): GetCrmTasktypesResponse;
+    public function getAllTaskTypes(?array $options = null): ?GetCrmTasktypesResponse;
 }

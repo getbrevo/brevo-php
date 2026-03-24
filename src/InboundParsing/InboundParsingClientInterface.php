@@ -20,9 +20,9 @@ interface InboundParsingClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetInboundEmailEventsResponse
+     * @return ?GetInboundEmailEventsResponse
      */
-    public function getInboundEmailEvents(GetInboundEmailEventsRequest $request = new GetInboundEmailEventsRequest(), ?array $options = null): GetInboundEmailEventsResponse;
+    public function getInboundEmailEvents(GetInboundEmailEventsRequest $request = new GetInboundEmailEventsRequest(), ?array $options = null): ?GetInboundEmailEventsResponse;
 
     /**
      * This endpoint will show the list of all events history for one particular received email.
@@ -36,9 +36,9 @@ interface InboundParsingClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetInboundEmailEventsByUuidResponse
+     * @return ?GetInboundEmailEventsByUuidResponse
      */
-    public function getInboundEmailEventsByUuid(string $uuid, ?array $options = null): GetInboundEmailEventsByUuidResponse;
+    public function getInboundEmailEventsByUuid(string $uuid, ?array $options = null): ?GetInboundEmailEventsByUuidResponse;
 
     /**
      * This endpoint will retrieve inbound attachment with download token.

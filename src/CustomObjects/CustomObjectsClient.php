@@ -90,11 +90,11 @@ class CustomObjectsClient implements CustomObjectsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return UpsertrecordsResponse
+     * @return ?UpsertrecordsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function upsertrecords(string $objectType, UpsertrecordsRequest $request, ?array $options = null): UpsertrecordsResponse
+    public function upsertrecords(string $objectType, UpsertrecordsRequest $request, ?array $options = null): ?UpsertrecordsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -111,7 +111,7 @@ class CustomObjectsClient implements CustomObjectsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return UpsertrecordsResponse::fromJson($json);
             }
@@ -146,11 +146,11 @@ class CustomObjectsClient implements CustomObjectsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetrecordsResponse
+     * @return ?GetrecordsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getrecords(string $objectType, GetrecordsRequest $request, ?array $options = null): GetrecordsResponse
+    public function getrecords(string $objectType, GetrecordsRequest $request, ?array $options = null): ?GetrecordsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -176,7 +176,7 @@ class CustomObjectsClient implements CustomObjectsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetrecordsResponse::fromJson($json);
             }
@@ -207,11 +207,11 @@ class CustomObjectsClient implements CustomObjectsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return BatchDeleteObjectRecordsResponse
+     * @return ?BatchDeleteObjectRecordsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function batchDeleteObjectRecords(string $objectType, BatchDeleteObjectRecordsRequest $request = new BatchDeleteObjectRecordsRequest(), ?array $options = null): BatchDeleteObjectRecordsResponse
+    public function batchDeleteObjectRecords(string $objectType, BatchDeleteObjectRecordsRequest $request = new BatchDeleteObjectRecordsRequest(), ?array $options = null): ?BatchDeleteObjectRecordsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -228,7 +228,7 @@ class CustomObjectsClient implements CustomObjectsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return BatchDeleteObjectRecordsResponse::fromJson($json);
             }

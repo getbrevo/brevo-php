@@ -65,11 +65,11 @@ class TasksClient implements TasksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCrmTasksResponse
+     * @return ?GetCrmTasksResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getAllTasks(GetCrmTasksRequest $request = new GetCrmTasksRequest(), ?array $options = null): GetCrmTasksResponse
+    public function getAllTasks(GetCrmTasksRequest $request = new GetCrmTasksRequest(), ?array $options = null): ?GetCrmTasksResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -126,7 +126,7 @@ class TasksClient implements TasksClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetCrmTasksResponse::fromJson($json);
             }
@@ -152,11 +152,11 @@ class TasksClient implements TasksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCrmTasksResponse
+     * @return ?PostCrmTasksResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createATask(PostCrmTasksRequest $request, ?array $options = null): PostCrmTasksResponse
+    public function createATask(PostCrmTasksRequest $request, ?array $options = null): ?PostCrmTasksResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -173,7 +173,7 @@ class TasksClient implements TasksClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return PostCrmTasksResponse::fromJson($json);
             }
@@ -199,11 +199,11 @@ class TasksClient implements TasksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Task
+     * @return ?Task
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getATask(string $id, ?array $options = null): Task
+    public function getATask(string $id, ?array $options = null): ?Task
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -219,7 +219,7 @@ class TasksClient implements TasksClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return Task::fromJson($json);
             }
@@ -324,11 +324,11 @@ class TasksClient implements TasksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCrmTasktypesResponse
+     * @return ?GetCrmTasktypesResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getAllTaskTypes(?array $options = null): GetCrmTasktypesResponse
+    public function getAllTaskTypes(?array $options = null): ?GetCrmTasktypesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -344,7 +344,7 @@ class TasksClient implements TasksClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetCrmTasktypesResponse::fromJson($json);
             }

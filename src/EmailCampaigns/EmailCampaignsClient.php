@@ -80,11 +80,11 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetEmailCampaignsResponse
+     * @return ?GetEmailCampaignsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getEmailCampaigns(GetEmailCampaignsRequest $request = new GetEmailCampaignsRequest(), ?array $options = null): GetEmailCampaignsResponse
+    public function getEmailCampaigns(GetEmailCampaignsRequest $request = new GetEmailCampaignsRequest(), ?array $options = null): ?GetEmailCampaignsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -129,7 +129,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetEmailCampaignsResponse::fromJson($json);
             }
@@ -155,11 +155,11 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateEmailCampaignResponse
+     * @return ?CreateEmailCampaignResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createEmailCampaign(CreateEmailCampaignRequest $request, ?array $options = null): CreateEmailCampaignResponse
+    public function createEmailCampaign(CreateEmailCampaignRequest $request, ?array $options = null): ?CreateEmailCampaignResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -176,7 +176,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return CreateEmailCampaignResponse::fromJson($json);
             }
@@ -202,11 +202,11 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return UploadImageToGalleryResponse
+     * @return ?UploadImageToGalleryResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function uploadImageToGallery(UploadImageToGalleryRequest $request, ?array $options = null): UploadImageToGalleryResponse
+    public function uploadImageToGallery(UploadImageToGalleryRequest $request, ?array $options = null): ?UploadImageToGalleryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -223,7 +223,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return UploadImageToGalleryResponse::fromJson($json);
             }
@@ -250,11 +250,11 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetEmailCampaignResponse
+     * @return ?GetEmailCampaignResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getEmailCampaign(int $campaignId, GetEmailCampaignRequest $request = new GetEmailCampaignRequest(), ?array $options = null): GetEmailCampaignResponse
+    public function getEmailCampaign(int $campaignId, GetEmailCampaignRequest $request = new GetEmailCampaignRequest(), ?array $options = null): ?GetEmailCampaignResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -275,7 +275,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetEmailCampaignResponse::fromJson($json);
             }
@@ -383,11 +383,11 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetAbTestCampaignResultResponse
+     * @return ?GetAbTestCampaignResultResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getAbTestCampaignResult(int $campaignId, ?array $options = null): GetAbTestCampaignResultResponse
+    public function getAbTestCampaignResult(int $campaignId, ?array $options = null): ?GetAbTestCampaignResultResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -403,7 +403,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetAbTestCampaignResultResponse::fromJson($json);
             }
@@ -430,11 +430,11 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return EmailExportRecipientsResponse
+     * @return ?EmailExportRecipientsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function emailExportRecipients(int $campaignId, EmailExportRecipientsRequest $request, ?array $options = null): EmailExportRecipientsResponse
+    public function emailExportRecipients(int $campaignId, EmailExportRecipientsRequest $request, ?array $options = null): ?EmailExportRecipientsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -451,7 +451,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return EmailExportRecipientsResponse::fromJson($json);
             }
@@ -602,11 +602,11 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSharedTemplateUrlResponse
+     * @return ?GetSharedTemplateUrlResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getSharedTemplateUrl(int $campaignId, ?array $options = null): GetSharedTemplateUrlResponse
+    public function getSharedTemplateUrl(int $campaignId, ?array $options = null): ?GetSharedTemplateUrlResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -622,7 +622,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetSharedTemplateUrlResponse::fromJson($json);
             }

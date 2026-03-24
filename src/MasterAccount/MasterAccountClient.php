@@ -92,11 +92,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCorporateGroupResponse
+     * @return ?PostCorporateGroupResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createANewGroupOfSubAccounts(PostCorporateGroupRequest $request, ?array $options = null): PostCorporateGroupResponse
+    public function createANewGroupOfSubAccounts(PostCorporateGroupRequest $request, ?array $options = null): ?PostCorporateGroupResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -113,7 +113,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return PostCorporateGroupResponse::fromJson($json);
             }
@@ -185,11 +185,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateGroupIdResponse
+     * @return ?GetCorporateGroupIdResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getAGroupDetails(string $id, ?array $options = null): GetCorporateGroupIdResponse
+    public function getAGroupDetails(string $id, ?array $options = null): ?GetCorporateGroupIdResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -205,7 +205,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetCorporateGroupIdResponse::fromJson($json);
             }
@@ -319,11 +319,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<GetSubAccountGroupsResponseItem>
+     * @return ?array<GetSubAccountGroupsResponseItem>
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getSubAccountGroups(?array $options = null): array
+    public function getSubAccountGroups(?array $options = null): ?array
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -339,7 +339,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return JsonDecoder::decodeArray($json, [GetSubAccountGroupsResponseItem::class]); // @phpstan-ignore-line
             }
@@ -369,11 +369,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateInvitedUsersListResponse
+     * @return ?GetCorporateInvitedUsersListResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getCorporateInvitedUsersList(GetCorporateInvitedUsersListRequest $request = new GetCorporateInvitedUsersListRequest(), ?array $options = null): GetCorporateInvitedUsersListResponse
+    public function getCorporateInvitedUsersList(GetCorporateInvitedUsersListRequest $request = new GetCorporateInvitedUsersListRequest(), ?array $options = null): ?GetCorporateInvitedUsersListResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -400,7 +400,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetCorporateInvitedUsersListResponse::fromJson($json);
             }
@@ -428,11 +428,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<GetCorporateIpResponseItem>
+     * @return ?array<GetCorporateIpResponseItem>
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function listOfAllIPs(?array $options = null): array
+    public function listOfAllIPs(?array $options = null): ?array
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -448,7 +448,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return JsonDecoder::decodeArray($json, [GetCorporateIpResponseItem::class]); // @phpstan-ignore-line
             }
@@ -475,11 +475,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateMasterAccountResponse
+     * @return ?GetCorporateMasterAccountResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getTheDetailsOfRequestedMasterAccount(?array $options = null): GetCorporateMasterAccountResponse
+    public function getTheDetailsOfRequestedMasterAccount(?array $options = null): ?GetCorporateMasterAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -495,7 +495,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetCorporateMasterAccountResponse::fromJson($json);
             }
@@ -526,11 +526,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSsoToken
+     * @return ?GetSsoToken
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function generateSsoTokenToAccessAdminAccount(PostCorporateSsoTokenRequest $request, ?array $options = null): GetSsoToken
+    public function generateSsoTokenToAccessAdminAccount(PostCorporateSsoTokenRequest $request, ?array $options = null): ?GetSsoToken
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -547,7 +547,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetSsoToken::fromJson($json);
             }
@@ -576,11 +576,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateSubAccountResponse
+     * @return ?GetCorporateSubAccountResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getTheListOfAllTheSubAccountsOfTheMasterAccount(GetCorporateSubAccountRequest $request, ?array $options = null): GetCorporateSubAccountResponse
+    public function getTheListOfAllTheSubAccountsOfTheMasterAccount(GetCorporateSubAccountRequest $request, ?array $options = null): ?GetCorporateSubAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -600,7 +600,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetCorporateSubAccountResponse::fromJson($json);
             }
@@ -628,11 +628,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCorporateSubAccountResponse
+     * @return ?PostCorporateSubAccountResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createANewSubAccountUnderAMasterAccount(PostCorporateSubAccountRequest $request, ?array $options = null): PostCorporateSubAccountResponse
+    public function createANewSubAccountUnderAMasterAccount(PostCorporateSubAccountRequest $request, ?array $options = null): ?PostCorporateSubAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -649,7 +649,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return PostCorporateSubAccountResponse::fromJson($json);
             }
@@ -677,11 +677,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<string, mixed>
+     * @return ?array<string, mixed>
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function associateAnIpToSubAccounts(PostCorporateSubAccountIpAssociateRequest $request, ?array $options = null): array
+    public function associateAnIpToSubAccounts(PostCorporateSubAccountIpAssociateRequest $request, ?array $options = null): ?array
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -698,7 +698,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return JsonDecoder::decodeArray($json, ['string' => 'mixed']); // @phpstan-ignore-line
             }
@@ -768,11 +768,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCorporateSubAccountKeyResponse
+     * @return ?PostCorporateSubAccountKeyResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createAnApiKeyForASubAccount(PostCorporateSubAccountKeyRequest $request, ?array $options = null): PostCorporateSubAccountKeyResponse
+    public function createAnApiKeyForASubAccount(PostCorporateSubAccountKeyRequest $request, ?array $options = null): ?PostCorporateSubAccountKeyResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -789,7 +789,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return PostCorporateSubAccountKeyResponse::fromJson($json);
             }
@@ -820,11 +820,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSsoToken
+     * @return ?GetSsoToken
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function generateSsoTokenToAccessSubAccount(PostCorporateSubAccountSsoTokenRequest $request, ?array $options = null): GetSsoToken
+    public function generateSsoTokenToAccessSubAccount(PostCorporateSubAccountSsoTokenRequest $request, ?array $options = null): ?GetSsoToken
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -841,7 +841,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetSsoToken::fromJson($json);
             }
@@ -869,11 +869,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateSubAccountIdResponse
+     * @return ?GetCorporateSubAccountIdResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getSubAccountDetails(int $id, ?array $options = null): GetCorporateSubAccountIdResponse
+    public function getSubAccountDetails(int $id, ?array $options = null): ?GetCorporateSubAccountIdResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -889,7 +889,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetCorporateSubAccountIdResponse::fromJson($json);
             }
@@ -1116,11 +1116,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return InviteAdminUserResponse
+     * @return ?InviteAdminUserResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function inviteAdminUser(InviteAdminUserRequest $request, ?array $options = null): InviteAdminUserResponse
+    public function inviteAdminUser(InviteAdminUserRequest $request, ?array $options = null): ?InviteAdminUserResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1137,7 +1137,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return InviteAdminUserResponse::fromJson($json);
             }
@@ -1168,11 +1168,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PutCorporateUserInvitationActionEmailResponse
+     * @return ?PutCorporateUserInvitationActionEmailResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function resendCancelAdminUserInvitation(string $action, string $email, ?array $options = null): PutCorporateUserInvitationActionEmailResponse
+    public function resendCancelAdminUserInvitation(string $action, string $email, ?array $options = null): ?PutCorporateUserInvitationActionEmailResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1188,7 +1188,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return PutCorporateUserInvitationActionEmailResponse::fromJson($json);
             }
@@ -1258,11 +1258,11 @@ class MasterAccountClient implements MasterAccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCorporateUserPermissionResponse
+     * @return ?GetCorporateUserPermissionResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getCorporateUserPermission(string $email, ?array $options = null): GetCorporateUserPermissionResponse
+    public function getCorporateUserPermission(string $email, ?array $options = null): ?GetCorporateUserPermissionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1278,7 +1278,7 @@ class MasterAccountClient implements MasterAccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetCorporateUserPermissionResponse::fromJson($json);
             }

@@ -39,9 +39,9 @@ interface WebhooksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetWebhooksResponse
+     * @return ?GetWebhooksResponse
      */
-    public function getWebhooks(GetWebhooksRequest $request = new GetWebhooksRequest(), ?array $options = null): GetWebhooksResponse;
+    public function getWebhooks(GetWebhooksRequest $request = new GetWebhooksRequest(), ?array $options = null): ?GetWebhooksResponse;
 
     /**
      * Creates a new webhook to receive real-time notifications for specified events.
@@ -66,9 +66,9 @@ interface WebhooksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateWebhookResponse
+     * @return ?CreateWebhookResponse
      */
-    public function createWebhook(CreateWebhookRequest $request, ?array $options = null): CreateWebhookResponse;
+    public function createWebhook(CreateWebhookRequest $request, ?array $options = null): ?CreateWebhookResponse;
 
     /**
      * <Note title="This feature is available for Professional and Enterprise plans">
@@ -97,9 +97,9 @@ interface WebhooksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ExportWebhooksHistoryResponse
+     * @return ?ExportWebhooksHistoryResponse
      */
-    public function exportWebhooksHistory(ExportWebhooksHistoryRequest $request, ?array $options = null): ExportWebhooksHistoryResponse;
+    public function exportWebhooksHistory(ExportWebhooksHistoryRequest $request, ?array $options = null): ?ExportWebhooksHistoryResponse;
 
     /**
      * Retrieves detailed information about a specific webhook configuration.
@@ -127,9 +127,9 @@ interface WebhooksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetWebhook
+     * @return ?GetWebhook
      */
-    public function getWebhook(int $webhookId, ?array $options = null): GetWebhook;
+    public function getWebhook(int $webhookId, ?array $options = null): ?GetWebhook;
 
     /**
      * Updates an existing webhook configuration and event subscriptions.

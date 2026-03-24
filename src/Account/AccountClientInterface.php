@@ -45,9 +45,9 @@ interface AccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetAccountResponse
+     * @return ?GetAccountResponse
      */
-    public function getAccount(?array $options = null): GetAccountResponse;
+    public function getAccount(?array $options = null): ?GetAccountResponse;
 
     /**
      * Retrieves user activity logs from your organization for security monitoring and audit compliance.
@@ -77,7 +77,7 @@ interface AccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetAccountActivityResponse
+     * @return ?GetAccountActivityResponse
      */
-    public function getAccountActivity(GetAccountActivityRequest $request = new GetAccountActivityRequest(), ?array $options = null): GetAccountActivityResponse;
+    public function getAccountActivity(GetAccountActivityRequest $request = new GetAccountActivityRequest(), ?array $options = null): ?GetAccountActivityResponse;
 }

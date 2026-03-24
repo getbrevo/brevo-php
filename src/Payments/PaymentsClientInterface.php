@@ -18,9 +18,9 @@ interface PaymentsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreatePaymentRequestResponse
+     * @return ?CreatePaymentRequestResponse
      */
-    public function createPaymentRequest(CreatePaymentRequestRequest $request, ?array $options = null): CreatePaymentRequestResponse;
+    public function createPaymentRequest(CreatePaymentRequestRequest $request, ?array $options = null): ?CreatePaymentRequestResponse;
 
     /**
      * @param string $id Id of the payment Request
@@ -32,9 +32,9 @@ interface PaymentsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetPaymentRequestResponse
+     * @return ?GetPaymentRequestResponse
      */
-    public function getPaymentRequest(string $id, ?array $options = null): GetPaymentRequestResponse;
+    public function getPaymentRequest(string $id, ?array $options = null): ?GetPaymentRequestResponse;
 
     /**
      * @param string $id ID of the payment request.

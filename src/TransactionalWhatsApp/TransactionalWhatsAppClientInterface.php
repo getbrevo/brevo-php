@@ -26,9 +26,9 @@ interface TransactionalWhatsAppClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return SendWhatsappMessageResponse
+     * @return ?SendWhatsappMessageResponse
      */
-    public function sendWhatsappMessage(SendWhatsappMessageRequestParams|SendWhatsappMessageRequestText $request, ?array $options = null): SendWhatsappMessageResponse;
+    public function sendWhatsappMessage(SendWhatsappMessageRequestParams|SendWhatsappMessageRequestText $request, ?array $options = null): ?SendWhatsappMessageResponse;
 
     /**
      * This endpoint will show the unaggregated statistics for WhatsApp activity (30 days by default if `startDate` and `endDate` or `days` is not passed. The date range can not exceed 90 days)
@@ -42,7 +42,7 @@ interface TransactionalWhatsAppClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetWhatsappEventReportResponse
+     * @return ?GetWhatsappEventReportResponse
      */
-    public function getWhatsappEventReport(GetWhatsappEventReportRequest $request = new GetWhatsappEventReportRequest(), ?array $options = null): GetWhatsappEventReportResponse;
+    public function getWhatsappEventReport(GetWhatsappEventReportRequest $request = new GetWhatsappEventReportRequest(), ?array $options = null): ?GetWhatsappEventReportResponse;
 }

@@ -30,9 +30,9 @@ interface ProgramClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetLpListResponse
+     * @return ?GetLpListResponse
      */
-    public function getLpList(GetLpListRequest $request = new GetLpListRequest(), ?array $options = null): GetLpListResponse;
+    public function getLpList(GetLpListRequest $request = new GetLpListRequest(), ?array $options = null): ?GetLpListResponse;
 
     /**
      * Creates loyalty program
@@ -46,9 +46,9 @@ interface ProgramClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return LoyaltyProgram
+     * @return ?LoyaltyProgram
      */
-    public function createNewLp(CreateNewLpRequest $request, ?array $options = null): LoyaltyProgram;
+    public function createNewLp(CreateNewLpRequest $request, ?array $options = null): ?LoyaltyProgram;
 
     /**
      * Returns loyalty program
@@ -62,9 +62,9 @@ interface ProgramClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return LoyaltyProgram
+     * @return ?LoyaltyProgram
      */
-    public function getLoyaltyProgramInfo(string $pid, ?array $options = null): LoyaltyProgram;
+    public function getLoyaltyProgramInfo(string $pid, ?array $options = null): ?LoyaltyProgram;
 
     /**
      * Updates loyalty program
@@ -79,9 +79,9 @@ interface ProgramClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return LoyaltyProgram
+     * @return ?LoyaltyProgram
      */
-    public function updateLoyaltyProgram(string $pid, UpdateLoyaltyProgramRequest $request, ?array $options = null): LoyaltyProgram;
+    public function updateLoyaltyProgram(string $pid, UpdateLoyaltyProgramRequest $request, ?array $options = null): ?LoyaltyProgram;
 
     /**
      * Deletes Loyalty Program
@@ -111,9 +111,9 @@ interface ProgramClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return LoyaltyProgram
+     * @return ?LoyaltyProgram
      */
-    public function partiallyUpdateLoyaltyProgram(string $pid, PartiallyUpdateLoyaltyProgramRequest $request = new PartiallyUpdateLoyaltyProgramRequest(), ?array $options = null): LoyaltyProgram;
+    public function partiallyUpdateLoyaltyProgram(string $pid, PartiallyUpdateLoyaltyProgramRequest $request = new PartiallyUpdateLoyaltyProgramRequest(), ?array $options = null): ?LoyaltyProgram;
 
     /**
      * Get Information of balances, tiers, rewards and subscription members for a subscription
@@ -128,9 +128,9 @@ interface ProgramClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetParameterSubscriptionInfoResponse
+     * @return ?GetParameterSubscriptionInfoResponse
      */
-    public function getParameterSubscriptionInfo(string $pid, GetParameterSubscriptionInfoRequest $request = new GetParameterSubscriptionInfoRequest(), ?array $options = null): GetParameterSubscriptionInfoResponse;
+    public function getParameterSubscriptionInfo(string $pid, GetParameterSubscriptionInfoRequest $request = new GetParameterSubscriptionInfoRequest(), ?array $options = null): ?GetParameterSubscriptionInfoResponse;
 
     /**
      * Publishes loyalty program
@@ -160,9 +160,9 @@ interface ProgramClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return SubscribeMemberToASubscriptionResponse
+     * @return ?SubscribeMemberToASubscriptionResponse
      */
-    public function subscribeMemberToASubscription(string $pid, SubscribeMemberToASubscriptionRequest $request, ?array $options = null): SubscribeMemberToASubscriptionResponse;
+    public function subscribeMemberToASubscription(string $pid, SubscribeMemberToASubscriptionRequest $request, ?array $options = null): ?SubscribeMemberToASubscriptionResponse;
 
     /**
      * Deletes member from a subscription
@@ -193,7 +193,7 @@ interface ProgramClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return SubscribeToLoyaltyProgramResponse
+     * @return ?SubscribeToLoyaltyProgramResponse
      */
-    public function subscribeToLoyaltyProgram(string $pid, SubscribeToLoyaltyProgramRequest $request, ?array $options = null): SubscribeToLoyaltyProgramResponse;
+    public function subscribeToLoyaltyProgram(string $pid, SubscribeToLoyaltyProgramRequest $request, ?array $options = null): ?SubscribeToLoyaltyProgramResponse;
 }

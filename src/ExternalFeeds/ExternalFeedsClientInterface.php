@@ -47,9 +47,9 @@ interface ExternalFeedsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetAllExternalFeedsResponse
+     * @return ?GetAllExternalFeedsResponse
      */
-    public function getAllExternalFeeds(GetAllExternalFeedsRequest $request = new GetAllExternalFeedsRequest(), ?array $options = null): GetAllExternalFeedsResponse;
+    public function getAllExternalFeeds(GetAllExternalFeedsRequest $request = new GetAllExternalFeedsRequest(), ?array $options = null): ?GetAllExternalFeedsResponse;
 
     /**
      * Creates a new external feed for dynamic content in email campaigns.
@@ -83,9 +83,9 @@ interface ExternalFeedsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateExternalFeedResponse
+     * @return ?CreateExternalFeedResponse
      */
-    public function createExternalFeed(CreateExternalFeedRequest $request, ?array $options = null): CreateExternalFeedResponse;
+    public function createExternalFeed(CreateExternalFeedRequest $request, ?array $options = null): ?CreateExternalFeedResponse;
 
     /**
      * Retrieves details of a specific external feed by its UUID.
@@ -120,9 +120,9 @@ interface ExternalFeedsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetExternalFeedByUuidResponse
+     * @return ?GetExternalFeedByUuidResponse
      */
-    public function getExternalFeedByUuid(string $uuid, ?array $options = null): GetExternalFeedByUuidResponse;
+    public function getExternalFeedByUuid(string $uuid, ?array $options = null): ?GetExternalFeedByUuidResponse;
 
     /**
      * Updates configuration of an existing external feed.

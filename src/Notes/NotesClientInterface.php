@@ -20,9 +20,9 @@ interface NotesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<Note>
+     * @return ?array<Note>
      */
-    public function getAllNotes(GetCrmNotesRequest $request = new GetCrmNotesRequest(), ?array $options = null): array;
+    public function getAllNotes(GetCrmNotesRequest $request = new GetCrmNotesRequest(), ?array $options = null): ?array;
 
     /**
      * @param NoteData $request
@@ -34,9 +34,9 @@ interface NotesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCrmNotesResponse
+     * @return ?PostCrmNotesResponse
      */
-    public function createANote(NoteData $request, ?array $options = null): PostCrmNotesResponse;
+    public function createANote(NoteData $request, ?array $options = null): ?PostCrmNotesResponse;
 
     /**
      * @param string $id Note ID to get
@@ -48,9 +48,9 @@ interface NotesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Note
+     * @return ?Note
      */
-    public function getANote(string $id, ?array $options = null): Note;
+    public function getANote(string $id, ?array $options = null): ?Note;
 
     /**
      * @param string $id Note ID to delete

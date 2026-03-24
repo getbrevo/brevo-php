@@ -42,9 +42,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetTransacBlockedContactsResponse
+     * @return ?GetTransacBlockedContactsResponse
      */
-    public function getTransacBlockedContacts(GetTransacBlockedContactsRequest $request = new GetTransacBlockedContactsRequest(), ?array $options = null): GetTransacBlockedContactsResponse;
+    public function getTransacBlockedContacts(GetTransacBlockedContactsRequest $request = new GetTransacBlockedContactsRequest(), ?array $options = null): ?GetTransacBlockedContactsResponse;
 
     /**
      * @param string $email contact email (urlencoded) to unblock.
@@ -70,9 +70,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetBlockedDomainsResponse
+     * @return ?GetBlockedDomainsResponse
      */
-    public function getBlockedDomains(?array $options = null): GetBlockedDomainsResponse;
+    public function getBlockedDomains(?array $options = null): ?GetBlockedDomainsResponse;
 
     /**
      * Blocks a new domain in order to avoid messages being sent to the same
@@ -129,9 +129,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return SendTransacEmailResponse
+     * @return ?SendTransacEmailResponse
      */
-    public function sendTransacEmail(SendTransacEmailRequest $request = new SendTransacEmailRequest(), ?array $options = null): SendTransacEmailResponse;
+    public function sendTransacEmail(SendTransacEmailRequest $request = new SendTransacEmailRequest(), ?array $options = null): ?SendTransacEmailResponse;
 
     /**
      * Delete scheduled batch of emails by batchId or single scheduled email by messageId
@@ -164,9 +164,9 @@ interface TransactionalEmailsClientInterface
      * @return (
      *    GetScheduledEmailByIdResponseBatches
      *   |GetScheduledEmailByIdResponseCreatedAt
-     * )
+     * )|null
      */
-    public function getScheduledEmailById(string $identifier, GetScheduledEmailByIdRequest $request = new GetScheduledEmailByIdRequest(), ?array $options = null): GetScheduledEmailByIdResponseBatches|GetScheduledEmailByIdResponseCreatedAt;
+    public function getScheduledEmailById(string $identifier, GetScheduledEmailByIdRequest $request = new GetScheduledEmailByIdRequest(), ?array $options = null): GetScheduledEmailByIdResponseBatches|GetScheduledEmailByIdResponseCreatedAt|null;
 
     /**
      * This endpoint will show the list of emails for past 30 days by default. To retrieve emails before that time, please pass startDate and endDate in query filters.
@@ -180,9 +180,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetTransacEmailsListResponse
+     * @return ?GetTransacEmailsListResponse
      */
-    public function getTransacEmailsList(GetTransacEmailsListRequest $request = new GetTransacEmailsListRequest(), ?array $options = null): GetTransacEmailsListResponse;
+    public function getTransacEmailsList(GetTransacEmailsListRequest $request = new GetTransacEmailsListRequest(), ?array $options = null): ?GetTransacEmailsListResponse;
 
     /**
      * <Note title="How to get uuid?">
@@ -202,9 +202,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetTransacEmailContentResponse
+     * @return ?GetTransacEmailContentResponse
      */
-    public function getTransacEmailContent(string $uuid, ?array $options = null): GetTransacEmailContentResponse;
+    public function getTransacEmailContent(string $uuid, ?array $options = null): ?GetTransacEmailContentResponse;
 
     /**
      * @param string $identifier MessageId of the transactional log(s) to delete
@@ -231,9 +231,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetAggregatedSmtpReportResponse
+     * @return ?GetAggregatedSmtpReportResponse
      */
-    public function getAggregatedSmtpReport(GetAggregatedSmtpReportRequest $request = new GetAggregatedSmtpReportRequest(), ?array $options = null): GetAggregatedSmtpReportResponse;
+    public function getAggregatedSmtpReport(GetAggregatedSmtpReportRequest $request = new GetAggregatedSmtpReportRequest(), ?array $options = null): ?GetAggregatedSmtpReportResponse;
 
     /**
      * This endpoint will show the aggregated stats for past 30 days by default if `startDate` and `endDate` OR `days` is not passed. The date range can not exceed 90 days
@@ -247,9 +247,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetEmailEventReportResponse
+     * @return ?GetEmailEventReportResponse
      */
-    public function getEmailEventReport(GetEmailEventReportRequest $request = new GetEmailEventReportRequest(), ?array $options = null): GetEmailEventReportResponse;
+    public function getEmailEventReport(GetEmailEventReportRequest $request = new GetEmailEventReportRequest(), ?array $options = null): ?GetEmailEventReportResponse;
 
     /**
      * @param GetSmtpReportRequest $request
@@ -261,9 +261,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSmtpReportResponse
+     * @return ?GetSmtpReportResponse
      */
-    public function getSmtpReport(GetSmtpReportRequest $request = new GetSmtpReportRequest(), ?array $options = null): GetSmtpReportResponse;
+    public function getSmtpReport(GetSmtpReportRequest $request = new GetSmtpReportRequest(), ?array $options = null): ?GetSmtpReportResponse;
 
     /**
      * @param mixed $request
@@ -275,9 +275,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostPreviewSmtpEmailTemplatesResponse
+     * @return ?PostPreviewSmtpEmailTemplatesResponse
      */
-    public function postPreviewSmtpEmailTemplates(mixed $request, ?array $options = null): PostPreviewSmtpEmailTemplatesResponse;
+    public function postPreviewSmtpEmailTemplates(mixed $request, ?array $options = null): ?PostPreviewSmtpEmailTemplatesResponse;
 
     /**
      * @param GetSmtpTemplatesRequest $request
@@ -289,9 +289,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSmtpTemplatesResponse
+     * @return ?GetSmtpTemplatesResponse
      */
-    public function getSmtpTemplates(GetSmtpTemplatesRequest $request = new GetSmtpTemplatesRequest(), ?array $options = null): GetSmtpTemplatesResponse;
+    public function getSmtpTemplates(GetSmtpTemplatesRequest $request = new GetSmtpTemplatesRequest(), ?array $options = null): ?GetSmtpTemplatesResponse;
 
     /**
      * @param CreateSmtpTemplateRequest $request
@@ -303,9 +303,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateSmtpTemplateResponse
+     * @return ?CreateSmtpTemplateResponse
      */
-    public function createSmtpTemplate(CreateSmtpTemplateRequest $request, ?array $options = null): CreateSmtpTemplateResponse;
+    public function createSmtpTemplate(CreateSmtpTemplateRequest $request, ?array $options = null): ?CreateSmtpTemplateResponse;
 
     /**
      * @param int $templateId id of the template
@@ -317,9 +317,9 @@ interface TransactionalEmailsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSmtpTemplateOverview
+     * @return ?GetSmtpTemplateOverview
      */
-    public function getSmtpTemplate(int $templateId, ?array $options = null): GetSmtpTemplateOverview;
+    public function getSmtpTemplate(int $templateId, ?array $options = null): ?GetSmtpTemplateOverview;
 
     /**
      * @param int $templateId id of the template

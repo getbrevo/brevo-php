@@ -38,9 +38,9 @@ interface ConversationsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ConversationsMessage
+     * @return ?ConversationsMessage
      */
-    public function sendAMessageAsAnAgent(PostConversationsMessagesRequest $request, ?array $options = null): ConversationsMessage;
+    public function sendAMessageAsAnAgent(PostConversationsMessagesRequest $request, ?array $options = null): ?ConversationsMessage;
 
     /**
      * @param string $id ID of the message
@@ -52,9 +52,9 @@ interface ConversationsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ConversationsMessage
+     * @return ?ConversationsMessage
      */
-    public function getAMessage(string $id, ?array $options = null): ConversationsMessage;
+    public function getAMessage(string $id, ?array $options = null): ?ConversationsMessage;
 
     /**
      * Only agents’ messages can be edited.
@@ -69,9 +69,9 @@ interface ConversationsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ConversationsMessage
+     * @return ?ConversationsMessage
      */
-    public function updateAMessageSentByAnAgent(string $id, PutConversationsMessagesIdRequest $request, ?array $options = null): ConversationsMessage;
+    public function updateAMessageSentByAnAgent(string $id, PutConversationsMessagesIdRequest $request, ?array $options = null): ?ConversationsMessage;
 
     /**
      * Only agents’ messages can be deleted.
@@ -100,9 +100,9 @@ interface ConversationsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ConversationsMessage
+     * @return ?ConversationsMessage
      */
-    public function sendAnAutomatedMessageToAVisitor(PostConversationsPushedMessagesRequest $request, ?array $options = null): ConversationsMessage;
+    public function sendAnAutomatedMessageToAVisitor(PostConversationsPushedMessagesRequest $request, ?array $options = null): ?ConversationsMessage;
 
     /**
      * @param string $id ID of the message sent previously
@@ -114,9 +114,9 @@ interface ConversationsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ConversationsMessage
+     * @return ?ConversationsMessage
      */
-    public function getAnAutomatedMessage(string $id, ?array $options = null): ConversationsMessage;
+    public function getAnAutomatedMessage(string $id, ?array $options = null): ?ConversationsMessage;
 
     /**
      * @param string $id ID of the message
@@ -129,9 +129,9 @@ interface ConversationsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ConversationsMessage
+     * @return ?ConversationsMessage
      */
-    public function updateAnAutomatedMessage(string $id, PutConversationsPushedMessagesIdRequest $request, ?array $options = null): ConversationsMessage;
+    public function updateAnAutomatedMessage(string $id, PutConversationsPushedMessagesIdRequest $request, ?array $options = null): ?ConversationsMessage;
 
     /**
      * @param string $id ID of the message
@@ -158,7 +158,7 @@ interface ConversationsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PutConversationsVisitorGroupResponse
+     * @return ?PutConversationsVisitorGroupResponse
      */
-    public function setVisitorGroupAssignment(PutConversationsVisitorGroupRequest $request, ?array $options = null): PutConversationsVisitorGroupResponse;
+    public function setVisitorGroupAssignment(PutConversationsVisitorGroupRequest $request, ?array $options = null): ?PutConversationsVisitorGroupResponse;
 }

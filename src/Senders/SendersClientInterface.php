@@ -45,9 +45,9 @@ interface SendersClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSendersResponse
+     * @return ?GetSendersResponse
      */
-    public function getSenders(GetSendersRequest $request = new GetSendersRequest(), ?array $options = null): GetSendersResponse;
+    public function getSenders(GetSendersRequest $request = new GetSendersRequest(), ?array $options = null): ?GetSendersResponse;
 
     /**
      * Creates a new email sender in your Brevo account.
@@ -79,9 +79,9 @@ interface SendersClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateSenderResponse
+     * @return ?CreateSenderResponse
      */
-    public function createSender(CreateSenderRequest $request, ?array $options = null): CreateSenderResponse;
+    public function createSender(CreateSenderRequest $request, ?array $options = null): ?CreateSenderResponse;
 
     /**
      * Retrieves all dedicated IPs associated with your Brevo account.
@@ -107,9 +107,9 @@ interface SendersClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetIpsResponse
+     * @return ?GetIpsResponse
      */
-    public function getIps(?array $options = null): GetIpsResponse;
+    public function getIps(?array $options = null): ?GetIpsResponse;
 
     /**
      * Updates an existing email sender's configuration.
@@ -183,9 +183,9 @@ interface SendersClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetIpsFromSenderResponse
+     * @return ?GetIpsFromSenderResponse
      */
-    public function getIpsFromSender(int $senderId, ?array $options = null): GetIpsFromSenderResponse;
+    public function getIpsFromSender(int $senderId, ?array $options = null): ?GetIpsFromSenderResponse;
 
     /**
      * Validates a sender using the OTP (One-Time Password) received via email.

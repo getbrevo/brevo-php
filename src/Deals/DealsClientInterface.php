@@ -25,9 +25,9 @@ interface DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<GetCrmAttributesDealsResponseItem>
+     * @return ?array<GetCrmAttributesDealsResponseItem>
      */
-    public function getDealAttributes(?array $options = null): array;
+    public function getDealAttributes(?array $options = null): ?array;
 
     /**
      * @param GetCrmDealsRequest $request
@@ -39,9 +39,9 @@ interface DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCrmDealsResponse
+     * @return ?GetCrmDealsResponse
      */
-    public function getAllDeals(GetCrmDealsRequest $request = new GetCrmDealsRequest(), ?array $options = null): GetCrmDealsResponse;
+    public function getAllDeals(GetCrmDealsRequest $request = new GetCrmDealsRequest(), ?array $options = null): ?GetCrmDealsResponse;
 
     /**
      * @param PostCrmDealsRequest $request
@@ -53,9 +53,9 @@ interface DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCrmDealsResponse
+     * @return ?PostCrmDealsResponse
      */
-    public function createADeal(PostCrmDealsRequest $request, ?array $options = null): PostCrmDealsResponse;
+    public function createADeal(PostCrmDealsRequest $request, ?array $options = null): ?PostCrmDealsResponse;
 
     /**
      * Import deals from a CSV file with mapping options.
@@ -68,9 +68,9 @@ interface DealsClientInterface
      *   headers?: array<string, string>,
      *   queryParameters?: array<string, mixed>,
      * } $options
-     * @return PostCrmDealsImportResponse
+     * @return ?PostCrmDealsImportResponse
      */
-    public function importDealsCreationAndUpdation(PostCrmDealsImportRequest $request = new PostCrmDealsImportRequest(), ?array $options = null): PostCrmDealsImportResponse;
+    public function importDealsCreationAndUpdation(PostCrmDealsImportRequest $request = new PostCrmDealsImportRequest(), ?array $options = null): ?PostCrmDealsImportResponse;
 
     /**
      * @param string $id
@@ -96,9 +96,9 @@ interface DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Deal
+     * @return ?Deal
      */
-    public function getADeal(string $id, ?array $options = null): Deal;
+    public function getADeal(string $id, ?array $options = null): ?Deal;
 
     /**
      * @param string $id
@@ -138,9 +138,9 @@ interface DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Pipeline
+     * @return ?Pipeline
      */
-    public function getPipelineStages(?array $options = null): Pipeline;
+    public function getPipelineStages(?array $options = null): ?Pipeline;
 
     /**
      * @param ?array{
@@ -151,9 +151,9 @@ interface DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<Pipeline>
+     * @return ?array<Pipeline>
      */
-    public function getAllPipelines(?array $options = null): array;
+    public function getAllPipelines(?array $options = null): ?array;
 
     /**
      * @param string $pipelineId
@@ -165,7 +165,7 @@ interface DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<Pipeline>
+     * @return ?array<Pipeline>
      */
-    public function getAPipeline(string $pipelineId, ?array $options = null): array;
+    public function getAPipeline(string $pipelineId, ?array $options = null): ?array;
 }

@@ -61,11 +61,11 @@ class PaymentsClient implements PaymentsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreatePaymentRequestResponse
+     * @return ?CreatePaymentRequestResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createPaymentRequest(CreatePaymentRequestRequest $request, ?array $options = null): CreatePaymentRequestResponse
+    public function createPaymentRequest(CreatePaymentRequestRequest $request, ?array $options = null): ?CreatePaymentRequestResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -82,7 +82,7 @@ class PaymentsClient implements PaymentsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return CreatePaymentRequestResponse::fromJson($json);
             }
@@ -108,11 +108,11 @@ class PaymentsClient implements PaymentsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetPaymentRequestResponse
+     * @return ?GetPaymentRequestResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getPaymentRequest(string $id, ?array $options = null): GetPaymentRequestResponse
+    public function getPaymentRequest(string $id, ?array $options = null): ?GetPaymentRequestResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -128,7 +128,7 @@ class PaymentsClient implements PaymentsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetPaymentRequestResponse::fromJson($json);
             }

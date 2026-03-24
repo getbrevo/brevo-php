@@ -31,9 +31,9 @@ interface TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return AddSubscriptionToTierResponse
+     * @return ?AddSubscriptionToTierResponse
      */
-    public function addSubscriptionToTier(string $pid, string $cid, string $tid, ?array $options = null): AddSubscriptionToTierResponse;
+    public function addSubscriptionToTier(string $pid, string $cid, string $tid, ?array $options = null): ?AddSubscriptionToTierResponse;
 
     /**
      * Returns the list of tier groups defined within the loyalty program.
@@ -48,9 +48,9 @@ interface TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetListOfTierGroupsResponse
+     * @return ?GetListOfTierGroupsResponse
      */
-    public function getListOfTierGroups(string $pid, GetListOfTierGroupsRequest $request = new GetListOfTierGroupsRequest(), ?array $options = null): GetListOfTierGroupsResponse;
+    public function getListOfTierGroups(string $pid, GetListOfTierGroupsRequest $request = new GetListOfTierGroupsRequest(), ?array $options = null): ?GetListOfTierGroupsResponse;
 
     /**
      * Creates a new tier group in a loyalty program. *(The changes will take effect with the next publication of the loyalty program)*
@@ -65,9 +65,9 @@ interface TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return TierGroup
+     * @return ?TierGroup
      */
-    public function createTierGroup(string $pid, CreateTierGroupRequest $request, ?array $options = null): TierGroup;
+    public function createTierGroup(string $pid, CreateTierGroupRequest $request, ?array $options = null): ?TierGroup;
 
     /**
      * Returns tier group information.
@@ -83,9 +83,9 @@ interface TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return TierGroup
+     * @return ?TierGroup
      */
-    public function getTierGroup(string $pid, string $gid, GetTierGroupRequest $request = new GetTierGroupRequest(), ?array $options = null): TierGroup;
+    public function getTierGroup(string $pid, string $gid, GetTierGroupRequest $request = new GetTierGroupRequest(), ?array $options = null): ?TierGroup;
 
     /**
      * Updates a tier group from a loyalty program. *(The changes will take effect with the next publication of the loyalty program)*
@@ -101,9 +101,9 @@ interface TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return TierGroup
+     * @return ?TierGroup
      */
-    public function updateTierGroup(string $pid, string $gid, UpdateTierGroupRequest $request, ?array $options = null): TierGroup;
+    public function updateTierGroup(string $pid, string $gid, UpdateTierGroupRequest $request, ?array $options = null): ?TierGroup;
 
     /**
      * Deletes a tier group from a loyalty program. *(The changes will take effect with the next publication of the loyalty program)*
@@ -135,9 +135,9 @@ interface TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Tier
+     * @return ?Tier
      */
-    public function createTierForTierGroup(string $pid, string $gid, CreateTierForTierGroupRequest $request, ?array $options = null): Tier;
+    public function createTierForTierGroup(string $pid, string $gid, CreateTierForTierGroupRequest $request, ?array $options = null): ?Tier;
 
     /**
      * Returns the list of tiers defined within the loyalty program.
@@ -152,9 +152,9 @@ interface TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetLoyaltyProgramTierResponse
+     * @return ?GetLoyaltyProgramTierResponse
      */
-    public function getLoyaltyProgramTier(string $pid, GetLoyaltyProgramTierRequest $request = new GetLoyaltyProgramTierRequest(), ?array $options = null): GetLoyaltyProgramTierResponse;
+    public function getLoyaltyProgramTier(string $pid, GetLoyaltyProgramTierRequest $request = new GetLoyaltyProgramTierRequest(), ?array $options = null): ?GetLoyaltyProgramTierResponse;
 
     /**
      * Modifies an existing tier for the specified tier group *(The changes will take effect with the next publication of the loyalty program)*
@@ -170,9 +170,9 @@ interface TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Tier
+     * @return ?Tier
      */
-    public function updateTier(string $pid, string $tid, UpdateTierRequest $request, ?array $options = null): Tier;
+    public function updateTier(string $pid, string $tid, UpdateTierRequest $request, ?array $options = null): ?Tier;
 
     /**
      * Deletes a tier from a loyalty program tier group. *(The changes will take effect with the next publication of the loyalty program)*

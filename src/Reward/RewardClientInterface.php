@@ -34,9 +34,9 @@ interface RewardClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCodeCountResponse
+     * @return ?GetCodeCountResponse
      */
-    public function getCodeCount(string $pid, string $cpid, ?array $options = null): GetCodeCountResponse;
+    public function getCodeCount(string $pid, string $cpid, ?array $options = null): ?GetCodeCountResponse;
 
     /**
      * Returns a reward page
@@ -51,9 +51,9 @@ interface RewardClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetLoyaltyOfferProgramsPidOffersResponse
+     * @return ?GetLoyaltyOfferProgramsPidOffersResponse
      */
-    public function getRewardPageApi(string $pid, GetLoyaltyOfferProgramsPidOffersRequest $request = new GetLoyaltyOfferProgramsPidOffersRequest(), ?array $options = null): GetLoyaltyOfferProgramsPidOffersResponse;
+    public function getRewardPageApi(string $pid, GetLoyaltyOfferProgramsPidOffersRequest $request = new GetLoyaltyOfferProgramsPidOffersRequest(), ?array $options = null): ?GetLoyaltyOfferProgramsPidOffersResponse;
 
     /**
      * Creates a new reward in the loyalty program.
@@ -68,9 +68,9 @@ interface RewardClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateRewardResponse
+     * @return ?CreateRewardResponse
      */
-    public function createReward(string $pid, CreateRewardRequest $request, ?array $options = null): CreateRewardResponse;
+    public function createReward(string $pid, CreateRewardRequest $request, ?array $options = null): ?CreateRewardResponse;
 
     /**
      * Create a voucher and attribute it to a specific membership.
@@ -85,9 +85,9 @@ interface RewardClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateVoucherResponse
+     * @return ?CreateVoucherResponse
      */
-    public function createVoucher(string $pid, CreateVoucherRequest $request, ?array $options = null): CreateVoucherResponse;
+    public function createVoucher(string $pid, CreateVoucherRequest $request, ?array $options = null): ?CreateVoucherResponse;
 
     /**
      * Creates a request to redeem a voucher.
@@ -102,9 +102,9 @@ interface RewardClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Redeem
+     * @return ?Redeem
      */
-    public function redeemVoucher(string $pid, RedeemVoucherRequest $request = new RedeemVoucherRequest(), ?array $options = null): Redeem;
+    public function redeemVoucher(string $pid, RedeemVoucherRequest $request = new RedeemVoucherRequest(), ?array $options = null): ?Redeem;
 
     /**
      * Completes voucher redeem request.
@@ -119,9 +119,9 @@ interface RewardClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Redeem
+     * @return ?Redeem
      */
-    public function completeRedeemTransaction(string $pid, string $tid, ?array $options = null): Redeem;
+    public function completeRedeemTransaction(string $pid, string $tid, ?array $options = null): ?Redeem;
 
     /**
      * Revoke attributed vouchers.
@@ -152,9 +152,9 @@ interface RewardClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ValidateRewardResponse
+     * @return ?ValidateRewardResponse
      */
-    public function validateReward(string $pid, ValidateRewardRequest $request = new ValidateRewardRequest(), ?array $options = null): ValidateRewardResponse;
+    public function validateReward(string $pid, ValidateRewardRequest $request = new ValidateRewardRequest(), ?array $options = null): ?ValidateRewardResponse;
 
     /**
      * Returns reward information.
@@ -170,9 +170,9 @@ interface RewardClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetLoyaltyOfferProgramsPidRewardsRidResponse
+     * @return ?GetLoyaltyOfferProgramsPidRewardsRidResponse
      */
-    public function getRewardInformation(string $pid, string $rid, GetLoyaltyOfferProgramsPidRewardsRidRequest $request = new GetLoyaltyOfferProgramsPidRewardsRidRequest(), ?array $options = null): GetLoyaltyOfferProgramsPidRewardsRidResponse;
+    public function getRewardInformation(string $pid, string $rid, GetLoyaltyOfferProgramsPidRewardsRidRequest $request = new GetLoyaltyOfferProgramsPidRewardsRidRequest(), ?array $options = null): ?GetLoyaltyOfferProgramsPidRewardsRidResponse;
 
     /**
      * Get voucher for a contact
@@ -187,7 +187,7 @@ interface RewardClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetLoyaltyOfferProgramsPidVouchersResponse
+     * @return ?GetLoyaltyOfferProgramsPidVouchersResponse
      */
-    public function getVoucherForAContact(string $pid, GetLoyaltyOfferProgramsPidVouchersRequest $request, ?array $options = null): GetLoyaltyOfferProgramsPidVouchersResponse;
+    public function getVoucherForAContact(string $pid, GetLoyaltyOfferProgramsPidVouchersRequest $request, ?array $options = null): ?GetLoyaltyOfferProgramsPidVouchersResponse;
 }

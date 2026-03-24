@@ -37,9 +37,9 @@ interface EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetEmailCampaignsResponse
+     * @return ?GetEmailCampaignsResponse
      */
-    public function getEmailCampaigns(GetEmailCampaignsRequest $request = new GetEmailCampaignsRequest(), ?array $options = null): GetEmailCampaignsResponse;
+    public function getEmailCampaigns(GetEmailCampaignsRequest $request = new GetEmailCampaignsRequest(), ?array $options = null): ?GetEmailCampaignsResponse;
 
     /**
      * @param CreateEmailCampaignRequest $request
@@ -51,9 +51,9 @@ interface EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateEmailCampaignResponse
+     * @return ?CreateEmailCampaignResponse
      */
-    public function createEmailCampaign(CreateEmailCampaignRequest $request, ?array $options = null): CreateEmailCampaignResponse;
+    public function createEmailCampaign(CreateEmailCampaignRequest $request, ?array $options = null): ?CreateEmailCampaignResponse;
 
     /**
      * @param UploadImageToGalleryRequest $request
@@ -65,9 +65,9 @@ interface EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return UploadImageToGalleryResponse
+     * @return ?UploadImageToGalleryResponse
      */
-    public function uploadImageToGallery(UploadImageToGalleryRequest $request, ?array $options = null): UploadImageToGalleryResponse;
+    public function uploadImageToGallery(UploadImageToGalleryRequest $request, ?array $options = null): ?UploadImageToGalleryResponse;
 
     /**
      * @param int $campaignId Id of the campaign
@@ -80,9 +80,9 @@ interface EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetEmailCampaignResponse
+     * @return ?GetEmailCampaignResponse
      */
-    public function getEmailCampaign(int $campaignId, GetEmailCampaignRequest $request = new GetEmailCampaignRequest(), ?array $options = null): GetEmailCampaignResponse;
+    public function getEmailCampaign(int $campaignId, GetEmailCampaignRequest $request = new GetEmailCampaignRequest(), ?array $options = null): ?GetEmailCampaignResponse;
 
     /**
      * @param int $campaignId Id of the campaign
@@ -123,9 +123,9 @@ interface EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetAbTestCampaignResultResponse
+     * @return ?GetAbTestCampaignResultResponse
      */
-    public function getAbTestCampaignResult(int $campaignId, ?array $options = null): GetAbTestCampaignResultResponse;
+    public function getAbTestCampaignResult(int $campaignId, ?array $options = null): ?GetAbTestCampaignResultResponse;
 
     /**
      * @param int $campaignId Id of the campaign
@@ -138,9 +138,9 @@ interface EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return EmailExportRecipientsResponse
+     * @return ?EmailExportRecipientsResponse
      */
-    public function emailExportRecipients(int $campaignId, EmailExportRecipientsRequest $request, ?array $options = null): EmailExportRecipientsResponse;
+    public function emailExportRecipients(int $campaignId, EmailExportRecipientsRequest $request, ?array $options = null): ?EmailExportRecipientsResponse;
 
     /**
      * @param int $campaignId Id of the campaign
@@ -197,9 +197,9 @@ interface EmailCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSharedTemplateUrlResponse
+     * @return ?GetSharedTemplateUrlResponse
      */
-    public function getSharedTemplateUrl(int $campaignId, ?array $options = null): GetSharedTemplateUrlResponse;
+    public function getSharedTemplateUrl(int $campaignId, ?array $options = null): ?GetSharedTemplateUrlResponse;
 
     /**
      * @param int $campaignId Id of the campaign

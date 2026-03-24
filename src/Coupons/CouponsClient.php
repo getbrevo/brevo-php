@@ -65,11 +65,11 @@ class CouponsClient implements CouponsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCouponCollection
+     * @return ?GetCouponCollection
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getCouponCollections(GetCouponCollectionsRequest $request = new GetCouponCollectionsRequest(), ?array $options = null): GetCouponCollection
+    public function getCouponCollections(GetCouponCollectionsRequest $request = new GetCouponCollectionsRequest(), ?array $options = null): ?GetCouponCollection
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -99,7 +99,7 @@ class CouponsClient implements CouponsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetCouponCollection::fromJson($json);
             }
@@ -125,11 +125,11 @@ class CouponsClient implements CouponsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateCouponCollectionResponse
+     * @return ?CreateCouponCollectionResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createCouponCollection(CreateCouponCollectionRequest $request, ?array $options = null): CreateCouponCollectionResponse
+    public function createCouponCollection(CreateCouponCollectionRequest $request, ?array $options = null): ?CreateCouponCollectionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -146,7 +146,7 @@ class CouponsClient implements CouponsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return CreateCouponCollectionResponse::fromJson($json);
             }
@@ -172,11 +172,11 @@ class CouponsClient implements CouponsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCouponCollection
+     * @return ?GetCouponCollection
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getCouponCollection(string $id, ?array $options = null): GetCouponCollection
+    public function getCouponCollection(string $id, ?array $options = null): ?GetCouponCollection
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -192,7 +192,7 @@ class CouponsClient implements CouponsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetCouponCollection::fromJson($json);
             }
@@ -219,11 +219,11 @@ class CouponsClient implements CouponsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return UpdateCouponCollectionResponse
+     * @return ?UpdateCouponCollectionResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function updateCouponCollection(string $id, UpdateCouponCollectionRequest $request = new UpdateCouponCollectionRequest(), ?array $options = null): UpdateCouponCollectionResponse
+    public function updateCouponCollection(string $id, UpdateCouponCollectionRequest $request = new UpdateCouponCollectionRequest(), ?array $options = null): ?UpdateCouponCollectionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -240,7 +240,7 @@ class CouponsClient implements CouponsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return UpdateCouponCollectionResponse::fromJson($json);
             }

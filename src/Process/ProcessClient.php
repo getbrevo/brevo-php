@@ -86,11 +86,11 @@ class ProcessClient implements ProcessClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetProcessesResponse
+     * @return ?GetProcessesResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getProcesses(GetProcessesRequest $request = new GetProcessesRequest(), ?array $options = null): GetProcessesResponse
+    public function getProcesses(GetProcessesRequest $request = new GetProcessesRequest(), ?array $options = null): ?GetProcessesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -117,7 +117,7 @@ class ProcessClient implements ProcessClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetProcessesResponse::fromJson($json);
             }
@@ -167,11 +167,11 @@ class ProcessClient implements ProcessClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetProcessResponse
+     * @return ?GetProcessResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getProcess(int $processId, ?array $options = null): GetProcessResponse
+    public function getProcess(int $processId, ?array $options = null): ?GetProcessResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -187,7 +187,7 @@ class ProcessClient implements ProcessClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetProcessResponse::fromJson($json);
             }

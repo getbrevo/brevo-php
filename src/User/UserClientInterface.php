@@ -22,9 +22,9 @@ interface UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetInvitedUsersListResponse
+     * @return ?GetInvitedUsersListResponse
      */
-    public function getInvitedUsersList(?array $options = null): GetInvitedUsersListResponse;
+    public function getInvitedUsersList(?array $options = null): ?GetInvitedUsersListResponse;
 
     /**
      * @param string $email Email of the invited user.
@@ -36,9 +36,9 @@ interface UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PutRevokeUserPermissionResponse
+     * @return ?PutRevokeUserPermissionResponse
      */
-    public function putRevokeUserPermission(string $email, ?array $options = null): PutRevokeUserPermissionResponse;
+    public function putRevokeUserPermission(string $email, ?array $options = null): ?PutRevokeUserPermissionResponse;
 
     /**
      * `Feature` - A Feature represents a specific functionality like Email
@@ -119,9 +119,9 @@ interface UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return InviteuserResponse
+     * @return ?InviteuserResponse
      */
-    public function inviteuser(Inviteuser $request, ?array $options = null): InviteuserResponse;
+    public function inviteuser(Inviteuser $request, ?array $options = null): ?InviteuserResponse;
 
     /**
      * @param value-of<PutresendcancelinvitationRequestAction> $action action
@@ -134,9 +134,9 @@ interface UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PutresendcancelinvitationResponse
+     * @return ?PutresendcancelinvitationResponse
      */
-    public function putresendcancelinvitation(string $action, string $email, ?array $options = null): PutresendcancelinvitationResponse;
+    public function putresendcancelinvitation(string $action, string $email, ?array $options = null): ?PutresendcancelinvitationResponse;
 
     /**
      * `Feature` - A Feature represents a specific functionality like Email
@@ -216,9 +216,9 @@ interface UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return EditUserPermissionResponse
+     * @return ?EditUserPermissionResponse
      */
-    public function editUserPermission(Inviteuser $request, ?array $options = null): EditUserPermissionResponse;
+    public function editUserPermission(Inviteuser $request, ?array $options = null): ?EditUserPermissionResponse;
 
     /**
      * @param string $email Email of the invited user.
@@ -230,7 +230,7 @@ interface UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetUserPermissionResponse
+     * @return ?GetUserPermissionResponse
      */
-    public function getUserPermission(string $email, ?array $options = null): GetUserPermissionResponse;
+    public function getUserPermission(string $email, ?array $options = null): ?GetUserPermissionResponse;
 }

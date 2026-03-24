@@ -109,11 +109,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetContacts
+     * @return ?GetContacts
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getContacts(GetContactsRequest $request = new GetContactsRequest(), ?array $options = null): GetContacts
+    public function getContacts(GetContactsRequest $request = new GetContactsRequest(), ?array $options = null): ?GetContacts
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -155,7 +155,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetContacts::fromJson($json);
             }
@@ -183,11 +183,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateContactResponse
+     * @return ?CreateContactResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createContact(CreateContactRequest $request = new CreateContactRequest(), ?array $options = null): CreateContactResponse
+    public function createContact(CreateContactRequest $request = new CreateContactRequest(), ?array $options = null): ?CreateContactResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -204,7 +204,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return CreateContactResponse::fromJson($json);
             }
@@ -229,11 +229,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetAttributesResponse
+     * @return ?GetAttributesResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getAttributes(?array $options = null): GetAttributesResponse
+    public function getAttributes(?array $options = null): ?GetAttributesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -249,7 +249,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetAttributesResponse::fromJson($json);
             }
@@ -526,11 +526,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return RequestContactExportResponse
+     * @return ?RequestContactExportResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function requestContactExport(RequestContactExportRequest $request, ?array $options = null): RequestContactExportResponse
+    public function requestContactExport(RequestContactExportRequest $request, ?array $options = null): ?RequestContactExportResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -547,7 +547,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return RequestContactExportResponse::fromJson($json);
             }
@@ -585,11 +585,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetFoldersResponse
+     * @return ?GetFoldersResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getFolders(GetFoldersRequest $request = new GetFoldersRequest(), ?array $options = null): GetFoldersResponse
+    public function getFolders(GetFoldersRequest $request = new GetFoldersRequest(), ?array $options = null): ?GetFoldersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -616,7 +616,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetFoldersResponse::fromJson($json);
             }
@@ -642,11 +642,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateFolderResponse
+     * @return ?CreateFolderResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createFolder(CreateUpdateFolder $request, ?array $options = null): CreateFolderResponse
+    public function createFolder(CreateUpdateFolder $request, ?array $options = null): ?CreateFolderResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -663,7 +663,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return CreateFolderResponse::fromJson($json);
             }
@@ -697,11 +697,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetFolder
+     * @return ?GetFolder
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getFolder(int $folderId, ?array $options = null): GetFolder
+    public function getFolder(int $folderId, ?array $options = null): ?GetFolder
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -717,7 +717,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetFolder::fromJson($json);
             }
@@ -832,11 +832,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetFolderListsResponse
+     * @return ?GetFolderListsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getFolderLists(int $folderId, GetFolderListsRequest $request = new GetFolderListsRequest(), ?array $options = null): GetFolderListsResponse
+    public function getFolderLists(int $folderId, GetFolderListsRequest $request = new GetFolderListsRequest(), ?array $options = null): ?GetFolderListsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -863,7 +863,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetFolderListsResponse::fromJson($json);
             }
@@ -891,11 +891,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ImportContactsResponse
+     * @return ?ImportContactsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function importContacts(ImportContactsRequest $request = new ImportContactsRequest(), ?array $options = null): ImportContactsResponse
+    public function importContacts(ImportContactsRequest $request = new ImportContactsRequest(), ?array $options = null): ?ImportContactsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -912,7 +912,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return ImportContactsResponse::fromJson($json);
             }
@@ -946,11 +946,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetListsResponse
+     * @return ?GetListsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getLists(GetListsRequest $request = new GetListsRequest(), ?array $options = null): GetListsResponse
+    public function getLists(GetListsRequest $request = new GetListsRequest(), ?array $options = null): ?GetListsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -977,7 +977,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetListsResponse::fromJson($json);
             }
@@ -1003,11 +1003,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateListResponse
+     * @return ?CreateListResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createList(CreateListRequest $request, ?array $options = null): CreateListResponse
+    public function createList(CreateListRequest $request, ?array $options = null): ?CreateListResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1024,7 +1024,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return CreateListResponse::fromJson($json);
             }
@@ -1051,11 +1051,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetListResponse
+     * @return ?GetListResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getList(int $listId, GetListRequest $request = new GetListRequest(), ?array $options = null): GetListResponse
+    public function getList(int $listId, GetListRequest $request = new GetListRequest(), ?array $options = null): ?GetListResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -1079,7 +1079,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetListResponse::fromJson($json);
             }
@@ -1186,11 +1186,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetContacts
+     * @return ?GetContacts
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getContactsFromList(int $listId, GetContactsFromListRequest $request = new GetContactsFromListRequest(), ?array $options = null): GetContacts
+    public function getContactsFromList(int $listId, GetContactsFromListRequest $request = new GetContactsFromListRequest(), ?array $options = null): ?GetContacts
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -1220,7 +1220,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetContacts::fromJson($json);
             }
@@ -1247,11 +1247,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostContactInfo
+     * @return ?PostContactInfo
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function addContactToList(int $listId, AddContactToListRequest $request, ?array $options = null): PostContactInfo
+    public function addContactToList(int $listId, AddContactToListRequest $request, ?array $options = null): ?PostContactInfo
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1268,7 +1268,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return PostContactInfo::fromJson($json);
             }
@@ -1295,11 +1295,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostContactInfo
+     * @return ?PostContactInfo
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function removeContactFromList(int $listId, RemoveContactFromListRequest $request, ?array $options = null): PostContactInfo
+    public function removeContactFromList(int $listId, RemoveContactFromListRequest $request, ?array $options = null): ?PostContactInfo
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1316,7 +1316,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return PostContactInfo::fromJson($json);
             }
@@ -1342,11 +1342,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSegmentsResponse
+     * @return ?GetSegmentsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getSegments(GetSegmentsRequest $request = new GetSegmentsRequest(), ?array $options = null): GetSegmentsResponse
+    public function getSegments(GetSegmentsRequest $request = new GetSegmentsRequest(), ?array $options = null): ?GetSegmentsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -1373,7 +1373,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetSegmentsResponse::fromJson($json);
             }
@@ -1413,11 +1413,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetContactInfoResponse
+     * @return ?GetContactInfoResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getContactInfo(string|int $identifier, GetContactInfoRequest $request = new GetContactInfoRequest(), ?array $options = null): GetContactInfoResponse
+    public function getContactInfo(string|int $identifier, GetContactInfoRequest $request = new GetContactInfoRequest(), ?array $options = null): ?GetContactInfoResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -1444,7 +1444,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetContactInfoResponse::fromJson($json);
             }
@@ -1575,11 +1575,11 @@ class ContactsClient implements ContactsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetContactStatsResponse
+     * @return ?GetContactStatsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getContactStats(string|int $identifier, GetContactStatsRequest $request = new GetContactStatsRequest(), ?array $options = null): GetContactStatsResponse
+    public function getContactStats(string|int $identifier, GetContactStatsRequest $request = new GetContactStatsRequest(), ?array $options = null): ?GetContactStatsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -1603,7 +1603,7 @@ class ContactsClient implements ContactsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetContactStatsResponse::fromJson($json);
             }

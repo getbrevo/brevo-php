@@ -72,11 +72,11 @@ class DealsClient implements DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<GetCrmAttributesDealsResponseItem>
+     * @return ?array<GetCrmAttributesDealsResponseItem>
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getDealAttributes(?array $options = null): array
+    public function getDealAttributes(?array $options = null): ?array
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -92,7 +92,7 @@ class DealsClient implements DealsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return JsonDecoder::decodeArray($json, [GetCrmAttributesDealsResponseItem::class]); // @phpstan-ignore-line
             }
@@ -118,11 +118,11 @@ class DealsClient implements DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCrmDealsResponse
+     * @return ?GetCrmDealsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getAllDeals(GetCrmDealsRequest $request = new GetCrmDealsRequest(), ?array $options = null): GetCrmDealsResponse
+    public function getAllDeals(GetCrmDealsRequest $request = new GetCrmDealsRequest(), ?array $options = null): ?GetCrmDealsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -164,7 +164,7 @@ class DealsClient implements DealsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetCrmDealsResponse::fromJson($json);
             }
@@ -190,11 +190,11 @@ class DealsClient implements DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCrmDealsResponse
+     * @return ?PostCrmDealsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createADeal(PostCrmDealsRequest $request, ?array $options = null): PostCrmDealsResponse
+    public function createADeal(PostCrmDealsRequest $request, ?array $options = null): ?PostCrmDealsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -211,7 +211,7 @@ class DealsClient implements DealsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return PostCrmDealsResponse::fromJson($json);
             }
@@ -238,11 +238,11 @@ class DealsClient implements DealsClientInterface
      *   headers?: array<string, string>,
      *   queryParameters?: array<string, mixed>,
      * } $options
-     * @return PostCrmDealsImportResponse
+     * @return ?PostCrmDealsImportResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function importDealsCreationAndUpdation(PostCrmDealsImportRequest $request = new PostCrmDealsImportRequest(), ?array $options = null): PostCrmDealsImportResponse
+    public function importDealsCreationAndUpdation(PostCrmDealsImportRequest $request = new PostCrmDealsImportRequest(), ?array $options = null): ?PostCrmDealsImportResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $body = new MultipartFormData();
@@ -266,7 +266,7 @@ class DealsClient implements DealsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return PostCrmDealsImportResponse::fromJson($json);
             }
@@ -333,11 +333,11 @@ class DealsClient implements DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Deal
+     * @return ?Deal
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getADeal(string $id, ?array $options = null): Deal
+    public function getADeal(string $id, ?array $options = null): ?Deal
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -353,7 +353,7 @@ class DealsClient implements DealsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return Deal::fromJson($json);
             }
@@ -460,11 +460,11 @@ class DealsClient implements DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Pipeline
+     * @return ?Pipeline
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getPipelineStages(?array $options = null): Pipeline
+    public function getPipelineStages(?array $options = null): ?Pipeline
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -480,7 +480,7 @@ class DealsClient implements DealsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return Pipeline::fromJson($json);
             }
@@ -505,11 +505,11 @@ class DealsClient implements DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<Pipeline>
+     * @return ?array<Pipeline>
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getAllPipelines(?array $options = null): array
+    public function getAllPipelines(?array $options = null): ?array
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -525,7 +525,7 @@ class DealsClient implements DealsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return JsonDecoder::decodeArray($json, [Pipeline::class]); // @phpstan-ignore-line
             }
@@ -551,11 +551,11 @@ class DealsClient implements DealsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<Pipeline>
+     * @return ?array<Pipeline>
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getAPipeline(string $pipelineId, ?array $options = null): array
+    public function getAPipeline(string $pipelineId, ?array $options = null): ?array
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -571,7 +571,7 @@ class DealsClient implements DealsClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return JsonDecoder::decodeArray($json, [Pipeline::class]); // @phpstan-ignore-line
             }

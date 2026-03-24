@@ -88,11 +88,11 @@ class AccountClient implements AccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetAccountResponse
+     * @return ?GetAccountResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getAccount(?array $options = null): GetAccountResponse
+    public function getAccount(?array $options = null): ?GetAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -108,7 +108,7 @@ class AccountClient implements AccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetAccountResponse::fromJson($json);
             }
@@ -152,11 +152,11 @@ class AccountClient implements AccountClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetAccountActivityResponse
+     * @return ?GetAccountActivityResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getAccountActivity(GetAccountActivityRequest $request = new GetAccountActivityRequest(), ?array $options = null): GetAccountActivityResponse
+    public function getAccountActivity(GetAccountActivityRequest $request = new GetAccountActivityRequest(), ?array $options = null): ?GetAccountActivityResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -189,7 +189,7 @@ class AccountClient implements AccountClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetAccountActivityResponse::fromJson($json);
             }

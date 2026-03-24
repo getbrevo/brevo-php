@@ -39,9 +39,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return BalanceLimit
+     * @return ?BalanceLimit
      */
-    public function getActiveBalancesApi(string $pid, GetLoyaltyBalanceProgramsPidActiveBalanceRequest $request, ?array $options = null): BalanceLimit;
+    public function getActiveBalancesApi(string $pid, GetLoyaltyBalanceProgramsPidActiveBalanceRequest $request, ?array $options = null): ?BalanceLimit;
 
     /**
      * Returns balance definition page
@@ -56,9 +56,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetBalanceDefinitionListResponse
+     * @return ?GetBalanceDefinitionListResponse
      */
-    public function getBalanceDefinitionList(string $pid, GetBalanceDefinitionListRequest $request = new GetBalanceDefinitionListRequest(), ?array $options = null): GetBalanceDefinitionListResponse;
+    public function getBalanceDefinitionList(string $pid, GetBalanceDefinitionListRequest $request = new GetBalanceDefinitionListRequest(), ?array $options = null): ?GetBalanceDefinitionListResponse;
 
     /**
      * Creates balance definition and returns information
@@ -73,9 +73,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return BalanceDefinition
+     * @return ?BalanceDefinition
      */
-    public function createBalanceDefinition(string $pid, PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequest $request, ?array $options = null): BalanceDefinition;
+    public function createBalanceDefinition(string $pid, PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequest $request, ?array $options = null): ?BalanceDefinition;
 
     /**
      * Returns balance definition
@@ -91,9 +91,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return BalanceDefinition
+     * @return ?BalanceDefinition
      */
-    public function getBalanceDefinition(string $pid, string $bdid, GetBalanceDefinitionRequest $request = new GetBalanceDefinitionRequest(), ?array $options = null): BalanceDefinition;
+    public function getBalanceDefinition(string $pid, string $bdid, GetBalanceDefinitionRequest $request = new GetBalanceDefinitionRequest(), ?array $options = null): ?BalanceDefinition;
 
     /**
      * Updates Balance definition
@@ -109,9 +109,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return BalanceDefinition
+     * @return ?BalanceDefinition
      */
-    public function updateBalanceDefinition(string $pid, string $bdid, UpdateBalanceDefinitionRequest $request, ?array $options = null): BalanceDefinition;
+    public function updateBalanceDefinition(string $pid, string $bdid, UpdateBalanceDefinitionRequest $request, ?array $options = null): ?BalanceDefinition;
 
     /**
      * Delete Balance definition
@@ -143,9 +143,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return BalanceLimit
+     * @return ?BalanceLimit
      */
-    public function createBalanceLimit(string $pid, string $bdid, CreateBalanceLimitRequest $request, ?array $options = null): BalanceLimit;
+    public function createBalanceLimit(string $pid, string $bdid, CreateBalanceLimitRequest $request, ?array $options = null): ?BalanceLimit;
 
     /**
      * Fetches balance limits and send the created UUID along with the data
@@ -162,9 +162,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return BalanceLimit
+     * @return ?BalanceLimit
      */
-    public function getBalanceLimit(string $pid, string $bdid, string $blid, GetBalanceLimitRequest $request = new GetBalanceLimitRequest(), ?array $options = null): BalanceLimit;
+    public function getBalanceLimit(string $pid, string $bdid, string $blid, GetBalanceLimitRequest $request = new GetBalanceLimitRequest(), ?array $options = null): ?BalanceLimit;
 
     /**
      * Updates balance limit
@@ -181,9 +181,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return BalanceLimit
+     * @return ?BalanceLimit
      */
-    public function updateBalanceLimit(string $pid, string $bdid, string $blid, UpdateBalanceLimitRequest $request, ?array $options = null): BalanceLimit;
+    public function updateBalanceLimit(string $pid, string $bdid, string $blid, UpdateBalanceLimitRequest $request, ?array $options = null): ?BalanceLimit;
 
     /**
      * Delete balance limit
@@ -214,9 +214,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetContactBalancesResponse
+     * @return ?GetContactBalancesResponse
      */
-    public function getContactBalances(string $pid, ?array $options = null): GetContactBalancesResponse;
+    public function getContactBalances(string $pid, ?array $options = null): ?GetContactBalancesResponse;
 
     /**
      * Returns created order
@@ -231,9 +231,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateBalanceOrderResponse
+     * @return ?CreateBalanceOrderResponse
      */
-    public function createBalanceOrder(string $pid, CreateBalanceOrderRequest $request, ?array $options = null): CreateBalanceOrderResponse;
+    public function createBalanceOrder(string $pid, CreateBalanceOrderRequest $request, ?array $options = null): ?CreateBalanceOrderResponse;
 
     /**
      * Returns subscription balances
@@ -248,9 +248,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSubscriptionBalancesResponse
+     * @return ?GetSubscriptionBalancesResponse
      */
-    public function getSubscriptionBalances(string $pid, string $cid, ?array $options = null): GetSubscriptionBalancesResponse;
+    public function getSubscriptionBalances(string $pid, string $cid, ?array $options = null): ?GetSubscriptionBalancesResponse;
 
     /**
      * Creates a balance for a contact
@@ -266,9 +266,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesResponse
+     * @return ?PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesResponse
      */
-    public function createSubscriptionBalances(string $pid, string $cid, PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesRequest $request, ?array $options = null): PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesResponse;
+    public function createSubscriptionBalances(string $pid, string $cid, PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesRequest $request, ?array $options = null): ?PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesResponse;
 
     /**
      * Returns transaction history
@@ -283,9 +283,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetLoyaltyBalanceProgramsPidTransactionHistoryResponse
+     * @return ?GetLoyaltyBalanceProgramsPidTransactionHistoryResponse
      */
-    public function getTransactionHistoryApi(string $pid, GetLoyaltyBalanceProgramsPidTransactionHistoryRequest $request, ?array $options = null): GetLoyaltyBalanceProgramsPidTransactionHistoryResponse;
+    public function getTransactionHistoryApi(string $pid, GetLoyaltyBalanceProgramsPidTransactionHistoryRequest $request, ?array $options = null): ?GetLoyaltyBalanceProgramsPidTransactionHistoryResponse;
 
     /**
      * Creates new transaction and returns information
@@ -300,9 +300,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Transaction
+     * @return ?Transaction
      */
-    public function beginTransaction(string $pid, BeginTransactionRequest $request, ?array $options = null): Transaction;
+    public function beginTransaction(string $pid, BeginTransactionRequest $request, ?array $options = null): ?Transaction;
 
     /**
      * Cancels transaction
@@ -317,9 +317,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Transaction
+     * @return ?Transaction
      */
-    public function cancelTransaction(string $pid, string $tid, ?array $options = null): Transaction;
+    public function cancelTransaction(string $pid, string $tid, ?array $options = null): ?Transaction;
 
     /**
      * Completes transaction
@@ -334,7 +334,7 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Transaction
+     * @return ?Transaction
      */
-    public function completeTransaction(string $pid, string $tid, ?array $options = null): Transaction;
+    public function completeTransaction(string $pid, string $tid, ?array $options = null): ?Transaction;
 }

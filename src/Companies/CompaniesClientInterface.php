@@ -27,9 +27,9 @@ interface CompaniesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCompaniesResponse
+     * @return ?GetCompaniesResponse
      */
-    public function getAllCompanies(GetCompaniesRequest $request = new GetCompaniesRequest(), ?array $options = null): GetCompaniesResponse;
+    public function getAllCompanies(GetCompaniesRequest $request = new GetCompaniesRequest(), ?array $options = null): ?GetCompaniesResponse;
 
     /**
      * @param PostCompaniesRequest $request
@@ -41,9 +41,9 @@ interface CompaniesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCompaniesResponse
+     * @return ?PostCompaniesResponse
      */
-    public function createACompany(PostCompaniesRequest $request, ?array $options = null): PostCompaniesResponse;
+    public function createACompany(PostCompaniesRequest $request, ?array $options = null): ?PostCompaniesResponse;
 
     /**
      * Import companies from a CSV file with mapping options.
@@ -56,9 +56,9 @@ interface CompaniesClientInterface
      *   headers?: array<string, string>,
      *   queryParameters?: array<string, mixed>,
      * } $options
-     * @return PostCompaniesImportResponse
+     * @return ?PostCompaniesImportResponse
      */
-    public function importCompaniesCreationAndUpdation(PostCompaniesImportRequest $request = new PostCompaniesImportRequest(), ?array $options = null): PostCompaniesImportResponse;
+    public function importCompaniesCreationAndUpdation(PostCompaniesImportRequest $request = new PostCompaniesImportRequest(), ?array $options = null): ?PostCompaniesImportResponse;
 
     /**
      * @param string $id
@@ -84,9 +84,9 @@ interface CompaniesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Company
+     * @return ?Company
      */
-    public function getACompany(string $id, ?array $options = null): Company;
+    public function getACompany(string $id, ?array $options = null): ?Company;
 
     /**
      * @param string $id Company ID to delete
@@ -112,9 +112,9 @@ interface CompaniesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Company
+     * @return ?Company
      */
-    public function updateACompany(string $id, PatchCompaniesIdRequest $request = new PatchCompaniesIdRequest(), ?array $options = null): Company;
+    public function updateACompany(string $id, PatchCompaniesIdRequest $request = new PatchCompaniesIdRequest(), ?array $options = null): ?Company;
 
     /**
      * @param PostCrmAttributesRequest $request
@@ -126,9 +126,9 @@ interface CompaniesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PostCrmAttributesResponse
+     * @return ?PostCrmAttributesResponse
      */
-    public function createACompanyDealAttribute(PostCrmAttributesRequest $request, ?array $options = null): PostCrmAttributesResponse;
+    public function createACompanyDealAttribute(PostCrmAttributesRequest $request, ?array $options = null): ?PostCrmAttributesResponse;
 
     /**
      * @param ?array{
@@ -139,7 +139,7 @@ interface CompaniesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return array<GetCrmAttributesCompaniesResponseItem>
+     * @return ?array<GetCrmAttributesCompaniesResponseItem>
      */
-    public function getCompanyAttributes(?array $options = null): array;
+    public function getCompanyAttributes(?array $options = null): ?array;
 }

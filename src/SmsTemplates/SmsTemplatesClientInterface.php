@@ -17,7 +17,7 @@ interface SmsTemplatesClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSmsTemplatesResponse
+     * @return ?GetSmsTemplatesResponse
      */
-    public function getSmsTemplates(GetSmsTemplatesRequest $request = new GetSmsTemplatesRequest(), ?array $options = null): GetSmsTemplatesResponse;
+    public function getSmsTemplates(GetSmsTemplatesRequest $request = new GetSmsTemplatesRequest(), ?array $options = null): ?GetSmsTemplatesResponse;
 }

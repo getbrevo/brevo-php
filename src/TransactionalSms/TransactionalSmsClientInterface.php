@@ -34,9 +34,9 @@ interface TransactionalSmsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return SendAsyncTransactionalSmsResponse
+     * @return ?SendAsyncTransactionalSmsResponse
      */
-    public function sendAsyncTransactionalSms(SendTransacSms $request, ?array $options = null): SendAsyncTransactionalSmsResponse;
+    public function sendAsyncTransactionalSms(SendTransacSms $request, ?array $options = null): ?SendAsyncTransactionalSmsResponse;
 
     /**
      * @param SendTransacSms $request
@@ -48,9 +48,9 @@ interface TransactionalSmsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return SendTransacSmsResponse
+     * @return ?SendTransacSmsResponse
      */
-    public function sendTransacSms(SendTransacSms $request, ?array $options = null): SendTransacSmsResponse;
+    public function sendTransacSms(SendTransacSms $request, ?array $options = null): ?SendTransacSmsResponse;
 
     /**
      * @param GetTransacAggregatedSmsReportRequest $request
@@ -62,9 +62,9 @@ interface TransactionalSmsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetTransacAggregatedSmsReportResponse
+     * @return ?GetTransacAggregatedSmsReportResponse
      */
-    public function getTransacAggregatedSmsReport(GetTransacAggregatedSmsReportRequest $request = new GetTransacAggregatedSmsReportRequest(), ?array $options = null): GetTransacAggregatedSmsReportResponse;
+    public function getTransacAggregatedSmsReport(GetTransacAggregatedSmsReportRequest $request = new GetTransacAggregatedSmsReportRequest(), ?array $options = null): ?GetTransacAggregatedSmsReportResponse;
 
     /**
      * @param GetSmsEventsRequest $request
@@ -76,9 +76,9 @@ interface TransactionalSmsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetSmsEventsResponse
+     * @return ?GetSmsEventsResponse
      */
-    public function getSmsEvents(GetSmsEventsRequest $request = new GetSmsEventsRequest(), ?array $options = null): GetSmsEventsResponse;
+    public function getSmsEvents(GetSmsEventsRequest $request = new GetSmsEventsRequest(), ?array $options = null): ?GetSmsEventsResponse;
 
     /**
      * @param GetTransacSmsReportRequest $request
@@ -90,7 +90,7 @@ interface TransactionalSmsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetTransacSmsReportResponse
+     * @return ?GetTransacSmsReportResponse
      */
-    public function getTransacSmsReport(GetTransacSmsReportRequest $request = new GetTransacSmsReportRequest(), ?array $options = null): GetTransacSmsReportResponse;
+    public function getTransacSmsReport(GetTransacSmsReportRequest $request = new GetTransacSmsReportRequest(), ?array $options = null): ?GetTransacSmsReportResponse;
 }

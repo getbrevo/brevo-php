@@ -65,11 +65,11 @@ class UserClient implements UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetInvitedUsersListResponse
+     * @return ?GetInvitedUsersListResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getInvitedUsersList(?array $options = null): GetInvitedUsersListResponse
+    public function getInvitedUsersList(?array $options = null): ?GetInvitedUsersListResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -85,7 +85,7 @@ class UserClient implements UserClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetInvitedUsersListResponse::fromJson($json);
             }
@@ -111,11 +111,11 @@ class UserClient implements UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PutRevokeUserPermissionResponse
+     * @return ?PutRevokeUserPermissionResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function putRevokeUserPermission(string $email, ?array $options = null): PutRevokeUserPermissionResponse
+    public function putRevokeUserPermission(string $email, ?array $options = null): ?PutRevokeUserPermissionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -131,7 +131,7 @@ class UserClient implements UserClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return PutRevokeUserPermissionResponse::fromJson($json);
             }
@@ -226,11 +226,11 @@ class UserClient implements UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return InviteuserResponse
+     * @return ?InviteuserResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function inviteuser(Inviteuser $request, ?array $options = null): InviteuserResponse
+    public function inviteuser(Inviteuser $request, ?array $options = null): ?InviteuserResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -247,7 +247,7 @@ class UserClient implements UserClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return InviteuserResponse::fromJson($json);
             }
@@ -274,11 +274,11 @@ class UserClient implements UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return PutresendcancelinvitationResponse
+     * @return ?PutresendcancelinvitationResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function putresendcancelinvitation(string $action, string $email, ?array $options = null): PutresendcancelinvitationResponse
+    public function putresendcancelinvitation(string $action, string $email, ?array $options = null): ?PutresendcancelinvitationResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -294,7 +294,7 @@ class UserClient implements UserClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return PutresendcancelinvitationResponse::fromJson($json);
             }
@@ -388,11 +388,11 @@ class UserClient implements UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return EditUserPermissionResponse
+     * @return ?EditUserPermissionResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function editUserPermission(Inviteuser $request, ?array $options = null): EditUserPermissionResponse
+    public function editUserPermission(Inviteuser $request, ?array $options = null): ?EditUserPermissionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -409,7 +409,7 @@ class UserClient implements UserClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return EditUserPermissionResponse::fromJson($json);
             }
@@ -435,11 +435,11 @@ class UserClient implements UserClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetUserPermissionResponse
+     * @return ?GetUserPermissionResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getUserPermission(string $email, ?array $options = null): GetUserPermissionResponse
+    public function getUserPermission(string $email, ?array $options = null): ?GetUserPermissionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -455,7 +455,7 @@ class UserClient implements UserClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetUserPermissionResponse::fromJson($json);
             }

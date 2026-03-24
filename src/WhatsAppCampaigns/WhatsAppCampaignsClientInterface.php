@@ -26,9 +26,9 @@ interface WhatsAppCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetWhatsAppCampaignsResponse
+     * @return ?GetWhatsAppCampaignsResponse
      */
-    public function getWhatsAppCampaigns(GetWhatsAppCampaignsRequest $request = new GetWhatsAppCampaignsRequest(), ?array $options = null): GetWhatsAppCampaignsResponse;
+    public function getWhatsAppCampaigns(GetWhatsAppCampaignsRequest $request = new GetWhatsAppCampaignsRequest(), ?array $options = null): ?GetWhatsAppCampaignsResponse;
 
     /**
      * <Note>
@@ -54,9 +54,9 @@ interface WhatsAppCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateWhatsAppCampaignResponse
+     * @return ?CreateWhatsAppCampaignResponse
      */
-    public function createWhatsAppCampaign(CreateWhatsAppCampaignRequest $request, ?array $options = null): CreateWhatsAppCampaignResponse;
+    public function createWhatsAppCampaign(CreateWhatsAppCampaignRequest $request, ?array $options = null): ?CreateWhatsAppCampaignResponse;
 
     /**
      * <Note>
@@ -73,9 +73,9 @@ interface WhatsAppCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetWhatsAppConfigResponse
+     * @return ?GetWhatsAppConfigResponse
      */
-    public function getWhatsAppConfig(?array $options = null): GetWhatsAppConfigResponse;
+    public function getWhatsAppConfig(?array $options = null): ?GetWhatsAppConfigResponse;
 
     /**
      * <Note>
@@ -93,9 +93,9 @@ interface WhatsAppCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateWhatsAppTemplateResponse
+     * @return ?CreateWhatsAppTemplateResponse
      */
-    public function createWhatsAppTemplate(CreateWhatsAppTemplateRequest $request, ?array $options = null): CreateWhatsAppTemplateResponse;
+    public function createWhatsAppTemplate(CreateWhatsAppTemplateRequest $request, ?array $options = null): ?CreateWhatsAppTemplateResponse;
 
     /**
      * @param GetWhatsAppTemplatesRequest $request
@@ -107,9 +107,9 @@ interface WhatsAppCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetWhatsAppTemplatesResponse
+     * @return ?GetWhatsAppTemplatesResponse
      */
-    public function getWhatsAppTemplates(GetWhatsAppTemplatesRequest $request = new GetWhatsAppTemplatesRequest(), ?array $options = null): GetWhatsAppTemplatesResponse;
+    public function getWhatsAppTemplates(GetWhatsAppTemplatesRequest $request = new GetWhatsAppTemplatesRequest(), ?array $options = null): ?GetWhatsAppTemplatesResponse;
 
     /**
      * <Note>
@@ -146,9 +146,9 @@ interface WhatsAppCampaignsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetWhatsAppCampaignResponse
+     * @return ?GetWhatsAppCampaignResponse
      */
-    public function getWhatsAppCampaign(int $campaignId, ?array $options = null): GetWhatsAppCampaignResponse;
+    public function getWhatsAppCampaign(int $campaignId, ?array $options = null): ?GetWhatsAppCampaignResponse;
 
     /**
      * <Note>

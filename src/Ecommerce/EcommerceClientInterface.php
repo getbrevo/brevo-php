@@ -43,9 +43,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCategoriesResponse
+     * @return ?GetCategoriesResponse
      */
-    public function getCategories(GetCategoriesRequest $request = new GetCategoriesRequest(), ?array $options = null): GetCategoriesResponse;
+    public function getCategories(GetCategoriesRequest $request = new GetCategoriesRequest(), ?array $options = null): ?GetCategoriesResponse;
 
     /**
      * @param CreateUpdateCategoryRequest $request
@@ -57,9 +57,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateUpdateCategoryResponse
+     * @return ?CreateUpdateCategoryResponse
      */
-    public function createUpdateCategory(CreateUpdateCategoryRequest $request, ?array $options = null): CreateUpdateCategoryResponse;
+    public function createUpdateCategory(CreateUpdateCategoryRequest $request, ?array $options = null): ?CreateUpdateCategoryResponse;
 
     /**
      * @param CreateUpdateBatchCategoryRequest $request
@@ -71,9 +71,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateUpdateBatchCategoryResponse
+     * @return ?CreateUpdateBatchCategoryResponse
      */
-    public function createUpdateBatchCategory(CreateUpdateBatchCategoryRequest $request, ?array $options = null): CreateUpdateBatchCategoryResponse;
+    public function createUpdateBatchCategory(CreateUpdateBatchCategoryRequest $request, ?array $options = null): ?CreateUpdateBatchCategoryResponse;
 
     /**
      * @param string $id Category ID
@@ -85,9 +85,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetCategoryDetails
+     * @return ?GetCategoryDetails
      */
-    public function getCategoryInfo(string $id, ?array $options = null): GetCategoryDetails;
+    public function getCategoryInfo(string $id, ?array $options = null): ?GetCategoryDetails;
 
     /**
      * Getting access to Brevo eCommerce.
@@ -113,9 +113,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetEcommerceAttributionMetricsResponse
+     * @return ?GetEcommerceAttributionMetricsResponse
      */
-    public function getAttributionMetricsForOneOrMoreBrevoCampaignsOrWorkflows(GetEcommerceAttributionMetricsRequest $request = new GetEcommerceAttributionMetricsRequest(), ?array $options = null): GetEcommerceAttributionMetricsResponse;
+    public function getAttributionMetricsForOneOrMoreBrevoCampaignsOrWorkflows(GetEcommerceAttributionMetricsRequest $request = new GetEcommerceAttributionMetricsRequest(), ?array $options = null): ?GetEcommerceAttributionMetricsResponse;
 
     /**
      * @param value-of<GetEcommerceAttributionMetricsConversionSourceConversionSourceIdRequestConversionSource> $conversionSource The Brevo campaign type or workflow type for which data will be retrieved
@@ -128,9 +128,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetEcommerceAttributionMetricsConversionSourceConversionSourceIdResponse
+     * @return ?GetEcommerceAttributionMetricsConversionSourceConversionSourceIdResponse
      */
-    public function getDetailedAttributionMetricsForASingleBrevoCampaignOrWorkflow(string $conversionSource, string $conversionSourceId, ?array $options = null): GetEcommerceAttributionMetricsConversionSourceConversionSourceIdResponse;
+    public function getDetailedAttributionMetricsForASingleBrevoCampaignOrWorkflow(string $conversionSource, string $conversionSourceId, ?array $options = null): ?GetEcommerceAttributionMetricsConversionSourceConversionSourceIdResponse;
 
     /**
      * @param value-of<GetEcommerceAttributionProductsConversionSourceConversionSourceIdRequestConversionSource> $conversionSource The Brevo campaign or automation workflow type for which data will be retrieved
@@ -143,9 +143,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetEcommerceAttributionProductsConversionSourceConversionSourceIdResponse
+     * @return ?GetEcommerceAttributionProductsConversionSourceConversionSourceIdResponse
      */
-    public function getAttributedProductSalesForASingleBrevoCampaignOrWorkflow(string $conversionSource, string $conversionSourceId, ?array $options = null): GetEcommerceAttributionProductsConversionSourceConversionSourceIdResponse;
+    public function getAttributedProductSalesForASingleBrevoCampaignOrWorkflow(string $conversionSource, string $conversionSourceId, ?array $options = null): ?GetEcommerceAttributionProductsConversionSourceConversionSourceIdResponse;
 
     /**
      * @param ?array{
@@ -156,9 +156,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetEcommerceConfigDisplayCurrencyResponse
+     * @return ?GetEcommerceConfigDisplayCurrencyResponse
      */
-    public function getTheIso4217CompliantDisplayCurrencyCodeForYourBrevoAccount(?array $options = null): GetEcommerceConfigDisplayCurrencyResponse;
+    public function getTheIso4217CompliantDisplayCurrencyCodeForYourBrevoAccount(?array $options = null): ?GetEcommerceConfigDisplayCurrencyResponse;
 
     /**
      * @param SetConfigDisplayCurrencyRequest $request
@@ -170,9 +170,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return SetConfigDisplayCurrencyResponse
+     * @return ?SetConfigDisplayCurrencyResponse
      */
-    public function setConfigDisplayCurrency(SetConfigDisplayCurrencyRequest $request, ?array $options = null): SetConfigDisplayCurrencyResponse;
+    public function setConfigDisplayCurrency(SetConfigDisplayCurrencyRequest $request, ?array $options = null): ?SetConfigDisplayCurrencyResponse;
 
     /**
      * Get all the orders
@@ -217,9 +217,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateBatchOrderResponse
+     * @return ?CreateBatchOrderResponse
      */
-    public function createBatchOrder(CreateBatchOrderRequest $request, ?array $options = null): CreateBatchOrderResponse;
+    public function createBatchOrder(CreateBatchOrderRequest $request, ?array $options = null): ?CreateBatchOrderResponse;
 
     /**
      * @param GetProductsRequest $request
@@ -231,9 +231,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetProductsResponse
+     * @return ?GetProductsResponse
      */
-    public function getProducts(GetProductsRequest $request = new GetProductsRequest(), ?array $options = null): GetProductsResponse;
+    public function getProducts(GetProductsRequest $request = new GetProductsRequest(), ?array $options = null): ?GetProductsResponse;
 
     /**
      * @param CreateUpdateProductRequest $request
@@ -245,9 +245,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateUpdateProductResponse
+     * @return ?CreateUpdateProductResponse
      */
-    public function createUpdateProduct(CreateUpdateProductRequest $request, ?array $options = null): CreateUpdateProductResponse;
+    public function createUpdateProduct(CreateUpdateProductRequest $request, ?array $options = null): ?CreateUpdateProductResponse;
 
     /**
      * @param CreateUpdateBatchProductsRequest $request
@@ -259,9 +259,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateUpdateBatchProductsResponse
+     * @return ?CreateUpdateBatchProductsResponse
      */
-    public function createUpdateBatchProducts(CreateUpdateBatchProductsRequest $request, ?array $options = null): CreateUpdateBatchProductsResponse;
+    public function createUpdateBatchProducts(CreateUpdateBatchProductsRequest $request, ?array $options = null): ?CreateUpdateBatchProductsResponse;
 
     /**
      * @param string $id Product ID
@@ -273,9 +273,9 @@ interface EcommerceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetProductDetails
+     * @return ?GetProductDetails
      */
-    public function getProductInfo(string $id, ?array $options = null): GetProductDetails;
+    public function getProductInfo(string $id, ?array $options = null): ?GetProductDetails;
 
     /**
      * @param string $id Product ID

@@ -74,11 +74,11 @@ class TierClient implements TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return AddSubscriptionToTierResponse
+     * @return ?AddSubscriptionToTierResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function addSubscriptionToTier(string $pid, string $cid, string $tid, ?array $options = null): AddSubscriptionToTierResponse
+    public function addSubscriptionToTier(string $pid, string $cid, string $tid, ?array $options = null): ?AddSubscriptionToTierResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -94,7 +94,7 @@ class TierClient implements TierClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return AddSubscriptionToTierResponse::fromJson($json);
             }
@@ -123,11 +123,11 @@ class TierClient implements TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetListOfTierGroupsResponse
+     * @return ?GetListOfTierGroupsResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getListOfTierGroups(string $pid, GetListOfTierGroupsRequest $request = new GetListOfTierGroupsRequest(), ?array $options = null): GetListOfTierGroupsResponse
+    public function getListOfTierGroups(string $pid, GetListOfTierGroupsRequest $request = new GetListOfTierGroupsRequest(), ?array $options = null): ?GetListOfTierGroupsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -148,7 +148,7 @@ class TierClient implements TierClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetListOfTierGroupsResponse::fromJson($json);
             }
@@ -177,11 +177,11 @@ class TierClient implements TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return TierGroup
+     * @return ?TierGroup
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createTierGroup(string $pid, CreateTierGroupRequest $request, ?array $options = null): TierGroup
+    public function createTierGroup(string $pid, CreateTierGroupRequest $request, ?array $options = null): ?TierGroup
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -198,7 +198,7 @@ class TierClient implements TierClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return TierGroup::fromJson($json);
             }
@@ -228,11 +228,11 @@ class TierClient implements TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return TierGroup
+     * @return ?TierGroup
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getTierGroup(string $pid, string $gid, GetTierGroupRequest $request = new GetTierGroupRequest(), ?array $options = null): TierGroup
+    public function getTierGroup(string $pid, string $gid, GetTierGroupRequest $request = new GetTierGroupRequest(), ?array $options = null): ?TierGroup
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -253,7 +253,7 @@ class TierClient implements TierClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return TierGroup::fromJson($json);
             }
@@ -283,11 +283,11 @@ class TierClient implements TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return TierGroup
+     * @return ?TierGroup
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function updateTierGroup(string $pid, string $gid, UpdateTierGroupRequest $request, ?array $options = null): TierGroup
+    public function updateTierGroup(string $pid, string $gid, UpdateTierGroupRequest $request, ?array $options = null): ?TierGroup
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -304,7 +304,7 @@ class TierClient implements TierClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return TierGroup::fromJson($json);
             }
@@ -376,11 +376,11 @@ class TierClient implements TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Tier
+     * @return ?Tier
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createTierForTierGroup(string $pid, string $gid, CreateTierForTierGroupRequest $request, ?array $options = null): Tier
+    public function createTierForTierGroup(string $pid, string $gid, CreateTierForTierGroupRequest $request, ?array $options = null): ?Tier
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -397,7 +397,7 @@ class TierClient implements TierClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return Tier::fromJson($json);
             }
@@ -426,11 +426,11 @@ class TierClient implements TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetLoyaltyProgramTierResponse
+     * @return ?GetLoyaltyProgramTierResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getLoyaltyProgramTier(string $pid, GetLoyaltyProgramTierRequest $request = new GetLoyaltyProgramTierRequest(), ?array $options = null): GetLoyaltyProgramTierResponse
+    public function getLoyaltyProgramTier(string $pid, GetLoyaltyProgramTierRequest $request = new GetLoyaltyProgramTierRequest(), ?array $options = null): ?GetLoyaltyProgramTierResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -451,7 +451,7 @@ class TierClient implements TierClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetLoyaltyProgramTierResponse::fromJson($json);
             }
@@ -481,11 +481,11 @@ class TierClient implements TierClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return Tier
+     * @return ?Tier
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function updateTier(string $pid, string $tid, UpdateTierRequest $request, ?array $options = null): Tier
+    public function updateTier(string $pid, string $tid, UpdateTierRequest $request, ?array $options = null): ?Tier
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -502,7 +502,7 @@ class TierClient implements TierClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return Tier::fromJson($json);
             }

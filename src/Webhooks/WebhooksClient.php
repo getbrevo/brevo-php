@@ -82,11 +82,11 @@ class WebhooksClient implements WebhooksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetWebhooksResponse
+     * @return ?GetWebhooksResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getWebhooks(GetWebhooksRequest $request = new GetWebhooksRequest(), ?array $options = null): GetWebhooksResponse
+    public function getWebhooks(GetWebhooksRequest $request = new GetWebhooksRequest(), ?array $options = null): ?GetWebhooksResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
@@ -110,7 +110,7 @@ class WebhooksClient implements WebhooksClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetWebhooksResponse::fromJson($json);
             }
@@ -149,11 +149,11 @@ class WebhooksClient implements WebhooksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateWebhookResponse
+     * @return ?CreateWebhookResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createWebhook(CreateWebhookRequest $request, ?array $options = null): CreateWebhookResponse
+    public function createWebhook(CreateWebhookRequest $request, ?array $options = null): ?CreateWebhookResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -170,7 +170,7 @@ class WebhooksClient implements WebhooksClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return CreateWebhookResponse::fromJson($json);
             }
@@ -213,11 +213,11 @@ class WebhooksClient implements WebhooksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ExportWebhooksHistoryResponse
+     * @return ?ExportWebhooksHistoryResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function exportWebhooksHistory(ExportWebhooksHistoryRequest $request, ?array $options = null): ExportWebhooksHistoryResponse
+    public function exportWebhooksHistory(ExportWebhooksHistoryRequest $request, ?array $options = null): ?ExportWebhooksHistoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -234,7 +234,7 @@ class WebhooksClient implements WebhooksClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return ExportWebhooksHistoryResponse::fromJson($json);
             }
@@ -276,11 +276,11 @@ class WebhooksClient implements WebhooksClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetWebhook
+     * @return ?GetWebhook
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getWebhook(int $webhookId, ?array $options = null): GetWebhook
+    public function getWebhook(int $webhookId, ?array $options = null): ?GetWebhook
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -296,7 +296,7 @@ class WebhooksClient implements WebhooksClientInterface
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
                 if (empty($json)) {
-                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                    return null;
                 }
                 return GetWebhook::fromJson($json);
             }

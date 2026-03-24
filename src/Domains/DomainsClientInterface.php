@@ -35,9 +35,9 @@ interface DomainsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetDomainsResponse
+     * @return ?GetDomainsResponse
      */
-    public function getDomains(?array $options = null): GetDomainsResponse;
+    public function getDomains(?array $options = null): ?GetDomainsResponse;
 
     /**
      * Creates a new domain in Brevo.
@@ -63,9 +63,9 @@ interface DomainsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return CreateDomainResponse
+     * @return ?CreateDomainResponse
      */
-    public function createDomain(CreateDomainRequest $request, ?array $options = null): CreateDomainResponse;
+    public function createDomain(CreateDomainRequest $request, ?array $options = null): ?CreateDomainResponse;
 
     /**
      * Retrieves configuration of a specific domain, to know if the domain is valid or not.
@@ -90,9 +90,9 @@ interface DomainsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return GetDomainConfigurationResponse
+     * @return ?GetDomainConfigurationResponse
      */
-    public function getDomainConfiguration(string $domainName, ?array $options = null): GetDomainConfigurationResponse;
+    public function getDomainConfiguration(string $domainName, ?array $options = null): ?GetDomainConfigurationResponse;
 
     /**
      * Deletes a domain from Brevo.
@@ -139,7 +139,7 @@ interface DomainsClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return AuthenticateDomainResponse
+     * @return ?AuthenticateDomainResponse
      */
-    public function authenticateDomain(string $domainName, ?array $options = null): AuthenticateDomainResponse;
+    public function authenticateDomain(string $domainName, ?array $options = null): ?AuthenticateDomainResponse;
 }
