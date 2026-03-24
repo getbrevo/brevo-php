@@ -128,6 +128,9 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetEmailCampaignsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -172,6 +175,9 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateEmailCampaignResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -216,6 +222,9 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return UploadImageToGalleryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -265,6 +274,9 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetEmailCampaignResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -390,6 +402,9 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetAbTestCampaignResultResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -435,6 +450,9 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return EmailExportRecipientsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -603,6 +621,9 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetSharedTemplateUrlResponse::fromJson($json);
             }
         } catch (JsonException $e) {

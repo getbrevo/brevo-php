@@ -122,6 +122,9 @@ class CompaniesClient implements CompaniesClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCompaniesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -166,6 +169,9 @@ class CompaniesClient implements CompaniesClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostCompaniesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -218,6 +224,9 @@ class CompaniesClient implements CompaniesClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostCompaniesImportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -302,6 +311,9 @@ class CompaniesClient implements CompaniesClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return Company::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -386,6 +398,9 @@ class CompaniesClient implements CompaniesClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return Company::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -430,6 +445,9 @@ class CompaniesClient implements CompaniesClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostCrmAttributesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -472,6 +490,9 @@ class CompaniesClient implements CompaniesClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return JsonDecoder::decodeArray($json, [GetCrmAttributesCompaniesResponseItem::class]); // @phpstan-ignore-line
             }
         } catch (JsonException $e) {

@@ -107,6 +107,9 @@ class FilesClient implements FilesClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return JsonDecoder::decodeArray($json, [FileData::class]); // @phpstan-ignore-line
             }
         } catch (JsonException $e) {
@@ -161,6 +164,9 @@ class FilesClient implements FilesClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return FileData::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -204,6 +210,9 @@ class FilesClient implements FilesClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCrmFilesIdResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -286,6 +295,9 @@ class FilesClient implements FilesClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return FileData::fromJson($json);
             }
         } catch (JsonException $e) {

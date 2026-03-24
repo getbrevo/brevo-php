@@ -109,6 +109,9 @@ class WebhooksClient implements WebhooksClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetWebhooksResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -166,6 +169,9 @@ class WebhooksClient implements WebhooksClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateWebhookResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -227,6 +233,9 @@ class WebhooksClient implements WebhooksClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return ExportWebhooksHistoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -286,6 +295,9 @@ class WebhooksClient implements WebhooksClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetWebhook::fromJson($json);
             }
         } catch (JsonException $e) {

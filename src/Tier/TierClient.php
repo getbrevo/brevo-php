@@ -93,6 +93,9 @@ class TierClient implements TierClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return AddSubscriptionToTierResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -144,6 +147,9 @@ class TierClient implements TierClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetListOfTierGroupsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -191,6 +197,9 @@ class TierClient implements TierClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return TierGroup::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -243,6 +252,9 @@ class TierClient implements TierClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return TierGroup::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -291,6 +303,9 @@ class TierClient implements TierClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return TierGroup::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -381,6 +396,9 @@ class TierClient implements TierClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return Tier::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -432,6 +450,9 @@ class TierClient implements TierClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetLoyaltyProgramTierResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -480,6 +501,9 @@ class TierClient implements TierClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return Tier::fromJson($json);
             }
         } catch (JsonException $e) {

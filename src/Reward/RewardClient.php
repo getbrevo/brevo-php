@@ -96,6 +96,9 @@ class RewardClient implements RewardClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCodeCountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -156,6 +159,9 @@ class RewardClient implements RewardClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetLoyaltyOfferProgramsPidOffersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -203,6 +209,9 @@ class RewardClient implements RewardClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateRewardResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -250,6 +259,9 @@ class RewardClient implements RewardClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateVoucherResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -297,6 +309,9 @@ class RewardClient implements RewardClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return Redeem::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -343,6 +358,9 @@ class RewardClient implements RewardClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return Redeem::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -437,6 +455,9 @@ class RewardClient implements RewardClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return ValidateRewardResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -489,6 +510,9 @@ class RewardClient implements RewardClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetLoyaltyOfferProgramsPidRewardsRidResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -556,6 +580,9 @@ class RewardClient implements RewardClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetLoyaltyOfferProgramsPidVouchersResponse::fromJson($json);
             }
         } catch (JsonException $e) {

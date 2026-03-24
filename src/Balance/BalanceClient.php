@@ -117,6 +117,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return BalanceLimit::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -180,6 +183,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetBalanceDefinitionListResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -227,6 +233,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return BalanceDefinition::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -279,6 +288,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return BalanceDefinition::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -327,6 +339,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return BalanceDefinition::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -417,6 +432,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return BalanceLimit::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -470,6 +488,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return BalanceLimit::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -519,6 +540,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return BalanceLimit::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -607,6 +631,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetContactBalancesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -654,6 +681,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateBalanceOrderResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -700,6 +730,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetSubscriptionBalancesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -748,6 +781,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -813,6 +849,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetLoyaltyBalanceProgramsPidTransactionHistoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -860,6 +899,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return Transaction::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -906,6 +948,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return Transaction::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -952,6 +997,9 @@ class BalanceClient implements BalanceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return Transaction::fromJson($json);
             }
         } catch (JsonException $e) {

@@ -127,6 +127,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetTransacBlockedContactsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -210,6 +213,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetBlockedDomainsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -379,6 +385,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return SendTransacEmailResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -489,6 +498,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return JsonDecoder::decodeUnion($json, new Union(GetScheduledEmailByIdResponseBatches::class, GetScheduledEmailByIdResponseCreatedAt::class)); // @phpstan-ignore-line
             }
         } catch (JsonException $e) {
@@ -560,6 +572,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetTransacEmailsListResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -611,6 +626,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetTransacEmailContentResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -709,6 +727,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetAggregatedSmtpReportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -789,6 +810,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetEmailEventReportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -855,6 +879,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetSmtpReportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -899,6 +926,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostPreviewSmtpEmailTemplatesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -956,6 +986,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetSmtpTemplatesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1000,6 +1033,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateSmtpTemplateResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1043,6 +1079,9 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetSmtpTemplateOverview::fromJson($json);
             }
         } catch (JsonException $e) {

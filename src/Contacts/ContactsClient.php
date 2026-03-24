@@ -154,6 +154,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetContacts::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -200,6 +203,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateContactResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -242,6 +248,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetAttributesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -537,6 +546,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return RequestContactExportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -603,6 +615,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetFoldersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -647,6 +662,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateFolderResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -698,6 +716,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetFolder::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -841,6 +862,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetFolderListsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -887,6 +911,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return ImportContactsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -949,6 +976,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetListsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -993,6 +1023,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateListResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1045,6 +1078,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetListResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1183,6 +1219,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetContacts::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1228,6 +1267,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostContactInfo::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1273,6 +1315,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostContactInfo::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1327,6 +1372,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetSegmentsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1395,6 +1443,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetContactInfoResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1551,6 +1602,9 @@ class ContactsClient implements ContactsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetContactStatsResponse::fromJson($json);
             }
         } catch (JsonException $e) {

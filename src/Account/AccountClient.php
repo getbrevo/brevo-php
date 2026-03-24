@@ -107,6 +107,9 @@ class AccountClient implements AccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -185,6 +188,9 @@ class AccountClient implements AccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetAccountActivityResponse::fromJson($json);
             }
         } catch (JsonException $e) {

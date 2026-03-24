@@ -91,6 +91,9 @@ class DealsClient implements DealsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return JsonDecoder::decodeArray($json, [GetCrmAttributesDealsResponseItem::class]); // @phpstan-ignore-line
             }
         } catch (JsonException $e) {
@@ -160,6 +163,9 @@ class DealsClient implements DealsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCrmDealsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -204,6 +210,9 @@ class DealsClient implements DealsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostCrmDealsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -256,6 +265,9 @@ class DealsClient implements DealsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostCrmDealsImportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -340,6 +352,9 @@ class DealsClient implements DealsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return Deal::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -464,6 +479,9 @@ class DealsClient implements DealsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return Pipeline::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -506,6 +524,9 @@ class DealsClient implements DealsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return JsonDecoder::decodeArray($json, [Pipeline::class]); // @phpstan-ignore-line
             }
         } catch (JsonException $e) {
@@ -549,6 +570,9 @@ class DealsClient implements DealsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return JsonDecoder::decodeArray($json, [Pipeline::class]); // @phpstan-ignore-line
             }
         } catch (JsonException $e) {

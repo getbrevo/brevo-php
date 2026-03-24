@@ -133,6 +133,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCategoriesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -177,6 +180,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateUpdateCategoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -221,6 +227,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateUpdateBatchCategoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -264,6 +273,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCategoryDetails::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -367,6 +379,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetEcommerceAttributionMetricsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -411,6 +426,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetEcommerceAttributionMetricsConversionSourceConversionSourceIdResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -455,6 +473,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetEcommerceAttributionProductsConversionSourceConversionSourceIdResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -497,6 +518,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetEcommerceConfigDisplayCurrencyResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -541,6 +565,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return SetConfigDisplayCurrencyResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -603,6 +630,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return JsonDecoder::decodeMixed($json);
             }
         } catch (JsonException $e) {
@@ -691,6 +721,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateBatchOrderResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -781,6 +814,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetProductsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -825,6 +861,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateUpdateProductResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -869,6 +908,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateUpdateBatchProductsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -912,6 +954,9 @@ class EcommerceClient implements EcommerceClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetProductDetails::fromJson($json);
             }
         } catch (JsonException $e) {

@@ -106,6 +106,9 @@ class ProgramClient implements ProgramClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetLpListResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -152,6 +155,9 @@ class ProgramClient implements ProgramClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return LoyaltyProgram::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -197,6 +203,9 @@ class ProgramClient implements ProgramClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return LoyaltyProgram::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -244,6 +253,9 @@ class ProgramClient implements ProgramClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return LoyaltyProgram::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -332,6 +344,9 @@ class ProgramClient implements ProgramClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return LoyaltyProgram::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -389,6 +404,9 @@ class ProgramClient implements ProgramClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetParameterSubscriptionInfoResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -477,6 +495,9 @@ class ProgramClient implements ProgramClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return SubscribeMemberToASubscriptionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -569,6 +590,9 @@ class ProgramClient implements ProgramClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return SubscribeToLoyaltyProgramResponse::fromJson($json);
             }
         } catch (JsonException $e) {

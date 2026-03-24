@@ -105,6 +105,9 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetWhatsAppCampaignsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -163,6 +166,9 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateWhatsAppCampaignResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -211,6 +217,9 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetWhatsAppConfigResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -261,6 +270,9 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateWhatsAppTemplateResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -324,6 +336,9 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetWhatsAppTemplatesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -418,6 +433,9 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetWhatsAppCampaignResponse::fromJson($json);
             }
         } catch (JsonException $e) {

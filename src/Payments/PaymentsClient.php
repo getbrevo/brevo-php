@@ -81,6 +81,9 @@ class PaymentsClient implements PaymentsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreatePaymentRequestResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -124,6 +127,9 @@ class PaymentsClient implements PaymentsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetPaymentRequestResponse::fromJson($json);
             }
         } catch (JsonException $e) {

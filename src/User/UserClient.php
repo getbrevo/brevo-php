@@ -84,6 +84,9 @@ class UserClient implements UserClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetInvitedUsersListResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -127,6 +130,9 @@ class UserClient implements UserClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PutRevokeUserPermissionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -240,6 +246,9 @@ class UserClient implements UserClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return InviteuserResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -284,6 +293,9 @@ class UserClient implements UserClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PutresendcancelinvitationResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -396,6 +408,9 @@ class UserClient implements UserClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return EditUserPermissionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -439,6 +454,9 @@ class UserClient implements UserClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetUserPermissionResponse::fromJson($json);
             }
         } catch (JsonException $e) {

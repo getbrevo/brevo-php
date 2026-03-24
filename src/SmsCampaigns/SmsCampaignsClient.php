@@ -108,6 +108,9 @@ class SmsCampaignsClient implements SmsCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetSmsCampaignsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -152,6 +155,9 @@ class SmsCampaignsClient implements SmsCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateSmsCampaignResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -195,6 +201,9 @@ class SmsCampaignsClient implements SmsCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetSmsCampaignResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -322,6 +331,9 @@ class SmsCampaignsClient implements SmsCampaignsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return RequestSmsRecipientExportResponse::fromJson($json);
             }
         } catch (JsonException $e) {

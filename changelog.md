@@ -1,3 +1,7 @@
+## 4.1.0 - 2026-03-24
+* ### Added
+* **BrevoException** now provides more descriptive error messages when API calls succeed but return empty response bodies, replacing generic JsonException errors and improving debugging experience.
+
 ## 4.0.12 - 2026-03-12
 * fix: improve JSON serialization and test configuration
 * Fix boolean type handling in JSON serialization and deserialization by adding explicit checks for bool values, since PHP's gettype() returns "boolean" instead of "bool". Also improve property default value detection using hasDefaultValue() check to avoid potential warnings. Update test configuration to support external WireMock orchestration via WIREMOCK_URL environment variable.

@@ -98,6 +98,9 @@ class CouponsClient implements CouponsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCouponCollection::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -142,6 +145,9 @@ class CouponsClient implements CouponsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateCouponCollectionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -185,6 +191,9 @@ class CouponsClient implements CouponsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCouponCollection::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -230,6 +239,9 @@ class CouponsClient implements CouponsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return UpdateCouponCollectionResponse::fromJson($json);
             }
         } catch (JsonException $e) {

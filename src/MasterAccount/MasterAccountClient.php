@@ -112,6 +112,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostCorporateGroupResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -201,6 +204,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCorporateGroupIdResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -332,6 +338,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return JsonDecoder::decodeArray($json, [GetSubAccountGroupsResponseItem::class]); // @phpstan-ignore-line
             }
         } catch (JsonException $e) {
@@ -390,6 +399,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCorporateInvitedUsersListResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -435,6 +447,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return JsonDecoder::decodeArray($json, [GetCorporateIpResponseItem::class]); // @phpstan-ignore-line
             }
         } catch (JsonException $e) {
@@ -479,6 +494,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCorporateMasterAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -528,6 +546,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetSsoToken::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -578,6 +599,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCorporateSubAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -624,6 +648,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostCorporateSubAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -670,6 +697,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return JsonDecoder::decodeArray($json, ['string' => 'mixed']); // @phpstan-ignore-line
             }
         } catch (JsonException $e) {
@@ -758,6 +788,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PostCorporateSubAccountKeyResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -807,6 +840,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetSsoToken::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -852,6 +888,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCorporateSubAccountIdResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1097,6 +1136,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return InviteAdminUserResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1145,6 +1187,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return PutCorporateUserInvitationActionEmailResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -1232,6 +1277,9 @@ class MasterAccountClient implements MasterAccountClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetCorporateUserPermissionResponse::fromJson($json);
             }
         } catch (JsonException $e) {

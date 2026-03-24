@@ -97,6 +97,9 @@ class DomainsClient implements DomainsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetDomainsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -155,6 +158,9 @@ class DomainsClient implements DomainsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return CreateDomainResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -211,6 +217,9 @@ class DomainsClient implements DomainsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return GetDomainConfigurationResponse::fromJson($json);
             }
         } catch (JsonException $e) {
@@ -315,6 +324,9 @@ class DomainsClient implements DomainsClientInterface
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    throw new BrevoException(message: "Expected a JSON response body, but received an empty response.");
+                }
                 return AuthenticateDomainResponse::fromJson($json);
             }
         } catch (JsonException $e) {
