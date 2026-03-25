@@ -13,9 +13,11 @@ use Brevo\Balance\Requests\UpdateBalanceDefinitionRequest;
 use Brevo\Balance\Requests\CreateBalanceLimitRequest;
 use Brevo\Balance\Requests\GetBalanceLimitRequest;
 use Brevo\Balance\Requests\UpdateBalanceLimitRequest;
+use Brevo\Balance\Requests\GetContactBalancesRequest;
 use Brevo\Balance\Types\GetContactBalancesResponse;
 use Brevo\Balance\Requests\CreateBalanceOrderRequest;
 use Brevo\Balance\Types\CreateBalanceOrderResponse;
+use Brevo\Balance\Requests\GetSubscriptionBalancesRequest;
 use Brevo\Balance\Types\GetSubscriptionBalancesResponse;
 use Brevo\Balance\Requests\PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesRequest;
 use Brevo\Balance\Types\PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesResponse;
@@ -206,6 +208,7 @@ interface BalanceClientInterface
      * Returns balance list
      *
      * @param string $pid Loyalty Program Id
+     * @param GetContactBalancesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -216,7 +219,7 @@ interface BalanceClientInterface
      * } $options
      * @return ?GetContactBalancesResponse
      */
-    public function getContactBalances(string $pid, ?array $options = null): ?GetContactBalancesResponse;
+    public function getContactBalances(string $pid, GetContactBalancesRequest $request = new GetContactBalancesRequest(), ?array $options = null): ?GetContactBalancesResponse;
 
     /**
      * Returns created order
@@ -240,6 +243,7 @@ interface BalanceClientInterface
      *
      * @param string $pid Loyalty Program Id
      * @param string $cid Contact Id
+     * @param GetSubscriptionBalancesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -250,7 +254,7 @@ interface BalanceClientInterface
      * } $options
      * @return ?GetSubscriptionBalancesResponse
      */
-    public function getSubscriptionBalances(string $pid, string $cid, ?array $options = null): ?GetSubscriptionBalancesResponse;
+    public function getSubscriptionBalances(string $pid, string $cid, GetSubscriptionBalancesRequest $request = new GetSubscriptionBalancesRequest(), ?array $options = null): ?GetSubscriptionBalancesResponse;
 
     /**
      * Creates a balance for a contact

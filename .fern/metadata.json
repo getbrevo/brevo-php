@@ -5,12 +5,21 @@
   "generatorConfig": {
     "clientName": "Brevo",
     "namespace": "Brevo",
+    "composerJson": {
+      "description": "Official PHP SDK for the Brevo API.",
+      "author": {
+        "name": "Brevo",
+        "url": "https://brevo.com",
+        "email": "support@brevo.com"
+      },
+      "license": "MIT"
+    },
     "enable-wire-tests": true,
     "propertyAccess": "public",
     "packageName": "getbrevo/brevo-php",
     "generateClientInterfaces": true,
     "useDefaultRequestParameterValues": true
   },
-  "originGitCommit": "319754b925d4dc1d265cd7fa0046676d3fbeaafc",
-  "sdkVersion": "4.2.0"
+  "originGitCommit": "7d08ac3fbe2aa66ba3d56077e8582739d530298b",
+  "sdkVersion": "4.0.11"
 }

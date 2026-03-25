@@ -4,8 +4,11 @@ namespace Brevo\Tests;
 
 use Brevo\Tests\Wire\WireMockTestCase;
 use Brevo\Brevo;
+use Brevo\Event\Requests\GetEventsRequest;
 use Brevo\Event\Requests\CreateEventRequest;
 use Brevo\Event\Types\CreateEventRequestIdentifiers;
+use Brevo\Event\Types\CreateBatchEventsRequestItem;
+use Brevo\Event\Types\CreateBatchEventsRequestItemIdentifiers;
 
 class EventWireTest extends WireMockTestCase
 {
@@ -13,6 +16,27 @@ class EventWireTest extends WireMockTestCase
      * @var Brevo $client
      */
     private Brevo $client;
+
+    /**
+     */
+    public function testGetEvents(): void {
+        $testId = 'event.get_events.0';
+        $this->client->event->getEvents(
+            new GetEventsRequest([]),
+            [
+                'headers' => [
+                    'X-Test-Id' => 'event.get_events.0',
+                ],
+            ],
+        );
+        $this->verifyRequestCount(
+            $testId,
+            "GET",
+            "/events",
+            null,
+            1
+        );
+    }
 
     /**
      */
@@ -33,6 +57,32 @@ class EventWireTest extends WireMockTestCase
             $testId,
             "POST",
             "/events",
+            null,
+            1
+        );
+    }
+
+    /**
+     */
+    public function testCreateBatchEvents(): void {
+        $testId = 'event.create_batch_events.0';
+        $this->client->event->createBatchEvents(
+            [
+                new CreateBatchEventsRequestItem([
+                    'eventName' => 'order_created',
+                    'identifiers' => new CreateBatchEventsRequestItemIdentifiers([]),
+                ]),
+            ],
+            [
+                'headers' => [
+                    'X-Test-Id' => 'event.create_batch_events.0',
+                ],
+            ],
+        );
+        $this->verifyRequestCount(
+            $testId,
+            "POST",
+            "/events/batch",
             null,
             1
         );

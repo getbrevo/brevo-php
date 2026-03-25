@@ -9,7 +9,7 @@ use Brevo\Balance\Types\UpdateBalanceDefinitionRequestBalanceAvailabilityDuratio
 use Brevo\Balance\Types\UpdateBalanceDefinitionRequestBalanceOptionAmountOvertakingStrategy;
 use Brevo\Balance\Types\UpdateBalanceDefinitionRequestBalanceOptionCreditRounding;
 use Brevo\Balance\Types\UpdateBalanceDefinitionRequestBalanceOptionDebitRounding;
-use Brevo\Core\Types\ArrayType;
+use Brevo\Balance\Types\UpdateBalanceDefinitionRequestMeta;
 use Brevo\Balance\Types\UpdateBalanceDefinitionRequestUnit;
 
 class UpdateBalanceDefinitionRequest extends JsonSerializableType
@@ -87,10 +87,10 @@ class UpdateBalanceDefinitionRequest extends JsonSerializableType
     public ?float $maxDebitAmountLimit;
 
     /**
-     * @var ?array<string, mixed> $meta Optional metadata for the balance definition.
+     * @var ?UpdateBalanceDefinitionRequestMeta $meta Optional metadata for the balance definition.
      */
-    #[JsonProperty('meta'), ArrayType(['string' => 'mixed'])]
-    public ?array $meta;
+    #[JsonProperty('meta')]
+    public ?UpdateBalanceDefinitionRequestMeta $meta;
 
     /**
      * @var ?float $minAmount Minimum allowable balance amount.
@@ -126,7 +126,7 @@ class UpdateBalanceDefinitionRequest extends JsonSerializableType
      *   maxAmount?: ?float,
      *   maxCreditAmountLimit?: ?float,
      *   maxDebitAmountLimit?: ?float,
-     *   meta?: ?array<string, mixed>,
+     *   meta?: ?UpdateBalanceDefinitionRequestMeta,
      *   minAmount?: ?float,
      * } $values
      */

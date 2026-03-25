@@ -3,8 +3,9 @@
 namespace Brevo\Balance\Requests;
 
 use Brevo\Core\Json\JsonSerializableType;
-use Brevo\Balance\Types\GetLoyaltyBalanceProgramsPidTransactionHistoryRequestSortField;
 use Brevo\Balance\Types\GetLoyaltyBalanceProgramsPidTransactionHistoryRequestSort;
+use Brevo\Balance\Types\GetLoyaltyBalanceProgramsPidTransactionHistoryRequestStatus;
+use Brevo\Balance\Types\GetLoyaltyBalanceProgramsPidTransactionHistoryRequestTransactionType;
 
 class GetLoyaltyBalanceProgramsPidTransactionHistoryRequest extends JsonSerializableType
 {
@@ -14,12 +15,12 @@ class GetLoyaltyBalanceProgramsPidTransactionHistoryRequest extends JsonSerializ
     public ?int $limit = 20;
 
     /**
-     * @var ?int $offset Skip a number of records
+     * @var ?int $offset Page number to retrieve
      */
     public ?int $offset = 0;
 
     /**
-     * @var ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestSortField> $sortField Field to sort by
+     * @var ?'createdAt' $sortField Field to sort by
      */
     public ?string $sortField;
 
@@ -44,14 +45,26 @@ class GetLoyaltyBalanceProgramsPidTransactionHistoryRequest extends JsonSerializ
     public ?array $filters;
 
     /**
+     * @var ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestStatus> $status Transaction status filter. Allowed values: draft, completed, rejected, cancelled, expired
+     */
+    public ?string $status;
+
+    /**
+     * @var ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestTransactionType> $transactionType Transaction type filter. Allowed values: credit, debit
+     */
+    public ?string $transactionType;
+
+    /**
      * @param array{
      *   contactId?: int,
      *   balanceDefinitionId: string,
      *   limit?: ?int,
      *   offset?: ?int,
-     *   sortField?: ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestSortField>,
+     *   sortField?: ?'createdAt',
      *   sort?: ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestSort>,
      *   filters?: ?array<string>,
+     *   status?: ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestStatus>,
+     *   transactionType?: ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestTransactionType>,
      * } $values
      */
     public function __construct(
@@ -64,5 +77,7 @@ class GetLoyaltyBalanceProgramsPidTransactionHistoryRequest extends JsonSerializ
         $this->contactId = $values['contactId'] ?? 0;
         $this->balanceDefinitionId = $values['balanceDefinitionId'];
         $this->filters = $values['filters'] ?? null;
+        $this->status = $values['status'] ?? null;
+        $this->transactionType = $values['transactionType'] ?? null;
     }
 }

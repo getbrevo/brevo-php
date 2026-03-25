@@ -20,7 +20,9 @@ use Brevo\Balance\Requests\UpdateBalanceLimitRequest;
 use Brevo\Balance\Types\UpdateBalanceLimitRequestConstraintType;
 use Brevo\Balance\Types\UpdateBalanceLimitRequestDurationUnit;
 use Brevo\Balance\Types\UpdateBalanceLimitRequestTransactionType;
+use Brevo\Balance\Requests\GetContactBalancesRequest;
 use Brevo\Balance\Requests\CreateBalanceOrderRequest;
+use Brevo\Balance\Requests\GetSubscriptionBalancesRequest;
 use Brevo\Balance\Requests\PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesRequest;
 use Brevo\Balance\Requests\GetLoyaltyBalanceProgramsPidTransactionHistoryRequest;
 use Brevo\Balance\Requests\BeginTransactionRequest;
@@ -287,6 +289,7 @@ class BalanceWireTest extends WireMockTestCase
         $testId = 'balance.get_contact_balances.0';
         $this->client->balance->getContactBalances(
             'pid',
+            new GetContactBalancesRequest([]),
             [
                 'headers' => [
                     'X-Test-Id' => 'balance.get_contact_balances.0',
@@ -337,6 +340,7 @@ class BalanceWireTest extends WireMockTestCase
         $this->client->balance->getSubscriptionBalances(
             'pid',
             'cid',
+            new GetSubscriptionBalancesRequest([]),
             [
                 'headers' => [
                     'X-Test-Id' => 'balance.get_subscription_balances.0',
@@ -385,7 +389,7 @@ class BalanceWireTest extends WireMockTestCase
             'pid',
             new GetLoyaltyBalanceProgramsPidTransactionHistoryRequest([
                 'contactId' => 1,
-                'balanceDefinitionId' => 'balance_definition_id',
+                'balanceDefinitionId' => 'balanceDefinitionId',
             ]),
             [
                 'headers' => [
@@ -397,7 +401,7 @@ class BalanceWireTest extends WireMockTestCase
             $testId,
             "GET",
             "/loyalty/balance/programs/pid/transaction-history",
-            ['contact_id' => '1', 'balance_definition_id' => 'balance_definition_id'],
+            ['contactId' => '1', 'balanceDefinitionId' => 'balanceDefinitionId'],
             1
         );
     }
