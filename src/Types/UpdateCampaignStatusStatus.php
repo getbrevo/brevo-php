@@ -11,5 +11,6 @@ enum UpdateCampaignStatusStatus: string
     case Queued = "queued";
     case Replicate = "replicate";
     case ReplicateTemplate = "replicateTemplate";
+    case Cancel = "cancel";
     case Draft = "draft";
 }

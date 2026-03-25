@@ -10,6 +10,12 @@ use Brevo\Core\Types\Union;
 class CreateUpdateBatchProductsRequestProductsItem extends JsonSerializableType
 {
     /**
+     * @var ?string $brand Brand of the product
+     */
+    #[JsonProperty('brand')]
+    public ?string $brand;
+
+    /**
      * @var ?array<string> $categories Category ID-s of the product
      */
     #[JsonProperty('categories'), ArrayType(['string'])]
@@ -20,6 +26,12 @@ class CreateUpdateBatchProductsRequestProductsItem extends JsonSerializableType
      */
     #[JsonProperty('deletedAt')]
     public ?string $deletedAt;
+
+    /**
+     * @var ?string $description Description of the product
+     */
+    #[JsonProperty('description')]
+    public ?string $description;
 
     /**
      * @var string $id Product ID for which you requested the details
@@ -43,7 +55,7 @@ class CreateUpdateBatchProductsRequestProductsItem extends JsonSerializableType
      * @var ?array<string, (
      *    string
      *   |int
-     * )> $metaInfo Meta data of product such as description, vendor, producer, stock level. The size of cumulative metaInfo shall not exceed **1000 KB**. Maximum length of metaInfo object can be 20.
+     * )> $metaInfo Meta data of product such as description, vendor, producer, stock level. The total characters of cumulative metaInfo shall not exceed **20000 characters**.
      */
     #[JsonProperty('metaInfo'), ArrayType(['string' => new Union('string', 'integer')])]
     public ?array $metaInfo;
@@ -88,8 +100,10 @@ class CreateUpdateBatchProductsRequestProductsItem extends JsonSerializableType
      * @param array{
      *   id: string,
      *   name: string,
+     *   brand?: ?string,
      *   categories?: ?array<string>,
      *   deletedAt?: ?string,
+     *   description?: ?string,
      *   imageUrl?: ?string,
      *   isDeleted?: ?bool,
      *   metaInfo?: ?array<string, (
@@ -106,8 +120,10 @@ class CreateUpdateBatchProductsRequestProductsItem extends JsonSerializableType
     public function __construct(
         array $values,
     ) {
+        $this->brand = $values['brand'] ?? null;
         $this->categories = $values['categories'] ?? null;
         $this->deletedAt = $values['deletedAt'] ?? null;
+        $this->description = $values['description'] ?? null;
         $this->id = $values['id'];
         $this->imageUrl = $values['imageUrl'] ?? null;
         $this->isDeleted = $values['isDeleted'] ?? null;

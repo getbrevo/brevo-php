@@ -133,6 +133,22 @@ interface ProgramClientInterface
     public function getParameterSubscriptionInfo(string $pid, GetParameterSubscriptionInfoRequest $request = new GetParameterSubscriptionInfoRequest(), ?array $options = null): ?GetParameterSubscriptionInfoResponse;
 
     /**
+     * Delete subscription for a contact
+     *
+     * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
+     * @param int $cid Contact ID.
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     */
+    public function deleteContactSubscription(string $pid, int $cid, ?array $options = null): void;
+
+    /**
      * Publishes loyalty program
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.

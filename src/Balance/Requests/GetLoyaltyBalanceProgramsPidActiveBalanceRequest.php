@@ -37,6 +37,11 @@ class GetLoyaltyBalanceProgramsPidActiveBalanceRequest extends JsonSerializableT
     public string $balanceDefinitionId;
 
     /**
+     * @var ?bool $includeInternal Include balances tied to internal definitions.
+     */
+    public ?bool $includeInternal;
+
+    /**
      * @param array{
      *   contactId: int,
      *   balanceDefinitionId: string,
@@ -44,6 +49,7 @@ class GetLoyaltyBalanceProgramsPidActiveBalanceRequest extends JsonSerializableT
      *   offset?: ?int,
      *   sortField?: ?string,
      *   sort?: ?string,
+     *   includeInternal?: ?bool,
      * } $values
      */
     public function __construct(
@@ -55,5 +61,6 @@ class GetLoyaltyBalanceProgramsPidActiveBalanceRequest extends JsonSerializableT
         $this->sort = $values['sort'] ?? null;
         $this->contactId = $values['contactId'];
         $this->balanceDefinitionId = $values['balanceDefinitionId'];
+        $this->includeInternal = $values['includeInternal'] ?? null;
     }
 }

@@ -10,4 +10,7 @@ enum GetEmailCampaignsResponseCampaignsItemStatus: string
     case Queued = "queued";
     case Suspended = "suspended";
     case InProcess = "in_process";
+    case InReview = "in_review";
+    case Cancelling = "cancelling";
+    case Cancelled = "cancelled";
 }
