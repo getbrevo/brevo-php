@@ -5,6 +5,7 @@ namespace Brevo\Tier\Requests;
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Tier\Types\CreateTierGroupRequestDowngradeStrategy;
 use Brevo\Core\Json\JsonProperty;
+use Brevo\Tier\Types\CreateTierGroupRequestMeta;
 use Brevo\Core\Types\ArrayType;
 use Brevo\Tier\Types\CreateTierGroupRequestUpgradeStrategy;
 
@@ -23,6 +24,12 @@ class CreateTierGroupRequest extends JsonSerializableType
     public string $name;
 
     /**
+     * @var ?CreateTierGroupRequestMeta $meta Additional metadata for the tier group.
+     */
+    #[JsonProperty('meta')]
+    public ?CreateTierGroupRequestMeta $meta;
+
+    /**
      * @var ?array<string> $tierOrder Order of the tiers in the group in ascending order
      */
     #[JsonProperty('tierOrder'), ArrayType(['string'])]
@@ -38,6 +45,7 @@ class CreateTierGroupRequest extends JsonSerializableType
      * @param array{
      *   name: string,
      *   downgradeStrategy?: ?value-of<CreateTierGroupRequestDowngradeStrategy>,
+     *   meta?: ?CreateTierGroupRequestMeta,
      *   tierOrder?: ?array<string>,
      *   upgradeStrategy?: ?value-of<CreateTierGroupRequestUpgradeStrategy>,
      * } $values
@@ -47,6 +55,7 @@ class CreateTierGroupRequest extends JsonSerializableType
     ) {
         $this->downgradeStrategy = $values['downgradeStrategy'] ?? null;
         $this->name = $values['name'];
+        $this->meta = $values['meta'] ?? null;
         $this->tierOrder = $values['tierOrder'] ?? null;
         $this->upgradeStrategy = $values['upgradeStrategy'] ?? null;
     }

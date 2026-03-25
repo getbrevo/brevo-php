@@ -11,7 +11,7 @@ use Brevo\Core\Types\Date;
 use Brevo\Balance\Types\PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequestBalanceOptionAmountOvertakingStrategy;
 use Brevo\Balance\Types\PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequestBalanceOptionCreditRounding;
 use Brevo\Balance\Types\PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequestBalanceOptionDebitRounding;
-use Brevo\Core\Types\ArrayType;
+use Brevo\Balance\Types\PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequestMeta;
 use Brevo\Balance\Types\PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequestUnit;
 
 class PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequest extends JsonSerializableType
@@ -89,10 +89,10 @@ class PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequest extends JsonSeriali
     public ?float $maxDebitAmountLimit;
 
     /**
-     * @var ?array<string, mixed> $meta Additional metadata for the balance definition.
+     * @var ?PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequestMeta $meta Additional metadata for the balance definition.
      */
-    #[JsonProperty('meta'), ArrayType(['string' => 'mixed'])]
-    public ?array $meta;
+    #[JsonProperty('meta')]
+    public ?PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequestMeta $meta;
 
     /**
      * @var ?float $minAmount Minimum allowable balance amount.
@@ -128,7 +128,7 @@ class PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequest extends JsonSeriali
      *   maxAmount?: ?float,
      *   maxCreditAmountLimit?: ?float,
      *   maxDebitAmountLimit?: ?float,
-     *   meta?: ?array<string, mixed>,
+     *   meta?: ?PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequestMeta,
      *   minAmount?: ?float,
      * } $values
      */

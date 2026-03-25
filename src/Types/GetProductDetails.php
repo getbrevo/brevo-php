@@ -9,6 +9,12 @@ use Brevo\Core\Types\ArrayType;
 class GetProductDetails extends JsonSerializableType
 {
     /**
+     * @var ?string $brand Brand of the product
+     */
+    #[JsonProperty('brand')]
+    public ?string $brand;
+
+    /**
      * @var ?array<string> $categories Category ID-s of the product
      */
     #[JsonProperty('categories'), ArrayType(['string'])]
@@ -19,6 +25,12 @@ class GetProductDetails extends JsonSerializableType
      */
     #[JsonProperty('createdAt')]
     public string $createdAt;
+
+    /**
+     * @var ?string $description Description of the product
+     */
+    #[JsonProperty('description')]
+    public ?string $description;
 
     /**
      * @var string $id Product ID for which you requested the details
@@ -112,7 +124,9 @@ class GetProductDetails extends JsonSerializableType
      *   name: string,
      *   s3ThumbAnalytics: string,
      *   s3ThumbEditor: string,
+     *   brand?: ?string,
      *   categories?: ?array<string>,
+     *   description?: ?string,
      *   imageUrl?: ?string,
      *   isDeleted?: ?bool,
      *   metaInfo?: ?array<string, mixed>,
@@ -127,8 +141,10 @@ class GetProductDetails extends JsonSerializableType
     public function __construct(
         array $values,
     ) {
+        $this->brand = $values['brand'] ?? null;
         $this->categories = $values['categories'] ?? null;
         $this->createdAt = $values['createdAt'];
+        $this->description = $values['description'] ?? null;
         $this->id = $values['id'];
         $this->imageUrl = $values['imageUrl'] ?? null;
         $this->isDeleted = $values['isDeleted'] ?? null;

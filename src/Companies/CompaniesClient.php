@@ -25,6 +25,7 @@ use Brevo\Types\Company;
 use Brevo\Companies\Requests\PatchCompaniesIdRequest;
 use Brevo\Companies\Requests\PostCrmAttributesRequest;
 use Brevo\Companies\Types\PostCrmAttributesResponse;
+use Brevo\Companies\Requests\PatchCrmAttributesIdRequest;
 use Brevo\Companies\Types\GetCrmAttributesCompaniesResponseItem;
 use Brevo\Core\Json\JsonDecoder;
 
@@ -452,6 +453,86 @@ class CompaniesClient implements CompaniesClientInterface
             }
         } catch (JsonException $e) {
             throw new BrevoException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new BrevoException(message: $e->getMessage(), previous: $e);
+        }
+        throw new BrevoApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param string $id Attribute ID
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @throws BrevoException
+     * @throws BrevoApiException
+     */
+    public function deleteAnAttribute(string $id, ?array $options = null): void
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    path: "crm/attributes/{$id}",
+                    method: HttpMethod::DELETE,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                return;
+            }
+        } catch (ClientExceptionInterface $e) {
+            throw new BrevoException(message: $e->getMessage(), previous: $e);
+        }
+        throw new BrevoApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param string $id Attribute ID
+     * @param PatchCrmAttributesIdRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @throws BrevoException
+     * @throws BrevoApiException
+     */
+    public function updateAnAttribute(string $id, PatchCrmAttributesIdRequest $request = new PatchCrmAttributesIdRequest(), ?array $options = null): void
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    path: "crm/attributes/{$id}",
+                    method: HttpMethod::PATCH,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                return;
+            }
         } catch (ClientExceptionInterface $e) {
             throw new BrevoException(message: $e->getMessage(), previous: $e);
         }
