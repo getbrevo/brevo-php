@@ -224,7 +224,8 @@ class Order implements ModelInterface, ArrayAccess
         $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
         $this->container['products'] = isset($data['products']) ? $data['products'] : null;
         $this->container['email'] = isset($data['email']) ? $data['email'] : null;
-        $this->container['billing'] = isset($data['billing']) ? $data['billing'] : null;
+        $billing = isset($data['billing']) ? $data['billing'] : null;
+        $this->container['billing'] = is_array($billing) ? new OrderBilling($billing) : $billing;
         $this->container['coupons'] = isset($data['coupons']) ? $data['coupons'] : null;
     }
 
@@ -457,7 +458,7 @@ class Order implements ModelInterface, ArrayAccess
      */
     public function setBilling($billing)
     {
-        $this->container['billing'] = $billing;
+        $this->container['billing'] = is_array($billing) ? new OrderBilling($billing) : $billing;
 
         return $this;
     }

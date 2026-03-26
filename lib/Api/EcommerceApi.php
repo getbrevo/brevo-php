@@ -30,6 +30,7 @@ namespace Brevo\Client\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
@@ -92,15 +93,16 @@ class EcommerceApi
      *
      * Create orders in batch
      *
-     * @param  \Brevo\Client\Model\OrderBatch $orderBatch orderBatch (required)
+     * @param  \Brevo\Client\Model\CreateBatchOrderRequest $createBatchOrderRequest createBatchOrderRequest (required)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Brevo\Client\Model\CreateBatchOrder202Response|\Brevo\Client\Model\ErrorModel
      */
-    public function createBatchOrder($orderBatch)
+    public function createBatchOrder($createBatchOrderRequest)
     {
-        $this->createBatchOrderWithHttpInfo($orderBatch);
+        list($response) = $this->createBatchOrderWithHttpInfo($createBatchOrderRequest);
+        return $response;
     }
 
     /**
@@ -108,16 +110,15 @@ class EcommerceApi
      *
      * Create orders in batch
      *
-     * @param  \Brevo\Client\Model\OrderBatch $orderBatch (required)
+     * @param  \Brevo\Client\Model\CreateBatchOrderRequest $createBatchOrderRequest (required)
      *
      * @throws \Brevo\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Brevo\Client\Model\CreateBatchOrder202Response|\Brevo\Client\Model\ErrorModel, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createBatchOrderWithHttpInfo($orderBatch)
+    public function createBatchOrderWithHttpInfo($createBatchOrderRequest)
     {
-        $returnType = '';
-        $request = $this->createBatchOrderRequest($orderBatch);
+        $request = $this->createBatchOrderRequest($createBatchOrderRequest);
 
         try {
             $options = $this->createHttpClientOption();
@@ -126,31 +127,96 @@ class EcommerceApi
             } catch (RequestException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
+                    (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
+            switch ($statusCode) {
+                case 202:
+                    $content = (string) $response->getBody();
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf('Error JSON decoding server response (%s)', $request->getUri()),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                    return [
+                        ObjectSerializer::deserialize($content, '\Brevo\Client\Model\CreateBatchOrder202Response', []),
+                        $statusCode,
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    $content = (string) $response->getBody();
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf('Error JSON decoding server response (%s)', $request->getUri()),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                    return [
+                        ObjectSerializer::deserialize($content, '\Brevo\Client\Model\ErrorModel', []),
+                        $statusCode,
+                        $response->getHeaders()
+                    ];
+            }
+
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, $request->getUri()),
                     $statusCode,
                     $response->getHeaders(),
-                    $response->getBody()
+                    (string) $response->getBody()
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            $returnType = '\Brevo\Client\Model\CreateBatchOrder202Response';
+            $content = (string) $response->getBody();
+            try {
+                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+            } catch (\JsonException $exception) {
+                throw new ApiException(
+                    sprintf('Error JSON decoding server response (%s)', $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $content
+                );
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 202:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Brevo\Client\Model\CreateBatchOrder202Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -169,14 +235,14 @@ class EcommerceApi
      *
      * Create orders in batch
      *
-     * @param  \Brevo\Client\Model\OrderBatch $orderBatch (required)
+     * @param  \Brevo\Client\Model\CreateBatchOrderRequest $createBatchOrderRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createBatchOrderAsync($orderBatch)
+    public function createBatchOrderAsync($createBatchOrderRequest)
     {
-        return $this->createBatchOrderAsyncWithHttpInfo($orderBatch)
+        return $this->createBatchOrderAsyncWithHttpInfo($createBatchOrderRequest)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -189,34 +255,36 @@ class EcommerceApi
      *
      * Create orders in batch
      *
-     * @param  \Brevo\Client\Model\OrderBatch $orderBatch (required)
+     * @param  \Brevo\Client\Model\CreateBatchOrderRequest $createBatchOrderRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createBatchOrderAsyncWithHttpInfo($orderBatch)
+    public function createBatchOrderAsyncWithHttpInfo($createBatchOrderRequest)
     {
-        $returnType = '';
-        $request = $this->createBatchOrderRequest($orderBatch);
+        $returnType = '\Brevo\Client\Model\CreateBatchOrder202Response';
+        $request = $this->createBatchOrderRequest($createBatchOrderRequest);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    $content = (string) $response->getBody();
+                    $content = json_decode($content);
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
                     throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
+                        sprintf('[%d] Error connecting to the API (%s)', $statusCode, $exception->getRequest()->getUri()),
                         $statusCode,
                         $response->getHeaders(),
-                        $response->getBody()
+                        (string) $response->getBody()
                     );
                 }
             );
@@ -225,17 +293,16 @@ class EcommerceApi
     /**
      * Create request for operation 'createBatchOrder'
      *
-     * @param  \Brevo\Client\Model\OrderBatch $orderBatch (required)
+     * @param  \Brevo\Client\Model\CreateBatchOrderRequest $createBatchOrderRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createBatchOrderRequest($orderBatch)
+    protected function createBatchOrderRequest($createBatchOrderRequest)
     {
-        // verify the required parameter 'orderBatch' is set
-        if ($orderBatch === null || (is_array($orderBatch) && count($orderBatch) === 0)) {
+        if ($createBatchOrderRequest === null || (is_array($createBatchOrderRequest) && count($createBatchOrderRequest) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $orderBatch when calling createBatchOrder'
+                'Missing the required parameter $createBatchOrderRequest when calling createBatchOrder'
             );
         }
 
@@ -246,39 +313,16 @@ class EcommerceApi
         $httpBody = '';
         $multipart = false;
 
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
-
-        // body params
-        $_tempBody = null;
-        if (isset($orderBatch)) {
-            $_tempBody = $orderBatch;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (isset($createBatchOrderRequest)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($createBatchOrderRequest));
+            } else {
+                $httpBody = $createBatchOrderRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -289,15 +333,9 @@ class EcommerceApi
                         'contents' => $formParamValue
                     ];
                 }
-                // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = \GuzzleHttp\json_encode($formParams);
             }
         }
 
