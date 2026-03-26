@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **createBatchOrder**
-> createBatchOrder($orderBatch)
+> createBatchOrder($createBatchOrderRequest): \Brevo\Client\Model\CreateBatchOrder202Response
 
 Create orders in batch
 
@@ -45,10 +45,11 @@ $apiInstance = new Brevo\Client\Api\EcommerceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$orderBatch = new \Brevo\Client\Model\OrderBatch(); // \Brevo\Client\Model\OrderBatch | 
+$createBatchOrderRequest = new \Brevo\Client\Model\CreateBatchOrderRequest(); // \Brevo\Client\Model\CreateBatchOrderRequest
 
 try {
-    $apiInstance->createBatchOrder($orderBatch);
+    $result = $apiInstance->createBatchOrder($createBatchOrderRequest);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EcommerceApi->createBatchOrder: ', $e->getMessage(), PHP_EOL;
 }
@@ -59,11 +60,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderBatch** | [**\Brevo\Client\Model\OrderBatch**](../Model/OrderBatch.md)|  |
+ **createBatchOrderRequest** | [**\Brevo\Client\Model\CreateBatchOrderRequest**](../Model/CreateBatchOrderRequest.md)|  |
 
 ### Return type
 
-void (empty response body)
+[**\Brevo\Client\Model\CreateBatchOrder202Response**](../Model/CreateBatchOrder202Response.md)
 
 ### Authorization
 
