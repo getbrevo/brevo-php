@@ -74,6 +74,8 @@ class CreateBatchOrder202ResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateBatchOrder202Response()
     {
+        $model = new \Brevo\Client\Model\CreateBatchOrder202Response();
+        $this->assertNotNull($model);
     }
 
     /**
@@ -81,5 +83,8 @@ class CreateBatchOrder202ResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function testPropertyBatchId()
     {
+        $model = new \Brevo\Client\Model\CreateBatchOrder202Response();
+        $model->setBatchId(12345.0);
+        $this->assertEquals(12345.0, $model->getBatchId());
     }
 }

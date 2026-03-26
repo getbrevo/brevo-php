@@ -74,6 +74,8 @@ class CreateBatchOrderRequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateBatchOrderRequest()
     {
+        $model = new \Brevo\Client\Model\CreateBatchOrderRequest();
+        $this->assertNotNull($model);
     }
 
     /**
@@ -81,6 +83,9 @@ class CreateBatchOrderRequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testPropertyOrders()
     {
+        $model = new \Brevo\Client\Model\CreateBatchOrderRequest();
+        $model->setOrders([]);
+        $this->assertEquals([], $model->getOrders());
     }
 
     /**
@@ -88,6 +93,9 @@ class CreateBatchOrderRequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testPropertyHistorical()
     {
+        $model = new \Brevo\Client\Model\CreateBatchOrderRequest();
+        $model->setHistorical(true);
+        $this->assertTrue($model->getHistorical());
     }
 
     /**
@@ -95,5 +103,8 @@ class CreateBatchOrderRequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testPropertyNotifyUrl()
     {
+        $model = new \Brevo\Client\Model\CreateBatchOrderRequest();
+        $model->setNotifyUrl('https://example.com/notify');
+        $this->assertEquals('https://example.com/notify', $model->getNotifyUrl());
     }
 }
