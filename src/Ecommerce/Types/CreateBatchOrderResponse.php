@@ -8,16 +8,16 @@ use Brevo\Core\Json\JsonProperty;
 class CreateBatchOrderResponse extends JsonSerializableType
 {
     /**
-     * @var float $batchId Batch ID of the request
-     */
-    #[JsonProperty('batchId')]
-    public float $batchId;
-
-    /**
      * @var ?int $count Number of orders
      */
     #[JsonProperty('count')]
     public ?int $count;
+
+    /**
+     * @var float $batchId Batch ID of the request
+     */
+    #[JsonProperty('batch_id')]
+    public float $batchId;
 
     /**
      * @param array{
@@ -28,8 +28,8 @@ class CreateBatchOrderResponse extends JsonSerializableType
     public function __construct(
         array $values,
     ) {
-        $this->batchId = $values['batchId'];
         $this->count = $values['count'] ?? null;
+        $this->batchId = $values['batchId'];
     }
 
     /**
