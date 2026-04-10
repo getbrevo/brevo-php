@@ -29,10 +29,10 @@ class GetProcessesResponseProcessesItemInfoImport extends JsonSerializableType
     public ?int $duplicateExtId;
 
     /**
-     * @var ?int $duplicateEmailId Number of duplicate email IDs
+     * @var ?string $duplicateEmailId URL to CSV file containing duplicate email IDs, or null if none
      */
     #[JsonProperty('duplicate_email_id')]
-    public ?int $duplicateEmailId;
+    public ?string $duplicateEmailId;
 
     /**
      * @var ?int $duplicatePhoneId Number of duplicate phone numbers
@@ -57,7 +57,7 @@ class GetProcessesResponseProcessesItemInfoImport extends JsonSerializableType
      *   invalidEmails?: ?int,
      *   duplicateContactId?: ?int,
      *   duplicateExtId?: ?int,
-     *   duplicateEmailId?: ?int,
+     *   duplicateEmailId?: ?string,
      *   duplicatePhoneId?: ?int,
      *   duplicateWhatsappId?: ?int,
      *   duplicateLandlineNumberId?: ?int,
