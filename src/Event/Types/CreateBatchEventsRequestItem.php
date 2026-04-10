@@ -13,9 +13,10 @@ class CreateBatchEventsRequestItem extends JsonSerializableType
      * @var ?array<string, (
      *    string
      *   |int
+     *   |bool
      * )> $contactProperties Properties defining the state of the contact associated to this event. Useful to update contact attributes defined in your contacts database while passing the event. For example: **"FIRSTNAME": "Jane" , "AGE": 37**
      */
-    #[JsonProperty('contact_properties'), ArrayType(['string' => new Union('string', 'integer')])]
+    #[JsonProperty('contact_properties'), ArrayType(['string' => new Union('string', 'integer', 'bool')])]
     public ?array $contactProperties;
 
     /**
@@ -34,11 +35,12 @@ class CreateBatchEventsRequestItem extends JsonSerializableType
      * @var ?array<string, (
      *    string
      *   |int
+     *   |bool
      *   |array<string, mixed>
      *   |array<mixed>
      * )> $eventProperties Properties of the event. Top level properties and nested properties can be used to better segment contacts and personalise workflow conditions. The following field type are supported: string, number, boolean (true/false), date (Timestamp e.g. "2024-01-24T17:39:57+01:00"). Keys are limited to 255 characters, alphanumerical characters and - _ only. Size is limited to 50Kb.
      */
-    #[JsonProperty('event_properties'), ArrayType(['string' => new Union('string', 'integer', ['string' => 'mixed'], ['mixed'])])]
+    #[JsonProperty('event_properties'), ArrayType(['string' => new Union('string', 'integer', 'bool', ['string' => 'mixed'], ['mixed'])])]
     public ?array $eventProperties;
 
     /**
@@ -60,11 +62,13 @@ class CreateBatchEventsRequestItem extends JsonSerializableType
      *   contactProperties?: ?array<string, (
      *    string
      *   |int
+     *   |bool
      * )>,
      *   eventDate?: ?string,
      *   eventProperties?: ?array<string, (
      *    string
      *   |int
+     *   |bool
      *   |array<string, mixed>
      *   |array<mixed>
      * )>,

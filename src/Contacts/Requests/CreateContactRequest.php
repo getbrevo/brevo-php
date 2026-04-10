@@ -12,12 +12,13 @@ class CreateContactRequest extends JsonSerializableType
     /**
      * @var ?array<string, (
      *    float
+     *   |int
      *   |string
      *   |bool
      *   |array<string>
      * )> $attributes Pass the set of attributes and their values. The attribute's parameter should be passed in capital letter while creating a contact. Values that don't match the attribute type (e.g. text or string in a date attribute) will be ignored. **These attributes must be present in your Brevo account**. For eg: **{"FNAME":"Elly", "LNAME":"Roger", "COUNTRIES": ["India","China"]}**
      */
-    #[JsonProperty('attributes'), ArrayType(['string' => new Union('float', 'string', 'bool', ['string'])])]
+    #[JsonProperty('attributes'), ArrayType(['string' => new Union('float', 'integer', 'string', 'bool', ['string'])])]
     public ?array $attributes;
 
     /**
@@ -66,6 +67,7 @@ class CreateContactRequest extends JsonSerializableType
      * @param array{
      *   attributes?: ?array<string, (
      *    float
+     *   |int
      *   |string
      *   |bool
      *   |array<string>
