@@ -18,14 +18,14 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.5",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "^7.10.0"
+        "guzzlehttp/guzzle": "^7.10.0",
+        "phpunit/phpunit": "13.1.7"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.6.34",
         "squizlabs/php_codesniffer": "~3.13.4",
         "friendsofphp/php-cs-fixer": "~3.88"
     },
