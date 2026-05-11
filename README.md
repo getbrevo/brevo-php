@@ -32,31 +32,31 @@ PHP 5.6 and later
 
 To install the bindings via [Composer](http://getcomposer.org/):
 
-Create a ```composer.json``` file in any directory & add below code in composer.json file.
+Create a `composer.json` file in any directory & add below code in composer.json file.
 
-```
+```json
 {
-"require": {
-"getbrevo/brevo-php": "1.x.x"
-}
+    "require": {
+        "getbrevo/brevo-php": "1.x.x"
+    }
 }
 ```
 
 Then run below commands in the same directory
-```
+```bash
 composer require getbrevo/brevo-php "1.x.x"
 ```
 
 Further do:
-* run ``composer install`` to get these dependencies added to your vendor directory
-* add the autoloader to your application with this line: ``require("vendor/autoload.php")``
+* run `composer install` to get these dependencies added to your vendor directory
+* add the autoloader to your application with this line: `require("vendor/autoload.php")`
 
 
 ## Tests
 
 To run the unit tests:
 
-```
+```bash
 composer install
 ./vendor/bin/phpunit
 ```
@@ -734,6 +734,6 @@ The partner key should be passed in the request headers as `partner-key` along w
 - **Location**: HTTP header
 
 
-If you find a bug, please post the issue on [Github](https://github.com/getbrevo/brevo-php/issues).
+If you find a bug, please post the issue on [GitHub](https://github.com/getbrevo/brevo-php/issues).
 
 As always, if you need additional assistance, drop us a note [here](https://account.brevo.com/support).
