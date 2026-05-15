@@ -17,13 +17,13 @@ class GetInboundEmailEventsByUuidResponse extends JsonSerializableType
     public ?array $attachments;
 
     /**
-     * @var ?DateTime $deliveredAt Date when email was delivered successfully to client_dev’s webhook
+     * @var ?DateTime $deliveredAt Date when email was delivered successfully to the client’s webhook
      */
     #[JsonProperty('deliveredAt'), Date(Date::TYPE_DATETIME)]
     public ?DateTime $deliveredAt;
 
     /**
-     * @var ?array<GetInboundEmailEventsByUuidResponseLogsItem> $logs List of events/logs that describe the lifecycle of the email on SIB platform
+     * @var ?array<GetInboundEmailEventsByUuidResponseLogsItem> $logs List of events/logs that describe the lifecycle of the email on the Brevo platform
      */
     #[JsonProperty('logs'), ArrayType([GetInboundEmailEventsByUuidResponseLogsItem::class])]
     public ?array $logs;

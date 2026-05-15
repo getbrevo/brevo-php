@@ -14,9 +14,8 @@ use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Brevo\Event\Requests\CreateEventRequest;
-use Brevo\Event\Types\CreateBatchEventsRequestItem;
+use Brevo\Event\Requests\CreateBatchEventsRequest;
 use Brevo\Types\BatchAcceptedResponse;
-use Brevo\Core\Json\JsonSerializer;
 
 class EventClient implements EventClientInterface
 {
@@ -174,7 +173,7 @@ class EventClient implements EventClientInterface
     /**
      * Create multiple events to track contacts' interactions in a single request.
      *
-     * @param array<CreateBatchEventsRequestItem> $request
+     * @param CreateBatchEventsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -187,7 +186,7 @@ class EventClient implements EventClientInterface
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function createBatchEvents(array $request, ?array $options = null): ?BatchAcceptedResponse
+    public function createBatchEvents(CreateBatchEventsRequest $request, ?array $options = null): ?BatchAcceptedResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -196,7 +195,7 @@ class EventClient implements EventClientInterface
                     baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
                     path: "events/batch",
                     method: HttpMethod::POST,
-                    body: JsonSerializer::serializeArray($request, [CreateBatchEventsRequestItem::class]),
+                    body: $request,
                 ),
                 $options,
             );

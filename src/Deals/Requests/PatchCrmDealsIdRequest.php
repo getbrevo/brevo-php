@@ -15,7 +15,7 @@ class PatchCrmDealsIdRequest extends JsonSerializableType
     public ?array $attributes;
 
     /**
-     * @var ?array<string> $linkedCompaniesIds Warning - Using PATCH on linkedCompaniesIds replaces the list of linked contacts. Omitted IDs will be removed.
+     * @var ?array<string> $linkedCompaniesIds Warning - Using PATCH on linkedCompaniesIds replaces the list of linked companies. Omitted IDs will be removed.
      */
     #[JsonProperty('linkedCompaniesIds'), ArrayType(['string'])]
     public ?array $linkedCompaniesIds;

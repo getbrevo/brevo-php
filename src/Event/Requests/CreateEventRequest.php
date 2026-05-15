@@ -6,6 +6,8 @@ use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
 use Brevo\Core\Types\ArrayType;
 use Brevo\Core\Types\Union;
+use DateTime;
+use Brevo\Core\Types\Date;
 use Brevo\Event\Types\CreateEventRequestIdentifiers;
 use Brevo\Event\Types\CreateEventRequestObject;
 
@@ -22,13 +24,13 @@ class CreateEventRequest extends JsonSerializableType
     public ?array $contactProperties;
 
     /**
-     * @var ?string $eventDate Timestamp of when the event occurred (e.g. "2024-01-24T17:39:57+01:00"). If no value is passed, the timestamp of the event creation is used.
+     * @var ?DateTime $eventDate ISO 8601 timestamp of when the event occurred (e.g. "2024-01-24T17:39:57+01:00"). If no value is passed, the timestamp of the event creation is used.
      */
-    #[JsonProperty('event_date')]
-    public ?string $eventDate;
+    #[JsonProperty('event_date'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $eventDate;
 
     /**
-     * @var string $eventName The name of the event that occurred. This is how you will find your event in Brevo. Limited to 255 characters, alphanumerical characters and - _ only.
+     * @var string $eventName The name of the event that occurred. This is how you will find your event in Brevo. Limited to 255 characters; only alphanumeric characters, hyphens (-), and underscores (_) are allowed.
      */
     #[JsonProperty('event_name')]
     public string $eventName;
@@ -40,7 +42,7 @@ class CreateEventRequest extends JsonSerializableType
      *   |bool
      *   |array<string, mixed>
      *   |array<mixed>
-     * )> $eventProperties Properties of the event. Top level properties and nested properties can be used to better segment contacts and personalise workflow conditions. The following field type are supported: string, number, boolean (true/false), date (Timestamp e.g. "2024-01-24T17:39:57+01:00"). Keys are limited to 255 characters, alphanumerical characters and - _ only. Size is limited to 50Kb.
+     * )> $eventProperties Properties of the event. Top level properties and nested properties can be used to better segment contacts and personalise workflow conditions. The following field types are supported: string, number, boolean (true/false), date (Timestamp e.g. "2024-01-24T17:39:57+01:00"). Keys are limited to 255 characters, alphanumerical characters and - _ only. Size is limited to 50KB.
      */
     #[JsonProperty('event_properties'), ArrayType(['string' => new Union('string', 'integer', 'bool', ['string' => 'mixed'], ['mixed'])])]
     public ?array $eventProperties;
@@ -66,7 +68,7 @@ class CreateEventRequest extends JsonSerializableType
      *   |int
      *   |bool
      * )>,
-     *   eventDate?: ?string,
+     *   eventDate?: ?DateTime,
      *   eventProperties?: ?array<string, (
      *    string
      *   |int

@@ -61,7 +61,7 @@ class CreateUpdateProductRequest extends JsonSerializableType
     public ?array $metaInfo;
 
     /**
-     * @var string $name Mandatory in case of creation**. Name of the product for which you requested the details
+     * @var string $name **Mandatory in case of creation**. Name of the product, as displayed in the shop
      */
     #[JsonProperty('name')]
     public string $name;
@@ -79,6 +79,12 @@ class CreateUpdateProductRequest extends JsonSerializableType
     public ?float $price;
 
     /**
+     * @var ?float $alternativePrice Alternative price of the product
+     */
+    #[JsonProperty('alternativePrice')]
+    public ?float $alternativePrice;
+
+    /**
      * @var ?string $sku Product identifier from the shop
      */
     #[JsonProperty('sku')]
@@ -91,7 +97,7 @@ class CreateUpdateProductRequest extends JsonSerializableType
     public ?float $stock;
 
     /**
-     * @var ?bool $updateEnabled Facilitate to update the existing category in the same request (updateEnabled = true)
+     * @var ?bool $updateEnabled Facilitate to update the existing product in the same request (updateEnabled = true)
      */
     #[JsonProperty('updateEnabled')]
     public ?bool $updateEnabled;
@@ -118,6 +124,7 @@ class CreateUpdateProductRequest extends JsonSerializableType
      * )>,
      *   parentId?: ?string,
      *   price?: ?float,
+     *   alternativePrice?: ?float,
      *   sku?: ?string,
      *   stock?: ?float,
      *   updateEnabled?: ?bool,
@@ -138,6 +145,7 @@ class CreateUpdateProductRequest extends JsonSerializableType
         $this->name = $values['name'];
         $this->parentId = $values['parentId'] ?? null;
         $this->price = $values['price'] ?? null;
+        $this->alternativePrice = $values['alternativePrice'] ?? null;
         $this->sku = $values['sku'] ?? null;
         $this->stock = $values['stock'] ?? null;
         $this->updateEnabled = $values['updateEnabled'] ?? null;

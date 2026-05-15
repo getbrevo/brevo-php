@@ -5,7 +5,7 @@ namespace Brevo\Balance;
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
 use Brevo\Balance\Requests\GetLoyaltyBalanceProgramsPidActiveBalanceRequest;
-use Brevo\Types\BalanceLimit;
+use Brevo\Balance\Types\GetLoyaltyBalanceProgramsPidActiveBalanceResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
@@ -20,6 +20,7 @@ use Brevo\Types\BalanceDefinition;
 use Brevo\Balance\Requests\GetBalanceDefinitionRequest;
 use Brevo\Balance\Requests\UpdateBalanceDefinitionRequest;
 use Brevo\Balance\Requests\CreateBalanceLimitRequest;
+use Brevo\Types\BalanceLimit;
 use Brevo\Balance\Requests\GetBalanceLimitRequest;
 use Brevo\Balance\Requests\UpdateBalanceLimitRequest;
 use Brevo\Balance\Requests\GetContactBalancesRequest;
@@ -84,16 +85,16 @@ class BalanceClient implements BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?BalanceLimit
+     * @return ?GetLoyaltyBalanceProgramsPidActiveBalanceResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getActiveBalancesApi(string $pid, GetLoyaltyBalanceProgramsPidActiveBalanceRequest $request, ?array $options = null): ?BalanceLimit
+    public function getActiveBalancesApi(string $pid, GetLoyaltyBalanceProgramsPidActiveBalanceRequest $request, ?array $options = null): ?GetLoyaltyBalanceProgramsPidActiveBalanceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
-        $query['contact_id'] = $request->contactId;
-        $query['balance_definition_id'] = $request->balanceDefinitionId;
+        $query['contactId'] = $request->contactId;
+        $query['balanceDefinitionId'] = $request->balanceDefinitionId;
         if ($request->limit != null) {
             $query['limit'] = $request->limit;
         }
@@ -101,7 +102,7 @@ class BalanceClient implements BalanceClientInterface
             $query['offset'] = $request->offset;
         }
         if ($request->sortField != null) {
-            $query['sort_field'] = $request->sortField;
+            $query['sortField'] = $request->sortField;
         }
         if ($request->sort != null) {
             $query['sort'] = $request->sort;
@@ -125,7 +126,7 @@ class BalanceClient implements BalanceClientInterface
                 if (empty($json)) {
                     return null;
                 }
-                return BalanceLimit::fromJson($json);
+                return GetLoyaltyBalanceProgramsPidActiveBalanceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new BrevoException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -606,7 +607,7 @@ class BalanceClient implements BalanceClientInterface
     }
 
     /**
-     * Returns balance list
+     * Returns contact balances for a given balance definition across all subscriptions.
      *
      * @param string $pid Loyalty Program Id
      * @param GetContactBalancesRequest $request
@@ -622,12 +623,25 @@ class BalanceClient implements BalanceClientInterface
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getContactBalances(string $pid, GetContactBalancesRequest $request = new GetContactBalancesRequest(), ?array $options = null): ?GetContactBalancesResponse
+    public function getContactBalances(string $pid, GetContactBalancesRequest $request, ?array $options = null): ?GetContactBalancesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         $query = [];
+        $query['balanceDefinitionId'] = $request->balanceDefinitionId;
         if ($request->includeInternal != null) {
             $query['includeInternal'] = $request->includeInternal;
+        }
+        if ($request->limit != null) {
+            $query['limit'] = $request->limit;
+        }
+        if ($request->offset != null) {
+            $query['offset'] = $request->offset;
+        }
+        if ($request->sort != null) {
+            $query['sort'] = $request->sort;
+        }
+        if ($request->sortField != null) {
+            $query['sortField'] = $request->sortField;
         }
         try {
             $response = $this->client->sendRequest(
@@ -850,14 +864,14 @@ class BalanceClient implements BalanceClientInterface
         if ($request->sort != null) {
             $query['sort'] = $request->sort;
         }
-        if ($request->filters != null) {
-            $query['filters'] = $request->filters;
-        }
         if ($request->status != null) {
             $query['status'] = $request->status;
         }
         if ($request->transactionType != null) {
             $query['transactionType'] = $request->transactionType;
+        }
+        if ($request->loyaltySubscriptionId != null) {
+            $query['loyaltySubscriptionId'] = $request->loyaltySubscriptionId;
         }
         try {
             $response = $this->client->sendRequest(

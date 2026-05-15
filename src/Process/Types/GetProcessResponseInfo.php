@@ -6,33 +6,25 @@ use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
 
 /**
- * Additional process information (for completed processes)
+ * Additional process information, only returned for completed IMPORTUSER processes. Contains URLs to CSV files with details about problematic records.
  */
 class GetProcessResponseInfo extends JsonSerializableType
 {
     /**
-     * @var ?GetProcessResponseInfoImport $import Import process details
+     * @var ?GetProcessResponseInfoImport $import Import process details with URLs to CSV reports
      */
     #[JsonProperty('import')]
     public ?GetProcessResponseInfoImport $import;
 
     /**
-     * @var ?GetProcessResponseInfoExport $export Export process details
-     */
-    #[JsonProperty('export')]
-    public ?GetProcessResponseInfoExport $export;
-
-    /**
      * @param array{
      *   import?: ?GetProcessResponseInfoImport,
-     *   export?: ?GetProcessResponseInfoExport,
      * } $values
      */
     public function __construct(
         array $values = [],
     ) {
         $this->import = $values['import'] ?? null;
-        $this->export = $values['export'] ?? null;
     }
 
     /**

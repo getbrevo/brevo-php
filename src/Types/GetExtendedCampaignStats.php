@@ -21,10 +21,10 @@ class GetExtendedCampaignStats extends JsonSerializableType
     public GetCampaignStats $globalStats;
 
     /**
-     * @var GetExtendedCampaignStatsLinksStats $linksStats Statistics about the number of clicks for the links
+     * @var array<string, int> $linksStats Statistics about the number of clicks for each link in the campaign. Keys are the link URLs, values are click counts. Only populated when the `statistics` query parameter is set to `linksStats`.
      */
-    #[JsonProperty('linksStats')]
-    public GetExtendedCampaignStatsLinksStats $linksStats;
+    #[JsonProperty('linksStats'), ArrayType(['string' => 'integer'])]
+    public array $linksStats;
 
     /**
      * @var int $mirrorClick Number of clicks on mirror link
@@ -33,39 +33,39 @@ class GetExtendedCampaignStats extends JsonSerializableType
     public int $mirrorClick;
 
     /**
-     * @var int $remaining Number of remaning emails to send
+     * @var int $remaining Number of remaining emails to send
      */
     #[JsonProperty('remaining')]
     public int $remaining;
 
     /**
-     * @var array<string, GetDeviceBrowserStats> $statsByBrowser
+     * @var ?array<string, GetDeviceBrowserStats> $statsByBrowser Statistics of the campaign grouped by browser. Only available when retrieving a single campaign with the `statistics` query parameter set to `statsByBrowser`.
      */
     #[JsonProperty('statsByBrowser'), ArrayType(['string' => GetDeviceBrowserStats::class])]
-    public array $statsByBrowser;
+    public ?array $statsByBrowser;
 
     /**
-     * @var GetExtendedCampaignStatsStatsByDevice $statsByDevice
+     * @var ?GetExtendedCampaignStatsStatsByDevice $statsByDevice
      */
     #[JsonProperty('statsByDevice')]
-    public GetExtendedCampaignStatsStatsByDevice $statsByDevice;
+    public ?GetExtendedCampaignStatsStatsByDevice $statsByDevice;
 
     /**
-     * @var array<string, GetCampaignStats> $statsByDomain
+     * @var ?array<string, GetCampaignStats> $statsByDomain Statistics of the campaign grouped by email domain. Only populated when the `statistics` query parameter is set to `statsByDomain`.
      */
     #[JsonProperty('statsByDomain'), ArrayType(['string' => GetCampaignStats::class])]
-    public array $statsByDomain;
+    public ?array $statsByDomain;
 
     /**
      * @param array{
      *   campaignStats: array<GetCampaignStats>,
      *   globalStats: GetCampaignStats,
-     *   linksStats: GetExtendedCampaignStatsLinksStats,
+     *   linksStats: array<string, int>,
      *   mirrorClick: int,
      *   remaining: int,
-     *   statsByBrowser: array<string, GetDeviceBrowserStats>,
-     *   statsByDevice: GetExtendedCampaignStatsStatsByDevice,
-     *   statsByDomain: array<string, GetCampaignStats>,
+     *   statsByBrowser?: ?array<string, GetDeviceBrowserStats>,
+     *   statsByDevice?: ?GetExtendedCampaignStatsStatsByDevice,
+     *   statsByDomain?: ?array<string, GetCampaignStats>,
      * } $values
      */
     public function __construct(
@@ -76,9 +76,9 @@ class GetExtendedCampaignStats extends JsonSerializableType
         $this->linksStats = $values['linksStats'];
         $this->mirrorClick = $values['mirrorClick'];
         $this->remaining = $values['remaining'];
-        $this->statsByBrowser = $values['statsByBrowser'];
-        $this->statsByDevice = $values['statsByDevice'];
-        $this->statsByDomain = $values['statsByDomain'];
+        $this->statsByBrowser = $values['statsByBrowser'] ?? null;
+        $this->statsByDevice = $values['statsByDevice'] ?? null;
+        $this->statsByDomain = $values['statsByDomain'] ?? null;
     }
 
     /**

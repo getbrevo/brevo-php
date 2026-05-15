@@ -7,7 +7,7 @@ use Brevo\Core\Json\JsonSerializableType;
 class GetListRequest extends JsonSerializableType
 {
     /**
-     * @var ?string $startDate **Mandatory if endDate is used**. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id. **Prefer to pass your timezone in date-time format for accurate result**
+     * @var ?string $startDate **Mandatory if endDate is used**. Starting (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to aggregate the sent email campaigns for a specific list id. **Prefer to pass your timezone in date-time format for accurate result**
      */
     public ?string $startDate;
 

@@ -64,6 +64,18 @@ class CreateContactRequest extends JsonSerializableType
     public ?bool $updateEnabled;
 
     /**
+     * @var ?bool $forceMerge When true, if the contact being created shares an identifier (email, SMS, ext_id, whatsapp, landline) with an existing contact, the two contacts are force-merged. The contact with the most recent `last_modified` timestamp is retained; the other is deleted. When false (default), a 4xx error is returned on identifier conflict.
+     */
+    #[JsonProperty('forceMerge')]
+    public ?bool $forceMerge;
+
+    /**
+     * @var ?bool $getId When true, the response returns the `id` of the surviving contact after merge.
+     */
+    #[JsonProperty('getId')]
+    public ?bool $getId;
+
+    /**
      * @param array{
      *   attributes?: ?array<string, (
      *    float
@@ -79,6 +91,8 @@ class CreateContactRequest extends JsonSerializableType
      *   smsBlacklisted?: ?bool,
      *   smtpBlacklistSender?: ?array<string>,
      *   updateEnabled?: ?bool,
+     *   forceMerge?: ?bool,
+     *   getId?: ?bool,
      * } $values
      */
     public function __construct(
@@ -92,5 +106,7 @@ class CreateContactRequest extends JsonSerializableType
         $this->smsBlacklisted = $values['smsBlacklisted'] ?? null;
         $this->smtpBlacklistSender = $values['smtpBlacklistSender'] ?? null;
         $this->updateEnabled = $values['updateEnabled'] ?? null;
+        $this->forceMerge = $values['forceMerge'] ?? null;
+        $this->getId = $values['getId'] ?? null;
     }
 }

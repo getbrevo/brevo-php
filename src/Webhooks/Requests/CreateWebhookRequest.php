@@ -26,7 +26,7 @@ class CreateWebhookRequest extends JsonSerializableType
     public ?bool $batched;
 
     /**
-     * @var ?value-of<CreateWebhookRequestChannel> $channel channel of webhook
+     * @var ?value-of<CreateWebhookRequestChannel> $channel Channel of the webhook
      */
     #[JsonProperty('channel')]
     public ?string $channel;
@@ -47,27 +47,21 @@ class CreateWebhookRequest extends JsonSerializableType
     public ?string $domain;
 
     /**
-     * - Events triggering the webhook. Possible values for
-     * **Transactional** type webhook: #### `sent` OR `request`,
-     * `delivered`, `hardBounce`, `softBounce`, `blocked`, `spam`,
-     * `invalid`, `deferred`, `click`, `opened`, `uniqueOpened` and
-     * `unsubscribed` - Possible values for **Marketing** type webhook:
-     * #### `spam`, `opened`, `click`, `hardBounce`, `softBounce`,
-     * `unsubscribed`, `listAddition` & `delivered` - Possible values
-     * for **Inbound** type webhook: #### `inboundEmailProcessed` -
-     * Possible values for type **Transactional** and channel **SMS**
-     * ####
-     * `accepted`,`delivered`,`softBounce`,`hardBounce`,`unsubscribe`,`reply`,
-     * `subscribe`,`sent`,`blacklisted`,`skip` - Possible values for
-     * type **Marketing**  channel **SMS** ####
-     * `sent`,`delivered`,`softBounce`,`hardBounce`,`unsubscribe`,`reply`,
-     * `subscribe`,`skip`
-     * #### `reply`
+     * Events triggering the webhook. Required for transactional and
+     * marketing types, optional for inbound type (defaults to
+     * `inboundEmailProcessed`). Possible values for **Transactional**
+     * type webhook: `sent` OR `request`, `delivered`, `hardBounce`,
+     * `softBounce`, `blocked`, `spam`, `invalid`, `deferred`, `click`,
+     * `opened`, `uniqueOpened` and `unsubscribed`. Possible values for
+     * **Marketing** type webhook: `spam`, `opened`, `click`,
+     * `hardBounce`, `softBounce`, `unsubscribed`, `listAddition`,
+     * `delivered`, `contactUpdated` & `contactDeleted`. Possible values
+     * for **Inbound** type webhook: `inboundEmailProcessed`.
      *
-     * @var array<value-of<CreateWebhookRequestEventsItem>> $events
+     * @var ?array<value-of<CreateWebhookRequestEventsItem>> $events
      */
     #[JsonProperty('events'), ArrayType(['string'])]
-    public array $events;
+    public ?array $events;
 
     /**
      * @var ?array<CreateWebhookRequestHeadersItem> $headers Custom headers to be send with webhooks
@@ -89,13 +83,13 @@ class CreateWebhookRequest extends JsonSerializableType
 
     /**
      * @param array{
-     *   events: array<value-of<CreateWebhookRequestEventsItem>>,
      *   url: string,
      *   auth?: ?CreateWebhookRequestAuth,
      *   batched?: ?bool,
      *   channel?: ?value-of<CreateWebhookRequestChannel>,
      *   description?: ?string,
      *   domain?: ?string,
+     *   events?: ?array<value-of<CreateWebhookRequestEventsItem>>,
      *   headers?: ?array<CreateWebhookRequestHeadersItem>,
      *   type?: ?value-of<CreateWebhookRequestType>,
      * } $values
@@ -108,7 +102,7 @@ class CreateWebhookRequest extends JsonSerializableType
         $this->channel = $values['channel'] ?? null;
         $this->description = $values['description'] ?? null;
         $this->domain = $values['domain'] ?? null;
-        $this->events = $values['events'];
+        $this->events = $values['events'] ?? null;
         $this->headers = $values['headers'] ?? null;
         $this->type = $values['type'] ?? null;
         $this->url = $values['url'];

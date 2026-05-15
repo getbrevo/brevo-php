@@ -8,14 +8,14 @@ use Brevo\Core\Json\JsonProperty;
 class CreateUpdateCategoryResponse extends JsonSerializableType
 {
     /**
-     * @var ?int $id ID of the category when a new category is created
+     * @var ?string $id ID of the category when a new category is created
      */
     #[JsonProperty('id')]
-    public ?int $id;
+    public ?string $id;
 
     /**
      * @param array{
-     *   id?: ?int,
+     *   id?: ?string,
      * } $values
      */
     public function __construct(

@@ -7,7 +7,7 @@ use Brevo\Core\Json\JsonProperty;
 use Brevo\Core\Types\ArrayType;
 
 /**
- * List of stages
+ * Pipeline details with stages
  */
 class Pipeline extends JsonSerializableType
 {
@@ -24,7 +24,7 @@ class Pipeline extends JsonSerializableType
     public ?string $pipelineName;
 
     /**
-     * @var ?array<PipelineStagesItem> $stages List of stages
+     * @var ?array<PipelineStagesItem> $stages List of pipeline stages
      */
     #[JsonProperty('stages'), ArrayType([PipelineStagesItem::class])]
     public ?array $stages;

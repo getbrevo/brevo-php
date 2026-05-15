@@ -45,6 +45,12 @@ class GetWhatsAppCampaignResponse extends JsonSerializableType
     public ?string $scheduledAt;
 
     /**
+     * @var GetWhatsAppCampaignResponseRecipients $recipients Recipients of the WhatsApp Campaign
+     */
+    #[JsonProperty('recipients')]
+    public GetWhatsAppCampaignResponseRecipients $recipients;
+
+    /**
      * @var string $senderNumber Sender of the WhatsApp Campaign
      */
     #[JsonProperty('senderNumber')]
@@ -69,6 +75,7 @@ class GetWhatsAppCampaignResponse extends JsonSerializableType
      *   createdAt: string,
      *   id: int,
      *   modifiedAt: string,
+     *   recipients: GetWhatsAppCampaignResponseRecipients,
      *   senderNumber: string,
      *   template: GetWhatsAppCampaignResponseTemplate,
      *   scheduledAt?: ?string,
@@ -84,6 +91,7 @@ class GetWhatsAppCampaignResponse extends JsonSerializableType
         $this->id = $values['id'];
         $this->modifiedAt = $values['modifiedAt'];
         $this->scheduledAt = $values['scheduledAt'] ?? null;
+        $this->recipients = $values['recipients'];
         $this->senderNumber = $values['senderNumber'];
         $this->stats = $values['stats'] ?? null;
         $this->template = $values['template'];

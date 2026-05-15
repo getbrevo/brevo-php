@@ -20,7 +20,7 @@ class GetSmtpTemplateOverviewSender extends JsonSerializableType
     public ?string $id;
 
     /**
-     * @var ?string $name From email for the template
+     * @var ?string $name Sender name for the template
      */
     #[JsonProperty('name')]
     public ?string $name;

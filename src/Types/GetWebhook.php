@@ -24,12 +24,6 @@ class GetWebhook extends JsonSerializableType
     public ?bool $batched;
 
     /**
-     * @var ?value-of<GetWebhookChannel> $channel channel of webhook
-     */
-    #[JsonProperty('channel')]
-    public ?string $channel;
-
-    /**
      * @var string $createdAt Creation UTC date-time of the webhook (YYYY-MM-DDTHH:mm:ss.SSSZ)
      */
     #[JsonProperty('createdAt')]
@@ -66,10 +60,16 @@ class GetWebhook extends JsonSerializableType
     public string $modifiedAt;
 
     /**
-     * @var value-of<GetWebhookType> $type Type of webhook (marketing or transactional)
+     * @var value-of<GetWebhookType> $type Type of webhook (marketing, transactional, or inbound)
      */
     #[JsonProperty('type')]
     public string $type;
+
+    /**
+     * @var ?string $domain Inbound domain of the webhook, only returned for inbound type webhooks
+     */
+    #[JsonProperty('domain')]
+    public ?string $domain;
 
     /**
      * @var string $url URL of the webhook
@@ -88,8 +88,8 @@ class GetWebhook extends JsonSerializableType
      *   url: string,
      *   auth?: ?array<string, mixed>,
      *   batched?: ?bool,
-     *   channel?: ?value-of<GetWebhookChannel>,
      *   headers?: ?array<array<string, mixed>>,
+     *   domain?: ?string,
      * } $values
      */
     public function __construct(
@@ -97,7 +97,6 @@ class GetWebhook extends JsonSerializableType
     ) {
         $this->auth = $values['auth'] ?? null;
         $this->batched = $values['batched'] ?? null;
-        $this->channel = $values['channel'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->description = $values['description'];
         $this->events = $values['events'];
@@ -105,6 +104,7 @@ class GetWebhook extends JsonSerializableType
         $this->id = $values['id'];
         $this->modifiedAt = $values['modifiedAt'];
         $this->type = $values['type'];
+        $this->domain = $values['domain'] ?? null;
         $this->url = $values['url'];
     }
 

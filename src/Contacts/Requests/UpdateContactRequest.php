@@ -11,7 +11,7 @@ use Brevo\Core\Types\Union;
 class UpdateContactRequest extends JsonSerializableType
 {
     /**
-     * @var ?value-of<UpdateContactRequestIdentifierType> $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE attribute
+     * @var ?value-of<UpdateContactRequestIdentifierType> $identifierType email_id for Email, contact_id for ID of the contact, ext_id for EXT_ID attribute, phone_id for SMS attribute, whatsapp_id for WHATSAPP attribute, landline_number_id for LANDLINE_NUMBER attribute
      */
     public ?string $identifierType;
 
@@ -64,6 +64,12 @@ class UpdateContactRequest extends JsonSerializableType
     public ?array $unlinkListIds;
 
     /**
+     * @var ?bool $forceMerge When true, if the contact being updated shares an identifier (email, SMS, ext_id, whatsapp, landline) with an existing contact, the two contacts are force-merged. The contact with the most recent `last_modified` timestamp is retained; the other is deleted. When false (default), a 4xx error is returned on identifier conflict.
+     */
+    #[JsonProperty('forceMerge')]
+    public ?bool $forceMerge;
+
+    /**
      * @param array{
      *   identifierType?: ?value-of<UpdateContactRequestIdentifierType>,
      *   attributes?: ?array<string, (
@@ -79,6 +85,7 @@ class UpdateContactRequest extends JsonSerializableType
      *   smsBlacklisted?: ?bool,
      *   smtpBlacklistSender?: ?array<string>,
      *   unlinkListIds?: ?array<int>,
+     *   forceMerge?: ?bool,
      * } $values
      */
     public function __construct(
@@ -92,5 +99,6 @@ class UpdateContactRequest extends JsonSerializableType
         $this->smsBlacklisted = $values['smsBlacklisted'] ?? null;
         $this->smtpBlacklistSender = $values['smtpBlacklistSender'] ?? null;
         $this->unlinkListIds = $values['unlinkListIds'] ?? null;
+        $this->forceMerge = $values['forceMerge'] ?? null;
     }
 }

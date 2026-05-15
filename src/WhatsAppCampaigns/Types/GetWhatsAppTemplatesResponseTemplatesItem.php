@@ -56,6 +56,12 @@ class GetWhatsAppTemplatesResponseTemplatesItem extends JsonSerializableType
     public string $status;
 
     /**
+     * @var string $type Type of the whatsApp template
+     */
+    #[JsonProperty('type')]
+    public string $type;
+
+    /**
      * @param array{
      *   category: string,
      *   createdAt: string,
@@ -64,6 +70,7 @@ class GetWhatsAppTemplatesResponseTemplatesItem extends JsonSerializableType
      *   modifiedAt: string,
      *   name: string,
      *   status: string,
+     *   type: string,
      *   errorReason?: ?string,
      * } $values
      */
@@ -78,6 +85,7 @@ class GetWhatsAppTemplatesResponseTemplatesItem extends JsonSerializableType
         $this->modifiedAt = $values['modifiedAt'];
         $this->name = $values['name'];
         $this->status = $values['status'];
+        $this->type = $values['type'];
     }
 
     /**

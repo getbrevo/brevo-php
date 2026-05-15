@@ -35,40 +35,22 @@ class GetExternalFeedByUuidResponse extends JsonSerializableType
     public string $authType;
 
     /**
-     * @var ?string $username Username for basic authentication (null if not using basic auth)
+     * @var ?string $username Username for basic authentication. Only returned when authType is 'basic'. Excluded from response when authType is 'token'.
      */
     #[JsonProperty('username')]
     public ?string $username;
 
     /**
-     * @var ?string $password Password for basic authentication (null if not using basic auth)
+     * @var ?string $password Password for basic authentication. Only returned when authType is 'basic'. Excluded from response when authType is 'token'.
      */
     #[JsonProperty('password')]
     public ?string $password;
 
     /**
-     * @var ?string $token Token for token-based authentication (null if not using token auth)
+     * @var ?string $token Token for token-based authentication. Only returned when authType is 'token'. Excluded from response when authType is 'basic' or 'noAuth'.
      */
     #[JsonProperty('token')]
     public ?string $token;
-
-    /**
-     * @var bool $personalization Whether personalization is enabled for this feed
-     */
-    #[JsonProperty('personalization')]
-    public bool $personalization;
-
-    /**
-     * @var string $defaultAttr Default attribute name for personalization fallback (empty string if not set)
-     */
-    #[JsonProperty('defaultAttr')]
-    public string $defaultAttr;
-
-    /**
-     * @var string $defaultContact Default contact email for personalization fallback (empty string if not set)
-     */
-    #[JsonProperty('defaultContact')]
-    public string $defaultContact;
 
     /**
      * @var ?array<GetExternalFeedByUuidResponseHeadersItem> $headers Custom HTTP headers for the feed request
@@ -106,9 +88,6 @@ class GetExternalFeedByUuidResponse extends JsonSerializableType
      *   name: string,
      *   url: string,
      *   authType: value-of<GetExternalFeedByUuidResponseAuthType>,
-     *   personalization: bool,
-     *   defaultAttr: string,
-     *   defaultContact: string,
      *   maxRetries: int,
      *   cache: bool,
      *   createdAt: DateTime,
@@ -129,9 +108,6 @@ class GetExternalFeedByUuidResponse extends JsonSerializableType
         $this->username = $values['username'] ?? null;
         $this->password = $values['password'] ?? null;
         $this->token = $values['token'] ?? null;
-        $this->personalization = $values['personalization'];
-        $this->defaultAttr = $values['defaultAttr'];
-        $this->defaultContact = $values['defaultContact'];
         $this->headers = $values['headers'] ?? null;
         $this->maxRetries = $values['maxRetries'];
         $this->cache = $values['cache'];

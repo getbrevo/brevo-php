@@ -21,17 +21,17 @@ class GetEmailCampaignsRequest extends JsonSerializableType
     public ?string $status;
 
     /**
-     * @var ?value-of<GetEmailCampaignsRequestStatistics> $statistics Filter on type of the statistics required. Example **globalStats** value will only fetch globalStats info of the campaign in returned response.This option only returns data for events occurred in the last 6 months.For older campaigns, it’s advisable to use the **Get Campaign Report** endpoint.
+     * @var ?value-of<GetEmailCampaignsRequestStatistics> $statistics Filter on the type of statistics required. Example: **globalStats** value will only fetch globalStats info of the campaign in the returned response. This option only returns data for events that occurred in the last 6 months. For older campaigns, it is advisable to use the **Get Campaign Report** endpoint.
      */
     public ?string $statistics;
 
     /**
-     * @var ?string $startDate **Mandatory if endDate is used**. Starting (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. **Prefer to pass your timezone in date-time format for accurate result** ( only available if either 'status' not passed and if passed is set to 'sent' )
+     * @var ?string $startDate **Mandatory if endDate is used.** Starting (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. **Prefer to pass your timezone in date-time format for accurate result.** Only available if `status` is not passed or is set to `sent`. The date range between `startDate` and `endDate` must not exceed 2 years. `startDate` must not be in the future.
      */
     public ?string $startDate;
 
     /**
-     * @var ?string $endDate **Mandatory if startDate is used**. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. **Prefer to pass your timezone in date-time format for accurate result** ( only available if either 'status' not passed and if passed is set to 'sent' )
+     * @var ?string $endDate **Mandatory if startDate is used.** Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent email campaigns. **Prefer to pass your timezone in date-time format for accurate result.** Only available if `status` is not passed or is set to `sent`. The date range between `startDate` and `endDate` must not exceed 2 years. `endDate` must not be in the future.
      */
     public ?string $endDate;
 
@@ -51,9 +51,14 @@ class GetEmailCampaignsRequest extends JsonSerializableType
     public ?string $sort;
 
     /**
-     * @var ?bool $excludeHtmlContent Use this flag to exclude htmlContent from the response body. If set to **true**, htmlContent field will be returned as empty string in the response body
+     * @var ?bool $excludeHtmlContent Use this flag to exclude htmlContent from the response body. If set to **true**, the htmlContent field will be returned as an empty string in the response body.
      */
     public ?bool $excludeHtmlContent;
+
+    /**
+     * @var ?bool $excludePdfAttachment Use this flag to filter out campaigns that have a PDF attachment. If set to **true**, only campaigns without a PDF attachment (or with no attachment at all) will be returned.
+     */
+    public ?bool $excludePdfAttachment;
 
     /**
      * @param array{
@@ -66,6 +71,7 @@ class GetEmailCampaignsRequest extends JsonSerializableType
      *   offset?: ?int,
      *   sort?: ?value-of<GetEmailCampaignsRequestSort>,
      *   excludeHtmlContent?: ?bool,
+     *   excludePdfAttachment?: ?bool,
      * } $values
      */
     public function __construct(
@@ -80,5 +86,6 @@ class GetEmailCampaignsRequest extends JsonSerializableType
         $this->offset = $values['offset'] ?? null;
         $this->sort = $values['sort'] ?? null;
         $this->excludeHtmlContent = $values['excludeHtmlContent'] ?? null;
+        $this->excludePdfAttachment = $values['excludePdfAttachment'] ?? null;
     }
 }

@@ -8,52 +8,92 @@ use Brevo\Core\Json\JsonProperty;
 class ConversationsMessageFile extends JsonSerializableType
 {
     /**
-     * @var ?string $filename Name of the file
+     * @var ?string $name Name of the file.
      */
-    #[JsonProperty('filename')]
-    public ?string $filename;
+    #[JsonProperty('name')]
+    public ?string $name;
 
     /**
-     * @var ?ConversationsMessageFileImageInfo $imageInfo image info is passed in case the file is an image
+     * @var ?string $link URL of the file.
      */
-    #[JsonProperty('imageInfo')]
-    public ?ConversationsMessageFileImageInfo $imageInfo;
+    #[JsonProperty('link')]
+    public ?string $link;
 
     /**
-     * @var ?bool $isImage Whether the file is an image
+     * @var ?string $mimeType MIME type of the file.
+     */
+    #[JsonProperty('mimeType')]
+    public ?string $mimeType;
+
+    /**
+     * @var ?bool $isImage Whether the file is an image.
      */
     #[JsonProperty('isImage')]
     public ?bool $isImage;
 
     /**
-     * @var ?int $size Size in bytes
+     * @var ?bool $isSticker Whether the file is a sticker.
+     */
+    #[JsonProperty('isSticker')]
+    public ?bool $isSticker;
+
+    /**
+     * @var ?bool $isInline Whether the file is inline.
+     */
+    #[JsonProperty('isInline')]
+    public ?bool $isInline;
+
+    /**
+     * @var ?string $inlineId The ID of the inline file.
+     */
+    #[JsonProperty('inlineId')]
+    public ?string $inlineId;
+
+    /**
+     * @var ?int $size Size in bytes.
      */
     #[JsonProperty('size')]
     public ?int $size;
 
     /**
-     * @var ?string $url URL of the file
+     * @var ?ConversationsMessageFileImageInfo $imageInfo Image info, present when the file is an image.
      */
-    #[JsonProperty('url')]
-    public ?string $url;
+    #[JsonProperty('imageInfo')]
+    public ?ConversationsMessageFileImageInfo $imageInfo;
+
+    /**
+     * @var ?bool $isAllowedFileType Whether the file extension is allowed for download.
+     */
+    #[JsonProperty('isAllowedFileType')]
+    public ?bool $isAllowedFileType;
 
     /**
      * @param array{
-     *   filename?: ?string,
-     *   imageInfo?: ?ConversationsMessageFileImageInfo,
+     *   name?: ?string,
+     *   link?: ?string,
+     *   mimeType?: ?string,
      *   isImage?: ?bool,
+     *   isSticker?: ?bool,
+     *   isInline?: ?bool,
+     *   inlineId?: ?string,
      *   size?: ?int,
-     *   url?: ?string,
+     *   imageInfo?: ?ConversationsMessageFileImageInfo,
+     *   isAllowedFileType?: ?bool,
      * } $values
      */
     public function __construct(
         array $values = [],
     ) {
-        $this->filename = $values['filename'] ?? null;
-        $this->imageInfo = $values['imageInfo'] ?? null;
+        $this->name = $values['name'] ?? null;
+        $this->link = $values['link'] ?? null;
+        $this->mimeType = $values['mimeType'] ?? null;
         $this->isImage = $values['isImage'] ?? null;
+        $this->isSticker = $values['isSticker'] ?? null;
+        $this->isInline = $values['isInline'] ?? null;
+        $this->inlineId = $values['inlineId'] ?? null;
         $this->size = $values['size'] ?? null;
-        $this->url = $values['url'] ?? null;
+        $this->imageInfo = $values['imageInfo'] ?? null;
+        $this->isAllowedFileType = $values['isAllowedFileType'] ?? null;
     }
 
     /**

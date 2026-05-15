@@ -10,7 +10,7 @@ use Brevo\TransactionalEmails\Types\GetScheduledEmailByIdRequestStatus;
 class GetScheduledEmailByIdRequest extends JsonSerializableType
 {
     /**
-     * @var ?DateTime $startDate Mandatory if `endDate` is used. Starting date (YYYY-MM-DD) from which you want to fetch the list. Can be maximum 30 days older tha current date.
+     * @var ?DateTime $startDate Mandatory if `endDate` is used. Starting date (YYYY-MM-DD) from which you want to fetch the list. Cannot be more than 30 days older than the current date.
      */
     public ?DateTime $startDate;
 

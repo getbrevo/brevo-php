@@ -59,6 +59,18 @@ class TierGroup extends JsonSerializableType
     public ?string $upgradeStrategy;
 
     /**
+     * @var ?TierGroupUpgradeSchedule $upgradeSchedule Schedule configuration for tier upgrades.
+     */
+    #[JsonProperty('upgradeSchedule')]
+    public ?TierGroupUpgradeSchedule $upgradeSchedule;
+
+    /**
+     * @var ?TierGroupDowngradeSchedule $downgradeSchedule Schedule configuration for tier downgrades.
+     */
+    #[JsonProperty('downgradeSchedule')]
+    public ?TierGroupDowngradeSchedule $downgradeSchedule;
+
+    /**
      * @param array{
      *   createdAt?: ?DateTime,
      *   downgradeStrategy?: ?value-of<TierGroupDowngradeStrategy>,
@@ -68,6 +80,8 @@ class TierGroup extends JsonSerializableType
      *   tierOrder?: ?array<string>,
      *   updatedAt?: ?DateTime,
      *   upgradeStrategy?: ?value-of<TierGroupUpgradeStrategy>,
+     *   upgradeSchedule?: ?TierGroupUpgradeSchedule,
+     *   downgradeSchedule?: ?TierGroupDowngradeSchedule,
      * } $values
      */
     public function __construct(
@@ -81,6 +95,8 @@ class TierGroup extends JsonSerializableType
         $this->tierOrder = $values['tierOrder'] ?? null;
         $this->updatedAt = $values['updatedAt'] ?? null;
         $this->upgradeStrategy = $values['upgradeStrategy'] ?? null;
+        $this->upgradeSchedule = $values['upgradeSchedule'] ?? null;
+        $this->downgradeSchedule = $values['downgradeSchedule'] ?? null;
     }
 
     /**

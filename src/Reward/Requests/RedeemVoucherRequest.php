@@ -58,6 +58,12 @@ class RedeemVoucherRequest extends JsonSerializableType
     public ?int $ttl;
 
     /**
+     * @var ?bool $autoComplete Whether the redemption should be automatically completed
+     */
+    #[JsonProperty('autoComplete')]
+    public ?bool $autoComplete;
+
+    /**
      * @param array{
      *   attributedRewardId?: ?string,
      *   code?: ?string,
@@ -67,6 +73,7 @@ class RedeemVoucherRequest extends JsonSerializableType
      *   order?: ?RedeemVoucherRequestOrder,
      *   rewardId?: ?string,
      *   ttl?: ?int,
+     *   autoComplete?: ?bool,
      * } $values
      */
     public function __construct(
@@ -80,5 +87,6 @@ class RedeemVoucherRequest extends JsonSerializableType
         $this->order = $values['order'] ?? null;
         $this->rewardId = $values['rewardId'] ?? null;
         $this->ttl = $values['ttl'] ?? null;
+        $this->autoComplete = $values['autoComplete'] ?? null;
     }
 }

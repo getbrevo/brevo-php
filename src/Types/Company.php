@@ -30,7 +30,7 @@ class Company extends JsonSerializableType
     public ?array $linkedContactsIds;
 
     /**
-     * @var ?array<string> $linkedDealsIds Deals ids for companies linked to this company
+     * @var ?array<string> $linkedDealsIds Deal ids for deals linked to this company
      */
     #[JsonProperty('linkedDealsIds'), ArrayType(['string'])]
     public ?array $linkedDealsIds;

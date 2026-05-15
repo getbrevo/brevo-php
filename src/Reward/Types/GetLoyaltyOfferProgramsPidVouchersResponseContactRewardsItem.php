@@ -5,6 +5,8 @@ namespace Brevo\Reward\Types;
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
 use Brevo\Core\Types\ArrayType;
+use DateTime;
+use Brevo\Core\Types\Date;
 
 class GetLoyaltyOfferProgramsPidVouchersResponseContactRewardsItem extends JsonSerializableType
 {
@@ -69,6 +71,12 @@ class GetLoyaltyOfferProgramsPidVouchersResponseContactRewardsItem extends JsonS
     public ?float $value;
 
     /**
+     * @var ?DateTime $validFrom Date from which the voucher becomes valid
+     */
+    #[JsonProperty('validFrom'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $validFrom;
+
+    /**
      * @param array{
      *   code?: ?string,
      *   consumedAt?: ?string,
@@ -80,6 +88,7 @@ class GetLoyaltyOfferProgramsPidVouchersResponseContactRewardsItem extends JsonS
      *   unit?: ?string,
      *   updatedAt?: ?string,
      *   value?: ?float,
+     *   validFrom?: ?DateTime,
      * } $values
      */
     public function __construct(
@@ -95,6 +104,7 @@ class GetLoyaltyOfferProgramsPidVouchersResponseContactRewardsItem extends JsonS
         $this->unit = $values['unit'] ?? null;
         $this->updatedAt = $values['updatedAt'] ?? null;
         $this->value = $values['value'] ?? null;
+        $this->validFrom = $values['validFrom'] ?? null;
     }
 
     /**

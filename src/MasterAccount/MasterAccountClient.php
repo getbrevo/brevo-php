@@ -906,6 +906,8 @@ class MasterAccountClient implements MasterAccountClientInterface
     }
 
     /**
+     * Permanently deletes a sub-account from the corporate master account. Once deleted, all data associated with the sub-account organization is removed and cannot be recovered, so ensure the sub-account is no longer needed before proceeding.
+     *
      * @param int $id Id of the sub-account organization to be deleted
      * @param ?array{
      *   baseUrl?: string,

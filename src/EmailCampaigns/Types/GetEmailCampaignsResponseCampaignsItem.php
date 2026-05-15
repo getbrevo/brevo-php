@@ -101,10 +101,22 @@ class GetEmailCampaignsResponseCampaignsItem extends JsonSerializableType
     public ?int $winnerDelay;
 
     /**
+     * @var ?string $attachmentUrl URL of the attachment file associated with the campaign. Empty string if no attachment is present.
+     */
+    #[JsonProperty('attachmentUrl')]
+    public ?string $attachmentUrl;
+
+    /**
      * @var string $createdAt Creation UTC date-time of the campaign (YYYY-MM-DDTHH:mm:ss.SSSZ)
      */
     #[JsonProperty('createdAt')]
     public string $createdAt;
+
+    /**
+     * @var ?GetEmailCampaignsResponseCampaignsItemEmailExpirationDate $emailExpirationDate Expiration date configuration for the email campaign, if set. Contains the duration and unit of the email expiry.
+     */
+    #[JsonProperty('emailExpirationDate')]
+    public ?GetEmailCampaignsResponseCampaignsItemEmailExpirationDate $emailExpirationDate;
 
     /**
      * @var string $footer Footer of the campaign
@@ -203,25 +215,25 @@ class GetEmailCampaignsResponseCampaignsItem extends JsonSerializableType
     public ?string $toField;
 
     /**
-     * @var ?string $utmCampaignValue utm parameter associated with campaign
+     * @var ?string $utmCampaignValue The utm_campaign value associated with the campaign. Only present if a UTM campaign value was set.
      */
     #[JsonProperty('utmCampaignValue')]
     public ?string $utmCampaignValue;
 
     /**
-     * @var ?bool $utmIdActive utm id active
+     * @var ?int $utmId The campaign ID used as utm_id parameter. Only present if UTM campaign tracking with ID is enabled.
      */
-    #[JsonProperty('utmIDActive')]
-    public ?bool $utmIdActive;
+    #[JsonProperty('utmID')]
+    public ?int $utmId;
 
     /**
-     * @var ?string $utmMedium
+     * @var ?string $utmMedium The utm_medium value. Set to "EMAIL" when UTM campaign tracking is enabled.
      */
     #[JsonProperty('utmMedium')]
     public ?string $utmMedium;
 
     /**
-     * @var ?string $utmSource source of utm
+     * @var ?string $utmSource The utm_source value. Set to "Brevo" when UTM campaign tracking is enabled.
      */
     #[JsonProperty('utmSource')]
     public ?string $utmSource;
@@ -265,6 +277,8 @@ class GetEmailCampaignsResponseCampaignsItem extends JsonSerializableType
      *   subjectB?: ?string,
      *   winnerCriteria?: ?string,
      *   winnerDelay?: ?int,
+     *   attachmentUrl?: ?string,
+     *   emailExpirationDate?: ?GetEmailCampaignsResponseCampaignsItemEmailExpirationDate,
      *   inlineImageActivation?: ?bool,
      *   mirrorActive?: ?bool,
      *   recurring?: ?bool,
@@ -275,7 +289,7 @@ class GetEmailCampaignsResponseCampaignsItem extends JsonSerializableType
      *   tags?: ?array<string>,
      *   toField?: ?string,
      *   utmCampaignValue?: ?string,
-     *   utmIdActive?: ?bool,
+     *   utmId?: ?int,
      *   utmMedium?: ?string,
      *   utmSource?: ?string,
      * } $values
@@ -298,7 +312,9 @@ class GetEmailCampaignsResponseCampaignsItem extends JsonSerializableType
         $this->type = $values['type'];
         $this->winnerCriteria = $values['winnerCriteria'] ?? null;
         $this->winnerDelay = $values['winnerDelay'] ?? null;
+        $this->attachmentUrl = $values['attachmentUrl'] ?? null;
         $this->createdAt = $values['createdAt'];
+        $this->emailExpirationDate = $values['emailExpirationDate'] ?? null;
         $this->footer = $values['footer'];
         $this->header = $values['header'];
         $this->htmlContent = $values['htmlContent'];
@@ -316,7 +332,7 @@ class GetEmailCampaignsResponseCampaignsItem extends JsonSerializableType
         $this->testSent = $values['testSent'];
         $this->toField = $values['toField'] ?? null;
         $this->utmCampaignValue = $values['utmCampaignValue'] ?? null;
-        $this->utmIdActive = $values['utmIdActive'] ?? null;
+        $this->utmId = $values['utmId'] ?? null;
         $this->utmMedium = $values['utmMedium'] ?? null;
         $this->utmSource = $values['utmSource'] ?? null;
         $this->recipients = $values['recipients'];

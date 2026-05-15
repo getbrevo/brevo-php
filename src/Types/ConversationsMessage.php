@@ -168,6 +168,30 @@ class ConversationsMessage extends JsonSerializableType
     public ?string $type;
 
     /**
+     * @var ?bool $isSentViaJsApi ‘`true` if the message was sent via JavaScript API.’
+     */
+    #[JsonProperty('isSentViaJsApi')]
+    public ?bool $isSentViaJsApi;
+
+    /**
+     * @var ?string $messageType The type of message content (e.g. for integration-specific message types).
+     */
+    #[JsonProperty('messageType')]
+    public ?string $messageType;
+
+    /**
+     * @var ?bool $isForward ‘`true` if the message is a forwarded message.’
+     */
+    #[JsonProperty('isForward')]
+    public ?bool $isForward;
+
+    /**
+     * @var ?array<string, mixed> $source Source information for the message.
+     */
+    #[JsonProperty('source'), ArrayType(['string' => 'mixed'])]
+    public ?array $source;
+
+    /**
      * @var ?string $visitorId visitor’s ID
      */
     #[JsonProperty('visitorId')]
@@ -201,6 +225,10 @@ class ConversationsMessage extends JsonSerializableType
      *   text?: ?string,
      *   to?: ?array<ConversationsMessageToItem>,
      *   type?: ?value-of<ConversationsMessageType>,
+     *   isSentViaJsApi?: ?bool,
+     *   messageType?: ?string,
+     *   isForward?: ?bool,
+     *   source?: ?array<string, mixed>,
      *   visitorId?: ?string,
      * } $values
      */
@@ -233,6 +261,10 @@ class ConversationsMessage extends JsonSerializableType
         $this->text = $values['text'] ?? null;
         $this->to = $values['to'] ?? null;
         $this->type = $values['type'] ?? null;
+        $this->isSentViaJsApi = $values['isSentViaJsApi'] ?? null;
+        $this->messageType = $values['messageType'] ?? null;
+        $this->isForward = $values['isForward'] ?? null;
+        $this->source = $values['source'] ?? null;
         $this->visitorId = $values['visitorId'] ?? null;
     }
 

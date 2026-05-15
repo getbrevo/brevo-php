@@ -3,18 +3,12 @@
 namespace Brevo\Reward\Types;
 
 use Brevo\Core\Json\JsonSerializableType;
-use DateTime;
 use Brevo\Core\Json\JsonProperty;
+use DateTime;
 use Brevo\Core\Types\Date;
 
 class CreateRewardResponse extends JsonSerializableType
 {
-    /**
-     * @var ?DateTime $createdAt Timestamp when the reward was created
-     */
-    #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
-    public ?DateTime $createdAt;
-
     /**
      * @var ?string $id Unique identifier for the reward
      */
@@ -22,7 +16,7 @@ class CreateRewardResponse extends JsonSerializableType
     public ?string $id;
 
     /**
-     * @var ?string $loyaltyProgramId Id of the loyalty program to which the current reward belongs to
+     * @var ?string $loyaltyProgramId Loyalty program to which the reward belongs
      */
     #[JsonProperty('loyaltyProgramId')]
     public ?string $loyaltyProgramId;
@@ -34,51 +28,57 @@ class CreateRewardResponse extends JsonSerializableType
     public ?string $name;
 
     /**
-     * @var ?string $publicDescription Public description for the reward
+     * @var ?string $publicDescription Public description of the reward
      */
     #[JsonProperty('publicDescription')]
     public ?string $publicDescription;
 
     /**
-     * @var ?string $publicImage Public Image for the reward
+     * @var ?string $publicImage Public image URL of the reward
      */
     #[JsonProperty('publicImage')]
     public ?string $publicImage;
 
     /**
-     * @var ?string $publicName Public name for the reward
+     * @var ?string $publicName Public name of the reward
      */
     #[JsonProperty('publicName')]
     public ?string $publicName;
 
     /**
-     * @var ?string $updatedAt Timestamp for when this reward was last updated.
+     * @var ?DateTime $createdAt Timestamp when the reward was created
      */
-    #[JsonProperty('updatedAt')]
-    public ?string $updatedAt;
+    #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $createdAt;
+
+    /**
+     * @var ?DateTime $updatedAt Timestamp when the reward was last updated
+     */
+    #[JsonProperty('updatedAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $updatedAt;
 
     /**
      * @param array{
-     *   createdAt?: ?DateTime,
      *   id?: ?string,
      *   loyaltyProgramId?: ?string,
      *   name?: ?string,
      *   publicDescription?: ?string,
      *   publicImage?: ?string,
      *   publicName?: ?string,
-     *   updatedAt?: ?string,
+     *   createdAt?: ?DateTime,
+     *   updatedAt?: ?DateTime,
      * } $values
      */
     public function __construct(
         array $values = [],
     ) {
-        $this->createdAt = $values['createdAt'] ?? null;
         $this->id = $values['id'] ?? null;
         $this->loyaltyProgramId = $values['loyaltyProgramId'] ?? null;
         $this->name = $values['name'] ?? null;
         $this->publicDescription = $values['publicDescription'] ?? null;
         $this->publicImage = $values['publicImage'] ?? null;
         $this->publicName = $values['publicName'] ?? null;
+        $this->createdAt = $values['createdAt'] ?? null;
         $this->updatedAt = $values['updatedAt'] ?? null;
     }
 

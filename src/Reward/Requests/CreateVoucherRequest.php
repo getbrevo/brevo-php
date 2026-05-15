@@ -51,6 +51,12 @@ class CreateVoucherRequest extends JsonSerializableType
     public ?float $value;
 
     /**
+     * @var ?string $validFrom Date from which the voucher becomes valid. Accepts RFC 3339 or DD/MM/YYYY HH:MM AM/PM format. Converted to UTC using the organization's timezone.
+     */
+    #[JsonProperty('validFrom')]
+    public ?string $validFrom;
+
+    /**
      * @param array{
      *   rewardId: string,
      *   code?: ?string,
@@ -59,6 +65,7 @@ class CreateVoucherRequest extends JsonSerializableType
      *   loyaltySubscriptionId?: ?string,
      *   meta?: ?array<string, mixed>,
      *   value?: ?float,
+     *   validFrom?: ?string,
      * } $values
      */
     public function __construct(
@@ -71,5 +78,6 @@ class CreateVoucherRequest extends JsonSerializableType
         $this->meta = $values['meta'] ?? null;
         $this->rewardId = $values['rewardId'];
         $this->value = $values['value'] ?? null;
+        $this->validFrom = $values['validFrom'] ?? null;
     }
 }

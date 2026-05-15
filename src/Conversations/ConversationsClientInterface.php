@@ -14,7 +14,7 @@ use Brevo\Conversations\Types\PutConversationsVisitorGroupResponse;
 interface ConversationsClientInterface
 {
     /**
-     * We recommend pinging this endpoint every minute for as long as the agent has to be considered online.
+     * Sets the agent's status to online for 2-3 minutes. We recommend pinging this endpoint every minute for as long as the agent has to be considered online. You must provide either `agentId` alone, or all three of `agentEmail` + `agentName` + `receivedFrom`.
      *
      * @param PostConversationsAgentOnlinePingRequest $request
      * @param ?array{
@@ -29,6 +29,8 @@ interface ConversationsClientInterface
     public function setsAgentsStatusToOnlineFor23Minutes(PostConversationsAgentOnlinePingRequest $request = new PostConversationsAgentOnlinePingRequest(), ?array $options = null): void;
 
     /**
+     * Send a message as an agent to an existing visitor's conversation. You must provide either `agentId` alone, or all three of `agentEmail` + `agentName` + `receivedFrom` to identify the agent.
+     *
      * @param PostConversationsMessagesRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -43,6 +45,8 @@ interface ConversationsClientInterface
     public function sendAMessageAsAnAgent(PostConversationsMessagesRequest $request, ?array $options = null): ?ConversationsMessage;
 
     /**
+     * Retrieve a single message by its ID.
+     *
      * @param string $id ID of the message
      * @param ?array{
      *   baseUrl?: string,
@@ -57,7 +61,7 @@ interface ConversationsClientInterface
     public function getAMessage(string $id, ?array $options = null): ?ConversationsMessage;
 
     /**
-     * Only agents’ messages can be edited.
+     * Update the text of a message sent by an agent. Only messages of type `agent` can be edited. The `text` and `html` fields of the message will be updated.
      *
      * @param string $id ID of the message
      * @param PutConversationsMessagesIdRequest $request
@@ -74,7 +78,7 @@ interface ConversationsClientInterface
     public function updateAMessageSentByAnAgent(string $id, PutConversationsMessagesIdRequest $request, ?array $options = null): ?ConversationsMessage;
 
     /**
-     * Only agents’ messages can be deleted.
+     * Delete a message sent by an agent. Only messages of type `agent` can be deleted.
      *
      * @param string $id ID of the message
      * @param ?array{
@@ -89,7 +93,7 @@ interface ConversationsClientInterface
     public function deleteAMessageSentByAnAgent(string $id, ?array $options = null): void;
 
     /**
-     * Example of automated messages: order status, announce new features in your web app, etc.
+     * Send an automated (pushed) message to a visitor on behalf of an agent. Example use cases: order status updates, announcing new features in your web app, etc.
      *
      * @param PostConversationsPushedMessagesRequest $request
      * @param ?array{
@@ -105,6 +109,8 @@ interface ConversationsClientInterface
     public function sendAnAutomatedMessageToAVisitor(PostConversationsPushedMessagesRequest $request, ?array $options = null): ?ConversationsMessage;
 
     /**
+     * Retrieve a single automated (pushed) message by its ID.
+     *
      * @param string $id ID of the message sent previously
      * @param ?array{
      *   baseUrl?: string,
@@ -119,6 +125,8 @@ interface ConversationsClientInterface
     public function getAnAutomatedMessage(string $id, ?array $options = null): ?ConversationsMessage;
 
     /**
+     * Update the text of an automated (pushed) message. The `text` and `html` fields of the message will be updated.
+     *
      * @param string $id ID of the message
      * @param PutConversationsPushedMessagesIdRequest $request
      * @param ?array{
@@ -134,6 +142,8 @@ interface ConversationsClientInterface
     public function updateAnAutomatedMessage(string $id, PutConversationsPushedMessagesIdRequest $request, ?array $options = null): ?ConversationsMessage;
 
     /**
+     * Delete an automated (pushed) message by its ID.
+     *
      * @param string $id ID of the message
      * @param ?array{
      *   baseUrl?: string,

@@ -5,7 +5,7 @@ namespace Brevo\Event;
 use Brevo\Event\Requests\GetEventsRequest;
 use Brevo\Types\GetEventsList;
 use Brevo\Event\Requests\CreateEventRequest;
-use Brevo\Event\Types\CreateBatchEventsRequestItem;
+use Brevo\Event\Requests\CreateBatchEventsRequest;
 use Brevo\Types\BatchAcceptedResponse;
 
 interface EventClientInterface
@@ -48,7 +48,7 @@ interface EventClientInterface
     /**
      * Create multiple events to track contacts' interactions in a single request.
      *
-     * @param array<CreateBatchEventsRequestItem> $request
+     * @param CreateBatchEventsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -59,5 +59,5 @@ interface EventClientInterface
      * } $options
      * @return ?BatchAcceptedResponse
      */
-    public function createBatchEvents(array $request, ?array $options = null): ?BatchAcceptedResponse;
+    public function createBatchEvents(CreateBatchEventsRequest $request, ?array $options = null): ?BatchAcceptedResponse;
 }

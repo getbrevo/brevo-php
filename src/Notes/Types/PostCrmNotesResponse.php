@@ -6,7 +6,7 @@ use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
 
 /**
- * Updated Note ID
+ * Created Note ID
  */
 class PostCrmNotesResponse extends JsonSerializableType
 {

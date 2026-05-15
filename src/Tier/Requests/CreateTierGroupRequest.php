@@ -8,6 +8,8 @@ use Brevo\Core\Json\JsonProperty;
 use Brevo\Tier\Types\CreateTierGroupRequestMeta;
 use Brevo\Core\Types\ArrayType;
 use Brevo\Tier\Types\CreateTierGroupRequestUpgradeStrategy;
+use Brevo\Tier\Types\CreateTierGroupRequestUpgradeSchedule;
+use Brevo\Tier\Types\CreateTierGroupRequestDowngradeSchedule;
 
 class CreateTierGroupRequest extends JsonSerializableType
 {
@@ -42,12 +44,26 @@ class CreateTierGroupRequest extends JsonSerializableType
     public ?string $upgradeStrategy;
 
     /**
+     * @var ?CreateTierGroupRequestUpgradeSchedule $upgradeSchedule Schedule configuration for tier upgrades. Required when upgradeStrategy is set to a schedule-based strategy.
+     */
+    #[JsonProperty('upgradeSchedule')]
+    public ?CreateTierGroupRequestUpgradeSchedule $upgradeSchedule;
+
+    /**
+     * @var ?CreateTierGroupRequestDowngradeSchedule $downgradeSchedule Schedule configuration for tier downgrades. Required when downgradeStrategy is set to a schedule-based strategy.
+     */
+    #[JsonProperty('downgradeSchedule')]
+    public ?CreateTierGroupRequestDowngradeSchedule $downgradeSchedule;
+
+    /**
      * @param array{
      *   name: string,
      *   downgradeStrategy?: ?value-of<CreateTierGroupRequestDowngradeStrategy>,
      *   meta?: ?CreateTierGroupRequestMeta,
      *   tierOrder?: ?array<string>,
      *   upgradeStrategy?: ?value-of<CreateTierGroupRequestUpgradeStrategy>,
+     *   upgradeSchedule?: ?CreateTierGroupRequestUpgradeSchedule,
+     *   downgradeSchedule?: ?CreateTierGroupRequestDowngradeSchedule,
      * } $values
      */
     public function __construct(
@@ -58,5 +74,7 @@ class CreateTierGroupRequest extends JsonSerializableType
         $this->meta = $values['meta'] ?? null;
         $this->tierOrder = $values['tierOrder'] ?? null;
         $this->upgradeStrategy = $values['upgradeStrategy'] ?? null;
+        $this->upgradeSchedule = $values['upgradeSchedule'] ?? null;
+        $this->downgradeSchedule = $values['downgradeSchedule'] ?? null;
     }
 }

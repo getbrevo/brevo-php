@@ -12,22 +12,16 @@ use Brevo\Core\Types\ArrayType;
 class Deal extends JsonSerializableType
 {
     /**
-     * @var ?array<string, mixed> $attributes Deal attributes with values
-     */
-    #[JsonProperty('attributes'), ArrayType(['string' => 'mixed'])]
-    public ?array $attributes;
-
-    /**
      * @var ?string $id Unique deal id
      */
     #[JsonProperty('id')]
     public ?string $id;
 
     /**
-     * @var ?array<string> $linkedCompaniesIds Companies ids for companies linked to this deal
+     * @var ?array<string, mixed> $attributes Deal attributes with values
      */
-    #[JsonProperty('linkedCompaniesIds'), ArrayType(['string'])]
-    public ?array $linkedCompaniesIds;
+    #[JsonProperty('attributes'), ArrayType(['string' => 'mixed'])]
+    public ?array $attributes;
 
     /**
      * @var ?array<int> $linkedContactsIds Contact ids for contacts linked to this deal
@@ -36,20 +30,26 @@ class Deal extends JsonSerializableType
     public ?array $linkedContactsIds;
 
     /**
+     * @var ?array<string> $linkedCompaniesIds Companies ids for companies linked to this deal
+     */
+    #[JsonProperty('linkedCompaniesIds'), ArrayType(['string'])]
+    public ?array $linkedCompaniesIds;
+
+    /**
      * @param array{
-     *   attributes?: ?array<string, mixed>,
      *   id?: ?string,
-     *   linkedCompaniesIds?: ?array<string>,
+     *   attributes?: ?array<string, mixed>,
      *   linkedContactsIds?: ?array<int>,
+     *   linkedCompaniesIds?: ?array<string>,
      * } $values
      */
     public function __construct(
         array $values = [],
     ) {
-        $this->attributes = $values['attributes'] ?? null;
         $this->id = $values['id'] ?? null;
-        $this->linkedCompaniesIds = $values['linkedCompaniesIds'] ?? null;
+        $this->attributes = $values['attributes'] ?? null;
         $this->linkedContactsIds = $values['linkedContactsIds'] ?? null;
+        $this->linkedCompaniesIds = $values['linkedCompaniesIds'] ?? null;
     }
 
     /**
