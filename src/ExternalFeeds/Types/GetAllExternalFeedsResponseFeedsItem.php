@@ -23,12 +23,6 @@ class GetAllExternalFeedsResponseFeedsItem extends JsonSerializableType
     public string $name;
 
     /**
-     * @var string $alias URL-friendly alias for the feed
-     */
-    #[JsonProperty('alias')]
-    public string $alias;
-
-    /**
      * @var string $url URL of the external data source
      */
     #[JsonProperty('url')]
@@ -41,19 +35,19 @@ class GetAllExternalFeedsResponseFeedsItem extends JsonSerializableType
     public string $authType;
 
     /**
-     * @var ?string $username Username for basic authentication
+     * @var ?string $username Username for basic authentication. Only returned when authType is 'basic'. Excluded when authType is 'token'.
      */
     #[JsonProperty('username')]
     public ?string $username;
 
     /**
-     * @var ?string $password Password for basic authentication
+     * @var ?string $password Password for basic authentication. Only returned when authType is 'basic'. Excluded when authType is 'token'.
      */
     #[JsonProperty('password')]
     public ?string $password;
 
     /**
-     * @var ?string $token Token for token-based authentication
+     * @var ?string $token Token for token-based authentication. Only returned when authType is 'token'. Excluded when authType is 'basic' or 'noAuth'.
      */
     #[JsonProperty('token')]
     public ?string $token;
@@ -69,12 +63,6 @@ class GetAllExternalFeedsResponseFeedsItem extends JsonSerializableType
      */
     #[JsonProperty('cache')]
     public bool $cache;
-
-    /**
-     * @var bool $isInternal Whether this is an internal Brevo system feed
-     */
-    #[JsonProperty('isInternal')]
-    public bool $isInternal;
 
     /**
      * @var ?array<GetAllExternalFeedsResponseFeedsItemHeadersItem> $headers Custom HTTP headers for the feed request
@@ -98,12 +86,10 @@ class GetAllExternalFeedsResponseFeedsItem extends JsonSerializableType
      * @param array{
      *   id: string,
      *   name: string,
-     *   alias: string,
      *   url: string,
      *   authType: value-of<GetAllExternalFeedsResponseFeedsItemAuthType>,
      *   maxRetries: int,
      *   cache: bool,
-     *   isInternal: bool,
      *   createdAt: DateTime,
      *   modifiedAt: DateTime,
      *   username?: ?string,
@@ -117,7 +103,6 @@ class GetAllExternalFeedsResponseFeedsItem extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->name = $values['name'];
-        $this->alias = $values['alias'];
         $this->url = $values['url'];
         $this->authType = $values['authType'];
         $this->username = $values['username'] ?? null;
@@ -125,7 +110,6 @@ class GetAllExternalFeedsResponseFeedsItem extends JsonSerializableType
         $this->token = $values['token'] ?? null;
         $this->maxRetries = $values['maxRetries'];
         $this->cache = $values['cache'];
-        $this->isInternal = $values['isInternal'];
         $this->headers = $values['headers'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->modifiedAt = $values['modifiedAt'];

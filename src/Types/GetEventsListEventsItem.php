@@ -35,12 +35,6 @@ class GetEventsListEventsItem extends JsonSerializableType
     public ?string $eventFilterId;
 
     /**
-     * @var ?string $source Source of the event
-     */
-    #[JsonProperty('source')]
-    public ?string $source;
-
-    /**
      * @var ?string $objectType Object type associated with the event
      */
     #[JsonProperty('object_type')]
@@ -64,7 +58,6 @@ class GetEventsListEventsItem extends JsonSerializableType
      *   eventDate?: ?DateTime,
      *   eventName?: ?string,
      *   eventFilterId?: ?string,
-     *   source?: ?string,
      *   objectType?: ?string,
      *   eventProperties?: ?array<string, mixed>,
      *   contactProperties?: ?array<string, mixed>,
@@ -77,7 +70,6 @@ class GetEventsListEventsItem extends JsonSerializableType
         $this->eventDate = $values['eventDate'] ?? null;
         $this->eventName = $values['eventName'] ?? null;
         $this->eventFilterId = $values['eventFilterId'] ?? null;
-        $this->source = $values['source'] ?? null;
         $this->objectType = $values['objectType'] ?? null;
         $this->eventProperties = $values['eventProperties'] ?? null;
         $this->contactProperties = $values['contactProperties'] ?? null;

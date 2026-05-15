@@ -8,16 +8,22 @@ use Brevo\Core\Json\JsonProperty;
 class ConversationsMessageAttachmentsItem extends JsonSerializableType
 {
     /**
-     * @var ?string $fileName The name of the file.
+     * @var ?string $name The name of the file.
      */
-    #[JsonProperty('fileName')]
-    public ?string $fileName;
+    #[JsonProperty('name')]
+    public ?string $name;
 
     /**
-     * @var ?string $inlineId The ID of the inline file.
+     * @var ?string $link The URL of the file.
      */
-    #[JsonProperty('inlineId')]
-    public ?string $inlineId;
+    #[JsonProperty('link')]
+    public ?string $link;
+
+    /**
+     * @var ?string $mimeType The MIME type of the file.
+     */
+    #[JsonProperty('mimeType')]
+    public ?string $mimeType;
 
     /**
      * @var ?bool $isImage `true` for images.
@@ -26,10 +32,22 @@ class ConversationsMessageAttachmentsItem extends JsonSerializableType
     public ?bool $isImage;
 
     /**
-     * @var ?string $isInline `true` for inline files.
+     * @var ?bool $isSticker `true` for sticker files.
+     */
+    #[JsonProperty('isSticker')]
+    public ?bool $isSticker;
+
+    /**
+     * @var ?bool $isInline `true` for inline files.
      */
     #[JsonProperty('isInline')]
-    public ?string $isInline;
+    public ?bool $isInline;
+
+    /**
+     * @var ?string $inlineId The ID of the inline file.
+     */
+    #[JsonProperty('inlineId')]
+    public ?string $inlineId;
 
     /**
      * @var ?int $size The size of the file in bytes.
@@ -38,30 +56,44 @@ class ConversationsMessageAttachmentsItem extends JsonSerializableType
     public ?int $size;
 
     /**
-     * @var ?string $url The URL of the file.
+     * @var ?ConversationsMessageAttachmentsItemImageInfo $imageInfo Image information (only present for image files).
      */
-    #[JsonProperty('url')]
-    public ?string $url;
+    #[JsonProperty('imageInfo')]
+    public ?ConversationsMessageAttachmentsItemImageInfo $imageInfo;
+
+    /**
+     * @var ?bool $isAllowedFileType Whether the file extension is allowed for download.
+     */
+    #[JsonProperty('isAllowedFileType')]
+    public ?bool $isAllowedFileType;
 
     /**
      * @param array{
-     *   fileName?: ?string,
-     *   inlineId?: ?string,
+     *   name?: ?string,
+     *   link?: ?string,
+     *   mimeType?: ?string,
      *   isImage?: ?bool,
-     *   isInline?: ?string,
+     *   isSticker?: ?bool,
+     *   isInline?: ?bool,
+     *   inlineId?: ?string,
      *   size?: ?int,
-     *   url?: ?string,
+     *   imageInfo?: ?ConversationsMessageAttachmentsItemImageInfo,
+     *   isAllowedFileType?: ?bool,
      * } $values
      */
     public function __construct(
         array $values = [],
     ) {
-        $this->fileName = $values['fileName'] ?? null;
-        $this->inlineId = $values['inlineId'] ?? null;
+        $this->name = $values['name'] ?? null;
+        $this->link = $values['link'] ?? null;
+        $this->mimeType = $values['mimeType'] ?? null;
         $this->isImage = $values['isImage'] ?? null;
+        $this->isSticker = $values['isSticker'] ?? null;
         $this->isInline = $values['isInline'] ?? null;
+        $this->inlineId = $values['inlineId'] ?? null;
         $this->size = $values['size'] ?? null;
-        $this->url = $values['url'] ?? null;
+        $this->imageInfo = $values['imageInfo'] ?? null;
+        $this->isAllowedFileType = $values['isAllowedFileType'] ?? null;
     }
 
     /**

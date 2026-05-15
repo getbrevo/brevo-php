@@ -29,7 +29,7 @@ class GetEmailEventReportRequest extends JsonSerializableType
     public ?string $endDate;
 
     /**
-     * @var ?int $days Number of days in the past including today (positive integer). _Not compatible with 'startDate' and 'endDate'_
+     * @var ?int $days Number of days in the past including today (positive integer, maximum 90). _Not compatible with 'startDate' and 'endDate'_. Defaults to 30 if neither dates nor days are provided.
      */
     public ?int $days;
 

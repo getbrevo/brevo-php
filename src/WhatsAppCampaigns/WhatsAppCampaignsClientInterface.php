@@ -17,6 +17,8 @@ use Brevo\WhatsAppCampaigns\Requests\UpdateWhatsAppCampaignRequest;
 interface WhatsAppCampaignsClientInterface
 {
     /**
+     * Retrieve a paginated list of all your WhatsApp campaigns with their statistics and metadata. Results can be filtered by creation date range using startDate and endDate, with a default limit of 50 and maximum of 100 per page. The sort order defaults to descending by modification date.
+     *
      * @param GetWhatsAppCampaignsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -84,6 +86,8 @@ interface WhatsAppCampaignsClientInterface
     public function createWhatsAppTemplate(CreateWhatsAppTemplateRequest $request, ?array $options = null): ?CreateWhatsAppTemplateResponse;
 
     /**
+     * Retrieve a paginated list of all your WhatsApp templates with their status, category, language, and metadata. Results can be filtered by creation date range and optionally by source (Automation or Conversations), with a default limit of 50 and maximum of 100 per page. The sort order defaults to descending by modification date.
+     *
      * @param GetWhatsAppTemplatesRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -154,6 +158,8 @@ interface WhatsAppCampaignsClientInterface
     public function updateWhatsAppCampaign(int $campaignId, UpdateWhatsAppCampaignRequest $request = new UpdateWhatsAppCampaignRequest(), ?array $options = null): void;
 
     /**
+     * Delete a WhatsApp campaign by its campaign ID. The campaign must exist; if the campaign ID is not found, a 404 error is returned. This action is permanent and cannot be undone.
+     *
      * @param int $campaignId id of the campaign
      * @param ?array{
      *   baseUrl?: string,

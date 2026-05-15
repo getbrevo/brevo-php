@@ -38,13 +38,13 @@ class GetCampaignStats extends JsonSerializableType
     public int $delivered;
 
     /**
-     * @var ?int $estimatedViews Rate of recipients without any privacy protection option enabled in their email client_dev, applied to all delivered emails
+     * @var ?int $estimatedViews Rate of recipients without any privacy protection option enabled in their email client, applied to all delivered emails
      */
     #[JsonProperty('estimatedViews')]
     public ?int $estimatedViews;
 
     /**
-     * @var int $hardBounces Number of harbounce for the campaign
+     * @var int $hardBounces Number of hard bounces for the campaign
      */
     #[JsonProperty('hardBounces')]
     public int $hardBounces;
@@ -80,13 +80,13 @@ class GetCampaignStats extends JsonSerializableType
     public int $softBounces;
 
     /**
-     * @var int $trackableViews Recipients without any privacy protection option enabled in their email client_dev
+     * @var int $trackableViews Recipients without any privacy protection option enabled in their email email client
      */
     #[JsonProperty('trackableViews')]
     public int $trackableViews;
 
     /**
-     * @var ?float $trackableViewsRate Rate of recipients without any privacy protection option enabled in their email client_dev
+     * @var ?float $trackableViewsRate Rate of recipients without any privacy protection option enabled in their email client
      */
     #[JsonProperty('trackableViewsRate')]
     public ?float $trackableViewsRate;

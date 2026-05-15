@@ -14,7 +14,7 @@ class GetSegmentsResponseSegmentsItem extends JsonSerializableType
     public string $categoryName;
 
     /**
-     * @var int $id ID of the list
+     * @var int $id ID of the segment
      */
     #[JsonProperty('id')]
     public int $id;
@@ -26,7 +26,7 @@ class GetSegmentsResponseSegmentsItem extends JsonSerializableType
     public string $segmentName;
 
     /**
-     * @var ?string $updatedAt Updation UTC date-time of the segment (YYYY-MM-DDTHH:mm:ss.SSSZ)
+     * @var ?string $updatedAt Last update UTC date-time of the segment (YYYY-MM-DDTHH:mm:ss.SSSZ)
      */
     #[JsonProperty('updatedAt')]
     public ?string $updatedAt;

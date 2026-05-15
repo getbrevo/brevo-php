@@ -3,7 +3,7 @@
 namespace Brevo\Balance;
 
 use Brevo\Balance\Requests\GetLoyaltyBalanceProgramsPidActiveBalanceRequest;
-use Brevo\Types\BalanceLimit;
+use Brevo\Balance\Types\GetLoyaltyBalanceProgramsPidActiveBalanceResponse;
 use Brevo\Balance\Requests\GetBalanceDefinitionListRequest;
 use Brevo\Balance\Types\GetBalanceDefinitionListResponse;
 use Brevo\Balance\Requests\PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequest;
@@ -11,6 +11,7 @@ use Brevo\Types\BalanceDefinition;
 use Brevo\Balance\Requests\GetBalanceDefinitionRequest;
 use Brevo\Balance\Requests\UpdateBalanceDefinitionRequest;
 use Brevo\Balance\Requests\CreateBalanceLimitRequest;
+use Brevo\Types\BalanceLimit;
 use Brevo\Balance\Requests\GetBalanceLimitRequest;
 use Brevo\Balance\Requests\UpdateBalanceLimitRequest;
 use Brevo\Balance\Requests\GetContactBalancesRequest;
@@ -41,9 +42,9 @@ interface BalanceClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?BalanceLimit
+     * @return ?GetLoyaltyBalanceProgramsPidActiveBalanceResponse
      */
-    public function getActiveBalancesApi(string $pid, GetLoyaltyBalanceProgramsPidActiveBalanceRequest $request, ?array $options = null): ?BalanceLimit;
+    public function getActiveBalancesApi(string $pid, GetLoyaltyBalanceProgramsPidActiveBalanceRequest $request, ?array $options = null): ?GetLoyaltyBalanceProgramsPidActiveBalanceResponse;
 
     /**
      * Returns balance definition page
@@ -205,7 +206,7 @@ interface BalanceClientInterface
     public function deleteBalanceLimit(string $pid, string $bdid, string $blid, ?array $options = null): void;
 
     /**
-     * Returns balance list
+     * Returns contact balances for a given balance definition across all subscriptions.
      *
      * @param string $pid Loyalty Program Id
      * @param GetContactBalancesRequest $request
@@ -219,7 +220,7 @@ interface BalanceClientInterface
      * } $options
      * @return ?GetContactBalancesResponse
      */
-    public function getContactBalances(string $pid, GetContactBalancesRequest $request = new GetContactBalancesRequest(), ?array $options = null): ?GetContactBalancesResponse;
+    public function getContactBalances(string $pid, GetContactBalancesRequest $request, ?array $options = null): ?GetContactBalancesResponse;
 
     /**
      * Returns created order

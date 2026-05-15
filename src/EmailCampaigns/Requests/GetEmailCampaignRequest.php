@@ -8,7 +8,7 @@ use Brevo\EmailCampaigns\Types\GetEmailCampaignRequestStatistics;
 class GetEmailCampaignRequest extends JsonSerializableType
 {
     /**
-     * @var ?value-of<GetEmailCampaignRequestStatistics> $statistics Filter on type of the statistics required. Example **globalStats** value will only fetch globalStats info of the campaign in returned response.
+     * @var ?value-of<GetEmailCampaignRequestStatistics> $statistics Filter on the type of statistics required. Example: **globalStats** value will only fetch globalStats info of the campaign in the returned response. `statsByDevice` and `statsByBrowser` are only available when retrieving a single campaign (not in the list endpoint).
      */
     public ?string $statistics;
 

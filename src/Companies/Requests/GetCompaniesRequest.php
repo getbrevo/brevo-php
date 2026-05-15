@@ -8,9 +8,9 @@ use Brevo\Companies\Types\GetCompaniesRequestSort;
 class GetCompaniesRequest extends JsonSerializableType
 {
     /**
-     * @var ?string $filters Filter by attrbutes. If you have filter for owner on your side please send it as {"attributes.owner":"6299dcf3874a14eacbc65c46"}
+     * @var ?string $filtersAttributesName Filter by attributes. If you have a filter for the owner on your side please send it as filters[attributes.owner] and utilize the account email for the filtering.
      */
-    public ?string $filters;
+    public ?string $filtersAttributesName;
 
     /**
      * @var ?int $linkedContactsIds Filter by linked contacts ids
@@ -23,12 +23,12 @@ class GetCompaniesRequest extends JsonSerializableType
     public ?string $linkedDealsIds;
 
     /**
-     * @var ?string $modifiedSince Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
+     * @var ?string $modifiedSince Filter (urlencoded) the companies modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
      */
     public ?string $modifiedSince;
 
     /**
-     * @var ?string $createdSince Filter (urlencoded) the contacts created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
+     * @var ?string $createdSince Filter (urlencoded) the companies created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
      */
     public ?string $createdSince;
 
@@ -54,7 +54,7 @@ class GetCompaniesRequest extends JsonSerializableType
 
     /**
      * @param array{
-     *   filters?: ?string,
+     *   filtersAttributesName?: ?string,
      *   linkedContactsIds?: ?int,
      *   linkedDealsIds?: ?string,
      *   modifiedSince?: ?string,
@@ -68,7 +68,7 @@ class GetCompaniesRequest extends JsonSerializableType
     public function __construct(
         array $values = [],
     ) {
-        $this->filters = $values['filters'] ?? null;
+        $this->filtersAttributesName = $values['filtersAttributesName'] ?? null;
         $this->linkedContactsIds = $values['linkedContactsIds'] ?? null;
         $this->linkedDealsIds = $values['linkedDealsIds'] ?? null;
         $this->modifiedSince = $values['modifiedSince'] ?? null;

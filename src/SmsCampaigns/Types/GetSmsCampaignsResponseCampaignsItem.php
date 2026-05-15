@@ -40,7 +40,13 @@ class GetSmsCampaignsResponseCampaignsItem extends JsonSerializableType
     public string $name;
 
     /**
-     * @var ?string $scheduledAt UTC date-time on which SMS campaign is scheduled. Should be in YYYY-MM-DDTHH:mm:ss.SSSZ format
+     * @var ?string $organisationPrefix A recognizable prefix added as the Brand Name before the message content. Empty string if not set.
+     */
+    #[JsonProperty('organisationPrefix')]
+    public ?string $organisationPrefix;
+
+    /**
+     * @var ?string $scheduledAt UTC date-time on which SMS campaign is scheduled. Should be in YYYY-MM-DDTHH:mm:ss.SSSZ format. Empty string if not scheduled.
      */
     #[JsonProperty('scheduledAt')]
     public ?string $scheduledAt;
@@ -52,10 +58,22 @@ class GetSmsCampaignsResponseCampaignsItem extends JsonSerializableType
     public string $sender;
 
     /**
+     * @var ?string $sentDate UTC date-time on which the SMS campaign was sent (YYYY-MM-DDTHH:mm:ss.SSSZ). Only available if the campaign status is 'sent'.
+     */
+    #[JsonProperty('sentDate')]
+    public ?string $sentDate;
+
+    /**
      * @var value-of<GetSmsCampaignsResponseCampaignsItemStatus> $status Status of the SMS Campaign
      */
     #[JsonProperty('status')]
     public string $status;
+
+    /**
+     * @var ?string $unsubscribeInstruction Instructions to unsubscribe from future communications. Empty string if not set.
+     */
+    #[JsonProperty('unsubscribeInstruction')]
+    public ?string $unsubscribeInstruction;
 
     /**
      * @var GetCampaignRecipients $recipients
@@ -80,7 +98,10 @@ class GetSmsCampaignsResponseCampaignsItem extends JsonSerializableType
      *   status: value-of<GetSmsCampaignsResponseCampaignsItemStatus>,
      *   recipients: GetCampaignRecipients,
      *   statistics: GetSmsCampaignStats,
+     *   organisationPrefix?: ?string,
      *   scheduledAt?: ?string,
+     *   sentDate?: ?string,
+     *   unsubscribeInstruction?: ?string,
      * } $values
      */
     public function __construct(
@@ -91,9 +112,12 @@ class GetSmsCampaignsResponseCampaignsItem extends JsonSerializableType
         $this->id = $values['id'];
         $this->modifiedAt = $values['modifiedAt'];
         $this->name = $values['name'];
+        $this->organisationPrefix = $values['organisationPrefix'] ?? null;
         $this->scheduledAt = $values['scheduledAt'] ?? null;
         $this->sender = $values['sender'];
+        $this->sentDate = $values['sentDate'] ?? null;
         $this->status = $values['status'];
+        $this->unsubscribeInstruction = $values['unsubscribeInstruction'] ?? null;
         $this->recipients = $values['recipients'];
         $this->statistics = $values['statistics'];
     }

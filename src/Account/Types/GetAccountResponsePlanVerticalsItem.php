@@ -32,16 +32,16 @@ class GetAccountResponsePlanVerticalsItem extends JsonSerializableType
     public string $status;
 
     /**
-     * @var string $startDate Plan start date (Unix timestamp)
+     * @var ?string $startDate Plan start date (Unix timestamp)
      */
     #[JsonProperty('startDate')]
-    public string $startDate;
+    public ?string $startDate;
 
     /**
-     * @var string $endDate Plan end date (Unix timestamp)
+     * @var ?string $endDate Plan end date (Unix timestamp)
      */
     #[JsonProperty('endDate')]
-    public string $endDate;
+    public ?string $endDate;
 
     /**
      * @var ?GetAccountResponsePlanVerticalsItemUsers $users User seat information for the plan
@@ -61,8 +61,8 @@ class GetAccountResponsePlanVerticalsItem extends JsonSerializableType
      *   planType: string,
      *   name: string,
      *   status: value-of<GetAccountResponsePlanVerticalsItemStatus>,
-     *   startDate: string,
-     *   endDate: string,
+     *   startDate?: ?string,
+     *   endDate?: ?string,
      *   users?: ?GetAccountResponsePlanVerticalsItemUsers,
      *   credits?: ?string,
      * } $values
@@ -74,8 +74,8 @@ class GetAccountResponsePlanVerticalsItem extends JsonSerializableType
         $this->planType = $values['planType'];
         $this->name = $values['name'];
         $this->status = $values['status'];
-        $this->startDate = $values['startDate'];
-        $this->endDate = $values['endDate'];
+        $this->startDate = $values['startDate'] ?? null;
+        $this->endDate = $values['endDate'] ?? null;
         $this->users = $values['users'] ?? null;
         $this->credits = $values['credits'] ?? null;
     }

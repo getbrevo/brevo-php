@@ -18,17 +18,17 @@ class GetCrmDealsRequest extends JsonSerializableType
     public ?string $filtersLinkedCompaniesIds;
 
     /**
-     * @var ?string $filtersLinkedContactsIds Filter by linked companies ids
+     * @var ?string $filtersLinkedContactsIds Filter by linked contacts ids
      */
     public ?string $filtersLinkedContactsIds;
 
     /**
-     * @var ?string $modifiedSince Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
+     * @var ?string $modifiedSince Filter (urlencoded) the deals modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
      */
     public ?string $modifiedSince;
 
     /**
-     * @var ?string $createdSince Filter (urlencoded) the contacts created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
+     * @var ?string $createdSince Filter (urlencoded) the deals created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
      */
     public ?string $createdSince;
 
@@ -40,12 +40,17 @@ class GetCrmDealsRequest extends JsonSerializableType
     /**
      * @var ?int $limit Number of documents per page
      */
-    public ?int $limit;
+    public ?int $limit = 50;
 
     /**
      * @var ?value-of<GetCrmDealsRequestSort> $sort Sort the results in the ascending/descending order. Default order is **descending** by creation if `sort` is not passed
      */
     public ?string $sort;
+
+    /**
+     * @var ?string $sortBy The field used to sort field names.
+     */
+    public ?string $sortBy;
 
     /**
      * @param array{
@@ -57,6 +62,7 @@ class GetCrmDealsRequest extends JsonSerializableType
      *   offset?: ?int,
      *   limit?: ?int,
      *   sort?: ?value-of<GetCrmDealsRequestSort>,
+     *   sortBy?: ?string,
      * } $values
      */
     public function __construct(
@@ -70,5 +76,6 @@ class GetCrmDealsRequest extends JsonSerializableType
         $this->offset = $values['offset'] ?? null;
         $this->limit = $values['limit'] ?? null;
         $this->sort = $values['sort'] ?? null;
+        $this->sortBy = $values['sortBy'] ?? null;
     }
 }

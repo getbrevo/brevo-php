@@ -8,6 +8,12 @@ use Brevo\Core\Json\JsonProperty;
 class GetIpsResponseIpsItem extends JsonSerializableType
 {
     /**
+     * @var int $id ID of the dedicated IP
+     */
+    #[JsonProperty('id')]
+    public int $id;
+
+    /**
      * @var bool $active Status of the IP (true=active, false=inactive)
      */
     #[JsonProperty('active')]
@@ -20,12 +26,6 @@ class GetIpsResponseIpsItem extends JsonSerializableType
     public string $domain;
 
     /**
-     * @var int $id ID of the dedicated IP
-     */
-    #[JsonProperty('id')]
-    public int $id;
-
-    /**
      * @var string $ip Dedicated IP address
      */
     #[JsonProperty('ip')]
@@ -33,18 +33,18 @@ class GetIpsResponseIpsItem extends JsonSerializableType
 
     /**
      * @param array{
+     *   id: int,
      *   active: bool,
      *   domain: string,
-     *   id: int,
      *   ip: string,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
+        $this->id = $values['id'];
         $this->active = $values['active'];
         $this->domain = $values['domain'];
-        $this->id = $values['id'];
         $this->ip = $values['ip'];
     }
 

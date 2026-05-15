@@ -33,7 +33,12 @@ class GetContactsRequest extends JsonSerializableType
     public ?string $sort;
 
     /**
-     * @var ?int $segmentId Id of the segment. **Either listIds or segmentId can be passed.**
+     * @var ?array<int> $ids Filter by a list of contact IDs. You can pass a **maximum of 20 IDs**. All elements must be integers.
+     */
+    public ?array $ids;
+
+    /**
+     * @var ?int $segmentId Id of the segment. **Either listIds or segmentId can be passed.** Must be a positive integer (minimum value of 1).
      */
     public ?int $segmentId;
 
@@ -54,6 +59,7 @@ class GetContactsRequest extends JsonSerializableType
      *   modifiedSince?: ?string,
      *   createdSince?: ?string,
      *   sort?: ?value-of<GetContactsRequestSort>,
+     *   ids?: ?array<int>,
      *   segmentId?: ?int,
      *   listIds?: ?array<int>,
      *   filter?: ?string,
@@ -67,6 +73,7 @@ class GetContactsRequest extends JsonSerializableType
         $this->modifiedSince = $values['modifiedSince'] ?? null;
         $this->createdSince = $values['createdSince'] ?? null;
         $this->sort = $values['sort'] ?? null;
+        $this->ids = $values['ids'] ?? null;
         $this->segmentId = $values['segmentId'] ?? null;
         $this->listIds = $values['listIds'] ?? null;
         $this->filter = $values['filter'] ?? null;

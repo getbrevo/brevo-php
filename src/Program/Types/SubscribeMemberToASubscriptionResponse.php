@@ -5,21 +5,11 @@ namespace Brevo\Program\Types;
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
 use Brevo\Core\Types\ArrayType;
+use DateTime;
+use Brevo\Core\Types\Date;
 
 class SubscribeMemberToASubscriptionResponse extends JsonSerializableType
 {
-    /**
-     * @var ?string $createdAt Timestamp when the subscription member was created.
-     */
-    #[JsonProperty('createdAt')]
-    public ?string $createdAt;
-
-    /**
-     * @var ?array<int> $memberContactIds List of unique member contact IDs.
-     */
-    #[JsonProperty('memberContactIds'), ArrayType(['integer'])]
-    public ?array $memberContactIds;
-
     /**
      * @var ?int $organizationId Unique identifier of the organization.
      */
@@ -33,27 +23,39 @@ class SubscribeMemberToASubscriptionResponse extends JsonSerializableType
     public ?int $ownerContactId;
 
     /**
-     * @var ?string $updatedAt Timestamp when the subscription member was last updated.
+     * @var ?array<int> $memberContactIds List of unique member contact IDs.
      */
-    #[JsonProperty('updatedAt')]
-    public ?string $updatedAt;
+    #[JsonProperty('memberContactIds'), ArrayType(['integer'])]
+    public ?array $memberContactIds;
+
+    /**
+     * @var ?DateTime $createdAt Timestamp when the subscription member was created.
+     */
+    #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $createdAt;
+
+    /**
+     * @var ?DateTime $updatedAt Timestamp when the subscription member was last updated.
+     */
+    #[JsonProperty('updatedAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $updatedAt;
 
     /**
      * @param array{
-     *   createdAt?: ?string,
-     *   memberContactIds?: ?array<int>,
      *   organizationId?: ?int,
      *   ownerContactId?: ?int,
-     *   updatedAt?: ?string,
+     *   memberContactIds?: ?array<int>,
+     *   createdAt?: ?DateTime,
+     *   updatedAt?: ?DateTime,
      * } $values
      */
     public function __construct(
         array $values = [],
     ) {
-        $this->createdAt = $values['createdAt'] ?? null;
-        $this->memberContactIds = $values['memberContactIds'] ?? null;
         $this->organizationId = $values['organizationId'] ?? null;
         $this->ownerContactId = $values['ownerContactId'] ?? null;
+        $this->memberContactIds = $values['memberContactIds'] ?? null;
+        $this->createdAt = $values['createdAt'] ?? null;
         $this->updatedAt = $values['updatedAt'] ?? null;
     }
 

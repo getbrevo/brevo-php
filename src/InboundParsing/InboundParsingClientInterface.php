@@ -9,7 +9,7 @@ use Brevo\InboundParsing\Types\GetInboundEmailEventsByUuidResponse;
 interface InboundParsingClientInterface
 {
     /**
-     * This endpoint will show the list of all the events for the received emails.
+     * This endpoint will show the list of all the events for the received emails. When no date range is provided, the last 30 days of events are returned by default.
      *
      * @param GetInboundEmailEventsRequest $request
      * @param ?array{

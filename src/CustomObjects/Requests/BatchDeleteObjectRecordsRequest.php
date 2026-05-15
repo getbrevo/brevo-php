@@ -14,7 +14,7 @@ class BatchDeleteObjectRecordsRequest extends JsonSerializableType
      * @var (
      *    BatchDeleteObjectRecordsRequestIdentifiersIds
      *   |BatchDeleteObjectRecordsRequestIdentifiersExtIds
-     * )|null $identifiers One of the below must be provided
+     * )|null $identifiers Either `ids` or `ext_ids` must be provided, but not both in the same request.
      */
     #[JsonProperty('identifiers'), Union(BatchDeleteObjectRecordsRequestIdentifiersIds::class, BatchDeleteObjectRecordsRequestIdentifiersExtIds::class, 'null')]
     public BatchDeleteObjectRecordsRequestIdentifiersIds|BatchDeleteObjectRecordsRequestIdentifiersExtIds|null $identifiers;

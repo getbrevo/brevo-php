@@ -92,6 +92,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Retrieve all contacts from your Brevo account with support for pagination, filtering, and sorting. Results default to 50 contacts per page (maximum 1000) sorted in descending order of creation, and can be filtered by modification date, creation date, contact IDs (up to 20), list IDs, segment ID, or contact attributes using the equals operator. Note that either listIds or segmentId can be passed but not both simultaneously.
+     *
      * @param GetContactsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -123,6 +125,9 @@ class ContactsClient implements ContactsClientInterface
         }
         if ($request->sort != null) {
             $query['sort'] = $request->sort;
+        }
+        if ($request->ids != null) {
+            $query['ids'] = $request->ids;
         }
         if ($request->segmentId != null) {
             $query['segmentId'] = $request->segmentId;
@@ -215,6 +220,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Retrieve all contact attributes defined in your Brevo account, grouped by category (normal, transactional, category, calculated, global). Each attribute includes its name, type, and category, along with enumeration values for category-type attributes and options for multiple-choice-type attributes.
+     *
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -260,6 +267,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Create a new contact attribute under the specified category and name. The required body properties depend on the category: use "type" for normal, transactional, or category attributes; use "value" for calculated or global attributes; use "enumeration" for category attributes; and use "multiCategoryOptions" for normal multiple-choice attributes. None of the category or multicategory option values can exceed 200 characters.
+     *
      * @param value-of<CreateAttributeRequestAttributeCategory> $attributeCategory Category of the attribute
      * @param string $attributeName Name of the attribute
      * @param CreateAttributeRequest $request
@@ -302,6 +311,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Update an existing contact attribute identified by its category and name. For category-type attributes, you can update the enumeration values; for calculated or global attributes, update the computed value formula; and for normal multiple-choice attributes, update the multicategory options. None of the category or multicategory option values can exceed 200 characters.
+     *
      * @param value-of<UpdateAttributeRequestAttributeCategory> $attributeCategory Category of the attribute
      * @param string $attributeName Name of the existing attribute
      * @param UpdateAttributeRequest $request
@@ -344,6 +355,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Permanently delete an existing contact attribute by its category and name. The attribute must exist in the specified category (normal, transactional, category, calculated, or global), otherwise a 404 error is returned.
+     *
      * @param value-of<DeleteAttributeRequestAttributeCategory> $attributeCategory Category of the attribute
      * @param string $attributeName Name of the existing attribute
      * @param ?array{
@@ -384,6 +397,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Delete a specific option from an existing multiple-choice contact attribute. The attribute type must be "multiple-choice", and both the attribute name and the option to delete must already exist in your account.
+     *
      * @param 'multiple-choice' $attributeType Type of the attribute
      * @param string $multipleChoiceAttribute Name of the existing multiple-choice attribute
      * @param string $multipleChoiceAttributeOption Name of the existing multiple-choice attribute option that you want to delete
@@ -425,6 +440,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Update multiple contacts in a single API call by passing an array of contact objects. Each contact in the array must be identified by one of: email, id, or sms (only one identifier per contact). You can update attributes, blacklist status, list memberships, ext_id, and transactional email forbidden senders for each contact in the batch.
+     *
      * @param UpdateBatchContactsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -619,6 +636,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Create a new folder to organize your contact lists. Folders serve as containers for grouping related lists together. The folder name is required and must be provided in the request body.
+     *
      * @param CreateUpdateFolder $request
      * @param ?array{
      *   baseUrl?: string,
@@ -716,6 +735,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Update the name of an existing folder identified by its ID. The new folder name must be provided in the request body. Returns a 404 error if the folder ID does not exist.
+     *
      * @param int $folderId Id of the folder
      * @param UpdateFolderRequest $request
      * @param ?array{
@@ -757,6 +778,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Permanently delete a folder identified by its ID. Deleting a folder will also delete all the contact lists contained within it. This action cannot be undone.
+     *
      * @param int $folderId Id of the folder
      * @param ?array{
      *   baseUrl?: string,
@@ -968,6 +991,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Create a new contact list inside a specified folder. Both the list name and the parent folder ID are required. The newly created list will be empty and ready to receive contacts via the add contacts endpoint.
+     *
      * @param CreateListRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1015,6 +1040,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Retrieve the details of a specific contact list by its ID, including its name, folder ID, creation date, subscriber counts, and campaign statistics. You can optionally filter campaign statistics by providing startDate and endDate parameters (both must be used together in YYYY-MM-DD format).
+     *
      * @param int $listId Id of the list
      * @param GetListRequest $request
      * @param ?array{
@@ -1070,6 +1097,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Update an existing contact list identified by its ID. You can update the list name, move it to a different folder by providing a new folderId, or both. Only one of the two parameters (name, folderId) needs to be provided per request.
+     *
      * @param int $listId Id of the list
      * @param UpdateListRequest $request
      * @param ?array{
@@ -1111,6 +1140,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Permanently delete a contact list identified by its ID. The contacts in the list are not deleted; they are only removed from this list. Returns a 404 error if the list ID does not exist.
+     *
      * @param int $listId Id of the list
      * @param ?array{
      *   baseUrl?: string,
@@ -1150,6 +1181,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Retrieve all contacts belonging to a specific list, identified by its list ID. Results are paginated with a default of 50 contacts per page (maximum 500) and sorted in descending order of creation. You can optionally filter contacts by their modification date using the modifiedSince parameter.
+     *
      * @param int $listId Id of the list
      * @param GetContactsFromListRequest $request
      * @param ?array{
@@ -1307,6 +1340,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Retrieve all contact segments defined in your Brevo account with support for pagination and sorting. Results default to 10 segments per page (maximum 50) sorted in descending order of creation. Each segment includes its ID, name, category name, and last update timestamp.
+     *
      * @param GetSegmentsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1436,7 +1471,7 @@ class ContactsClient implements ContactsClientInterface
      * @param (
      *    string
      *   |int
-     * ) $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE attribute value
+     * ) $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE_NUMBER attribute value
      * @param UpdateContactRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1532,6 +1567,8 @@ class ContactsClient implements ContactsClientInterface
     }
 
     /**
+     * Retrieve email campaign statistics for a specific contact identified by email address or numeric ID. Statistics include messages sent, opens, clicks, hard/soft bounces, deliveries, unsubscriptions, complaints, and transactional attributes. By default, data covers the last 90 days; use startDate and endDate parameters (YYYY-MM-DD) to specify a custom range with a maximum span of 90 days.
+     *
      * @param (
      *    string
      *   |int

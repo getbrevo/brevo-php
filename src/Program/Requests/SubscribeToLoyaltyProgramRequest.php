@@ -4,6 +4,9 @@ namespace Brevo\Program\Requests;
 
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
+use DateTime;
+use Brevo\Core\Types\Date;
+use Brevo\Core\Types\ArrayType;
 
 class SubscribeToLoyaltyProgramRequest extends JsonSerializableType
 {
@@ -14,29 +17,37 @@ class SubscribeToLoyaltyProgramRequest extends JsonSerializableType
     public int $contactId;
 
     /**
-     * @var ?string $creationDate Optional custom date-time format.
-     */
-    #[JsonProperty('creationDate')]
-    public ?string $creationDate;
-
-    /**
      * @var ?string $loyaltySubscriptionId Optional subscription ID (max length 64).
      */
     #[JsonProperty('loyaltySubscriptionId')]
     public ?string $loyaltySubscriptionId;
 
     /**
+     * @var ?DateTime $creationDate Optional creation date in ISO 8601 format (YYYY-MM-DDThh:mm:ss.ffffff+HH:MM). Must be in the past.
+     */
+    #[JsonProperty('creationDate'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $creationDate;
+
+    /**
+     * @var ?array<string, mixed> $meta Optional metadata associated with the subscription.
+     */
+    #[JsonProperty('meta'), ArrayType(['string' => 'mixed'])]
+    public ?array $meta;
+
+    /**
      * @param array{
      *   contactId: int,
-     *   creationDate?: ?string,
      *   loyaltySubscriptionId?: ?string,
+     *   creationDate?: ?DateTime,
+     *   meta?: ?array<string, mixed>,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
         $this->contactId = $values['contactId'];
-        $this->creationDate = $values['creationDate'] ?? null;
         $this->loyaltySubscriptionId = $values['loyaltySubscriptionId'] ?? null;
+        $this->creationDate = $values['creationDate'] ?? null;
+        $this->meta = $values['meta'] ?? null;
     }
 }

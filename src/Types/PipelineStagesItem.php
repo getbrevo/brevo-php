@@ -6,7 +6,7 @@ use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
 
 /**
- * List of stages
+ * Stage details
  */
 class PipelineStagesItem extends JsonSerializableType
 {

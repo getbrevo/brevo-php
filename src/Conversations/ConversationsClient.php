@@ -57,7 +57,7 @@ class ConversationsClient implements ConversationsClientInterface
     }
 
     /**
-     * We recommend pinging this endpoint every minute for as long as the agent has to be considered online.
+     * Sets the agent's status to online for 2-3 minutes. We recommend pinging this endpoint every minute for as long as the agent has to be considered online. You must provide either `agentId` alone, or all three of `agentEmail` + `agentName` + `receivedFrom`.
      *
      * @param PostConversationsAgentOnlinePingRequest $request
      * @param ?array{
@@ -99,6 +99,8 @@ class ConversationsClient implements ConversationsClientInterface
     }
 
     /**
+     * Send a message as an agent to an existing visitor's conversation. You must provide either `agentId` alone, or all three of `agentEmail` + `agentName` + `receivedFrom` to identify the agent.
+     *
      * @param PostConversationsMessagesRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -146,6 +148,8 @@ class ConversationsClient implements ConversationsClientInterface
     }
 
     /**
+     * Retrieve a single message by its ID.
+     *
      * @param string $id ID of the message
      * @param ?array{
      *   baseUrl?: string,
@@ -192,7 +196,7 @@ class ConversationsClient implements ConversationsClientInterface
     }
 
     /**
-     * Only agents’ messages can be edited.
+     * Update the text of a message sent by an agent. Only messages of type `agent` can be edited. The `text` and `html` fields of the message will be updated.
      *
      * @param string $id ID of the message
      * @param PutConversationsMessagesIdRequest $request
@@ -242,7 +246,7 @@ class ConversationsClient implements ConversationsClientInterface
     }
 
     /**
-     * Only agents’ messages can be deleted.
+     * Delete a message sent by an agent. Only messages of type `agent` can be deleted.
      *
      * @param string $id ID of the message
      * @param ?array{
@@ -283,7 +287,7 @@ class ConversationsClient implements ConversationsClientInterface
     }
 
     /**
-     * Example of automated messages: order status, announce new features in your web app, etc.
+     * Send an automated (pushed) message to a visitor on behalf of an agent. Example use cases: order status updates, announcing new features in your web app, etc.
      *
      * @param PostConversationsPushedMessagesRequest $request
      * @param ?array{
@@ -332,6 +336,8 @@ class ConversationsClient implements ConversationsClientInterface
     }
 
     /**
+     * Retrieve a single automated (pushed) message by its ID.
+     *
      * @param string $id ID of the message sent previously
      * @param ?array{
      *   baseUrl?: string,
@@ -378,6 +384,8 @@ class ConversationsClient implements ConversationsClientInterface
     }
 
     /**
+     * Update the text of an automated (pushed) message. The `text` and `html` fields of the message will be updated.
+     *
      * @param string $id ID of the message
      * @param PutConversationsPushedMessagesIdRequest $request
      * @param ?array{
@@ -426,6 +434,8 @@ class ConversationsClient implements ConversationsClientInterface
     }
 
     /**
+     * Delete an automated (pushed) message by its ID.
+     *
      * @param string $id ID of the message
      * @param ?array{
      *   baseUrl?: string,

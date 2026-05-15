@@ -4,6 +4,8 @@ namespace Brevo\Types;
 
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
+use Brevo\Core\Types\Union;
+use Brevo\Core\Types\ArrayType;
 
 class SendTransacSms extends JsonSerializableType
 {
@@ -14,22 +16,25 @@ class SendTransacSms extends JsonSerializableType
     public ?string $organisationPrefix;
 
     /**
-     * @var string $recipient Mobile number to send SMS with the country code
+     * @var string $recipient Mobile number to send SMS with the country code. Must contain between 6 and 15 digits, optionally prefixed with '+'.
      */
     #[JsonProperty('recipient')]
     public string $recipient;
 
     /**
-     * @var string $sender Name of the sender. **The number of characters is limited to 11 for alphanumeric characters and 15 for numeric characters**
+     * @var string $sender Name of the sender. **The number of characters is limited to 11 for alphanumeric characters and 15 for numeric characters.** Alphanumeric sender names (up to 11 characters) must contain only letters and digits. Numeric sender names (12-15 characters) must contain only digits.
      */
     #[JsonProperty('sender')]
     public string $sender;
 
     /**
-     * @var ?SendTransacSmsTag $tag Tag of the message
+     * @var (
+     *    string
+     *   |array<string>
+     * )|null $tag Tag of the message. Can be a single string or an array of strings (maximum 10 tags). Each tag must be a non-empty string.
      */
-    #[JsonProperty('tag')]
-    public ?SendTransacSmsTag $tag;
+    #[JsonProperty('tag'), Union('string', ['string'], 'null')]
+    public string|array|null $tag;
 
     /**
      * @var ?value-of<SendTransacSmsType> $type Type of the SMS. Marketing SMS messages are those sent typically with marketing content. Transactional SMS messages are sent to individuals and are triggered in response to some action, such as a sign-up, purchase, etc.
@@ -50,6 +55,12 @@ class SendTransacSms extends JsonSerializableType
     public ?string $webUrl;
 
     /**
+     * @var ?array<string, mixed> $params Pass the set of attributes to customize the template. For example, {"FNAME":"Joe", "LNAME":"Doe"}. These are the placeholder variables in the template that will be replaced with the corresponding values passed in the params object. Applicable only if `templateId` is used.
+     */
+    #[JsonProperty('params'), ArrayType(['string' => 'mixed'])]
+    public ?array $params;
+
+    /**
      * @var ?int $templateId Template ID to send SMS with the template. When provided, overrides the content parameter. Mandatory if 'content' is not passed.
      */
     #[JsonProperty('templateId')]
@@ -66,10 +77,14 @@ class SendTransacSms extends JsonSerializableType
      *   recipient: string,
      *   sender: string,
      *   organisationPrefix?: ?string,
-     *   tag?: ?SendTransacSmsTag,
+     *   tag?: (
+     *    string
+     *   |array<string>
+     * )|null,
      *   type?: ?value-of<SendTransacSmsType>,
      *   unicodeEnabled?: ?bool,
      *   webUrl?: ?string,
+     *   params?: ?array<string, mixed>,
      *   templateId?: ?int,
      *   content?: ?string,
      * } $values
@@ -84,6 +99,7 @@ class SendTransacSms extends JsonSerializableType
         $this->type = $values['type'] ?? null;
         $this->unicodeEnabled = $values['unicodeEnabled'] ?? null;
         $this->webUrl = $values['webUrl'] ?? null;
+        $this->params = $values['params'] ?? null;
         $this->templateId = $values['templateId'] ?? null;
         $this->content = $values['content'] ?? null;
     }

@@ -45,7 +45,7 @@ class GetProductDetails extends JsonSerializableType
     public ?string $imageUrl;
 
     /**
-     * @var ?bool $isDeleted Product get deleted from the shop's database but not from Brevo
+     * @var ?bool $isDeleted Product deleted from the shop's database but not from Brevo
      */
     #[JsonProperty('isDeleted')]
     public ?bool $isDeleted;
@@ -79,6 +79,12 @@ class GetProductDetails extends JsonSerializableType
      */
     #[JsonProperty('price')]
     public ?float $price;
+
+    /**
+     * @var ?float $alternativePrice Alternative price of the product
+     */
+    #[JsonProperty('alternativePrice')]
+    public ?float $alternativePrice;
 
     /**
      * @var ?string $s3Original S3 url of original image
@@ -132,6 +138,7 @@ class GetProductDetails extends JsonSerializableType
      *   metaInfo?: ?array<string, mixed>,
      *   parentId?: ?string,
      *   price?: ?float,
+     *   alternativePrice?: ?float,
      *   s3Original?: ?string,
      *   sku?: ?string,
      *   stock?: ?float,
@@ -153,6 +160,7 @@ class GetProductDetails extends JsonSerializableType
         $this->name = $values['name'];
         $this->parentId = $values['parentId'] ?? null;
         $this->price = $values['price'] ?? null;
+        $this->alternativePrice = $values['alternativePrice'] ?? null;
         $this->s3Original = $values['s3Original'] ?? null;
         $this->s3ThumbAnalytics = $values['s3ThumbAnalytics'];
         $this->s3ThumbEditor = $values['s3ThumbEditor'];

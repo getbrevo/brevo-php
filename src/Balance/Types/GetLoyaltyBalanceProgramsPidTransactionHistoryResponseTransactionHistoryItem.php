@@ -18,6 +18,12 @@ class GetLoyaltyBalanceProgramsPidTransactionHistoryResponseTransactionHistoryIt
     public ?float $amount;
 
     /**
+     * @var ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryResponseTransactionHistoryItemTransactionType> $transactionType The type of the transaction.
+     */
+    #[JsonProperty('transactionType')]
+    public ?string $transactionType;
+
+    /**
      * @var ?string $balanceExpirationDate Expiration date of the balance associated with this transaction.
      */
     #[JsonProperty('balanceExpirationDate')]
@@ -74,6 +80,7 @@ class GetLoyaltyBalanceProgramsPidTransactionHistoryResponseTransactionHistoryIt
     /**
      * @param array{
      *   amount?: ?float,
+     *   transactionType?: ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryResponseTransactionHistoryItemTransactionType>,
      *   balanceExpirationDate?: ?string,
      *   cancelledAt?: ?string,
      *   completedAt?: ?string,
@@ -89,6 +96,7 @@ class GetLoyaltyBalanceProgramsPidTransactionHistoryResponseTransactionHistoryIt
         array $values = [],
     ) {
         $this->amount = $values['amount'] ?? null;
+        $this->transactionType = $values['transactionType'] ?? null;
         $this->balanceExpirationDate = $values['balanceExpirationDate'] ?? null;
         $this->cancelledAt = $values['cancelledAt'] ?? null;
         $this->completedAt = $values['completedAt'] ?? null;

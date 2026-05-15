@@ -8,13 +8,13 @@ use Brevo\Core\Json\JsonProperty;
 class GetSubscriptionBalancesResponseBalanceItem extends JsonSerializableType
 {
     /**
-     * @var ?string $balanceDefinitionId balance definition ID
+     * @var ?string $balanceDefinitionId Balance definition ID.
      */
     #[JsonProperty('balanceDefinitionId')]
     public ?string $balanceDefinitionId;
 
     /**
-     * @var ?float $value Unique identifier for the balance definition associated with this aggregate balance
+     * @var ?float $value Aggregate balance value for this definition.
      */
     #[JsonProperty('value')]
     public ?float $value;

@@ -5,6 +5,8 @@ namespace Brevo\Program\Types;
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
 use Brevo\Core\Types\ArrayType;
+use DateTime;
+use Brevo\Core\Types\Date;
 
 class GetParameterSubscriptionInfoResponseRewardItem extends JsonSerializableType
 {
@@ -57,10 +59,16 @@ class GetParameterSubscriptionInfoResponseRewardItem extends JsonSerializableTyp
     public ?string $rewardId;
 
     /**
-     * @var ?string $updatedAt Timestamp when the reward was last updated.
+     * @var ?DateTime $updatedAt Timestamp when the reward was last updated.
      */
-    #[JsonProperty('updatedAt')]
-    public ?string $updatedAt;
+    #[JsonProperty('updatedAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $updatedAt;
+
+    /**
+     * @var ?DateTime $validFrom Date from which the voucher becomes valid.
+     */
+    #[JsonProperty('validFrom'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $validFrom;
 
     /**
      * @param array{
@@ -72,7 +80,8 @@ class GetParameterSubscriptionInfoResponseRewardItem extends JsonSerializableTyp
      *   loyaltyProgramId?: ?string,
      *   meta?: ?array<string, mixed>,
      *   rewardId?: ?string,
-     *   updatedAt?: ?string,
+     *   updatedAt?: ?DateTime,
+     *   validFrom?: ?DateTime,
      * } $values
      */
     public function __construct(
@@ -87,6 +96,7 @@ class GetParameterSubscriptionInfoResponseRewardItem extends JsonSerializableTyp
         $this->meta = $values['meta'] ?? null;
         $this->rewardId = $values['rewardId'] ?? null;
         $this->updatedAt = $values['updatedAt'] ?? null;
+        $this->validFrom = $values['validFrom'] ?? null;
     }
 
     /**

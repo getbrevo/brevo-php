@@ -43,13 +43,13 @@ class CreateEmailCampaignRequest extends JsonSerializableType
     public ?string $header;
 
     /**
-     * @var ?string $htmlContent Mandatory if htmlUrl and templateId are empty. Body of the message (HTML).
+     * @var ?string $htmlContent **Mandatory if htmlUrl and templateId are empty.** Body of the message (HTML). Must have more than 10 characters and be less than 1MB in size. Cannot be used together with `htmlUrl` or `templateId`.
      */
     #[JsonProperty('htmlContent')]
     public ?string $htmlContent;
 
     /**
-     * @var ?string $htmlUrl **Mandatory if htmlContent and templateId are empty**. Url to the message (HTML). For example: **https://html.domain.com**
+     * @var ?string $htmlUrl **Mandatory if htmlContent and templateId are empty.** URL to the message (HTML). Cannot be used together with `htmlContent` or `templateId`. For example: **https://html.domain.com**
      */
     #[JsonProperty('htmlUrl')]
     public ?string $htmlUrl;
@@ -127,7 +127,7 @@ class CreateEmailCampaignRequest extends JsonSerializableType
     public ?bool $sendAtBestTime;
 
     /**
-     * @var CreateEmailCampaignRequestSender $sender Sender details including id or email and name (_optional_). Only one of either Sender's email or Sender's ID shall be passed in one request at a time. For example: **{"name":"xyz", "email":"example@abc.com"}** **{"name":"xyz", "id":123}**
+     * @var CreateEmailCampaignRequestSender $sender Sender details including id or email and name (optional). Only one of either Sender’s email or Sender’s ID shall be passed in one request at a time. Passing both `email` and `id` will result in an error. For example: **{"name":"xyz", "email":"example@abc.com"}** or **{"name":"xyz", "id":123}**
      */
     #[JsonProperty('sender')]
     public CreateEmailCampaignRequestSender $sender;
@@ -163,7 +163,7 @@ class CreateEmailCampaignRequest extends JsonSerializableType
     public ?string $tag;
 
     /**
-     * @var ?int $templateId **Mandatory if htmlContent and htmlUrl are empty**. Id of the transactional email template with status _active_. Used to copy only its content fetched from htmlContent/htmlUrl to an email campaign for RSS feature.
+     * @var ?int $templateId **Mandatory if htmlContent and htmlUrl are empty.** Id of the transactional email template with status _active_. Used to copy only its content fetched from htmlContent/htmlUrl to an email campaign for RSS feature. Cannot be used together with `htmlContent` or `htmlUrl`.
      */
     #[JsonProperty('templateId')]
     public ?int $templateId;

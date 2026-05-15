@@ -43,10 +43,10 @@ class ExportWebhooksHistoryRequest extends JsonSerializableType
      * Filter the history for a specific message id. Applicable
      * only for transactional webhooks.
      *
-     * @var ?int $messageId
+     * @var ?string $messageId
      */
     #[JsonProperty('messageId')]
-    public ?int $messageId;
+    public ?string $messageId;
 
     /**
      * @var string $notifyUrl Webhook URL to receive CSV file link
@@ -89,7 +89,7 @@ class ExportWebhooksHistoryRequest extends JsonSerializableType
      *   days?: ?int,
      *   email?: ?string,
      *   endDate?: ?string,
-     *   messageId?: ?int,
+     *   messageId?: ?string,
      *   sort?: ?string,
      *   startDate?: ?string,
      *   webhookId?: ?int,

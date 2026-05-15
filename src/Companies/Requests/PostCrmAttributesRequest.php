@@ -29,7 +29,7 @@ class PostCrmAttributesRequest extends JsonSerializableType
     public string $label;
 
     /**
-     * @var value-of<PostCrmAttributesRequestObjectType> $objectType The type of object the attribute belongs to (prefilled with `companies`, mandatory)
+     * @var value-of<PostCrmAttributesRequestObjectType> $objectType The type of object the attribute belongs to. Must be either `companies` or `deals`.
      */
     #[JsonProperty('objectType')]
     public string $objectType;

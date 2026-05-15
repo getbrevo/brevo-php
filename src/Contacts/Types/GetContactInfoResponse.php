@@ -63,6 +63,12 @@ class GetContactInfoResponse extends JsonSerializableType
     public bool $smsBlacklisted;
 
     /**
+     * @var bool $whatsappBlacklisted Blacklist status for WhatsApp campaigns (true=blacklisted, false=not blacklisted)
+     */
+    #[JsonProperty('whatsappBlacklisted')]
+    public bool $whatsappBlacklisted;
+
+    /**
      * @var GetContactInfoResponseStatistics $statistics Campaign statistics of the contact
      */
     #[JsonProperty('statistics')]
@@ -77,6 +83,7 @@ class GetContactInfoResponse extends JsonSerializableType
      *   listIds: array<int>,
      *   modifiedAt: string,
      *   smsBlacklisted: bool,
+     *   whatsappBlacklisted: bool,
      *   statistics: GetContactInfoResponseStatistics,
      *   email?: ?string,
      *   listUnsubscribed?: ?array<int>,
@@ -94,6 +101,7 @@ class GetContactInfoResponse extends JsonSerializableType
         $this->listUnsubscribed = $values['listUnsubscribed'] ?? null;
         $this->modifiedAt = $values['modifiedAt'];
         $this->smsBlacklisted = $values['smsBlacklisted'];
+        $this->whatsappBlacklisted = $values['whatsappBlacklisted'];
         $this->statistics = $values['statistics'];
     }
 

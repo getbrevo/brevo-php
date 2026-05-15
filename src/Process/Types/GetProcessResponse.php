@@ -4,8 +4,6 @@ namespace Brevo\Process\Types;
 
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
-use DateTime;
-use Brevo\Core\Types\Date;
 
 class GetProcessResponse extends JsonSerializableType
 {
@@ -28,34 +26,16 @@ class GetProcessResponse extends JsonSerializableType
     public string $status;
 
     /**
-     * @var ?GetProcessResponseInfo $info Additional process information (for completed processes)
+     * @var ?GetProcessResponseInfo $info Additional process information, only returned for completed IMPORTUSER processes. Contains URLs to CSV files with details about problematic records.
      */
     #[JsonProperty('info')]
     public ?GetProcessResponseInfo $info;
 
     /**
-     * @var ?string $exportUrl Download URL for completed export processes
+     * @var ?string $exportUrl Download URL for completed export processes (returned for SEARCH_EXPORT_USERS, SEARCH_EXPORT_USERS_API, CAMPAIGN_USER_DETAILS, and EXPORT_WEBHOOK process types)
      */
     #[JsonProperty('export_url')]
     public ?string $exportUrl;
-
-    /**
-     * @var ?string $error Error message for failed processes
-     */
-    #[JsonProperty('error')]
-    public ?string $error;
-
-    /**
-     * @var ?DateTime $createdAt Process creation timestamp
-     */
-    #[JsonProperty('created_at'), Date(Date::TYPE_DATETIME)]
-    public ?DateTime $createdAt;
-
-    /**
-     * @var ?DateTime $completedAt Process completion timestamp
-     */
-    #[JsonProperty('completed_at'), Date(Date::TYPE_DATETIME)]
-    public ?DateTime $completedAt;
 
     /**
      * @param array{
@@ -64,9 +44,6 @@ class GetProcessResponse extends JsonSerializableType
      *   status: value-of<GetProcessResponseStatus>,
      *   info?: ?GetProcessResponseInfo,
      *   exportUrl?: ?string,
-     *   error?: ?string,
-     *   createdAt?: ?DateTime,
-     *   completedAt?: ?DateTime,
      * } $values
      */
     public function __construct(
@@ -77,9 +54,6 @@ class GetProcessResponse extends JsonSerializableType
         $this->status = $values['status'];
         $this->info = $values['info'] ?? null;
         $this->exportUrl = $values['exportUrl'] ?? null;
-        $this->error = $values['error'] ?? null;
-        $this->createdAt = $values['createdAt'] ?? null;
-        $this->completedAt = $values['completedAt'] ?? null;
     }
 
     /**

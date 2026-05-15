@@ -4,32 +4,34 @@ namespace Brevo\Types;
 
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
+use DateTime;
+use Brevo\Core\Types\Date;
 
 class BalanceLimit extends JsonSerializableType
 {
     /**
-     * @var ?string $balanceDefinitionId balance definition ID
+     * @var ?string $id Unique identifier for the balance limit.
+     */
+    #[JsonProperty('id')]
+    public ?string $id;
+
+    /**
+     * @var ?string $balanceDefinitionId Balance definition ID.
      */
     #[JsonProperty('balanceDefinitionId')]
     public ?string $balanceDefinitionId;
 
     /**
-     * @var ?string $constraintType Defines the type of constraint (e.g., transaction-based or amount-based).
+     * @var ?value-of<BalanceLimitTransactionType> $transactionType Specifies whether the limit applies to credit or debit transactions.
+     */
+    #[JsonProperty('transactionType')]
+    public ?string $transactionType;
+
+    /**
+     * @var ?value-of<BalanceLimitConstraintType> $constraintType Defines the type of constraint (transaction count or amount).
      */
     #[JsonProperty('constraintType')]
     public ?string $constraintType;
-
-    /**
-     * @var string $createdAt Timestamp of when the balance limit was created.
-     */
-    #[JsonProperty('createdAt')]
-    public string $createdAt;
-
-    /**
-     * @var ?string $durationUnit Time unit for the balance limit (day, week, month, year).
-     */
-    #[JsonProperty('durationUnit')]
-    public ?string $durationUnit;
 
     /**
      * @var ?int $durationValue Number of time units the balance limit applies to.
@@ -38,10 +40,16 @@ class BalanceLimit extends JsonSerializableType
     public ?int $durationValue;
 
     /**
-     * @var ?string $id Unique identifier for the balance limit.
+     * @var ?value-of<BalanceLimitDurationUnit> $durationUnit Time unit for the balance limit.
      */
-    #[JsonProperty('id')]
-    public ?string $id;
+    #[JsonProperty('durationUnit')]
+    public ?string $durationUnit;
+
+    /**
+     * @var ?float $value The maximum allowed value for the defined constraint.
+     */
+    #[JsonProperty('value')]
+    public ?float $value;
 
     /**
      * @var ?bool $slidingSchedule Indicates if the limit resets periodically based on a sliding schedule.
@@ -50,50 +58,44 @@ class BalanceLimit extends JsonSerializableType
     public ?bool $slidingSchedule;
 
     /**
-     * @var ?string $transactionType Specifies whether the limit applies to credit or debit transactions.
+     * @var ?DateTime $createdAt Timestamp of when the balance limit was created.
      */
-    #[JsonProperty('transactionType')]
-    public ?string $transactionType;
+    #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $createdAt;
 
     /**
-     * @var string $updatedAt Timestamp of the last update to the balance limit.
+     * @var ?DateTime $updatedAt Timestamp of the last update to the balance limit.
      */
-    #[JsonProperty('updatedAt')]
-    public string $updatedAt;
-
-    /**
-     * @var ?int $value The maximum allowed value for the defined constraint.
-     */
-    #[JsonProperty('value')]
-    public ?int $value;
+    #[JsonProperty('updatedAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $updatedAt;
 
     /**
      * @param array{
-     *   createdAt: string,
-     *   updatedAt: string,
-     *   balanceDefinitionId?: ?string,
-     *   constraintType?: ?string,
-     *   durationUnit?: ?string,
-     *   durationValue?: ?int,
      *   id?: ?string,
+     *   balanceDefinitionId?: ?string,
+     *   transactionType?: ?value-of<BalanceLimitTransactionType>,
+     *   constraintType?: ?value-of<BalanceLimitConstraintType>,
+     *   durationValue?: ?int,
+     *   durationUnit?: ?value-of<BalanceLimitDurationUnit>,
+     *   value?: ?float,
      *   slidingSchedule?: ?bool,
-     *   transactionType?: ?string,
-     *   value?: ?int,
+     *   createdAt?: ?DateTime,
+     *   updatedAt?: ?DateTime,
      * } $values
      */
     public function __construct(
-        array $values,
+        array $values = [],
     ) {
-        $this->balanceDefinitionId = $values['balanceDefinitionId'] ?? null;
-        $this->constraintType = $values['constraintType'] ?? null;
-        $this->createdAt = $values['createdAt'];
-        $this->durationUnit = $values['durationUnit'] ?? null;
-        $this->durationValue = $values['durationValue'] ?? null;
         $this->id = $values['id'] ?? null;
-        $this->slidingSchedule = $values['slidingSchedule'] ?? null;
+        $this->balanceDefinitionId = $values['balanceDefinitionId'] ?? null;
         $this->transactionType = $values['transactionType'] ?? null;
-        $this->updatedAt = $values['updatedAt'];
+        $this->constraintType = $values['constraintType'] ?? null;
+        $this->durationValue = $values['durationValue'] ?? null;
+        $this->durationUnit = $values['durationUnit'] ?? null;
         $this->value = $values['value'] ?? null;
+        $this->slidingSchedule = $values['slidingSchedule'] ?? null;
+        $this->createdAt = $values['createdAt'] ?? null;
+        $this->updatedAt = $values['updatedAt'] ?? null;
     }
 
     /**

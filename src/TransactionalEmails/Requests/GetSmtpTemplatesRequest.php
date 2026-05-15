@@ -28,11 +28,17 @@ class GetSmtpTemplatesRequest extends JsonSerializableType
     public ?string $sort;
 
     /**
+     * @var ?'richTextEditor' $editorType Filter on the editor type used to create the template. Currently only `richTextEditor` is supported as a filter value.
+     */
+    public ?string $editorType;
+
+    /**
      * @param array{
      *   templateStatus?: ?bool,
      *   limit?: ?int,
      *   offset?: ?int,
      *   sort?: ?value-of<GetSmtpTemplatesRequestSort>,
+     *   editorType?: ?'richTextEditor',
      * } $values
      */
     public function __construct(
@@ -42,5 +48,6 @@ class GetSmtpTemplatesRequest extends JsonSerializableType
         $this->limit = $values['limit'] ?? null;
         $this->offset = $values['offset'] ?? null;
         $this->sort = $values['sort'] ?? null;
+        $this->editorType = $values['editorType'] ?? null;
     }
 }

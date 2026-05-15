@@ -51,16 +51,10 @@ class GetAccountResponse extends JsonSerializableType
     public string $lastName;
 
     /**
-     * @var GetAccountResponseAddress $address Address informations
+     * @var ?GetAccountResponseAddress $address Address informations
      */
     #[JsonProperty('address')]
-    public GetAccountResponseAddress $address;
-
-    /**
-     * @var GetAccountResponseDateTimePreferences $dateTimePreferences User's date and time preferences
-     */
-    #[JsonProperty('dateTimePreferences')]
-    public GetAccountResponseDateTimePreferences $dateTimePreferences;
+    public ?GetAccountResponseAddress $address;
 
     /**
      * @var ?GetAccountResponseMarketingAutomation $marketingAutomation
@@ -95,10 +89,9 @@ class GetAccountResponse extends JsonSerializableType
      *   email: string,
      *   firstName: string,
      *   lastName: string,
-     *   address: GetAccountResponseAddress,
-     *   dateTimePreferences: GetAccountResponseDateTimePreferences,
      *   plan: array<GetAccountResponsePlanItem>,
      *   relay: GetAccountResponseRelay,
+     *   address?: ?GetAccountResponseAddress,
      *   marketingAutomation?: ?GetAccountResponseMarketingAutomation,
      *   planVerticals?: ?array<GetAccountResponsePlanVerticalsItem>,
      * } $values
@@ -113,8 +106,7 @@ class GetAccountResponse extends JsonSerializableType
         $this->email = $values['email'];
         $this->firstName = $values['firstName'];
         $this->lastName = $values['lastName'];
-        $this->address = $values['address'];
-        $this->dateTimePreferences = $values['dateTimePreferences'];
+        $this->address = $values['address'] ?? null;
         $this->marketingAutomation = $values['marketingAutomation'] ?? null;
         $this->plan = $values['plan'];
         $this->planVerticals = $values['planVerticals'] ?? null;

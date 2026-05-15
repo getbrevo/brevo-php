@@ -50,7 +50,7 @@ class Order extends JsonSerializableType
      *    string
      *   |int
      *   |bool
-     * )> $metaInfo Meta data of order to store additional detal such as custom message, customer type, source.
+     * )> $metaInfo Meta data of order to store additional detail such as custom message, customer type, source.
      */
     #[JsonProperty('metaInfo'), ArrayType(['string' => new Union('string', 'integer', 'bool')])]
     public ?array $metaInfo;

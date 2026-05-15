@@ -7,57 +7,65 @@ use Brevo\Core\Json\JsonProperty;
 use Brevo\Core\Types\ArrayType;
 
 /**
- * List of attributes
+ * Deal attribute details
  */
 class GetCrmAttributesDealsResponseItem extends JsonSerializableType
 {
     /**
-     * @var ?array<array<string, mixed>> $attributeOptions
-     */
-    #[JsonProperty('attributeOptions'), ArrayType([['string' => 'mixed']])]
-    public ?array $attributeOptions;
-
-    /**
-     * @var ?string $attributeTypeName
-     */
-    #[JsonProperty('attributeTypeName')]
-    public ?string $attributeTypeName;
-
-    /**
-     * @var ?string $internalName
+     * @var ?string $internalName Internal name of the attribute
      */
     #[JsonProperty('internalName')]
     public ?string $internalName;
 
     /**
-     * @var ?bool $isRequired
+     * @var ?string $attributeTypeName Type of the attribute
      */
-    #[JsonProperty('isRequired')]
-    public ?bool $isRequired;
+    #[JsonProperty('attributeTypeName')]
+    public ?string $attributeTypeName;
 
     /**
-     * @var ?string $label
+     * @var ?string $label Display label of the attribute
      */
     #[JsonProperty('label')]
     public ?string $label;
 
     /**
+     * @var ?array<GetCrmAttributesDealsResponseItemAttributeOptionsItem> $attributeOptions Options for single-select or multi-choice attributes
+     */
+    #[JsonProperty('attributeOptions'), ArrayType([GetCrmAttributesDealsResponseItemAttributeOptionsItem::class])]
+    public ?array $attributeOptions;
+
+    /**
+     * @var ?bool $isRequired Whether this attribute is required
+     */
+    #[JsonProperty('isRequired')]
+    public ?bool $isRequired;
+
+    /**
+     * @var ?bool $isValueReadonly Whether this attribute value is read-only
+     */
+    #[JsonProperty('isValueReadonly')]
+    public ?bool $isValueReadonly;
+
+    /**
      * @param array{
-     *   attributeOptions?: ?array<array<string, mixed>>,
-     *   attributeTypeName?: ?string,
      *   internalName?: ?string,
-     *   isRequired?: ?bool,
+     *   attributeTypeName?: ?string,
      *   label?: ?string,
+     *   attributeOptions?: ?array<GetCrmAttributesDealsResponseItemAttributeOptionsItem>,
+     *   isRequired?: ?bool,
+     *   isValueReadonly?: ?bool,
      * } $values
      */
     public function __construct(
         array $values = [],
     ) {
-        $this->attributeOptions = $values['attributeOptions'] ?? null;
-        $this->attributeTypeName = $values['attributeTypeName'] ?? null;
         $this->internalName = $values['internalName'] ?? null;
-        $this->isRequired = $values['isRequired'] ?? null;
+        $this->attributeTypeName = $values['attributeTypeName'] ?? null;
         $this->label = $values['label'] ?? null;
+        $this->attributeOptions = $values['attributeOptions'] ?? null;
+        $this->isRequired = $values['isRequired'] ?? null;
+        $this->isValueReadonly = $values['isValueReadonly'] ?? null;
     }
 
     /**

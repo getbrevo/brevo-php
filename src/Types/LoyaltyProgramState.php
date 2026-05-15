@@ -6,4 +6,5 @@ enum LoyaltyProgramState: string
 {
     case Inactive = "inactive";
     case Active = "active";
+    case Draft = "draft";
 }

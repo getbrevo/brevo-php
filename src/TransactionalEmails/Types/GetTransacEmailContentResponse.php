@@ -9,16 +9,16 @@ use Brevo\Core\Types\ArrayType;
 class GetTransacEmailContentResponse extends JsonSerializableType
 {
     /**
-     * @var int $attachmentCount Count of the attachments that were sent in the email
+     * @var ?int $attachmentCount Count of the attachments that were sent in the email
      */
     #[JsonProperty('attachmentCount')]
-    public int $attachmentCount;
+    public ?int $attachmentCount;
 
     /**
-     * @var string $body Actual content of the transactional email that has been sent
+     * @var ?string $body Actual content of the transactional email that has been sent
      */
     #[JsonProperty('body')]
-    public string $body;
+    public ?string $body;
 
     /**
      * @var string $date Date on which transactional email was sent
@@ -52,20 +52,20 @@ class GetTransacEmailContentResponse extends JsonSerializableType
 
     /**
      * @param array{
-     *   attachmentCount: int,
-     *   body: string,
      *   date: string,
      *   email: string,
      *   events: array<GetTransacEmailContentResponseEventsItem>,
      *   subject: string,
+     *   attachmentCount?: ?int,
+     *   body?: ?string,
      *   templateId?: ?int,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
-        $this->attachmentCount = $values['attachmentCount'];
-        $this->body = $values['body'];
+        $this->attachmentCount = $values['attachmentCount'] ?? null;
+        $this->body = $values['body'] ?? null;
         $this->date = $values['date'];
         $this->email = $values['email'];
         $this->events = $values['events'];

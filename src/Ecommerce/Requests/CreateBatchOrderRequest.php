@@ -10,13 +10,13 @@ use Brevo\Core\Types\ArrayType;
 class CreateBatchOrderRequest extends JsonSerializableType
 {
     /**
-     * @var ?bool $historical Defines wether you want your orders to be considered as live data or as historical data (import of past data, synchronising data). True: orders will not trigger any automation workflows. False: orders will trigger workflows as usual.
+     * @var ?bool $historical Defines whether you want your orders to be considered as live data or as historical data (import of past data, synchronising data). True: orders will not trigger any automation workflows. False: orders will trigger workflows as usual.
      */
     #[JsonProperty('historical')]
     public ?bool $historical;
 
     /**
-     * @var ?string $notifyUrl Notify Url provided by client_dev to get the status of batch request
+     * @var ?string $notifyUrl Webhook URL to receive the status of the batch request
      */
     #[JsonProperty('notifyUrl')]
     public ?string $notifyUrl;

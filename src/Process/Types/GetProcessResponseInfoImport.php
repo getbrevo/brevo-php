@@ -6,27 +6,27 @@ use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
 
 /**
- * Import process details
+ * Import process details with URLs to CSV reports
  */
 class GetProcessResponseInfoImport extends JsonSerializableType
 {
     /**
-     * @var ?int $invalidEmails Number of invalid email addresses
+     * @var ?string $invalidEmails URL to CSV file containing invalid email addresses, or null if none
      */
     #[JsonProperty('invalid_emails')]
-    public ?int $invalidEmails;
+    public ?string $invalidEmails;
 
     /**
-     * @var ?int $duplicateContactId Number of duplicate contact IDs
+     * @var ?string $duplicateContactId URL to CSV file containing duplicate contact IDs, or null if none
      */
     #[JsonProperty('duplicate_contact_id')]
-    public ?int $duplicateContactId;
+    public ?string $duplicateContactId;
 
     /**
-     * @var ?int $duplicateExtId Number of duplicate external IDs
+     * @var ?string $duplicateExtId URL to CSV file containing duplicate external IDs, or null if none
      */
     #[JsonProperty('duplicate_ext_id')]
-    public ?int $duplicateExtId;
+    public ?string $duplicateExtId;
 
     /**
      * @var ?string $duplicateEmailId URL to CSV file containing duplicate email IDs, or null if none
@@ -35,32 +35,32 @@ class GetProcessResponseInfoImport extends JsonSerializableType
     public ?string $duplicateEmailId;
 
     /**
-     * @var ?int $duplicatePhoneId Number of duplicate phone numbers
+     * @var ?string $duplicatePhoneId URL to CSV file containing duplicate phone numbers, or null if none
      */
     #[JsonProperty('duplicate_phone_id')]
-    public ?int $duplicatePhoneId;
+    public ?string $duplicatePhoneId;
 
     /**
-     * @var ?int $duplicateWhatsappId Number of duplicate WhatsApp numbers
+     * @var ?string $duplicateWhatsappId URL to CSV file containing duplicate WhatsApp numbers, or null if none
      */
     #[JsonProperty('duplicate_whatsapp_id')]
-    public ?int $duplicateWhatsappId;
+    public ?string $duplicateWhatsappId;
 
     /**
-     * @var ?int $duplicateLandlineNumberId Number of duplicate landline numbers
+     * @var ?string $duplicateLandlineNumberId URL to CSV file containing duplicate landline numbers, or null if none
      */
     #[JsonProperty('duplicate_landline_number_id')]
-    public ?int $duplicateLandlineNumberId;
+    public ?string $duplicateLandlineNumberId;
 
     /**
      * @param array{
-     *   invalidEmails?: ?int,
-     *   duplicateContactId?: ?int,
-     *   duplicateExtId?: ?int,
+     *   invalidEmails?: ?string,
+     *   duplicateContactId?: ?string,
+     *   duplicateExtId?: ?string,
      *   duplicateEmailId?: ?string,
-     *   duplicatePhoneId?: ?int,
-     *   duplicateWhatsappId?: ?int,
-     *   duplicateLandlineNumberId?: ?int,
+     *   duplicatePhoneId?: ?string,
+     *   duplicateWhatsappId?: ?string,
+     *   duplicateLandlineNumberId?: ?string,
      * } $values
      */
     public function __construct(

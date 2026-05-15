@@ -77,6 +77,12 @@ class CreateVoucherResponse extends JsonSerializableType
     public ?float $value;
 
     /**
+     * @var ?DateTime $validFrom Date from which the voucher becomes valid
+     */
+    #[JsonProperty('validFrom'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $validFrom;
+
+    /**
      * @param array{
      *   code?: ?string,
      *   consumedAt?: ?string,
@@ -89,6 +95,7 @@ class CreateVoucherResponse extends JsonSerializableType
      *   rewardId?: ?string,
      *   updatedAt?: ?DateTime,
      *   value?: ?float,
+     *   validFrom?: ?DateTime,
      * } $values
      */
     public function __construct(
@@ -105,6 +112,7 @@ class CreateVoucherResponse extends JsonSerializableType
         $this->rewardId = $values['rewardId'] ?? null;
         $this->updatedAt = $values['updatedAt'] ?? null;
         $this->value = $values['value'] ?? null;
+        $this->validFrom = $values['validFrom'] ?? null;
     }
 
     /**

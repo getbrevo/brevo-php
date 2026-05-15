@@ -12,12 +12,12 @@ class GetLoyaltyBalanceProgramsPidTransactionHistoryRequest extends JsonSerializ
     /**
      * @var ?int $limit Limit the number of records returned
      */
-    public ?int $limit = 20;
+    public ?int $limit;
 
     /**
      * @var ?int $offset Page number to retrieve
      */
-    public ?int $offset = 0;
+    public ?int $offset;
 
     /**
      * @var ?'createdAt' $sortField Field to sort by
@@ -25,14 +25,14 @@ class GetLoyaltyBalanceProgramsPidTransactionHistoryRequest extends JsonSerializ
     public ?string $sortField;
 
     /**
-     * @var ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestSort> $sort Sort order, either asc or desc
+     * @var ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestSort> $sort Sort order
      */
     public ?string $sort;
 
     /**
      * @var int $contactId Contact ID
      */
-    public int $contactId = 0;
+    public int $contactId;
 
     /**
      * @var string $balanceDefinitionId Balance Definition ID
@@ -40,31 +40,31 @@ class GetLoyaltyBalanceProgramsPidTransactionHistoryRequest extends JsonSerializ
     public string $balanceDefinitionId;
 
     /**
-     * @var ?array<string> $filters Filters to apply
-     */
-    public ?array $filters;
-
-    /**
-     * @var ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestStatus> $status Transaction status filter. Allowed values: draft, completed, rejected, cancelled, expired
+     * @var ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestStatus> $status Transaction status filter
      */
     public ?string $status;
 
     /**
-     * @var ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestTransactionType> $transactionType Transaction type filter. Allowed values: credit, debit
+     * @var ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestTransactionType> $transactionType Transaction type filter
      */
     public ?string $transactionType;
 
     /**
+     * @var ?string $loyaltySubscriptionId Loyalty Subscription ID filter
+     */
+    public ?string $loyaltySubscriptionId;
+
+    /**
      * @param array{
-     *   contactId?: int,
+     *   contactId: int,
      *   balanceDefinitionId: string,
      *   limit?: ?int,
      *   offset?: ?int,
      *   sortField?: ?'createdAt',
      *   sort?: ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestSort>,
-     *   filters?: ?array<string>,
      *   status?: ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestStatus>,
      *   transactionType?: ?value-of<GetLoyaltyBalanceProgramsPidTransactionHistoryRequestTransactionType>,
+     *   loyaltySubscriptionId?: ?string,
      * } $values
      */
     public function __construct(
@@ -74,10 +74,10 @@ class GetLoyaltyBalanceProgramsPidTransactionHistoryRequest extends JsonSerializ
         $this->offset = $values['offset'] ?? null;
         $this->sortField = $values['sortField'] ?? null;
         $this->sort = $values['sort'] ?? null;
-        $this->contactId = $values['contactId'] ?? 0;
+        $this->contactId = $values['contactId'];
         $this->balanceDefinitionId = $values['balanceDefinitionId'];
-        $this->filters = $values['filters'] ?? null;
         $this->status = $values['status'] ?? null;
         $this->transactionType = $values['transactionType'] ?? null;
+        $this->loyaltySubscriptionId = $values['loyaltySubscriptionId'] ?? null;
     }
 }

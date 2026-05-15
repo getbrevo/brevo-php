@@ -4,6 +4,7 @@ namespace Brevo\Program\Requests;
 
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Program\Types\GetLpListRequestSortField;
+use Brevo\Program\Types\GetLpListRequestSort;
 
 class GetLpListRequest extends JsonSerializableType
 {
@@ -23,7 +24,7 @@ class GetLpListRequest extends JsonSerializableType
     public ?string $sortField;
 
     /**
-     * @var ?string $sort Sort documents by field
+     * @var ?value-of<GetLpListRequestSort> $sort Sort order
      */
     public ?string $sort;
 
@@ -32,7 +33,7 @@ class GetLpListRequest extends JsonSerializableType
      *   limit?: ?int,
      *   offset?: ?int,
      *   sortField?: ?value-of<GetLpListRequestSortField>,
-     *   sort?: ?string,
+     *   sort?: ?value-of<GetLpListRequestSort>,
      * } $values
      */
     public function __construct(

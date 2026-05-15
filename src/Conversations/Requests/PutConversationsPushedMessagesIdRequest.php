@@ -8,7 +8,7 @@ use Brevo\Core\Json\JsonProperty;
 class PutConversationsPushedMessagesIdRequest extends JsonSerializableType
 {
     /**
-     * @var string $text edited message text
+     * @var string $text The new message text.
      */
     #[JsonProperty('text')]
     public string $text;

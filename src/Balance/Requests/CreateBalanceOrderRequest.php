@@ -5,6 +5,7 @@ namespace Brevo\Balance\Requests;
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
 use Brevo\Core\Types\ArrayType;
+use Brevo\Balance\Types\CreateBalanceOrderRequestSource;
 
 class CreateBalanceOrderRequest extends JsonSerializableType
 {
@@ -45,7 +46,7 @@ class CreateBalanceOrderRequest extends JsonSerializableType
     public ?array $meta;
 
     /**
-     * @var string $source Specifies the origin of the order (`engine` or `user`).
+     * @var value-of<CreateBalanceOrderRequestSource> $source Specifies the origin of the order.
      */
     #[JsonProperty('source')]
     public string $source;
@@ -56,7 +57,7 @@ class CreateBalanceOrderRequest extends JsonSerializableType
      *   balanceDefinitionId: string,
      *   contactId: int,
      *   dueAt: string,
-     *   source: string,
+     *   source: value-of<CreateBalanceOrderRequestSource>,
      *   expiresAt?: ?string,
      *   meta?: ?array<string, mixed>,
      * } $values

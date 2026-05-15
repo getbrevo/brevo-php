@@ -3,6 +3,7 @@
 namespace Brevo\Balance\Requests;
 
 use Brevo\Core\Json\JsonSerializableType;
+use Brevo\Balance\Types\GetLoyaltyBalanceProgramsPidActiveBalanceRequestSort;
 
 class GetLoyaltyBalanceProgramsPidActiveBalanceRequest extends JsonSerializableType
 {
@@ -17,12 +18,12 @@ class GetLoyaltyBalanceProgramsPidActiveBalanceRequest extends JsonSerializableT
     public ?int $offset;
 
     /**
-     * @var ?string $sortField Sort Field
+     * @var ?'createdAt' $sortField Sort Field
      */
     public ?string $sortField;
 
     /**
-     * @var ?string $sort Sort Order
+     * @var ?value-of<GetLoyaltyBalanceProgramsPidActiveBalanceRequestSort> $sort Sort Order
      */
     public ?string $sort;
 
@@ -47,8 +48,8 @@ class GetLoyaltyBalanceProgramsPidActiveBalanceRequest extends JsonSerializableT
      *   balanceDefinitionId: string,
      *   limit?: ?int,
      *   offset?: ?int,
-     *   sortField?: ?string,
-     *   sort?: ?string,
+     *   sortField?: ?'createdAt',
+     *   sort?: ?value-of<GetLoyaltyBalanceProgramsPidActiveBalanceRequestSort>,
      *   includeInternal?: ?bool,
      * } $values
      */

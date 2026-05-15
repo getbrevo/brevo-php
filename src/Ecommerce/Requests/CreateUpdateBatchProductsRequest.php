@@ -16,7 +16,7 @@ class CreateUpdateBatchProductsRequest extends JsonSerializableType
     public array $products;
 
     /**
-     * @var ?bool $updateEnabled Facilitate to update the existing categories in the same request (updateEnabled = true)
+     * @var ?bool $updateEnabled Facilitate to update the existing products in the same request (updateEnabled = true)
      */
     #[JsonProperty('updateEnabled')]
     public ?bool $updateEnabled;

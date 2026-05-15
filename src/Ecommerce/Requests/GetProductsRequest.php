@@ -4,6 +4,7 @@ namespace Brevo\Ecommerce\Requests;
 
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Ecommerce\Types\GetProductsRequestSort;
+use Brevo\Ecommerce\Types\GetProductsRequestSortByField;
 
 class GetProductsRequest extends JsonSerializableType
 {
@@ -26,6 +27,11 @@ class GetProductsRequest extends JsonSerializableType
      * @var ?array<string> $ids Filter by product ids
      */
     public ?array $ids;
+
+    /**
+     * @var ?string $search Search products simultaneously across SKU, name, and ID fields. Results are returned in the following priority order: **exact SKU match** > **SKU prefix match** > **name match** > **ID match**. For example, `?search=123` on products with `{sku: "123"}` and `{sku: "123456"}` returns the exact SKU match first.
+     */
+    public ?string $search;
 
     /**
      * @var ?string $name Filter by product name, minimum 3 characters should be present for search.
@@ -63,19 +69,54 @@ class GetProductsRequest extends JsonSerializableType
     public ?float $priceNe;
 
     /**
+     * @var ?float $alternativePriceLte Alternative price filter for products less than and equals to particular amount
+     */
+    public ?float $alternativePriceLte;
+
+    /**
+     * @var ?float $alternativePriceGte Alternative price filter for products greater than and equals to particular amount
+     */
+    public ?float $alternativePriceGte;
+
+    /**
+     * @var ?float $alternativePriceLt Alternative price filter for products less than particular amount
+     */
+    public ?float $alternativePriceLt;
+
+    /**
+     * @var ?float $alternativePriceGt Alternative price filter for products greater than particular amount
+     */
+    public ?float $alternativePriceGt;
+
+    /**
+     * @var ?float $alternativePriceEq Alternative price filter for products equals to particular amount
+     */
+    public ?float $alternativePriceEq;
+
+    /**
+     * @var ?float $alternativePriceNe Alternative price filter for products not equals to particular amount
+     */
+    public ?float $alternativePriceNe;
+
+    /**
      * @var ?array<string> $categories Filter by categories ids
      */
     public ?array $categories;
 
     /**
-     * @var ?string $modifiedSince Filter (urlencoded) the orders modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.**
+     * @var ?string $modifiedSince Filter (urlencoded) the products modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.**
      */
     public ?string $modifiedSince;
 
     /**
-     * @var ?string $createdSince Filter (urlencoded) the orders created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.**
+     * @var ?string $createdSince Filter (urlencoded) the products created after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). **Prefer to pass your timezone in date-time format for accurate result.**
      */
     public ?string $createdSince;
+
+    /**
+     * @var ?value-of<GetProductsRequestSortByField> $sortByField Sort the results by a specific field. Default sort field is `created_at` when not passed.
+     */
+    public ?string $sortByField;
 
     /**
      * @var ?string $isDeleted Filter products by their deletion status. If `false` is passed, only products that are not deleted will be returned.
@@ -88,6 +129,7 @@ class GetProductsRequest extends JsonSerializableType
      *   offset?: ?int,
      *   sort?: ?value-of<GetProductsRequestSort>,
      *   ids?: ?array<string>,
+     *   search?: ?string,
      *   name?: ?string,
      *   priceLte?: ?float,
      *   priceGte?: ?float,
@@ -95,9 +137,16 @@ class GetProductsRequest extends JsonSerializableType
      *   priceGt?: ?float,
      *   priceEq?: ?float,
      *   priceNe?: ?float,
+     *   alternativePriceLte?: ?float,
+     *   alternativePriceGte?: ?float,
+     *   alternativePriceLt?: ?float,
+     *   alternativePriceGt?: ?float,
+     *   alternativePriceEq?: ?float,
+     *   alternativePriceNe?: ?float,
      *   categories?: ?array<string>,
      *   modifiedSince?: ?string,
      *   createdSince?: ?string,
+     *   sortByField?: ?value-of<GetProductsRequestSortByField>,
      *   isDeleted?: ?string,
      * } $values
      */
@@ -108,6 +157,7 @@ class GetProductsRequest extends JsonSerializableType
         $this->offset = $values['offset'] ?? null;
         $this->sort = $values['sort'] ?? null;
         $this->ids = $values['ids'] ?? null;
+        $this->search = $values['search'] ?? null;
         $this->name = $values['name'] ?? null;
         $this->priceLte = $values['priceLte'] ?? null;
         $this->priceGte = $values['priceGte'] ?? null;
@@ -115,9 +165,16 @@ class GetProductsRequest extends JsonSerializableType
         $this->priceGt = $values['priceGt'] ?? null;
         $this->priceEq = $values['priceEq'] ?? null;
         $this->priceNe = $values['priceNe'] ?? null;
+        $this->alternativePriceLte = $values['alternativePriceLte'] ?? null;
+        $this->alternativePriceGte = $values['alternativePriceGte'] ?? null;
+        $this->alternativePriceLt = $values['alternativePriceLt'] ?? null;
+        $this->alternativePriceGt = $values['alternativePriceGt'] ?? null;
+        $this->alternativePriceEq = $values['alternativePriceEq'] ?? null;
+        $this->alternativePriceNe = $values['alternativePriceNe'] ?? null;
         $this->categories = $values['categories'] ?? null;
         $this->modifiedSince = $values['modifiedSince'] ?? null;
         $this->createdSince = $values['createdSince'] ?? null;
+        $this->sortByField = $values['sortByField'] ?? null;
         $this->isDeleted = $values['isDeleted'] ?? null;
     }
 }

@@ -14,10 +14,16 @@ use Brevo\Core\Types\Date;
 class Note extends JsonSerializableType
 {
     /**
-     * @var ?array<string, mixed> $authorId Account details of user which created the note
+     * @var ?string $id Unique note Id
      */
-    #[JsonProperty('authorId'), ArrayType(['string' => 'mixed'])]
-    public ?array $authorId;
+    #[JsonProperty('id')]
+    public ?string $id;
+
+    /**
+     * @var string $text Content of the note. Supports HTML for rich text formatting. Supported tags include: `<p>` (paragraph), `<b>` / `<strong>` (bold), `<i>` / `<em>` (italic), `<u>` (underline), `<br>` (line break), `<a href="...">` (labelled hyperlink). Example labelled link: `<a href="https://example.com">Link text</a>`.
+     */
+    #[JsonProperty('text')]
+    public string $text;
 
     /**
      * @var ?array<int> $contactIds Contact ids linked to a note
@@ -26,10 +32,10 @@ class Note extends JsonSerializableType
     public ?array $contactIds;
 
     /**
-     * @var ?DateTime $createdAt Note created date/time
+     * @var ?array<string> $companyIds Company ids linked to a note
      */
-    #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
-    public ?DateTime $createdAt;
+    #[JsonProperty('companyIds'), ArrayType(['string'])]
+    public ?array $companyIds;
 
     /**
      * @var ?array<string> $dealIds Deal ids linked to a note
@@ -38,16 +44,16 @@ class Note extends JsonSerializableType
     public ?array $dealIds;
 
     /**
-     * @var ?string $id Unique note Id
+     * @var ?array<string, mixed> $authorId Account details of user which created the note
      */
-    #[JsonProperty('id')]
-    public ?string $id;
+    #[JsonProperty('authorId'), ArrayType(['string' => 'mixed'])]
+    public ?array $authorId;
 
     /**
-     * @var string $text Text content of a note
+     * @var ?DateTime $createdAt Note created date/time
      */
-    #[JsonProperty('text')]
-    public string $text;
+    #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $createdAt;
 
     /**
      * @var ?DateTime $updatedAt Note updated date/time
@@ -58,23 +64,25 @@ class Note extends JsonSerializableType
     /**
      * @param array{
      *   text: string,
-     *   authorId?: ?array<string, mixed>,
-     *   contactIds?: ?array<int>,
-     *   createdAt?: ?DateTime,
-     *   dealIds?: ?array<string>,
      *   id?: ?string,
+     *   contactIds?: ?array<int>,
+     *   companyIds?: ?array<string>,
+     *   dealIds?: ?array<string>,
+     *   authorId?: ?array<string, mixed>,
+     *   createdAt?: ?DateTime,
      *   updatedAt?: ?DateTime,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
-        $this->authorId = $values['authorId'] ?? null;
-        $this->contactIds = $values['contactIds'] ?? null;
-        $this->createdAt = $values['createdAt'] ?? null;
-        $this->dealIds = $values['dealIds'] ?? null;
         $this->id = $values['id'] ?? null;
         $this->text = $values['text'];
+        $this->contactIds = $values['contactIds'] ?? null;
+        $this->companyIds = $values['companyIds'] ?? null;
+        $this->dealIds = $values['dealIds'] ?? null;
+        $this->authorId = $values['authorId'] ?? null;
+        $this->createdAt = $values['createdAt'] ?? null;
         $this->updatedAt = $values['updatedAt'] ?? null;
     }
 

@@ -86,6 +86,12 @@ class GetSmtpTemplateOverview extends JsonSerializableType
     public string $toField;
 
     /**
+     * @var ?string $customTemplateId Custom template identifier, if one was assigned during template creation. Only present when the template has a custom ID.
+     */
+    #[JsonProperty('customTemplateId')]
+    public ?string $customTemplateId;
+
+    /**
      * @param array{
      *   createdAt: string,
      *   htmlContent: string,
@@ -100,6 +106,7 @@ class GetSmtpTemplateOverview extends JsonSerializableType
      *   testSent: bool,
      *   toField: string,
      *   doiTemplate?: ?bool,
+     *   customTemplateId?: ?string,
      * } $values
      */
     public function __construct(
@@ -118,6 +125,7 @@ class GetSmtpTemplateOverview extends JsonSerializableType
         $this->tag = $values['tag'];
         $this->testSent = $values['testSent'];
         $this->toField = $values['toField'];
+        $this->customTemplateId = $values['customTemplateId'] ?? null;
     }
 
     /**

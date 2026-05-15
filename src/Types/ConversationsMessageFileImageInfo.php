@@ -6,41 +6,41 @@ use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
 
 /**
- * image info is passed in case the file is an image
+ * Image info, present when the file is an image.
  */
 class ConversationsMessageFileImageInfo extends JsonSerializableType
 {
     /**
-     * @var ?int $height height of the image
-     */
-    #[JsonProperty('height')]
-    public ?int $height;
-
-    /**
-     * @var ?string $previewUrl URL of the preview
-     */
-    #[JsonProperty('previewUrl')]
-    public ?string $previewUrl;
-
-    /**
-     * @var ?int $width Width of the image
+     * @var ?int $width Width of the image in pixels.
      */
     #[JsonProperty('width')]
     public ?int $width;
 
     /**
+     * @var ?int $height Height of the image in pixels.
+     */
+    #[JsonProperty('height')]
+    public ?int $height;
+
+    /**
+     * @var ?string $previewLink URL of the image preview.
+     */
+    #[JsonProperty('previewLink')]
+    public ?string $previewLink;
+
+    /**
      * @param array{
-     *   height?: ?int,
-     *   previewUrl?: ?string,
      *   width?: ?int,
+     *   height?: ?int,
+     *   previewLink?: ?string,
      * } $values
      */
     public function __construct(
         array $values = [],
     ) {
-        $this->height = $values['height'] ?? null;
-        $this->previewUrl = $values['previewUrl'] ?? null;
         $this->width = $values['width'] ?? null;
+        $this->height = $values['height'] ?? null;
+        $this->previewLink = $values['previewLink'] ?? null;
     }
 
     /**
