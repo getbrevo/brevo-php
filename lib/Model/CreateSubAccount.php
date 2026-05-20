@@ -213,7 +213,7 @@ class CreateSubAccount implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['companyName'] = isset($data['companyName']) ? $data['companyName'] : null;
         $this->container['email'] = isset($data['email']) ? $data['email'] : null;
@@ -437,5 +437,3 @@ class CreateSubAccount implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

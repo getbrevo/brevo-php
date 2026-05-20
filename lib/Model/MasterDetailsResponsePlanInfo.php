@@ -216,7 +216,7 @@ class MasterDetailsResponsePlanInfo implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['currencyCode'] = isset($data['currencyCode']) ? $data['currencyCode'] : null;
         $this->container['nextBillingAt'] = isset($data['nextBillingAt']) ? $data['nextBillingAt'] : null;
@@ -484,5 +484,3 @@ class MasterDetailsResponsePlanInfo implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

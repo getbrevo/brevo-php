@@ -262,7 +262,7 @@ class RequestContactExportCustomContactFilter implements ModelInterface, ArrayAc
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['actionForContacts'] = isset($data['actionForContacts']) ? $data['actionForContacts'] : null;
         $this->container['actionForEmailCampaigns'] = isset($data['actionForEmailCampaigns']) ? $data['actionForEmailCampaigns'] : null;
@@ -564,5 +564,3 @@ class RequestContactExportCustomContactFilter implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
