@@ -1,3 +1,11 @@
+## 4.0.14 - 2026-06-12
+* ### Fixed
+* **`GetTransacBlockedContactsResponseContactsItem::$senderEmail`** is now nullable (`?string`). The API returns `null` for some blocked/unsubscribed contacts, which previously caused a `TypeError`. ([#137](https://github.com/getbrevo/brevo-php/issues/137))
+* **`campaignId`** is now nullable (`?int`) on `GetContactInfoResponseStatisticsUnsubscriptionsUserUnsubscriptionItem` and `GetContactStatsResponseUnsubscriptionsUserUnsubscriptionItem`. Form-based (non-campaign) unsubscriptions return `null`, which previously caused a `TypeError`. ([#136](https://github.com/getbrevo/brevo-php/issues/136))
+* **Guzzle timeout support** now works: the PSR-18 client detection used `class_exists('GuzzleHttp\ClientInterface')`, which never matches an interface. Changed to `interface_exists(...)`, so the `timeout` option is honored with a Guzzle client instead of emitting a warning. ([#133](https://github.com/getbrevo/brevo-php/issues/133))
+
+This is a backward-compatible patch release. No breaking changes.
+
 ## 4.2.0 - 2026-03-24
 * ### Changed
 * **API methods** now return `null` instead of throwing `BrevoException` when the server responds with empty content for successful requests, providing more graceful error handling across all clients.

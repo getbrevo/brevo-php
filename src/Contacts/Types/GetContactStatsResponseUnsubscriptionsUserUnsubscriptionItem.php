@@ -8,10 +8,10 @@ use Brevo\Core\Json\JsonProperty;
 class GetContactStatsResponseUnsubscriptionsUserUnsubscriptionItem extends JsonSerializableType
 {
     /**
-     * @var int $campaignId ID of the campaign which generated the event
+     * @var ?int $campaignId ID of the campaign which generated the event
      */
     #[JsonProperty('campaignId')]
-    public int $campaignId;
+    public ?int $campaignId;
 
     /**
      * @var string $eventTime UTC date-time of the event
@@ -27,7 +27,7 @@ class GetContactStatsResponseUnsubscriptionsUserUnsubscriptionItem extends JsonS
 
     /**
      * @param array{
-     *   campaignId: int,
+     *   campaignId?: ?int,
      *   eventTime: string,
      *   ip?: ?string,
      * } $values
@@ -35,7 +35,7 @@ class GetContactStatsResponseUnsubscriptionsUserUnsubscriptionItem extends JsonS
     public function __construct(
         array $values,
     ) {
-        $this->campaignId = $values['campaignId'];
+        $this->campaignId = $values['campaignId'] ?? null;
         $this->eventTime = $values['eventTime'];
         $this->ip = $values['ip'] ?? null;
     }

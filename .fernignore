@@ -8,3 +8,12 @@ changelog.md
 # would never match, causing BrevoApiException in CI. Fixed to use Z without milliseconds.
 # Protected until Fern fixes the datetime format inconsistency in the PHP generator.
 wiremock/wiremock-mappings.json
+
+# v4 maintenance backports applied by hand (not via Fern regeneration). These spec-driven
+# type fixes (#137 senderEmail nullable, #136 campaignId nullable) and the #133 Guzzle
+# timeout fix (interface_exists) are protected so an accidental regen on the frozen v4 line
+# cannot revert them. The v5 line gets the same fixes via openapi-overlays instead.
+src/TransactionalEmails/Types/GetTransacBlockedContactsResponseContactsItem.php
+src/Contacts/Types/GetContactInfoResponseStatisticsUnsubscriptionsUserUnsubscriptionItem.php
+src/Contacts/Types/GetContactStatsResponseUnsubscriptionsUserUnsubscriptionItem.php
+src/Core/Client/RetryDecoratingClient.php
