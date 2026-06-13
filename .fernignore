@@ -17,3 +17,9 @@ src/TransactionalEmails/Types/GetTransacBlockedContactsResponseContactsItem.php
 src/Contacts/Types/GetContactInfoResponseStatisticsUnsubscriptionsUserUnsubscriptionItem.php
 src/Contacts/Types/GetContactStatsResponseUnsubscriptionsUserUnsubscriptionItem.php
 src/Core/Client/RetryDecoratingClient.php
+
+# 4.0.15: getCampaignStats count fields made nullable. statsByDomain reuses this
+# model with sparse per-domain rows (some counts are null/absent), which threw a
+# TypeError on non-nullable int properties while globalStats succeeded.
+# Fixed for v5 via openapi-overlays. (#138)
+src/Types/GetCampaignStats.php
