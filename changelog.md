@@ -1,4 +1,4 @@
-## 4.0.16 - 2026-06-13
+## 4.0.16 - 2026-06-15
 * ### Fixed
 * **`CreateBatchOrderResponse::$batchId`** now deserializes correctly. The `createBatchOrder` endpoint returns the batch id as `batch_id` (snake_case), but the SDK looked for `batchId`, leaving it unset and throwing `Cannot assign null to property ...::$batchId of type float`. The wire mapping is corrected to `batch_id` and the property is now nullable (`?float`). The `$response->batchId` accessor is unchanged.
 
