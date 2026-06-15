@@ -23,3 +23,9 @@ src/Core/Client/RetryDecoratingClient.php
 # TypeError on non-nullable int properties while globalStats succeeded.
 # Fixed for v5 via openapi-overlays. (#138)
 src/Types/GetCampaignStats.php
+
+# 4.0.16: createBatchOrder response returns batch_id (snake_case), but the spec
+# declared batchId, so deserialization failed and threw on the non-nullable float.
+# Wire name corrected to batch_id and made nullable. Fixed for v5 via openapi-overlays.
+# (ticket L3I-139667)
+src/Ecommerce/Types/CreateBatchOrderResponse.php

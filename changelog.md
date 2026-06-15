@@ -1,3 +1,9 @@
+## 4.0.16 - 2026-06-13
+* ### Fixed
+* **`CreateBatchOrderResponse::$batchId`** now deserializes correctly. The `createBatchOrder` endpoint returns the batch id as `batch_id` (snake_case), but the SDK looked for `batchId`, leaving it unset and throwing `Cannot assign null to property ...::$batchId of type float`. The wire mapping is corrected to `batch_id` and the property is now nullable (`?float`). The `$response->batchId` accessor is unchanged.
+
+This is a backward-compatible patch release. No breaking changes.
+
 ## 4.0.15 - 2026-06-13
 * ### Fixed
 * **`GetCampaignStats`** count fields are now nullable (`?int`): `clickers`, `complaints`, `delivered`, `hardBounces`, `sent`, `softBounces`, `trackableViews`, `uniqueClicks`, `uniqueViews`, `unsubscriptions`, `viewed`. This model is reused for `statsByDomain` entries on `getEmailCampaign(s)`, where per-domain rows are sparse and the API returns `null`/absent for some counts. The previous non-nullable `int` typing caused a `TypeError` during deserialization of `statsByDomain` while `globalStats` succeeded. ([#138](https://github.com/getbrevo/brevo-php/issues/138))
