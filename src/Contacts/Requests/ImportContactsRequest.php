@@ -53,6 +53,12 @@ class ImportContactsRequest extends JsonSerializableType
     public ?array $listIds;
 
     /**
+     * @var ?array<int> $consentGroupIds **Optional.** Ids of the consent groups to which all imported contacts will be added. Requires consent groups to be enabled for the organisation. For example, **[1, 3]**.
+     */
+    #[JsonProperty('consentGroupIds'), ArrayType(['integer'])]
+    public ?array $consentGroupIds;
+
+    /**
      * @var ?ImportContactsRequestNewList $newList To create a new list and import the contacts into it, pass the listName and an optional folderId.
      */
     #[JsonProperty('newList')]
@@ -85,6 +91,7 @@ class ImportContactsRequest extends JsonSerializableType
      *   fileUrl?: ?string,
      *   jsonBody?: ?array<ImportContactsRequestJsonBodyItem>,
      *   listIds?: ?array<int>,
+     *   consentGroupIds?: ?array<int>,
      *   newList?: ?ImportContactsRequestNewList,
      *   notifyUrl?: ?string,
      *   smsBlacklist?: ?bool,
@@ -101,6 +108,7 @@ class ImportContactsRequest extends JsonSerializableType
         $this->fileUrl = $values['fileUrl'] ?? null;
         $this->jsonBody = $values['jsonBody'] ?? null;
         $this->listIds = $values['listIds'] ?? null;
+        $this->consentGroupIds = $values['consentGroupIds'] ?? null;
         $this->newList = $values['newList'] ?? null;
         $this->notifyUrl = $values['notifyUrl'] ?? null;
         $this->smsBlacklist = $values['smsBlacklist'] ?? null;

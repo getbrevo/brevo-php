@@ -6615,6 +6615,14 @@ $client->contacts->importContacts(
 <dl>
 <dd>
 
+**$consentGroupIds:** `?array` — **Optional.** Ids of the consent groups to which all imported contacts will be added. Requires consent groups to be enabled for the organisation. For example, **[1, 3]**.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$newList:** `?ImportContactsRequestNewList` — To create a new list and import the contacts into it, pass the listName and an optional folderId.
     
 </dd>
@@ -7607,6 +7615,381 @@ $client->contacts->getContactStats(
 <dd>
 
 **$endDate:** `?string` — **Mandatory if startDate is used.** Ending date (YYYY-MM-DD) of the statistic events specific to campaigns. Must be greater than equal to startDate. Must not be greater than the current date. Maximum difference between startDate and endDate should not be greater than 90 days.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ConsentGroups
+<details><summary><code>$client-&gt;consentGroups-&gt;getConsentGroups($request) -> ?ConsentGroupsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of consent groups for the account.
+
+<Note>This endpoint is only available when the Consent Groups feature is enabled for your account. Returns `403` if the feature is not activated.</Note>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->consentGroups->getConsentGroups(
+    new GetConsentGroupsRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$limit:** `?int` — Maximum number of results to return (default 10, max 50)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$offset:** `?int` — Number of results to skip (default 0)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$id:** `?int` — Filter by consent group ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` — Filter by name (case-insensitive partial match)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$signupMode:** `?string` — Filter by signup mode
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;consentGroups-&gt;createConsentGroup($request) -> ?ConsentGroup</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new consent group for the account.
+
+<Note>This endpoint is only available when the Consent Groups feature is enabled for your account.</Note>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->consentGroups->createConsentGroup(
+    new CreateConsentGroupRequest([
+        'name' => 'Newsletter EU',
+        'signupMode' => CreateConsentGroupRequestSignupMode::Manual->value,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$name:** `string` — Unique name for the consent group (max 255 characters)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$description:** `?string` — Optional description (max 500 characters)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$signupMode:** `string` — Controls how contacts are added to the group. `manual` — contacts are added explicitly via the API. `automatic` — contacts are added automatically at signup.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$listIds:** `?array` — Optional list of contact list IDs. Contacts from these lists will be copied once into this consent group at creation time.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;consentGroups-&gt;getConsentGroup($id) -> ?ConsentGroup</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a single consent group by ID for the account.
+
+<Note>This endpoint is only available when the Consent Groups feature is enabled for your account.</Note>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->consentGroups->getConsentGroup(
+    1000000,
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `int` — ID of the consent group
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;consentGroups-&gt;updateConsentGroup($id, $request) -> ?ConsentGroup</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates name, description, or signupMode of a consent group. At least one field must be provided.
+
+<Note>This endpoint is only available when the Consent Groups feature is enabled for your account.</Note>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->consentGroups->updateConsentGroup(
+    1000000,
+    new UpdateConsentGroupRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `int` — ID of the consent group to update
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` — New name for the consent group (max 255 characters)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$description:** `?string` — New description (max 500 characters)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$signupMode:** `?string` — New signup mode
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;consentGroups-&gt;deleteConsentGroup($id)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a consent group by ID and removes it from all associated contacts.
+
+<Note>This endpoint is only available when the Consent Groups feature is enabled for your account.</Note>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->consentGroups->deleteConsentGroup(
+    1000000,
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `int` — ID of the consent group to delete
     
 </dd>
 </dl>
@@ -15526,6 +15909,72 @@ $client->tier->deleteTier(
 </dl>
 </details>
 
+## Wallet
+<details><summary><code>$client-&gt;wallet-&gt;getWalletPassInstallUrl($passId, $contactId) -> ?WalletPassInstallUrl</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generate a wallet installation URL for a specific contact. The returned URL points to the pass installation page and encodes the pass, contact and organization identifiers as an encrypted token, so it can be shared with the contact (email, SMS, QR code, ...) to add the pass to their Apple Wallet or Google Wallet.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->wallet->getWalletPassInstallUrl(
+    'passId',
+    1000000,
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$passId:** `string` — Pass ID. The unique identifier of the wallet pass for which to generate an installation URL.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$contactId:** `int` — The Brevo contact ID the installation URL is generated for.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## EmailCampaigns
 <details><summary><code>$client-&gt;emailCampaigns-&gt;getEmailCampaigns($request) -> ?GetEmailCampaignsResponse</code></summary>
 <dl>
@@ -19303,6 +19752,30 @@ $client->deals->getAllDeals(
 <dd>
 
 **$filtersAttributesDealName:** `?string` — Filter by attributes. If you have a filter for the owner on your end, please send it as filters[attributes.deal_owner] and utilize the account email for the filtering.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filtersAttributesDealOwner:** `?string` — Filter by the deal owner. Pass the account email address of the deal owner.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filtersAttributesDealStage:** `?string` — Filter by the deal stage. Pass the stage id, retrievable from GET /crm/pipeline/details/{pipelineID}.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filtersAttributesPipeline:** `?string` — Filter by the pipeline. Pass the pipeline id, retrievable from GET /crm/pipeline/details/{pipelineID}.
     
 </dd>
 </dl>
