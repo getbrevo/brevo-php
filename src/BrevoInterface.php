@@ -12,6 +12,7 @@ use Brevo\Webhooks\WebhooksClientInterface;
 use Brevo\ExternalFeeds\ExternalFeedsClientInterface;
 use Brevo\CustomObjects\CustomObjectsClientInterface;
 use Brevo\Contacts\ContactsClientInterface;
+use Brevo\ConsentGroups\ConsentGroupsClientInterface;
 use Brevo\Conversations\ConversationsClientInterface;
 use Brevo\Ecommerce\EcommerceClientInterface;
 use Brevo\Coupons\CouponsClientInterface;
@@ -22,6 +23,7 @@ use Brevo\Balance\BalanceClientInterface;
 use Brevo\Program\ProgramClientInterface;
 use Brevo\Reward\RewardClientInterface;
 use Brevo\Tier\TierClientInterface;
+use Brevo\Wallet\WalletClientInterface;
 use Brevo\EmailCampaigns\EmailCampaignsClientInterface;
 use Brevo\SmsCampaigns\SmsCampaignsClientInterface;
 use Brevo\WhatsAppCampaigns\WhatsAppCampaignsClientInterface;
@@ -88,6 +90,11 @@ interface BrevoInterface
     public function getContacts(): ContactsClientInterface;
 
     /**
+     * @return ConsentGroupsClientInterface
+     */
+    public function getConsentGroups(): ConsentGroupsClientInterface;
+
+    /**
      * @return ConversationsClientInterface
      */
     public function getConversations(): ConversationsClientInterface;
@@ -136,6 +143,11 @@ interface BrevoInterface
      * @return TierClientInterface
      */
     public function getTier(): TierClientInterface;
+
+    /**
+     * @return WalletClientInterface
+     */
+    public function getWallet(): WalletClientInterface;
 
     /**
      * @return EmailCampaignsClientInterface

@@ -12,6 +12,7 @@ use Brevo\Webhooks\WebhooksClient;
 use Brevo\ExternalFeeds\ExternalFeedsClient;
 use Brevo\CustomObjects\CustomObjectsClient;
 use Brevo\Contacts\ContactsClient;
+use Brevo\ConsentGroups\ConsentGroupsClient;
 use Brevo\Conversations\ConversationsClient;
 use Brevo\Ecommerce\EcommerceClient;
 use Brevo\Coupons\CouponsClient;
@@ -22,6 +23,7 @@ use Brevo\Balance\BalanceClient;
 use Brevo\Program\ProgramClient;
 use Brevo\Reward\RewardClient;
 use Brevo\Tier\TierClient;
+use Brevo\Wallet\WalletClient;
 use Brevo\EmailCampaigns\EmailCampaignsClient;
 use Brevo\SmsCampaigns\SmsCampaignsClient;
 use Brevo\WhatsAppCampaigns\WhatsAppCampaignsClient;
@@ -46,6 +48,7 @@ use Brevo\Webhooks\WebhooksClientInterface;
 use Brevo\ExternalFeeds\ExternalFeedsClientInterface;
 use Brevo\CustomObjects\CustomObjectsClientInterface;
 use Brevo\Contacts\ContactsClientInterface;
+use Brevo\ConsentGroups\ConsentGroupsClientInterface;
 use Brevo\Conversations\ConversationsClientInterface;
 use Brevo\Ecommerce\EcommerceClientInterface;
 use Brevo\Coupons\CouponsClientInterface;
@@ -56,6 +59,7 @@ use Brevo\Balance\BalanceClientInterface;
 use Brevo\Program\ProgramClientInterface;
 use Brevo\Reward\RewardClientInterface;
 use Brevo\Tier\TierClientInterface;
+use Brevo\Wallet\WalletClientInterface;
 use Brevo\EmailCampaigns\EmailCampaignsClientInterface;
 use Brevo\SmsCampaigns\SmsCampaignsClientInterface;
 use Brevo\WhatsAppCampaigns\WhatsAppCampaignsClientInterface;
@@ -122,6 +126,11 @@ class Brevo implements BrevoInterface
     public ContactsClient $contacts;
 
     /**
+     * @var ConsentGroupsClient $consentGroups
+     */
+    public ConsentGroupsClient $consentGroups;
+
+    /**
      * @var ConversationsClient $conversations
      */
     public ConversationsClient $conversations;
@@ -170,6 +179,11 @@ class Brevo implements BrevoInterface
      * @var TierClient $tier
      */
     public TierClient $tier;
+
+    /**
+     * @var WalletClient $wallet
+     */
+    public WalletClient $wallet;
 
     /**
      * @var EmailCampaignsClient $emailCampaigns
@@ -265,8 +279,8 @@ class Brevo implements BrevoInterface
             'api-key' => $apiKey,
             'X-Fern-Language' => 'PHP',
             'X-Fern-SDK-Name' => 'Brevo',
-            'X-Fern-SDK-Version' => 'v5.0.0-rc.1',
-            'User-Agent' => 'getbrevo/brevo-php/v5.0.0-rc.1',
+            'X-Fern-SDK-Version' => '5.0.1',
+            'User-Agent' => 'getbrevo/brevo-php/5.0.1',
         ];
 
         $this->options = $options ?? [];
@@ -290,6 +304,7 @@ class Brevo implements BrevoInterface
         $this->externalFeeds = new ExternalFeedsClient($this->client, $this->options);
         $this->customObjects = new CustomObjectsClient($this->client, $this->options);
         $this->contacts = new ContactsClient($this->client, $this->options);
+        $this->consentGroups = new ConsentGroupsClient($this->client, $this->options);
         $this->conversations = new ConversationsClient($this->client, $this->options);
         $this->ecommerce = new EcommerceClient($this->client, $this->options);
         $this->coupons = new CouponsClient($this->client, $this->options);
@@ -300,6 +315,7 @@ class Brevo implements BrevoInterface
         $this->program = new ProgramClient($this->client, $this->options);
         $this->reward = new RewardClient($this->client, $this->options);
         $this->tier = new TierClient($this->client, $this->options);
+        $this->wallet = new WalletClient($this->client, $this->options);
         $this->emailCampaigns = new EmailCampaignsClient($this->client, $this->options);
         $this->smsCampaigns = new SmsCampaignsClient($this->client, $this->options);
         $this->whatsAppCampaigns = new WhatsAppCampaignsClient($this->client, $this->options);
@@ -395,6 +411,14 @@ class Brevo implements BrevoInterface
     }
 
     /**
+     * @return ConsentGroupsClientInterface
+     */
+    public function getConsentGroups(): ConsentGroupsClientInterface
+    {
+        return $this->consentGroups;
+    }
+
+    /**
      * @return ConversationsClientInterface
      */
     public function getConversations(): ConversationsClientInterface
@@ -472,6 +496,14 @@ class Brevo implements BrevoInterface
     public function getTier(): TierClientInterface
     {
         return $this->tier;
+    }
+
+    /**
+     * @return WalletClientInterface
+     */
+    public function getWallet(): WalletClientInterface
+    {
+        return $this->wallet;
     }
 
     /**

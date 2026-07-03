@@ -69,6 +69,12 @@ class GetContactDetails extends JsonSerializableType
     public bool $whatsappBlacklisted;
 
     /**
+     * @var ?array<ConsentGroupItem> $consentGroups Consent groups the contact belongs to, with their subscription status. Only present when the Consent Groups feature is enabled for your account.
+     */
+    #[JsonProperty('consentGroups'), ArrayType([ConsentGroupItem::class])]
+    public ?array $consentGroups;
+
+    /**
      * @param array{
      *   attributes: GetContactDetailsAttributes,
      *   createdAt: string,
@@ -80,6 +86,7 @@ class GetContactDetails extends JsonSerializableType
      *   whatsappBlacklisted: bool,
      *   email?: ?string,
      *   listUnsubscribed?: ?array<int>,
+     *   consentGroups?: ?array<ConsentGroupItem>,
      * } $values
      */
     public function __construct(
@@ -95,6 +102,7 @@ class GetContactDetails extends JsonSerializableType
         $this->modifiedAt = $values['modifiedAt'];
         $this->smsBlacklisted = $values['smsBlacklisted'];
         $this->whatsappBlacklisted = $values['whatsappBlacklisted'];
+        $this->consentGroups = $values['consentGroups'] ?? null;
     }
 
     /**

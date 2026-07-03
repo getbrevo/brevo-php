@@ -26,17 +26,17 @@ class GetTransacBlockedContactsResponseContactsItem extends JsonSerializableType
     public GetTransacBlockedContactsResponseContactsItemReason $reason;
 
     /**
-     * @var string $senderEmail Sender email address of the blocked or unsubscribed contact
+     * @var ?string $senderEmail Sender email address of the blocked or unsubscribed contact
      */
     #[JsonProperty('senderEmail')]
-    public string $senderEmail;
+    public ?string $senderEmail;
 
     /**
      * @param array{
      *   blockedAt: string,
      *   email: string,
      *   reason: GetTransacBlockedContactsResponseContactsItemReason,
-     *   senderEmail: string,
+     *   senderEmail?: ?string,
      * } $values
      */
     public function __construct(
@@ -45,7 +45,7 @@ class GetTransacBlockedContactsResponseContactsItem extends JsonSerializableType
         $this->blockedAt = $values['blockedAt'];
         $this->email = $values['email'];
         $this->reason = $values['reason'];
-        $this->senderEmail = $values['senderEmail'];
+        $this->senderEmail = $values['senderEmail'] ?? null;
     }
 
     /**

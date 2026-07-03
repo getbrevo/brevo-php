@@ -13,6 +13,21 @@ class GetCrmDealsRequest extends JsonSerializableType
     public ?string $filtersAttributesDealName;
 
     /**
+     * @var ?string $filtersAttributesDealOwner Filter by the deal owner. Pass the account email address of the deal owner.
+     */
+    public ?string $filtersAttributesDealOwner;
+
+    /**
+     * @var ?string $filtersAttributesDealStage Filter by the deal stage. Pass the stage id, retrievable from GET /crm/pipeline/details/{pipelineID}.
+     */
+    public ?string $filtersAttributesDealStage;
+
+    /**
+     * @var ?string $filtersAttributesPipeline Filter by the pipeline. Pass the pipeline id, retrievable from GET /crm/pipeline/details/{pipelineID}.
+     */
+    public ?string $filtersAttributesPipeline;
+
+    /**
      * @var ?string $filtersLinkedCompaniesIds Filter by linked companies ids
      */
     public ?string $filtersLinkedCompaniesIds;
@@ -55,6 +70,9 @@ class GetCrmDealsRequest extends JsonSerializableType
     /**
      * @param array{
      *   filtersAttributesDealName?: ?string,
+     *   filtersAttributesDealOwner?: ?string,
+     *   filtersAttributesDealStage?: ?string,
+     *   filtersAttributesPipeline?: ?string,
      *   filtersLinkedCompaniesIds?: ?string,
      *   filtersLinkedContactsIds?: ?string,
      *   modifiedSince?: ?string,
@@ -69,6 +87,9 @@ class GetCrmDealsRequest extends JsonSerializableType
         array $values = [],
     ) {
         $this->filtersAttributesDealName = $values['filtersAttributesDealName'] ?? null;
+        $this->filtersAttributesDealOwner = $values['filtersAttributesDealOwner'] ?? null;
+        $this->filtersAttributesDealStage = $values['filtersAttributesDealStage'] ?? null;
+        $this->filtersAttributesPipeline = $values['filtersAttributesPipeline'] ?? null;
         $this->filtersLinkedCompaniesIds = $values['filtersLinkedCompaniesIds'] ?? null;
         $this->filtersLinkedContactsIds = $values['filtersLinkedContactsIds'] ?? null;
         $this->modifiedSince = $values['modifiedSince'] ?? null;

@@ -5,6 +5,7 @@ namespace Brevo\Contacts\Types;
 use Brevo\Core\Json\JsonSerializableType;
 use Brevo\Core\Json\JsonProperty;
 use Brevo\Core\Types\ArrayType;
+use Brevo\Types\ConsentGroupItem;
 
 class GetContactInfoResponse extends JsonSerializableType
 {
@@ -69,6 +70,12 @@ class GetContactInfoResponse extends JsonSerializableType
     public bool $whatsappBlacklisted;
 
     /**
+     * @var ?array<ConsentGroupItem> $consentGroups Consent groups the contact belongs to, with their subscription status. Only present when the Consent Groups feature is enabled for your account.
+     */
+    #[JsonProperty('consentGroups'), ArrayType([ConsentGroupItem::class])]
+    public ?array $consentGroups;
+
+    /**
      * @var GetContactInfoResponseStatistics $statistics Campaign statistics of the contact
      */
     #[JsonProperty('statistics')]
@@ -87,6 +94,7 @@ class GetContactInfoResponse extends JsonSerializableType
      *   statistics: GetContactInfoResponseStatistics,
      *   email?: ?string,
      *   listUnsubscribed?: ?array<int>,
+     *   consentGroups?: ?array<ConsentGroupItem>,
      * } $values
      */
     public function __construct(
@@ -102,6 +110,7 @@ class GetContactInfoResponse extends JsonSerializableType
         $this->modifiedAt = $values['modifiedAt'];
         $this->smsBlacklisted = $values['smsBlacklisted'];
         $this->whatsappBlacklisted = $values['whatsappBlacklisted'];
+        $this->consentGroups = $values['consentGroups'] ?? null;
         $this->statistics = $values['statistics'];
     }
 

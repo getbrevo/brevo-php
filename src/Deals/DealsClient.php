@@ -133,6 +133,15 @@ class DealsClient implements DealsClientInterface
         if ($request->filtersAttributesDealName != null) {
             $query['filters[attributes.deal_name]'] = $request->filtersAttributesDealName;
         }
+        if ($request->filtersAttributesDealOwner != null) {
+            $query['filters[attributes.deal_owner]'] = $request->filtersAttributesDealOwner;
+        }
+        if ($request->filtersAttributesDealStage != null) {
+            $query['filters[attributes.deal_stage]'] = $request->filtersAttributesDealStage;
+        }
+        if ($request->filtersAttributesPipeline != null) {
+            $query['filters[attributes.pipeline]'] = $request->filtersAttributesPipeline;
+        }
         if ($request->filtersLinkedCompaniesIds != null) {
             $query['filters[linkedCompaniesIds]'] = $request->filtersLinkedCompaniesIds;
         }

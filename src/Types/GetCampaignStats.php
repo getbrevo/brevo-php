@@ -14,16 +14,16 @@ class GetCampaignStats extends JsonSerializableType
     public ?int $appleMppOpens;
 
     /**
-     * @var int $clickers Number of total clicks for the campaign
+     * @var ?int $clickers Number of total clicks for the campaign
      */
     #[JsonProperty('clickers')]
-    public int $clickers;
+    public ?int $clickers;
 
     /**
-     * @var int $complaints Number of complaints (Spam reports) for the campaign
+     * @var ?int $complaints Number of complaints (Spam reports) for the campaign
      */
     #[JsonProperty('complaints')]
-    public int $complaints;
+    public ?int $complaints;
 
     /**
      * @var ?int $deferred Number of deferred emails for the campaign
@@ -32,10 +32,10 @@ class GetCampaignStats extends JsonSerializableType
     public ?int $deferred;
 
     /**
-     * @var int $delivered Number of delivered emails for the campaign
+     * @var ?int $delivered Number of delivered emails for the campaign
      */
     #[JsonProperty('delivered')]
-    public int $delivered;
+    public ?int $delivered;
 
     /**
      * @var ?int $estimatedViews Rate of recipients without any privacy protection option enabled in their email client, applied to all delivered emails
@@ -44,10 +44,10 @@ class GetCampaignStats extends JsonSerializableType
     public ?int $estimatedViews;
 
     /**
-     * @var int $hardBounces Number of hard bounces for the campaign
+     * @var ?int $hardBounces Number of hard bounces for the campaign
      */
     #[JsonProperty('hardBounces')]
-    public int $hardBounces;
+    public ?int $hardBounces;
 
     /**
      * @var ?int $listId List Id of email campaign (only in case of get email campaign(s)(not for global stats))
@@ -68,22 +68,22 @@ class GetCampaignStats extends JsonSerializableType
     public ?int $returnBounce;
 
     /**
-     * @var int $sent Number of sent emails for the campaign
+     * @var ?int $sent Number of sent emails for the campaign
      */
     #[JsonProperty('sent')]
-    public int $sent;
+    public ?int $sent;
 
     /**
-     * @var int $softBounces Number of softbounce for the campaign
+     * @var ?int $softBounces Number of softbounce for the campaign
      */
     #[JsonProperty('softBounces')]
-    public int $softBounces;
+    public ?int $softBounces;
 
     /**
-     * @var int $trackableViews Recipients without any privacy protection option enabled in their email email client
+     * @var ?int $trackableViews Recipients without any privacy protection option enabled in their email email client
      */
     #[JsonProperty('trackableViews')]
-    public int $trackableViews;
+    public ?int $trackableViews;
 
     /**
      * @var ?float $trackableViewsRate Rate of recipients without any privacy protection option enabled in their email client
@@ -92,72 +92,72 @@ class GetCampaignStats extends JsonSerializableType
     public ?float $trackableViewsRate;
 
     /**
-     * @var int $uniqueClicks Number of unique clicks for the campaign
+     * @var ?int $uniqueClicks Number of unique clicks for the campaign
      */
     #[JsonProperty('uniqueClicks')]
-    public int $uniqueClicks;
+    public ?int $uniqueClicks;
 
     /**
-     * @var int $uniqueViews Number of unique openings for the campaign
+     * @var ?int $uniqueViews Number of unique openings for the campaign
      */
     #[JsonProperty('uniqueViews')]
-    public int $uniqueViews;
+    public ?int $uniqueViews;
 
     /**
-     * @var int $unsubscriptions Number of unsubscription for the campaign
+     * @var ?int $unsubscriptions Number of unsubscription for the campaign
      */
     #[JsonProperty('unsubscriptions')]
-    public int $unsubscriptions;
+    public ?int $unsubscriptions;
 
     /**
-     * @var int $viewed Number of openings for the campaign
+     * @var ?int $viewed Number of openings for the campaign
      */
     #[JsonProperty('viewed')]
-    public int $viewed;
+    public ?int $viewed;
 
     /**
      * @param array{
-     *   clickers: int,
-     *   complaints: int,
-     *   delivered: int,
-     *   hardBounces: int,
-     *   sent: int,
-     *   softBounces: int,
-     *   trackableViews: int,
-     *   uniqueClicks: int,
-     *   uniqueViews: int,
-     *   unsubscriptions: int,
-     *   viewed: int,
      *   appleMppOpens?: ?int,
+     *   clickers?: ?int,
+     *   complaints?: ?int,
      *   deferred?: ?int,
+     *   delivered?: ?int,
      *   estimatedViews?: ?int,
+     *   hardBounces?: ?int,
      *   listId?: ?int,
      *   opensRate?: ?float,
      *   returnBounce?: ?int,
+     *   sent?: ?int,
+     *   softBounces?: ?int,
+     *   trackableViews?: ?int,
      *   trackableViewsRate?: ?float,
+     *   uniqueClicks?: ?int,
+     *   uniqueViews?: ?int,
+     *   unsubscriptions?: ?int,
+     *   viewed?: ?int,
      * } $values
      */
     public function __construct(
-        array $values,
+        array $values = [],
     ) {
         $this->appleMppOpens = $values['appleMppOpens'] ?? null;
-        $this->clickers = $values['clickers'];
-        $this->complaints = $values['complaints'];
+        $this->clickers = $values['clickers'] ?? null;
+        $this->complaints = $values['complaints'] ?? null;
         $this->deferred = $values['deferred'] ?? null;
-        $this->delivered = $values['delivered'];
+        $this->delivered = $values['delivered'] ?? null;
         $this->estimatedViews = $values['estimatedViews'] ?? null;
-        $this->hardBounces = $values['hardBounces'];
+        $this->hardBounces = $values['hardBounces'] ?? null;
         $this->listId = $values['listId'] ?? null;
         $this->opensRate = $values['opensRate'] ?? null;
         $this->returnBounce = $values['returnBounce'] ?? null;
-        $this->sent = $values['sent'];
-        $this->softBounces = $values['softBounces'];
-        $this->trackableViews = $values['trackableViews'];
+        $this->sent = $values['sent'] ?? null;
+        $this->softBounces = $values['softBounces'] ?? null;
+        $this->trackableViews = $values['trackableViews'] ?? null;
         $this->trackableViewsRate = $values['trackableViewsRate'] ?? null;
-        $this->uniqueClicks = $values['uniqueClicks'];
-        $this->uniqueViews = $values['uniqueViews'];
-        $this->unsubscriptions = $values['unsubscriptions'];
-        $this->viewed = $values['viewed'];
+        $this->uniqueClicks = $values['uniqueClicks'] ?? null;
+        $this->uniqueViews = $values['uniqueViews'] ?? null;
+        $this->unsubscriptions = $values['unsubscriptions'] ?? null;
+        $this->viewed = $values['viewed'] ?? null;
     }
 
     /**

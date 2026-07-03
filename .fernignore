@@ -8,3 +8,6 @@ changelog.md
 # would never match, causing BrevoApiException in CI. Fixed to use Z without milliseconds.
 # Protected until Fern fixes the datetime format inconsistency in the PHP generator.
 wiremock/wiremock-mappings.json
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes
