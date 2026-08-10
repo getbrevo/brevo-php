@@ -8,6 +8,13 @@ use Brevo\SmsTemplates\Types\GetSmsTemplatesResponse;
 interface SmsTemplatesClientInterface
 {
     /**
+     * Example:
+     * ```php
+     * $client->smsTemplates->getSmsTemplates(
+     *     new GetSmsTemplatesRequest([]),
+     * );
+     * ```
+     *
      * @param GetSmsTemplatesRequest $request
      * @param ?array{
      *   baseUrl?: string,

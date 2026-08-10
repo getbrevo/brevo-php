@@ -58,6 +58,13 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
      *
      * <Note>This endpoint is only available when the Consent Groups feature is enabled for your account. Returns `403` if the feature is not activated.</Note>
      *
+     * Example:
+     * ```php
+     * $client->consentGroups->getConsentGroups(
+     *     new GetConsentGroupsRequest([]),
+     * );
+     * ```
+     *
      * @param GetConsentGroupsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -125,6 +132,16 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
      *
      * <Note>This endpoint is only available when the Consent Groups feature is enabled for your account.</Note>
      *
+     * Example:
+     * ```php
+     * $client->consentGroups->createConsentGroup(
+     *     new CreateConsentGroupRequest([
+     *         'name' => 'Newsletter EU',
+     *         'signupMode' => CreateConsentGroupRequestSignupMode::Manual->value,
+     *     ]),
+     * );
+     * ```
+     *
      * @param CreateConsentGroupRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -176,6 +193,13 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
      *
      * <Note>This endpoint is only available when the Consent Groups feature is enabled for your account.</Note>
      *
+     * Example:
+     * ```php
+     * $client->consentGroups->getConsentGroup(
+     *     1000000,
+     * );
+     * ```
+     *
      * @param int $id ID of the consent group
      * @param ?array{
      *   baseUrl?: string,
@@ -225,6 +249,14 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
      * Updates name, description, or signupMode of a consent group. At least one field must be provided.
      *
      * <Note>This endpoint is only available when the Consent Groups feature is enabled for your account.</Note>
+     *
+     * Example:
+     * ```php
+     * $client->consentGroups->updateConsentGroup(
+     *     1000000,
+     *     new UpdateConsentGroupRequest([]),
+     * );
+     * ```
      *
      * @param int $id ID of the consent group to update
      * @param UpdateConsentGroupRequest $request
@@ -277,6 +309,13 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
      * Deletes a consent group by ID and removes it from all associated contacts.
      *
      * <Note>This endpoint is only available when the Consent Groups feature is enabled for your account.</Note>
+     *
+     * Example:
+     * ```php
+     * $client->consentGroups->deleteConsentGroup(
+     *     1000000,
+     * );
+     * ```
      *
      * @param int $id ID of the consent group to delete
      * @param ?array{

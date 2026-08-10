@@ -33,6 +33,13 @@ interface ProcessClientInterface
      * - Sort options available for creation order (ascending or descending)
      * - Default limit is 10 results per page, maximum is 50
      *
+     * Example:
+     * ```php
+     * $client->process->getProcesses(
+     *     new GetProcessesRequest([]),
+     * );
+     * ```
+     *
      * @param GetProcessesRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -66,6 +73,13 @@ interface ProcessClientInterface
      * - Completed export processes include download URLs
      * - Completed import processes include CSV report URLs with details about problematic records
      * - Different process types return different result structures
+     *
+     * Example:
+     * ```php
+     * $client->process->getProcess(
+     *     1000000,
+     * );
+     * ```
      *
      * @param int $processId Id of the process
      * @param ?array{

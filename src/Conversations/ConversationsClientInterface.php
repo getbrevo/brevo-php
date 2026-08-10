@@ -16,6 +16,15 @@ interface ConversationsClientInterface
     /**
      * Sets the agent's status to online for 2-3 minutes. We recommend pinging this endpoint every minute for as long as the agent has to be considered online. You must provide either `agentId` alone, or all three of `agentEmail` + `agentName` + `receivedFrom`.
      *
+     * Example:
+     * ```php
+     * $client->conversations->setsAgentsStatusToOnlineFor23Minutes(
+     *     new PostConversationsAgentOnlinePingRequest([
+     *         'agentId' => 'd9nKoegKSjmCtyK78',
+     *     ]),
+     * );
+     * ```
+     *
      * @param PostConversationsAgentOnlinePingRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -30,6 +39,17 @@ interface ConversationsClientInterface
 
     /**
      * Send a message as an agent to an existing visitor's conversation. You must provide either `agentId` alone, or all three of `agentEmail` + `agentName` + `receivedFrom` to identify the agent.
+     *
+     * Example:
+     * ```php
+     * $client->conversations->sendAMessageAsAnAgent(
+     *     new PostConversationsMessagesRequest([
+     *         'agentId' => 'd9nKoegKSjmCtyK78',
+     *         'text' => 'Hello! How can I help you?',
+     *         'visitorId' => 'kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg',
+     *     ]),
+     * );
+     * ```
      *
      * @param PostConversationsMessagesRequest $request
      * @param ?array{
@@ -47,6 +67,13 @@ interface ConversationsClientInterface
     /**
      * Retrieve a single message by its ID.
      *
+     * Example:
+     * ```php
+     * $client->conversations->getAMessage(
+     *     'id',
+     * );
+     * ```
+     *
      * @param string $id ID of the message
      * @param ?array{
      *   baseUrl?: string,
@@ -62,6 +89,16 @@ interface ConversationsClientInterface
 
     /**
      * Update the text of a message sent by an agent. Only messages of type `agent` can be edited. The `text` and `html` fields of the message will be updated.
+     *
+     * Example:
+     * ```php
+     * $client->conversations->updateAMessageSentByAnAgent(
+     *     'id',
+     *     new PutConversationsMessagesIdRequest([
+     *         'text' => 'Good morning! How can I help you?',
+     *     ]),
+     * );
+     * ```
      *
      * @param string $id ID of the message
      * @param PutConversationsMessagesIdRequest $request
@@ -80,6 +117,13 @@ interface ConversationsClientInterface
     /**
      * Delete a message sent by an agent. Only messages of type `agent` can be deleted.
      *
+     * Example:
+     * ```php
+     * $client->conversations->deleteAMessageSentByAnAgent(
+     *     'id',
+     * );
+     * ```
+     *
      * @param string $id ID of the message
      * @param ?array{
      *   baseUrl?: string,
@@ -94,6 +138,17 @@ interface ConversationsClientInterface
 
     /**
      * Send an automated (pushed) message to a visitor on behalf of an agent. Example use cases: order status updates, announcing new features in your web app, etc.
+     *
+     * Example:
+     * ```php
+     * $client->conversations->sendAnAutomatedMessageToAVisitor(
+     *     new PostConversationsPushedMessagesRequest([
+     *         'groupId' => 'PjRBMhWGen6aRHjif',
+     *         'text' => "Your order has shipped! Here's your tracking number: 9114 5847 3325 9667 4328 88",
+     *         'visitorId' => 'kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg',
+     *     ]),
+     * );
+     * ```
      *
      * @param PostConversationsPushedMessagesRequest $request
      * @param ?array{
@@ -111,6 +166,13 @@ interface ConversationsClientInterface
     /**
      * Retrieve a single automated (pushed) message by its ID.
      *
+     * Example:
+     * ```php
+     * $client->conversations->getAnAutomatedMessage(
+     *     'id',
+     * );
+     * ```
+     *
      * @param string $id ID of the message sent previously
      * @param ?array{
      *   baseUrl?: string,
@@ -126,6 +188,16 @@ interface ConversationsClientInterface
 
     /**
      * Update the text of an automated (pushed) message. The `text` and `html` fields of the message will be updated.
+     *
+     * Example:
+     * ```php
+     * $client->conversations->updateAnAutomatedMessage(
+     *     'id',
+     *     new PutConversationsPushedMessagesIdRequest([
+     *         'text' => "Your order has shipped! Here's your tracking number: 9114 5847 4668 7775 9233 54",
+     *     ]),
+     * );
+     * ```
      *
      * @param string $id ID of the message
      * @param PutConversationsPushedMessagesIdRequest $request
@@ -144,6 +216,13 @@ interface ConversationsClientInterface
     /**
      * Delete an automated (pushed) message by its ID.
      *
+     * Example:
+     * ```php
+     * $client->conversations->deleteAnAutomatedMessage(
+     *     'id',
+     * );
+     * ```
+     *
      * @param string $id ID of the message
      * @param ?array{
      *   baseUrl?: string,
@@ -158,6 +237,15 @@ interface ConversationsClientInterface
 
     /**
      * Assigns a visitor to a specific agent group or removes them from their current group.
+     *
+     * Example:
+     * ```php
+     * $client->conversations->setVisitorGroupAssignment(
+     *     new PutConversationsVisitorGroupRequest([
+     *         'groupId' => "PjRBMhWGen6aRHjif",
+     *     ]),
+     * );
+     * ```
      *
      * @param PutConversationsVisitorGroupRequest $request
      * @param ?array{

@@ -20,6 +20,15 @@ interface TierClientInterface
     /**
      * Manually assigns a tier to a specific membership.
      *
+     * Example:
+     * ```php
+     * $client->tier->addSubscriptionToTier(
+     *     'pid',
+     *     'cid',
+     *     'tid',
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID
      * @param string $cid Contact ID
      * @param string $tid Tier ID
@@ -38,6 +47,14 @@ interface TierClientInterface
     /**
      * Returns the list of tier groups defined within the loyalty program.
      *
+     * Example:
+     * ```php
+     * $client->tier->getListOfTierGroups(
+     *     'pid',
+     *     new GetListOfTierGroupsRequest([]),
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID
      * @param GetListOfTierGroupsRequest $request
      * @param ?array{
@@ -55,6 +72,16 @@ interface TierClientInterface
     /**
      * Creates a new tier group in a loyalty program. *(The changes will take effect with the next publication of the loyalty program)*
      *
+     * Example:
+     * ```php
+     * $client->tier->createTierGroup(
+     *     'pid',
+     *     new CreateTierGroupRequest([
+     *         'name' => 'name',
+     *     ]),
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID
      * @param CreateTierGroupRequest $request
      * @param ?array{
@@ -71,6 +98,15 @@ interface TierClientInterface
 
     /**
      * Returns tier group information.
+     *
+     * Example:
+     * ```php
+     * $client->tier->getTierGroup(
+     *     'pid',
+     *     'gid',
+     *     new GetTierGroupRequest([]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID
      * @param string $gid Tier group ID
@@ -90,6 +126,22 @@ interface TierClientInterface
     /**
      * Updates a tier group from a loyalty program. *(The changes will take effect with the next publication of the loyalty program)*
      *
+     * Example:
+     * ```php
+     * $client->tier->updateTierGroup(
+     *     'pid',
+     *     'gid',
+     *     new UpdateTierGroupRequest([
+     *         'downgradeStrategy' => UpdateTierGroupRequestDowngradeStrategy::RealTime->value,
+     *         'name' => 'name',
+     *         'tierOrder' => [
+     *             'tierOrder',
+     *         ],
+     *         'upgradeStrategy' => UpdateTierGroupRequestUpgradeStrategy::RealTime->value,
+     *     ]),
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID
      * @param string $gid Tier group ID
      * @param UpdateTierGroupRequest $request
@@ -108,6 +160,14 @@ interface TierClientInterface
     /**
      * Deletes a tier group from a loyalty program. *(The changes will take effect with the next publication of the loyalty program)*
      *
+     * Example:
+     * ```php
+     * $client->tier->deleteTierGroup(
+     *     'pid',
+     *     'gid',
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID
      * @param string $gid Tier group ID
      * @param ?array{
@@ -123,6 +183,20 @@ interface TierClientInterface
 
     /**
      * Creates a new tier in a loyalty program tier group. *(The changes will take effect with the next publication of the loyalty program)*
+     *
+     * Example:
+     * ```php
+     * $client->tier->createTierForTierGroup(
+     *     'pid',
+     *     'gid',
+     *     new CreateTierForTierGroupRequest([
+     *         'accessConditions' => [
+     *             new CreateTierForTierGroupRequestAccessConditionsItem([]),
+     *         ],
+     *         'name' => 'name',
+     *     ]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID
      * @param string $gid Tier group ID
@@ -142,6 +216,14 @@ interface TierClientInterface
     /**
      * Returns the list of tiers defined within the loyalty program.
      *
+     * Example:
+     * ```php
+     * $client->tier->getLoyaltyProgramTier(
+     *     'pid',
+     *     new GetLoyaltyProgramTierRequest([]),
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID
      * @param GetLoyaltyProgramTierRequest $request
      * @param ?array{
@@ -158,6 +240,23 @@ interface TierClientInterface
 
     /**
      * Modifies an existing tier for the specified tier group *(The changes will take effect with the next publication of the loyalty program)*
+     *
+     * Example:
+     * ```php
+     * $client->tier->updateTier(
+     *     'pid',
+     *     'tid',
+     *     new UpdateTierRequest([
+     *         'accessConditions' => [
+     *             new UpdateTierRequestAccessConditionsItem([]),
+     *         ],
+     *         'name' => 'name',
+     *         'tierRewards' => [
+     *             new UpdateTierRequestTierRewardsItem([]),
+     *         ],
+     *     ]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID
      * @param string $tid Tier ID
@@ -176,6 +275,14 @@ interface TierClientInterface
 
     /**
      * Deletes a tier from a loyalty program tier group. *(The changes will take effect with the next publication of the loyalty program)*
+     *
+     * Example:
+     * ```php
+     * $client->tier->deleteTier(
+     *     'pid',
+     *     'tid',
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID
      * @param string $tid Tier ID

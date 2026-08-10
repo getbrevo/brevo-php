@@ -17,6 +17,8 @@ use Brevo\CustomObjects\Requests\GetrecordsRequest;
 use Brevo\CustomObjects\Types\GetrecordsResponse;
 use Brevo\CustomObjects\Requests\BatchDeleteObjectRecordsRequest;
 use Brevo\CustomObjects\Types\BatchDeleteObjectRecordsResponse;
+use Brevo\CustomObjects\Requests\GetAssociatedRecordsRequest;
+use Brevo\CustomObjects\Types\GetAssociatedRecordsResponse;
 
 class CustomObjectsClient implements CustomObjectsClientInterface
 {
@@ -103,6 +105,52 @@ class CustomObjectsClient implements CustomObjectsClientInterface
      * - Make sure both object records exist before associating them, else the API will return an error.
      * - This route does not create objects. The object where the object records are upserted by this API must be created already else the API will return an error "invalid object type".
      *
+     * Example:
+     * ```php
+     * $client->customObjects->upsertrecords(
+     *     'vehicle',
+     *     new UpsertrecordsRequest([
+     *         'records' => [
+     *             new UpsertrecordsRequestRecordsItem([
+     *                 'associations' => [
+     *                     new UpsertrecordsRequestRecordsItemAssociationsItem([
+     *                         'objectType' => 'garage',
+     *                         'action' => UpsertrecordsRequestRecordsItemAssociationsItemAction::Link->value,
+     *                         'records' => [
+     *                             new UpsertrecordsRequestRecordsItemAssociationsItemRecordsItem([
+     *                                 'identifiers' => new UpsertrecordsRequestRecordsItemAssociationsItemRecordsItemIdentifiers([
+     *                                     'id' => 435435,
+     *                                 ]),
+     *                             ]),
+     *                         ],
+     *                     ]),
+     *                     new UpsertrecordsRequestRecordsItemAssociationsItem([
+     *                         'objectType' => 'garage',
+     *                         'action' => UpsertrecordsRequestRecordsItemAssociationsItemAction::Unlink->value,
+     *                         'records' => [
+     *                             new UpsertrecordsRequestRecordsItemAssociationsItemRecordsItem([
+     *                                 'identifiers' => new UpsertrecordsRequestRecordsItemAssociationsItemRecordsItemIdentifiers([
+     *                                     'extId' => 'old-garage-001',
+     *                                 ]),
+     *                             ]),
+     *                         ],
+     *                     ]),
+     *                 ],
+     *                 'attributes' => [
+     *                     'make' => "Toyota",
+     *                     'model' => "Camry",
+     *                     'year' => 2020,
+     *                     'engine_type' => "hybrid",
+     *                 ],
+     *                 'identifiers' => new UpsertrecordsRequestRecordsItemIdentifiers([
+     *                     'extId' => 'VIN123',
+     *                 ]),
+     *             ]),
+     *         ],
+     *     ]),
+     * );
+     * ```
+     *
      * @param string $objectType Object type for the records to upsert. Must be a previously created custom object type. Only lowercase alphanumeric characters and underscores are allowed (max 32 characters).
      * @param UpsertrecordsRequest $request
      * @param ?array{
@@ -154,6 +202,17 @@ class CustomObjectsClient implements CustomObjectsClientInterface
      * <Note title="Enterprise access only">Custom objects are only available to Enterprise plans.
      * This feature is in beta. These are subject to change.</Note>
      * This API retrieves a list of object records along with their associated records and provides the total count of records for the specified object. **Note**: Contact as object type is not supported in this endpoint.
+     *
+     * Example:
+     * ```php
+     * $client->customObjects->getrecords(
+     *     'vehicle',
+     *     new GetrecordsRequest([
+     *         'limit' => 1000000,
+     *         'pageNum' => 1000000,
+     *     ]),
+     * );
+     * ```
      *
      * @param string $objectType Object type for the records to retrieve. Must be a previously created custom object type. Contact as object type is not supported in this endpoint.
      * @param GetrecordsRequest $request
@@ -216,6 +275,20 @@ class CustomObjectsClient implements CustomObjectsClientInterface
      * The request is accepted and processed asynchronously. You can track the status of the deletion process using the returned **processId**.
      * **Limitations:** - Each request can contain up to **1000** object record identifiers - Either `ids` or `ext_ids` must be provided, but **not both** in the same request - Deletion of Brevo standard object records is not supported via this endpoint - If more records must be deleted, send multiple batch requests
      *
+     * Example:
+     * ```php
+     * $client->customObjects->batchDeleteObjectRecords(
+     *     'vehicle',
+     *     new BatchDeleteObjectRecordsRequest([
+     *         'identifiers' => new BatchDeleteObjectRecordsRequestIdentifiersIds([
+     *             'ids' => [
+     *                 1,
+     *             ],
+     *         ]),
+     *     ]),
+     * );
+     * ```
+     *
      * @param string $objectType Object type for the records to delete
      * @param BatchDeleteObjectRecordsRequest $request
      * @param ?array{
@@ -250,6 +323,110 @@ class CustomObjectsClient implements CustomObjectsClientInterface
                     return null;
                 }
                 return BatchDeleteObjectRecordsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new BrevoException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new BrevoException(message: $e->getMessage(), previous: $e);
+        }
+        throw new BrevoApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * <Note title="Enterprise access only">Custom objects are only available to Enterprise plans.
+     * This feature is in beta. These are subject to change.</Note>
+     * Returns the records associated with a single source record. Associations of every type are returned together in one paginated list, ordered by association creation time with the most recently created association first.
+     *
+     * **Identifying the source record**
+     * Provide exactly one of `id`, `ext_id`, `email` or `sms`. Passing none of them, or more than one, returns `400`. `email` and `sms` are only accepted when `object_type` is `contact`; using either with any other object type returns `400`.
+     *
+     * **Object types**
+     * Use the object type exactly as it is defined in your account, for example `vehicle` for a custom object of that name, or `contact` for contacts. An object type that does not exist in your account returns `400`.
+     *
+     * **Filtering by associated object type**
+     * Use `type` to restrict the response to one or more associated object types, for example `?type=contact&type=garage`. Up to 5 types can be requested per call; more returns `400`. When `type` is omitted, associations of every type are returned.
+     *
+     * **Pagination**
+     * Results are returned 20 per page. The page size is fixed and cannot be changed. Increase `offset` by 20 to walk through the pages until `has_more` is `false`. An `offset` beyond the last record returns an empty `items` array with `has_more` set to `false`.
+     *
+     * **Working with contacts**
+     * - `contact` is supported both as the source `object_type` and as an associated object type.
+     * - An `id`, `ext_id`, `email` or `sms` that matches no contact returns `404`.
+     * - If several contacts share the same `ext_id`, `email` or `sms`, identify the contact by `id` to be sure of which one is used.
+     * - Contacts returned in `items` carry all of the contact's attributes, with attribute keys in lowercase — `email`, `first_name`, `last_name`, `sms`, `ext_id`, and any other contact attribute lowercased.
+     * - For contacts, `ext_id`, `created_at` and `updated_at` are not returned on `object`. A contact's external ID is available as `attributes.ext_id` when it is set.
+     *
+     * Example:
+     * ```php
+     * $client->customObjects->getAssociatedRecords(
+     *     'vehicle',
+     *     new GetAssociatedRecordsRequest([
+     *         'id' => 16789,
+     *         'extId' => '507f1f77bc',
+     *         'email' => 'jane.doe@example.com',
+     *         'sms' => '33612345678',
+     *         'offset' => 0,
+     *     ]),
+     * );
+     * ```
+     *
+     * @param string $objectType Object type of the source record, exactly as defined in your account. Accepts any object type defined in the account, for example a custom object type or `contact`.
+     * @param GetAssociatedRecordsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?GetAssociatedRecordsResponse
+     * @throws BrevoException
+     * @throws BrevoApiException
+     */
+    public function getAssociatedRecords(string $objectType, GetAssociatedRecordsRequest $request = new GetAssociatedRecordsRequest(), ?array $options = null): ?GetAssociatedRecordsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        $query = [];
+        if ($request->id != null) {
+            $query['id'] = $request->id;
+        }
+        if ($request->extId != null) {
+            $query['ext_id'] = $request->extId;
+        }
+        if ($request->email != null) {
+            $query['email'] = $request->email;
+        }
+        if ($request->sms != null) {
+            $query['sms'] = $request->sms;
+        }
+        if ($request->type != null) {
+            $query['type'] = $request->type;
+        }
+        if ($request->offset != null) {
+            $query['offset'] = $request->offset;
+        }
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    path: "objects/{$objectType}/associated-records",
+                    method: HttpMethod::GET,
+                    query: $query,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return GetAssociatedRecordsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new BrevoException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

@@ -27,6 +27,11 @@ interface DomainsClientInterface
      * - Creator information and creation timestamps
      * - Pagination information for large domain lists
      *
+     * Example:
+     * ```php
+     * $client->domains->getDomains();
+     * ```
+     *
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -53,6 +58,15 @@ interface DomainsClientInterface
      * - Required DNS records for authentication
      * - Domain provider detection results
      * - Setup instructions and next steps
+     *
+     * Example:
+     * ```php
+     * $client->domains->createDomain(
+     *     new CreateDomainRequest([
+     *         'name' => 'mycompany.com',
+     *     ]),
+     * );
+     * ```
      *
      * @param CreateDomainRequest $request
      * @param ?array{
@@ -81,6 +95,13 @@ interface DomainsClientInterface
      * - DNS records configuration and validation status
      * - Detailed authentication requirements
      *
+     * Example:
+     * ```php
+     * $client->domains->getDomainConfiguration(
+     *     'domainName',
+     * );
+     * ```
+     *
      * @param string $domainName Domain name
      * @param ?array{
      *   baseUrl?: string,
@@ -104,6 +125,13 @@ interface DomainsClientInterface
      *
      * Key information returned:
      * - Success confirmation message
+     *
+     * Example:
+     * ```php
+     * $client->domains->deleteDomain(
+     *     'domainName',
+     * );
+     * ```
      *
      * @param string $domainName Domain name
      * @param ?array{
@@ -129,6 +157,13 @@ interface DomainsClientInterface
      * Key information returned:
      * - Authentication success confirmation
      * - Domain readiness status for email sending
+     *
+     * Example:
+     * ```php
+     * $client->domains->authenticateDomain(
+     *     'domainName',
+     * );
+     * ```
      *
      * @param string $domainName Domain name
      * @param ?array{

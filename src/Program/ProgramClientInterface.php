@@ -21,6 +21,13 @@ interface ProgramClientInterface
     /**
      * Returns list of loyalty programs
      *
+     * Example:
+     * ```php
+     * $client->program->getLpList(
+     *     new GetLpListRequest([]),
+     * );
+     * ```
+     *
      * @param GetLpListRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -36,6 +43,15 @@ interface ProgramClientInterface
 
     /**
      * Creates loyalty program
+     *
+     * Example:
+     * ```php
+     * $client->program->createNewLp(
+     *     new CreateNewLpRequest([
+     *         'name' => 'name',
+     *     ]),
+     * );
+     * ```
      *
      * @param CreateNewLpRequest $request
      * @param ?array{
@@ -53,6 +69,13 @@ interface ProgramClientInterface
     /**
      * Returns loyalty program
      *
+     * Example:
+     * ```php
+     * $client->program->getLoyaltyProgramInfo(
+     *     'pid',
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param ?array{
      *   baseUrl?: string,
@@ -68,6 +91,16 @@ interface ProgramClientInterface
 
     /**
      * Updates loyalty program
+     *
+     * Example:
+     * ```php
+     * $client->program->updateLoyaltyProgram(
+     *     'pid',
+     *     new UpdateLoyaltyProgramRequest([
+     *         'name' => 'name',
+     *     ]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param UpdateLoyaltyProgramRequest $request
@@ -86,6 +119,13 @@ interface ProgramClientInterface
     /**
      * Deletes Loyalty Program
      *
+     * Example:
+     * ```php
+     * $client->program->deleteLoyaltyProgram(
+     *     'pid',
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param ?array{
      *   baseUrl?: string,
@@ -100,6 +140,14 @@ interface ProgramClientInterface
 
     /**
      * Partially updates loyalty program
+     *
+     * Example:
+     * ```php
+     * $client->program->partiallyUpdateLoyaltyProgram(
+     *     'pid',
+     *     new PartiallyUpdateLoyaltyProgramRequest([]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param PartiallyUpdateLoyaltyProgramRequest $request
@@ -118,6 +166,14 @@ interface ProgramClientInterface
     /**
      * Get Information of balances, tiers, rewards and subscription members for a subscription
      *
+     * Example:
+     * ```php
+     * $client->program->getParameterSubscriptionInfo(
+     *     'pid',
+     *     new GetParameterSubscriptionInfoRequest([]),
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param GetParameterSubscriptionInfoRequest $request
      * @param ?array{
@@ -135,6 +191,14 @@ interface ProgramClientInterface
     /**
      * Delete subscription for a contact
      *
+     * Example:
+     * ```php
+     * $client->program->deleteContactSubscription(
+     *     'pid',
+     *     1,
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param int $cid Contact ID.
      * @param ?array{
@@ -151,6 +215,13 @@ interface ProgramClientInterface
     /**
      * Publishes loyalty program
      *
+     * Example:
+     * ```php
+     * $client->program->publishLoyaltyProgram(
+     *     'pid',
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param ?array{
      *   baseUrl?: string,
@@ -165,6 +236,18 @@ interface ProgramClientInterface
 
     /**
      * Add member to a subscription
+     *
+     * Example:
+     * ```php
+     * $client->program->subscribeMemberToASubscription(
+     *     'pid',
+     *     new SubscribeMemberToASubscriptionRequest([
+     *         'memberContactIds' => [
+     *             1,
+     *         ],
+     *     ]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param SubscribeMemberToASubscriptionRequest $request
@@ -183,6 +266,16 @@ interface ProgramClientInterface
     /**
      * Deletes member from a subscription
      *
+     * Example:
+     * ```php
+     * $client->program->deleteContactMembers(
+     *     'pid',
+     *     new DeleteContactMembersRequest([
+     *         'memberContactIds' => 'memberContactIds',
+     *     ]),
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param DeleteContactMembersRequest $request
      * @param ?array{
@@ -198,6 +291,16 @@ interface ProgramClientInterface
 
     /**
      * Subscribes to a loyalty program
+     *
+     * Example:
+     * ```php
+     * $client->program->subscribeToLoyaltyProgram(
+     *     'pid',
+     *     new SubscribeToLoyaltyProgramRequest([
+     *         'contactId' => 1000000,
+     *     ]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param SubscribeToLoyaltyProgramRequest $request

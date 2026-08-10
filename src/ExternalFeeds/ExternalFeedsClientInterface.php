@@ -38,6 +38,17 @@ interface ExternalFeedsClientInterface
      * - Search functionality works on feed name matching
      * - Internal feeds are system-managed and cannot be modified
      *
+     * Example:
+     * ```php
+     * $client->externalFeeds->getAllExternalFeeds(
+     *     new GetAllExternalFeedsRequest([
+     *         'search' => 'product',
+     *         'startDate' => new DateTime('2024-01-01'),
+     *         'endDate' => new DateTime('2024-01-31'),
+     *     ]),
+     * );
+     * ```
+     *
      * @param GetAllExternalFeedsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -73,6 +84,19 @@ interface ExternalFeedsClientInterface
      * - Use caching for frequently accessed feeds
      * - Maximum 5 retry attempts allowed for failed requests
      * - Custom headers support for API integration requirements
+     *
+     * Example:
+     * ```php
+     * $client->externalFeeds->createExternalFeed(
+     *     new CreateExternalFeedRequest([
+     *         'name' => 'Public API Feed',
+     *         'url' => 'https://jsonplaceholder.typicode.com/posts',
+     *         'authType' => CreateExternalFeedRequestAuthType::NoAuth->value,
+     *         'maxRetries' => 3,
+     *         'cache' => true,
+     *     ]),
+     * );
+     * ```
      *
      * @param CreateExternalFeedRequest $request
      * @param ?array{
@@ -111,6 +135,13 @@ interface ExternalFeedsClientInterface
      * - Shows current feed health status
      * - Useful for debugging feed issues
      *
+     * Example:
+     * ```php
+     * $client->externalFeeds->getExternalFeedByUuid(
+     *     'b1c2d3e4-f5a6-47b8-89c0-d1e2f3a4b5c6',
+     * );
+     * ```
+     *
      * @param string $uuid UUID of the feed to fetch
      * @param ?array{
      *   baseUrl?: string,
@@ -144,6 +175,17 @@ interface ExternalFeedsClientInterface
      * - URL changes should be tested before campaign use
      * - Monitor campaigns using this feed after updates
      *
+     * Example:
+     * ```php
+     * $client->externalFeeds->updateExternalFeed(
+     *     'b1c2d3e4-f5a6-47b8-89c0-d1e2f3a4b5c6',
+     *     new UpdateExternalFeedRequest([
+     *         'name' => 'Updated Product Catalog',
+     *         'url' => 'https://api.newstore.com/products/v2',
+     *     ]),
+     * );
+     * ```
+     *
      * @param string $uuid UUID of the feed to update
      * @param UpdateExternalFeedRequest $request
      * @param ?array{
@@ -175,6 +217,13 @@ interface ExternalFeedsClientInterface
      * - Check if feed is used in active campaigns before deletion
      * - Remove feed references from email templates
      * - Consider deactivating instead of deleting if unsure
+     *
+     * Example:
+     * ```php
+     * $client->externalFeeds->deleteExternalFeed(
+     *     'b1c2d3e4-f5a6-47b8-89c0-d1e2f3a4b5c6',
+     * );
+     * ```
      *
      * @param string $uuid UUID of the feed to delete
      * @param ?array{

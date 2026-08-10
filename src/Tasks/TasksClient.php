@@ -59,6 +59,15 @@ class TasksClient implements TasksClientInterface
     /**
      * Retrieve a paginated list of CRM tasks with optional filtering by task type, status, date range, assignee, and linked entities (contacts, deals, companies). Results are sorted by creation date in descending order by default, with a default limit of 50 tasks per page.
      *
+     * Example:
+     * ```php
+     * $client->tasks->getAllTasks(
+     *     new GetCrmTasksRequest([
+     *         'sortBy' => 'name',
+     *     ]),
+     * );
+     * ```
+     *
      * @param GetCrmTasksRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -148,6 +157,17 @@ class TasksClient implements TasksClientInterface
     /**
      * Create a new CRM task with the specified name, type, due date, and optional associations to contacts, companies, or deals. A task requires a name, task type ID, and due date at minimum. You can also set a duration, notes, a reminder, and assign the task to a specific user.
      *
+     * Example:
+     * ```php
+     * $client->tasks->createATask(
+     *     new PostCrmTasksRequest([
+     *         'date' => new DateTime('2021-11-01T17:44:54Z'),
+     *         'name' => 'Task: Connect with client',
+     *         'taskTypeId' => '61a5cd07ca1347c82306ad09',
+     *     ]),
+     * );
+     * ```
+     *
      * @param PostCrmTasksRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -197,6 +217,13 @@ class TasksClient implements TasksClientInterface
     /**
      * Retrieve the full details of a single CRM task by its identifier. The response includes the task''s name, type, status, due date, duration, notes, assignee, reminder settings, and linked contacts, companies, or deals.
      *
+     * Example:
+     * ```php
+     * $client->tasks->getATask(
+     *     'id',
+     * );
+     * ```
+     *
      * @param string $id
      * @param ?array{
      *   baseUrl?: string,
@@ -245,6 +272,13 @@ class TasksClient implements TasksClientInterface
     /**
      * Permanently delete a CRM task by its identifier. This removes the task and cancels any associated reminders. The requesting user must be the task assignee or have manage permission on tasks.
      *
+     * Example:
+     * ```php
+     * $client->tasks->deleteATask(
+     *     'id',
+     * );
+     * ```
+     *
      * @param string $id
      * @param ?array{
      *   baseUrl?: string,
@@ -285,6 +319,14 @@ class TasksClient implements TasksClientInterface
 
     /**
      * Update an existing CRM task''s properties such as name, type, due date, status, duration, notes, assignee, reminder, or linked entities. Only the fields provided in the request body will be updated; omitted fields remain unchanged.
+     *
+     * Example:
+     * ```php
+     * $client->tasks->updateATask(
+     *     'id',
+     *     new PatchCrmTasksIdRequest([]),
+     * );
+     * ```
      *
      * @param string $id
      * @param PatchCrmTasksIdRequest $request
@@ -328,6 +370,11 @@ class TasksClient implements TasksClientInterface
 
     /**
      * Retrieve the list of all available task types, such as Email, Call, Meeting, Todo, Lunch, Deadline, and LinkedIn. If no task types exist yet, the default set is automatically created and returned. Use the task type ID when creating or updating tasks.
+     *
+     * Example:
+     * ```php
+     * $client->tasks->getAllTaskTypes();
+     * ```
      *
      * @param ?array{
      *   baseUrl?: string,

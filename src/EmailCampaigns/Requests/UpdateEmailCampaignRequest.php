@@ -193,6 +193,18 @@ class UpdateEmailCampaignRequest extends JsonSerializableType
     public ?string $utmCampaign;
 
     /**
+     * @var ?string $utmContent Customize the utm_content value. Appears on outgoing tracking links alongside utm_campaign. Only alphanumeric characters and spaces are allowed
+     */
+    #[JsonProperty('utmContent')]
+    public ?string $utmContent;
+
+    /**
+     * @var ?string $utmTerm Customize the utm_term value. Appears on outgoing tracking links alongside utm_campaign. Only alphanumeric characters and spaces are allowed
+     */
+    #[JsonProperty('utmTerm')]
+    public ?string $utmTerm;
+
+    /**
      * @var ?value-of<UpdateEmailCampaignRequestWinnerCriteria> $winnerCriteria Choose the metrics that will determinate the winning version. **Mandatory if _splitRule_ >= 1 and < 50**. If splitRule = 50, `winnerCriteria` is ignored if passed
      */
     #[JsonProperty('winnerCriteria')]
@@ -236,6 +248,8 @@ class UpdateEmailCampaignRequest extends JsonSerializableType
      *   unsubscriptionPageId?: ?string,
      *   updateFormId?: ?string,
      *   utmCampaign?: ?string,
+     *   utmContent?: ?string,
+     *   utmTerm?: ?string,
      *   winnerCriteria?: ?value-of<UpdateEmailCampaignRequestWinnerCriteria>,
      *   winnerDelay?: ?int,
      * } $values
@@ -273,6 +287,8 @@ class UpdateEmailCampaignRequest extends JsonSerializableType
         $this->unsubscriptionPageId = $values['unsubscriptionPageId'] ?? null;
         $this->updateFormId = $values['updateFormId'] ?? null;
         $this->utmCampaign = $values['utmCampaign'] ?? null;
+        $this->utmContent = $values['utmContent'] ?? null;
+        $this->utmTerm = $values['utmTerm'] ?? null;
         $this->winnerCriteria = $values['winnerCriteria'] ?? null;
         $this->winnerDelay = $values['winnerDelay'] ?? null;
     }

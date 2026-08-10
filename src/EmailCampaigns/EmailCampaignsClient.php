@@ -68,6 +68,13 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      * <Note>The response payload for this endpoint has changed
      * You now need to specify which type of statistics you would like to retrieve. For more information visit [this page](https://developers.brevo.com/changelog/2023/2/7).</Note>
      *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->getEmailCampaigns(
+     *     new GetEmailCampaignsRequest([]),
+     * );
+     * ```
+     *
      * @param GetEmailCampaignsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -148,6 +155,16 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
     /**
      * Create a new email campaign. The campaign requires at minimum a name and sender details, and is created in draft status by default. You must provide email content via one of three mutually exclusive options: htmlContent (inline HTML), htmlUrl (remote URL), or templateId (existing template); additionally, A/B testing can be enabled by setting abTesting to true with subjectA and subjectB, but this is incompatible with sendAtBestTime.
      *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->createEmailCampaign(
+     *     new CreateEmailCampaignRequest([
+     *         'name' => 'Newsletter - May 2017',
+     *         'sender' => new CreateEmailCampaignRequestSender([]),
+     *     ]),
+     * );
+     * ```
+     *
      * @param CreateEmailCampaignRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -197,6 +214,15 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
     /**
      * Upload an image to your account''s image gallery by providing an absolute URL to the image. The maximum allowed image size is 2MB and supported formats are jpeg, jpg, png, bmp, and gif; local file uploads are not supported.
      *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->uploadImageToGallery(
+     *     new UploadImageToGalleryRequest([
+     *         'imageUrl' => 'https://somedomain.com/image1.jpg',
+     *     ]),
+     * );
+     * ```
+     *
      * @param UploadImageToGalleryRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -245,6 +271,14 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
 
     /**
      * Retrieve detailed information about a specific email campaign by its ID, including recipients, statistics, and HTML content. Use the statistics query parameter to select which statistics to include (globalStats, linksStats, statsByDomain, statsByDevice, or statsByBrowser); statsByDevice and statsByBrowser are only available on this single-campaign endpoint. You can exclude HTML content from the response by setting excludeHtmlContent to true.
+     *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->getEmailCampaign(
+     *     1000000,
+     *     new GetEmailCampaignRequest([]),
+     * );
+     * ```
      *
      * @param int $campaignId Id of the campaign
      * @param GetEmailCampaignRequest $request
@@ -303,6 +337,14 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
     /**
      * Update an existing email campaign''s properties such as name, subject, content, sender, recipients, schedule, and A/B testing configuration. The campaign must exist and the request body must contain at least one valid field to update. Only draft or scheduled campaigns can be modified; if sendAtBestTime is enabled, IP warmup will be automatically disabled.
      *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->updateEmailCampaign(
+     *     1000000,
+     *     new UpdateEmailCampaignRequest([]),
+     * );
+     * ```
+     *
      * @param int $campaignId Id of the campaign
      * @param UpdateEmailCampaignRequest $request
      * @param ?array{
@@ -346,6 +388,13 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
     /**
      * Delete an email campaign by its campaign ID. Only campaigns that have not been scheduled can be deleted; attempting to delete a campaign that has already been scheduled will return a 403 permission denied error. Related data in templates, newsletter builder, and schedule collections is also cleaned up.
      *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->deleteEmailCampaign(
+     *     1000000,
+     * );
+     * ```
+     *
      * @param int $campaignId id of the campaign
      * @param ?array{
      *   baseUrl?: string,
@@ -386,6 +435,13 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
 
     /**
      * Obtain winning version of an A/B test email campaign
+     *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->getAbTestCampaignResult(
+     *     1000000,
+     * );
+     * ```
      *
      * @param int $campaignId Id of the A/B test campaign
      * @param ?array{
@@ -434,6 +490,16 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
 
     /**
      * Export the recipients of a sent email campaign as an asynchronous process, filtered by recipient type (e.g. openers, clickers, hardBounces). The recipientsType field is required and determines which subset of recipients to export. An optional notifyURL webhook will be called once the export is complete, and the response returns a processId to track the export status.
+     *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->emailExportRecipients(
+     *     1000000,
+     *     new EmailExportRecipientsRequest([
+     *         'recipientsType' => EmailExportRecipientsRequestRecipientsType::All->value,
+     *     ]),
+     * );
+     * ```
      *
      * @param int $campaignId Id of the campaign
      * @param EmailExportRecipientsRequest $request
@@ -485,6 +551,13 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
     /**
      * Send an existing email campaign immediately by scheduling it for the current time. The campaign must have valid recipients and content configured before sending. The system verifies your account''s send limit and credit balance before dispatching; if credits are insufficient, a 402 error is returned.
      *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->sendEmailCampaignNow(
+     *     1000000,
+     * );
+     * ```
+     *
      * @param int $campaignId Id of the campaign
      * @param ?array{
      *   baseUrl?: string,
@@ -525,6 +598,23 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
 
     /**
      * A PDF will be sent to the specified email addresses
+     *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->sendReport(
+     *     1000000,
+     *     new SendReportRequest([
+     *         'body' => new SendReport([
+     *             'email' => new SendReportEmail([
+     *                 'body' => 'Please find attached the report of our last email campaign.',
+     *                 'to' => [
+     *                     'jim.suehan@example.com',
+     *                 ],
+     *             ]),
+     *         ]),
+     *     ]),
+     * );
+     * ```
      *
      * @param int $campaignId Id of the campaign
      * @param SendReportRequest $request
@@ -569,6 +659,16 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
     /**
      * Send a test version of an email campaign to specified email addresses or your entire test list. If the emailTo array is left empty, the test mail will be sent to all addresses in your test list. You can send a maximum of 50 test emails per day.
      *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->sendTestEmail(
+     *     1000000,
+     *     new SendTestEmailRequest([
+     *         'body' => new SendTestEmail([]),
+     *     ]),
+     * );
+     * ```
+     *
      * @param int $campaignId Id of the campaign
      * @param SendTestEmailRequest $request
      * @param ?array{
@@ -611,6 +711,13 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
 
     /**
      * Get a unique URL to share & import an email template from one Brevo account to another.
+     *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->getSharedTemplateUrl(
+     *     1000000,
+     * );
+     * ```
      *
      * @param int $campaignId Id of the campaign or template
      * @param ?array{
@@ -659,6 +766,16 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
 
     /**
      * Update the status of an email campaign, such as suspending, archiving, or replicating it. Available status values include suspended, archive, darchive, sent, queued, replicate, replicateTemplate, cancel, and draft. Note that the replicateTemplate status is only available for template type campaigns.
+     *
+     * Example:
+     * ```php
+     * $client->emailCampaigns->updateCampaignStatus(
+     *     1000000,
+     *     new UpdateCampaignStatusRequest([
+     *         'body' => new UpdateCampaignStatus([]),
+     *     ]),
+     * );
+     * ```
      *
      * @param int $campaignId Id of the campaign
      * @param UpdateCampaignStatusRequest $request

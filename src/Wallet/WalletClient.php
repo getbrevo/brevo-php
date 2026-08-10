@@ -52,6 +52,14 @@ class WalletClient implements WalletClientInterface
     /**
      * Generate a wallet installation URL for a specific contact. The returned URL points to the pass installation page and encodes the pass, contact and organization identifiers as an encrypted token, so it can be shared with the contact (email, SMS, QR code, ...) to add the pass to their Apple Wallet or Google Wallet.
      *
+     * Example:
+     * ```php
+     * $client->wallet->getWalletPassInstallUrl(
+     *     'passId',
+     *     1000000,
+     * );
+     * ```
+     *
      * @param string $passId Pass ID. The unique identifier of the wallet pass for which to generate an installation URL.
      * @param int $contactId The Brevo contact ID the installation URL is generated for.
      * @param ?array{

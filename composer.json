@@ -1,6 +1,6 @@
 {
   "name": "getbrevo/brevo-php",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Official PHP SDK for the Brevo API.",
   "keywords": [
     "brevo",
