@@ -16,6 +16,11 @@ interface UserClientInterface
     /**
      * Retrieves the list of all users associated with your organization, including both active and pending invited users. Each user entry includes their email address, owner status, current invitation status, and feature access levels for marketing, CRM, and conversations.
      *
+     * Example:
+     * ```php
+     * $client->user->getInvitedUsersList();
+     * ```
+     *
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -30,6 +35,13 @@ interface UserClientInterface
 
     /**
      * Revokes all permissions for an invited user in the organization, effectively removing their access to the platform. If the user''s plan change generated credit notes, they are returned in the response for billing reconciliation.
+     *
+     * Example:
+     * ```php
+     * $client->user->putRevokeUserPermission(
+     *     'email',
+     * );
+     * ```
      *
      * @param string $email Email of the invited user.
      * @param ?array{
@@ -114,6 +126,19 @@ interface UserClientInterface
      * depends on your current plan. Please select the features and permissions
      * accordingly.
      *
+     * Example:
+     * ```php
+     * $client->user->inviteuser(
+     *     new Inviteuser([
+     *         'allFeaturesAccess' => true,
+     *         'email' => 'inviteuser@example.com',
+     *         'privileges' => [
+     *             new InviteuserPrivilegesItem([]),
+     *         ],
+     *     ]),
+     * );
+     * ```
+     *
      * @param Inviteuser $request
      * @param ?array{
      *   baseUrl?: string,
@@ -129,6 +154,14 @@ interface UserClientInterface
 
     /**
      * Resends or cancels a pending invitation for a user in the organization, depending on the action path parameter. Use `resend` to send a new invitation email to the user, or `cancel` to revoke the pending invitation entirely and remove the user''s pending access.
+     *
+     * Example:
+     * ```php
+     * $client->user->putresendcancelinvitation(
+     *     PutresendcancelinvitationRequestAction::Resend->value,
+     *     'email',
+     * );
+     * ```
      *
      * @param value-of<PutresendcancelinvitationRequestAction> $action action
      * @param string $email Email of the invited user.
@@ -213,6 +246,19 @@ interface UserClientInterface
      * The availability of feature and its permission depends on your current plan.
      * Please select the features and permissions accordingly.
      *
+     * Example:
+     * ```php
+     * $client->user->editUserPermission(
+     *     new Inviteuser([
+     *         'allFeaturesAccess' => true,
+     *         'email' => 'inviteuser@example.com',
+     *         'privileges' => [
+     *             new InviteuserPrivilegesItem([]),
+     *         ],
+     *     ]),
+     * );
+     * ```
+     *
      * @param Inviteuser $request
      * @param ?array{
      *   baseUrl?: string,
@@ -228,6 +274,13 @@ interface UserClientInterface
 
     /**
      * Retrieves the granular feature-level permissions assigned to a specific user in the organization, identified by their email address. The response includes the user''s current status (active or pending) and a detailed list of privileges specifying which features and permission levels are granted.
+     *
+     * Example:
+     * ```php
+     * $client->user->getUserPermission(
+     *     'email',
+     * );
+     * ```
      *
      * @param string $email Email of the invited user.
      * @param ?array{

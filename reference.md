@@ -5221,6 +5221,138 @@ $client->customObjects->batchDeleteObjectRecords(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;customObjects-&gt;getAssociatedRecords($objectType, $request) -> ?GetAssociatedRecordsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+<Note title="Enterprise access only">Custom objects are only available to Enterprise plans.
+This feature is in beta. These are subject to change.</Note>
+Returns the records associated with a single source record. Associations of every type are returned together in one paginated list, ordered by association creation time with the most recently created association first.
+
+**Identifying the source record**
+Provide exactly one of `id`, `ext_id`, `email` or `sms`. Passing none of them, or more than one, returns `400`. `email` and `sms` are only accepted when `object_type` is `contact`; using either with any other object type returns `400`.
+
+**Object types**
+Use the object type exactly as it is defined in your account, for example `vehicle` for a custom object of that name, or `contact` for contacts. An object type that does not exist in your account returns `400`.
+
+**Filtering by associated object type**
+Use `type` to restrict the response to one or more associated object types, for example `?type=contact&type=garage`. Up to 5 types can be requested per call; more returns `400`. When `type` is omitted, associations of every type are returned.
+
+**Pagination**
+Results are returned 20 per page. The page size is fixed and cannot be changed. Increase `offset` by 20 to walk through the pages until `has_more` is `false`. An `offset` beyond the last record returns an empty `items` array with `has_more` set to `false`.
+
+**Working with contacts**
+- `contact` is supported both as the source `object_type` and as an associated object type.
+- An `id`, `ext_id`, `email` or `sms` that matches no contact returns `404`.
+- If several contacts share the same `ext_id`, `email` or `sms`, identify the contact by `id` to be sure of which one is used.
+- Contacts returned in `items` carry all of the contact's attributes, with attribute keys in lowercase — `email`, `first_name`, `last_name`, `sms`, `ext_id`, and any other contact attribute lowercased.
+- For contacts, `ext_id`, `created_at` and `updated_at` are not returned on `object`. A contact's external ID is available as `attributes.ext_id` when it is set.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->customObjects->getAssociatedRecords(
+    'vehicle',
+    new GetAssociatedRecordsRequest([
+        'id' => 16789,
+        'extId' => '507f1f77bc',
+        'email' => 'jane.doe@example.com',
+        'sms' => '33612345678',
+        'offset' => 0,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$objectType:** `string` — Object type of the source record, exactly as defined in your account. Accepts any object type defined in the account, for example a custom object type or `contact`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$id:** `?int` — Internal Brevo ID of the source record. Must be a positive integer. Provide exactly one of `id`, `ext_id`, `email` or `sms`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$extId:** `?string` — External ID of the source record in your system. Provide exactly one of `id`, `ext_id`, `email` or `sms`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$email:** `?string` — Email address of the source contact. Only accepted when `object_type` is `contact`. Provide exactly one of `id`, `ext_id`, `email` or `sms`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sms:** `?string` — Phone number of the source contact, including the country code. It may be given with or without a leading `+`; percent-encode the `+` as `%2B`, because a literal `+` in a query string is read as a space. Only accepted when `object_type` is `contact`. Provide exactly one of `id`, `ext_id`, `email` or `sms`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$type:** `?string` — Restricts the response to the given associated object types. Repeat the parameter to request several types, for example `?type=contact&type=garage`. Maximum 5 types per call. Associations of every type are returned when omitted.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$offset:** `?int` — Number of records to skip before the first record of the page. Defaults to 0. Increase by 20 to fetch the next page.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Contacts
 <details><summary><code>$client-&gt;contacts-&gt;getContacts($request) -> ?GetContacts</code></summary>
 <dl>
@@ -16392,6 +16524,22 @@ $client->emailCampaigns->createEmailCampaign(
 <dl>
 <dd>
 
+**$utmContent:** `?string` — Customize the utm_content value. Appears on outgoing tracking links alongside utm_campaign. Only alphanumeric characters and spaces are allowed
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$utmTerm:** `?string` — Customize the utm_term value. Appears on outgoing tracking links alongside utm_campaign. Only alphanumeric characters and spaces are allowed
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$winnerCriteria:** `?string` — Choose the metrics that will determinate the winning version. **Mandatory if _splitRule_ >= 1 and < 50**. If splitRule = 50, `winnerCriteria` is ignored if passed
     
 </dd>
@@ -16837,6 +16985,22 @@ $client->emailCampaigns->updateEmailCampaign(
 <dd>
 
 **$utmCampaign:** `?string` — Customize the utm_campaign value. If this field is empty, the campaign name will be used. Only alphanumeric characters and spaces are allowed
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$utmContent:** `?string` — Customize the utm_content value. Appears on outgoing tracking links alongside utm_campaign. Only alphanumeric characters and spaces are allowed
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$utmTerm:** `?string` — Customize the utm_term value. Appears on outgoing tracking links alongside utm_campaign. Only alphanumeric characters and spaces are allowed
     
 </dd>
 </dl>

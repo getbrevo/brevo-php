@@ -30,6 +30,13 @@ interface WebhooksClientInterface
      * - Webhook URLs and custom headers
      * - Creation and modification timestamps
      *
+     * Example:
+     * ```php
+     * $client->webhooks->getWebhooks(
+     *     new GetWebhooksRequest([]),
+     * );
+     * ```
+     *
      * @param GetWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -57,6 +64,15 @@ interface WebhooksClientInterface
      * - Created webhook ID and configuration
      * - Success confirmation and setup details
      *
+     * Example:
+     * ```php
+     * $client->webhooks->createWebhook(
+     *     new CreateWebhookRequest([
+     *         'url' => 'http://requestb.in/173lyyx1',
+     *     ]),
+     * );
+     * ```
+     *
      * @param CreateWebhookRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -81,6 +97,17 @@ interface WebhooksClientInterface
      * - Export webhook event history filtered by date range, event type, or email address
      * - Generate reports for compliance, auditing, or performance analysis
      * - Track delivery patterns and webhook reliability over time
+     *
+     * Example:
+     * ```php
+     * $client->webhooks->exportWebhooksHistory(
+     *     new ExportWebhooksHistoryRequest([
+     *         'event' => ExportWebhooksHistoryRequestEvent::InvalidParameter->value,
+     *         'notifyUrl' => 'https://brevo.com',
+     *         'type' => ExportWebhooksHistoryRequestType::Transactional->value,
+     *     ]),
+     * );
+     * ```
      *
      * @param ExportWebhooksHistoryRequest $request
      * @param ?array{
@@ -112,6 +139,13 @@ interface WebhooksClientInterface
      * - Custom headers and request settings
      * - Webhook status and activity information
      *
+     * Example:
+     * ```php
+     * $client->webhooks->getWebhook(
+     *     1000000,
+     * );
+     * ```
+     *
      * @param int $webhookId Id of the webhook
      * @param ?array{
      *   baseUrl?: string,
@@ -138,6 +172,14 @@ interface WebhooksClientInterface
      * Key information returned:
      * - Success confirmation of webhook updates
      *
+     * Example:
+     * ```php
+     * $client->webhooks->updateWebhook(
+     *     1000000,
+     *     new UpdateWebhookRequest([]),
+     * );
+     * ```
+     *
      * @param int $webhookId Id of the webhook
      * @param UpdateWebhookRequest $request
      * @param ?array{
@@ -162,6 +204,13 @@ interface WebhooksClientInterface
      *
      * Key information returned:
      * - Success confirmation of webhook deletion
+     *
+     * Example:
+     * ```php
+     * $client->webhooks->deleteWebhook(
+     *     1000000,
+     * );
+     * ```
      *
      * @param int $webhookId Id of the webhook
      * @param ?array{

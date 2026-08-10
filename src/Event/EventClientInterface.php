@@ -17,6 +17,13 @@ interface EventClientInterface
      *
      * Retrieve a list of events filtered by various criteria.
      *
+     * Example:
+     * ```php
+     * $client->event->getEvents(
+     *     new GetEventsRequest([]),
+     * );
+     * ```
+     *
      * @param GetEventsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -33,6 +40,16 @@ interface EventClientInterface
     /**
      * Create an event to track a contact's interaction.
      *
+     * Example:
+     * ```php
+     * $client->event->createEvent(
+     *     new CreateEventRequest([
+     *         'eventName' => 'video_played',
+     *         'identifiers' => new CreateEventRequestIdentifiers([]),
+     *     ]),
+     * );
+     * ```
+     *
      * @param CreateEventRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -47,6 +64,20 @@ interface EventClientInterface
 
     /**
      * Create multiple events to track contacts' interactions in a single request.
+     *
+     * Example:
+     * ```php
+     * $client->event->createBatchEvents(
+     *     new CreateBatchEventsRequest([
+     *         'events' => [
+     *             new CreateBatchEventsRequestEventsItem([
+     *                 'eventName' => 'order_created',
+     *                 'identifiers' => new CreateBatchEventsRequestEventsItemIdentifiers([]),
+     *             ]),
+     *         ],
+     *     ]),
+     * );
+     * ```
      *
      * @param CreateBatchEventsRequest $request
      * @param ?array{

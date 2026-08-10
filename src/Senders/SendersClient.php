@@ -79,6 +79,13 @@ class SendersClient implements SendersClientInterface
      * - Sender status indicates if sender is active and ready for campaign use
      * - Email verification required before sender can be used in campaigns
      *
+     * Example:
+     * ```php
+     * $client->senders->getSenders(
+     *     new GetSendersRequest([]),
+     * );
+     * ```
+     *
      * @param GetSendersRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -153,6 +160,16 @@ class SendersClient implements SendersClientInterface
      * - IP weights must sum to 100 when specified
      * - Sender must be verified before use in campaigns
      *
+     * Example:
+     * ```php
+     * $client->senders->createSender(
+     *     new CreateSenderRequest([
+     *         'email' => 'support@example.com',
+     *         'name' => 'Support Team',
+     *     ]),
+     * );
+     * ```
+     *
      * @param CreateSenderRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -215,6 +232,11 @@ class SendersClient implements SendersClientInterface
      * - Active status
      * - IP configuration details
      *
+     * Example:
+     * ```php
+     * $client->senders->getIps();
+     * ```
+     *
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -272,6 +294,16 @@ class SendersClient implements SendersClientInterface
      * - Success confirmation
      * - Updated sender details
      *
+     * Example:
+     * ```php
+     * $client->senders->updateSender(
+     *     1000000,
+     *     new UpdateSenderRequest([
+     *         'name' => 'New Support Team',
+     *     ]),
+     * );
+     * ```
+     *
      * @param int $senderId Id of the sender
      * @param UpdateSenderRequest $request
      * @param ?array{
@@ -322,6 +354,13 @@ class SendersClient implements SendersClientInterface
      *
      * Key information returned:
      * - Success confirmation message
+     *
+     * Example:
+     * ```php
+     * $client->senders->deleteSender(
+     *     1000000,
+     * );
+     * ```
      *
      * @param int $senderId Id of the sender
      * @param ?array{
@@ -374,6 +413,13 @@ class SendersClient implements SendersClientInterface
      * - List of associated dedicated IPs
      * - IP addresses and domain configurations
      * - IP status and settings
+     *
+     * Example:
+     * ```php
+     * $client->senders->getIpsFromSender(
+     *     1000000,
+     * );
+     * ```
      *
      * @param int $senderId Id of the sender
      * @param ?array{
@@ -432,6 +478,16 @@ class SendersClient implements SendersClientInterface
      * Key information returned:
      * - Success confirmation of sender verification
      * - Sender activation status
+     *
+     * Example:
+     * ```php
+     * $client->senders->validateSenderByOtp(
+     *     1000000,
+     *     new ValidateSenderByOtpRequest([
+     *         'otp' => 123456,
+     *     ]),
+     * );
+     * ```
      *
      * @param int $senderId Id of the sender
      * @param ValidateSenderByOtpRequest $request

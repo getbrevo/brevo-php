@@ -67,6 +67,14 @@ class RewardClient implements RewardClientInterface
     /**
      * Get code count
      *
+     * Example:
+     * ```php
+     * $client->reward->getCodeCount(
+     *     'pid',
+     *     'cpid',
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID
      * @param string $cpid Code Pool ID
      * @param ?array{
@@ -115,6 +123,14 @@ class RewardClient implements RewardClientInterface
 
     /**
      * Returns a reward page
+     *
+     * Example:
+     * ```php
+     * $client->reward->getRewardPageApi(
+     *     'pid',
+     *     new GetLoyaltyOfferProgramsPidOffersRequest([]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID
      * @param GetLoyaltyOfferProgramsPidOffersRequest $request
@@ -179,6 +195,16 @@ class RewardClient implements RewardClientInterface
     /**
      * Creates a new reward in the loyalty program.
      *
+     * Example:
+     * ```php
+     * $client->reward->createReward(
+     *     'pid',
+     *     new CreateRewardRequest([
+     *         'name' => 'name',
+     *     ]),
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID
      * @param CreateRewardRequest $request
      * @param ?array{
@@ -228,6 +254,16 @@ class RewardClient implements RewardClientInterface
 
     /**
      * Create a voucher and attribute it to a specific membership.
+     *
+     * Example:
+     * ```php
+     * $client->reward->createVoucher(
+     *     'pid',
+     *     new CreateVoucherRequest([
+     *         'rewardId' => 'rewardId',
+     *     ]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID
      * @param CreateVoucherRequest $request
@@ -279,6 +315,14 @@ class RewardClient implements RewardClientInterface
     /**
      * Creates a request to redeem a voucher.
      *
+     * Example:
+     * ```php
+     * $client->reward->redeemVoucher(
+     *     'pid',
+     *     new RedeemVoucherRequest([]),
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID
      * @param RedeemVoucherRequest $request
      * @param ?array{
@@ -329,6 +373,14 @@ class RewardClient implements RewardClientInterface
     /**
      * Completes voucher redeem request.
      *
+     * Example:
+     * ```php
+     * $client->reward->completeRedeemTransaction(
+     *     'pid',
+     *     'tid',
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID
      * @param string $tid Redeem transaction ID
      * @param ?array{
@@ -378,6 +430,14 @@ class RewardClient implements RewardClientInterface
     /**
      * Revoke attributed vouchers.
      *
+     * Example:
+     * ```php
+     * $client->reward->revokeVouchers(
+     *     'pid',
+     *     new RevokeVouchersRequest([]),
+     * );
+     * ```
+     *
      * @param string $pid Loyalty Program ID
      * @param RevokeVouchersRequest $request
      * @param ?array{
@@ -424,6 +484,14 @@ class RewardClient implements RewardClientInterface
 
     /**
      * Validates a reward.
+     *
+     * Example:
+     * ```php
+     * $client->reward->validateReward(
+     *     'pid',
+     *     new ValidateRewardRequest([]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID
      * @param ValidateRewardRequest $request
@@ -474,6 +542,15 @@ class RewardClient implements RewardClientInterface
 
     /**
      * Returns reward information.
+     *
+     * Example:
+     * ```php
+     * $client->reward->getRewardInformation(
+     *     'pid',
+     *     'rid',
+     *     new GetLoyaltyOfferProgramsPidRewardsRidRequest([]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID
      * @param string $rid Reward ID
@@ -529,6 +606,16 @@ class RewardClient implements RewardClientInterface
 
     /**
      * Get voucher for a contact
+     *
+     * Example:
+     * ```php
+     * $client->reward->getVoucherForAContact(
+     *     'pid',
+     *     new GetLoyaltyOfferProgramsPidVouchersRequest([
+     *         'contactId' => 1,
+     *     ]),
+     * );
+     * ```
      *
      * @param string $pid Loyalty Program ID
      * @param GetLoyaltyOfferProgramsPidVouchersRequest $request

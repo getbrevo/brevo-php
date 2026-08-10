@@ -19,6 +19,16 @@ interface TransactionalSmsClientInterface
      * Note: For adding a stop code, client has to add reply STOP to [STOP_CODE] and the [STOP_CODE] will be replaced with the number.</Note>
      * <Note title="For end users in France">Transactional SMS can be sent at any time without time restrictions. However, if a message is categorized as Marketing, it must adhere to specific time restrictions. Messages sent outside of these restricted hours will experience delays and will be processed during allowable times. Specifically, Marketing SMS cannot be processed between 10pm and 8am, on Sundays, and on French public holidays.</Note>
      *
+     * Example:
+     * ```php
+     * $client->transactionalSms->sendAsyncTransactionalSms(
+     *     new SendTransacSms([
+     *         'recipient' => '33689965433',
+     *         'sender' => 'MyShop',
+     *     ]),
+     * );
+     * ```
+     *
      * @param SendTransacSms $request
      * @param ?array{
      *   baseUrl?: string,
@@ -34,6 +44,16 @@ interface TransactionalSmsClientInterface
 
     /**
      * Send a transactional SMS message to a single mobile number. The `sender`, `recipient`, and either `content` or `templateId` fields are required. The sender name is limited to 11 alphanumeric characters or 15 numeric characters, and the recipient must be a valid international phone number (6-15 digits, optional leading +). Tags can be a string or an array of up to 10 strings. The SMS type defaults to `transactional` but can be set to `marketing`; if the content includes a stop code, it is automatically treated as marketing. Returns the message ID, SMS count, credits used, and remaining credits.
+     *
+     * Example:
+     * ```php
+     * $client->transactionalSms->sendTransacSms(
+     *     new SendTransacSms([
+     *         'recipient' => '33689965433',
+     *         'sender' => 'MyShop',
+     *     ]),
+     * );
+     * ```
      *
      * @param SendTransacSms $request
      * @param ?array{
@@ -51,6 +71,13 @@ interface TransactionalSmsClientInterface
     /**
      * Retrieve an aggregated report of your transactional SMS activity over a specified time period, including counts for requests, delivered, hard bounces, soft bounces, blocked, unsubscribed, replied, accepted, rejected, and skipped messages. Filter by date range using `startDate` and `endDate` (both required together, YYYY-MM-DD format) or by a number of past `days` (not compatible with date range). You can further narrow results by `tag`. If no date filter is provided, the report covers all available data and returns the auto-detected date range.
      *
+     * Example:
+     * ```php
+     * $client->transactionalSms->getTransacAggregatedSmsReport(
+     *     new GetTransacAggregatedSmsReportRequest([]),
+     * );
+     * ```
+     *
      * @param GetTransacAggregatedSmsReportRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -67,6 +94,13 @@ interface TransactionalSmsClientInterface
     /**
      * Retrieve a paginated list of individual SMS event records (unaggregated), including event type, phone number, message ID, timestamp, tag, and reason or reply content where applicable. Results default to 50 per page (max 100) and are sorted in descending order unless overridden. Filter by date range (`startDate`/`endDate`), past `days` (not compatible with date range), specific `event` type (e.g. delivered, bounces, replies), `phoneNumber`, or `tags`. Bounce events include the failure reason, and reply events include the reply content.
      *
+     * Example:
+     * ```php
+     * $client->transactionalSms->getSmsEvents(
+     *     new GetSmsEventsRequest([]),
+     * );
+     * ```
+     *
      * @param GetSmsEventsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -82,6 +116,13 @@ interface TransactionalSmsClientInterface
 
     /**
      * Retrieve a day-by-day breakdown of your transactional SMS activity, with each entry containing the date and counts for requests, delivered, hard bounces, soft bounces, blocked, unsubscribed, replied, accepted, rejected, and skipped messages. Filter by date range using `startDate` and `endDate` (both required together, YYYY-MM-DD format), by a number of past `days` (not compatible with date range), or by `tag`. Results are sorted in descending order by default unless overridden with the `sort` parameter.
+     *
+     * Example:
+     * ```php
+     * $client->transactionalSms->getTransacSmsReport(
+     *     new GetTransacSmsReportRequest([]),
+     * );
+     * ```
      *
      * @param GetTransacSmsReportRequest $request
      * @param ?array{

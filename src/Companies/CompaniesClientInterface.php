@@ -21,6 +21,13 @@ interface CompaniesClientInterface
     /**
      * Retrieve a paginated list of companies with optional filtering, sorting, and search capabilities. Results are sorted by creation date in descending order by default, and can be filtered by attributes, linked contacts, linked deals, or modification/creation timestamps.
      *
+     * Example:
+     * ```php
+     * $client->companies->getAllCompanies(
+     *     new GetCompaniesRequest([]),
+     * );
+     * ```
+     *
      * @param GetCompaniesRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -36,6 +43,15 @@ interface CompaniesClientInterface
 
     /**
      * Create a new CRM company with the specified name, attributes, and optional associations to contacts and deals. The company name is required, and you can optionally provide a country code when a phone number attribute is included.
+     *
+     * Example:
+     * ```php
+     * $client->companies->createACompany(
+     *     new PostCompaniesRequest([
+     *         'name' => 'company',
+     *     ]),
+     * );
+     * ```
      *
      * @param PostCompaniesRequest $request
      * @param ?array{
@@ -53,6 +69,15 @@ interface CompaniesClientInterface
     /**
      * Import companies from a CSV file with mapping options.
      *
+     * Example:
+     * ```php
+     * $client->companies->importCompaniesCreationAndUpdation(
+     *     new PostCompaniesImportRequest([
+     *         'file' => File::createFromString("example_file", "example_file"),
+     *     ]),
+     * );
+     * ```
+     *
      * @param PostCompaniesImportRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -67,6 +92,14 @@ interface CompaniesClientInterface
 
     /**
      * Link or unlink contacts and deals with a specific company in a single request. You can simultaneously link new contacts/deals and unlink existing ones by providing the respective ID arrays in the request body.
+     *
+     * Example:
+     * ```php
+     * $client->companies->linkAndUnlinkCompanyWithContactAndDeal(
+     *     'id',
+     *     new PatchCompaniesLinkUnlinkIdRequest([]),
+     * );
+     * ```
      *
      * @param string $id
      * @param PatchCompaniesLinkUnlinkIdRequest $request
@@ -84,6 +117,13 @@ interface CompaniesClientInterface
     /**
      * Retrieve the full details of a single company by its identifier, including its attributes, linked contacts, and linked deals. Returns a 404 error if the company does not exist, or a 403 error if the user lacks permission to view the company.
      *
+     * Example:
+     * ```php
+     * $client->companies->getACompany(
+     *     'id',
+     * );
+     * ```
+     *
      * @param string $id Get Company Details
      * @param ?array{
      *   baseUrl?: string,
@@ -100,6 +140,13 @@ interface CompaniesClientInterface
     /**
      * Permanently delete a company by its identifier. The requesting user must be the company owner or have manage permission on companies; otherwise, a 403 Forbidden error is returned.
      *
+     * Example:
+     * ```php
+     * $client->companies->deleteACompany(
+     *     'id',
+     * );
+     * ```
+     *
      * @param string $id Company ID to delete
      * @param ?array{
      *   baseUrl?: string,
@@ -114,6 +161,14 @@ interface CompaniesClientInterface
 
     /**
      * Update an existing company''s attributes, name, linked contacts, or linked deals. Note that passing `linkedContactsIds` or `linkedDealsIds` replaces the entire list of associations, so omitted IDs will be removed. The company name cannot be set to an empty string.
+     *
+     * Example:
+     * ```php
+     * $client->companies->updateACompany(
+     *     'id',
+     *     new PatchCompaniesIdRequest([]),
+     * );
+     * ```
      *
      * @param string $id
      * @param PatchCompaniesIdRequest $request
@@ -132,6 +187,17 @@ interface CompaniesClientInterface
     /**
      * Create a new custom attribute for companies or deals. The attribute label must be unique within the object type, cannot exceed 50 characters, and cannot use reserved names. For `single-select` or `multi-choice` attribute types, you must also provide the `optionsLabels` array.
      *
+     * Example:
+     * ```php
+     * $client->companies->createACompanyDealAttribute(
+     *     new PostCrmAttributesRequest([
+     *         'attributeType' => PostCrmAttributesRequestAttributeType::Text->value,
+     *         'label' => 'Attribute Label',
+     *         'objectType' => PostCrmAttributesRequestObjectType::Companies->value,
+     *     ]),
+     * );
+     * ```
+     *
      * @param PostCrmAttributesRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -148,6 +214,13 @@ interface CompaniesClientInterface
     /**
      * Delete an existing custom attribute by its identifier. This permanently removes the attribute definition and cleans up all references to it across companies or deals. System-default and non-editable attributes cannot be deleted.
      *
+     * Example:
+     * ```php
+     * $client->companies->deleteAnAttribute(
+     *     'id',
+     * );
+     * ```
+     *
      * @param string $id Attribute ID
      * @param ?array{
      *   baseUrl?: string,
@@ -162,6 +235,14 @@ interface CompaniesClientInterface
 
     /**
      * Update an existing custom attribute''s label or options. You can rename the attribute label or modify the available options for `single-select` and `multi-choice` attribute types. System-default attributes cannot be modified except for specific editable fields.
+     *
+     * Example:
+     * ```php
+     * $client->companies->updateAnAttribute(
+     *     'id',
+     *     new PatchCrmAttributesIdRequest([]),
+     * );
+     * ```
      *
      * @param string $id Attribute ID
      * @param PatchCrmAttributesIdRequest $request
@@ -178,6 +259,11 @@ interface CompaniesClientInterface
 
     /**
      * Retrieve the list of all attributes defined for companies, including both system-default and custom attributes. Each attribute includes its label, internal name, type, required status, and available options for select-type attributes.
+     *
+     * Example:
+     * ```php
+     * $client->companies->getCompanyAttributes();
+     * ```
      *
      * @param ?array{
      *   baseUrl?: string,

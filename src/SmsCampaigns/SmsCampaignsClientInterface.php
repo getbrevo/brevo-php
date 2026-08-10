@@ -19,6 +19,13 @@ interface SmsCampaignsClientInterface
     /**
      * Retrieve a paginated list of all your SMS campaigns with their statistics and recipient information. Results can be filtered by status and date range, with a default limit of 500 and maximum of 1000 per page. The sort order defaults to descending by creation date; date filters are only available when status is not passed or is set to sent.
      *
+     * Example:
+     * ```php
+     * $client->smsCampaigns->getSmsCampaigns(
+     *     new GetSmsCampaignsRequest([]),
+     * );
+     * ```
+     *
      * @param GetSmsCampaignsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -34,6 +41,17 @@ interface SmsCampaignsClientInterface
 
     /**
      * Create a new SMS campaign with the required name, sender, and content fields. The sender name is limited to 11 alphanumeric characters or 15 numeric characters, and the content should stay within 160 characters per SMS segment. If a scheduledAt date is provided, listIds in recipients become mandatory; accounts under validation are limited to 4 total campaigns and campaigns with more than 10 recipients will be saved as draft.
+     *
+     * Example:
+     * ```php
+     * $client->smsCampaigns->createSmsCampaign(
+     *     new CreateSmsCampaignRequest([
+     *         'content' => 'Get a discount by visiting our NY store and saying : Happy Spring!',
+     *         'name' => 'Spring Promo Code',
+     *         'sender' => 'MyShop',
+     *     ]),
+     * );
+     * ```
      *
      * @param CreateSmsCampaignRequest $request
      * @param ?array{
@@ -51,6 +69,13 @@ interface SmsCampaignsClientInterface
     /**
      * Retrieve detailed information about a specific SMS campaign by its ID, including campaign content, sender, recipients with list names, statistics (delivered, sent, bounces, unsubscriptions, answered), and tags. Unlike the list endpoint, recipients are returned as objects with id and name fields rather than plain IDs.
      *
+     * Example:
+     * ```php
+     * $client->smsCampaigns->getSmsCampaign(
+     *     1000000,
+     * );
+     * ```
+     *
      * @param int $campaignId id of the SMS campaign
      * @param ?array{
      *   baseUrl?: string,
@@ -66,6 +91,14 @@ interface SmsCampaignsClientInterface
 
     /**
      * Update an existing SMS campaign''s properties such as name, sender, content, recipients, scheduled date, organisation prefix, and unsubscribe instructions. The request body must contain at least one valid field to update. The campaign must exist and must be of type SMS; if a scheduledAt is provided, valid recipients must be present either in the request or already configured on the campaign.
+     *
+     * Example:
+     * ```php
+     * $client->smsCampaigns->updateSmsCampaign(
+     *     1000000,
+     *     new UpdateSmsCampaignRequest([]),
+     * );
+     * ```
      *
      * @param int $campaignId id of the SMS campaign
      * @param UpdateSmsCampaignRequest $request
@@ -83,6 +116,13 @@ interface SmsCampaignsClientInterface
     /**
      * Delete an SMS campaign by its campaign ID. Only campaigns that have not been scheduled or sent can be deleted; attempting to delete a campaign that is queued, in process, or has been sent with recipients will return a 403 permission denied error.
      *
+     * Example:
+     * ```php
+     * $client->smsCampaigns->deleteSmsCampaign(
+     *     1000000,
+     * );
+     * ```
+     *
      * @param int $campaignId id of the SMS campaign
      * @param ?array{
      *   baseUrl?: string,
@@ -97,6 +137,16 @@ interface SmsCampaignsClientInterface
 
     /**
      * It returns the background process ID which on completion calls the notify URL that you have set in the input.
+     *
+     * Example:
+     * ```php
+     * $client->smsCampaigns->requestSmsRecipientExport(
+     *     1000000,
+     *     new RequestSmsRecipientExportRequest([
+     *         'recipientsType' => RequestSmsRecipientExportRequestRecipientsType::All->value,
+     *     ]),
+     * );
+     * ```
      *
      * @param int $campaignId id of the campaign
      * @param RequestSmsRecipientExportRequest $request
@@ -115,6 +165,13 @@ interface SmsCampaignsClientInterface
     /**
      * Send an existing SMS campaign immediately by scheduling it for the current time. The system verifies your account''s SMS credit balance before dispatching; if credits are insufficient or the remaining credit is less than the number of recipients, a 402 error is returned. The campaign must have valid recipients and content already configured.
      *
+     * Example:
+     * ```php
+     * $client->smsCampaigns->sendSmsCampaignNow(
+     *     1000000,
+     * );
+     * ```
+     *
      * @param int $campaignId id of the campaign
      * @param ?array{
      *   baseUrl?: string,
@@ -129,6 +186,23 @@ interface SmsCampaignsClientInterface
 
     /**
      * Send report of Sent and Archived campaign, to the specified email addresses, with respective data and a pdf attachment in detail.
+     *
+     * Example:
+     * ```php
+     * $client->smsCampaigns->sendSmsReport(
+     *     1000000,
+     *     new SendSmsReportRequest([
+     *         'body' => new SendReport([
+     *             'email' => new SendReportEmail([
+     *                 'body' => 'Please find attached the report of our last email campaign.',
+     *                 'to' => [
+     *                     'jim.suehan@example.com',
+     *                 ],
+     *             ]),
+     *         ]),
+     *     ]),
+     * );
+     * ```
      *
      * @param int $campaignId id of the campaign
      * @param SendSmsReportRequest $request
@@ -146,6 +220,14 @@ interface SmsCampaignsClientInterface
     /**
      * Send a test SMS to a specified phone number to preview the campaign before sending it to all recipients. The phone number must belong to one of your existing contacts in your Brevo account and must not be blacklisted. The number should include the country code (e.g. 33689965433).
      *
+     * Example:
+     * ```php
+     * $client->smsCampaigns->sendTestSms(
+     *     1000000,
+     *     new SendTestSmsRequest([]),
+     * );
+     * ```
+     *
      * @param int $campaignId Id of the SMS campaign
      * @param SendTestSmsRequest $request
      * @param ?array{
@@ -161,6 +243,16 @@ interface SmsCampaignsClientInterface
 
     /**
      * Update the status of an SMS campaign, such as suspending, archiving, or replicating it. Available status values include suspended, archive, darchive, sent, queued, replicate, replicateTemplate, cancel, and draft. Note that the replicateTemplate status is only available for template type campaigns.
+     *
+     * Example:
+     * ```php
+     * $client->smsCampaigns->updateSmsCampaignStatus(
+     *     1000000,
+     *     new UpdateSmsCampaignStatusRequest([
+     *         'body' => new UpdateCampaignStatus([]),
+     *     ]),
+     * );
+     * ```
      *
      * @param int $campaignId id of the campaign
      * @param UpdateSmsCampaignStatusRequest $request

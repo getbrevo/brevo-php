@@ -34,6 +34,11 @@ interface AccountClientInterface
      * - Relay configuration crucial for transactional email setup and deliverability
      * - Enterprise status determines access to advanced features and sub-account management
      *
+     * Example:
+     * ```php
+     * $client->account->getAccount();
+     * ```
+     *
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -64,6 +69,13 @@ interface AccountClientInterface
      * - Historical activity data for audit trails
      *
      * Note: Requires Enterprise plan for access to organization activity logs.
+     *
+     * Example:
+     * ```php
+     * $client->account->getAccountActivity(
+     *     new GetAccountActivityRequest([]),
+     * );
+     * ```
      *
      * @param GetAccountActivityRequest $request
      * @param ?array{

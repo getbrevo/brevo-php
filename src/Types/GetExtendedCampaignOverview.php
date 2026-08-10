@@ -219,6 +219,12 @@ class GetExtendedCampaignOverview extends JsonSerializableType
     public ?string $utmCampaignValue;
 
     /**
+     * @var ?string $utmContent The utm_content value associated with the campaign. Only present if a utm_content value was set on create or update.
+     */
+    #[JsonProperty('utmContent')]
+    public ?string $utmContent;
+
+    /**
      * @var ?int $utmId The campaign ID used as utm_id parameter. Only present if UTM campaign tracking with ID is enabled.
      */
     #[JsonProperty('utmID')]
@@ -235,6 +241,12 @@ class GetExtendedCampaignOverview extends JsonSerializableType
      */
     #[JsonProperty('utmSource')]
     public ?string $utmSource;
+
+    /**
+     * @var ?string $utmTerm The utm_term value associated with the campaign. Only present if a utm_term value was set on create or update.
+     */
+    #[JsonProperty('utmTerm')]
+    public ?string $utmTerm;
 
     /**
      * @param array{
@@ -273,9 +285,11 @@ class GetExtendedCampaignOverview extends JsonSerializableType
      *   tags?: ?array<string>,
      *   toField?: ?string,
      *   utmCampaignValue?: ?string,
+     *   utmContent?: ?string,
      *   utmId?: ?int,
      *   utmMedium?: ?string,
      *   utmSource?: ?string,
+     *   utmTerm?: ?string,
      * } $values
      */
     public function __construct(
@@ -316,9 +330,11 @@ class GetExtendedCampaignOverview extends JsonSerializableType
         $this->testSent = $values['testSent'];
         $this->toField = $values['toField'] ?? null;
         $this->utmCampaignValue = $values['utmCampaignValue'] ?? null;
+        $this->utmContent = $values['utmContent'] ?? null;
         $this->utmId = $values['utmId'] ?? null;
         $this->utmMedium = $values['utmMedium'] ?? null;
         $this->utmSource = $values['utmSource'] ?? null;
+        $this->utmTerm = $values['utmTerm'] ?? null;
     }
 
     /**

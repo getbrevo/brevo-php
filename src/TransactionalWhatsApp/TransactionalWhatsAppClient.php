@@ -60,6 +60,19 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
      * [Activating Whatsapp](https://developers.brevo.com/docs/whatsapp-campaigns-1) in your account</Note>
      * This endpoint is used to send a WhatsApp message. <br/>(**The first message you send using the API must contain a Template ID. You must create a template on WhatsApp on the Brevo platform to fetch the Template ID.**)
      *
+     * Example:
+     * ```php
+     * $client->transactionalWhatsApp->sendWhatsappMessage(
+     *     new SendWhatsappMessageRequestParams([
+     *         'contactNumbers' => [
+     *             'contactNumbers',
+     *         ],
+     *         'senderNumber' => 'senderNumber',
+     *         'templateId' => 123,
+     *     ]),
+     * );
+     * ```
+     *
      * @param (
      *    SendWhatsappMessageRequestParams
      *   |SendWhatsappMessageRequestText
@@ -111,6 +124,13 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
 
     /**
      * This endpoint will show the unaggregated statistics for WhatsApp activity (30 days by default if `startDate` and `endDate` or `days` is not passed. The date range can not exceed 90 days)
+     *
+     * Example:
+     * ```php
+     * $client->transactionalWhatsApp->getWhatsappEventReport(
+     *     new GetWhatsappEventReportRequest([]),
+     * );
+     * ```
      *
      * @param GetWhatsappEventReportRequest $request
      * @param ?array{

@@ -54,6 +54,13 @@ class InboundParsingClient implements InboundParsingClientInterface
     /**
      * This endpoint will show the list of all the events for the received emails. When no date range is provided, the last 30 days of events are returned by default.
      *
+     * Example:
+     * ```php
+     * $client->inboundParsing->getInboundEmailEvents(
+     *     new GetInboundEmailEventsRequest([]),
+     * );
+     * ```
+     *
      * @param GetInboundEmailEventsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -122,6 +129,13 @@ class InboundParsingClient implements InboundParsingClientInterface
     /**
      * This endpoint will show the list of all events history for one particular received email.
      *
+     * Example:
+     * ```php
+     * $client->inboundParsing->getInboundEmailEventsByUuid(
+     *     'uuid',
+     * );
+     * ```
+     *
      * @param string $uuid UUID to fetch events specific to received email
      * @param ?array{
      *   baseUrl?: string,
@@ -169,6 +183,13 @@ class InboundParsingClient implements InboundParsingClientInterface
 
     /**
      * This endpoint will retrieve inbound attachment with download token.
+     *
+     * Example:
+     * ```php
+     * $client->inboundParsing->getInboundEmailAttachment(
+     *     'downloadToken',
+     * );
+     * ```
      *
      * @param string $downloadToken Token to fetch a particular attachment
      * @param ?array{
