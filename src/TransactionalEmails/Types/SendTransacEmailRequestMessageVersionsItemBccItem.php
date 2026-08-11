@@ -27,6 +27,7 @@ class SendTransacEmailRequestMessageVersionsItemBccItem extends JsonSerializable
 
     /**
      * @param array{
+     *   contactPixelTrackingConsent?: ?bool,
      *   email: string,
      *   contactPixelTrackingConsent?: ?bool,
      *   name?: ?string,

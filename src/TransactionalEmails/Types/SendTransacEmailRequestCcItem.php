@@ -27,6 +27,7 @@ class SendTransacEmailRequestCcItem extends JsonSerializableType
 
     /**
      * @param array{
+     *   contactPixelTrackingConsent?: ?bool,
      *   email: string,
      *   contactPixelTrackingConsent?: ?bool,
      *   name?: ?string,
