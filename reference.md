@@ -16614,7 +16614,7 @@ $client->emailCampaigns->uploadImageToGallery(
 <dl>
 <dd>
 
-**$name:** `?string` — Name of the image.
+**$name:** `?string` — Name shown in your Brevo image gallery. Include the file extension, e.g. product-banner.png
     
 </dd>
 </dl>
