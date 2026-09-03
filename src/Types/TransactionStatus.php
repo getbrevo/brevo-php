@@ -4,8 +4,8 @@ namespace Brevo\Types;
 
 enum TransactionStatus: string
 {
-    case Pending = "pending";
-    case Complete = "complete";
+    case Draft = "draft";
+    case Completed = "completed";
     case Rejected = "rejected";
     case Cancelled = "cancelled";
     case Expired = "expired";

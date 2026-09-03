@@ -53,10 +53,28 @@ class GetParameterSubscriptionInfoResponseRewardItem extends JsonSerializableTyp
     public ?array $meta;
 
     /**
+     * @var ?string $publicDescription Customer-facing description of the reward, as configured on the reward definition.
+     */
+    #[JsonProperty('publicDescription')]
+    public ?string $publicDescription;
+
+    /**
      * @var ?string $rewardId Unique identifier of the reward definition.
      */
     #[JsonProperty('rewardId')]
     public ?string $rewardId;
+
+    /**
+     * @var ?string $rewardName Customer-facing name of the reward. Falls back to the internal reward name when no public name is set.
+     */
+    #[JsonProperty('rewardName')]
+    public ?string $rewardName;
+
+    /**
+     * @var ?value-of<GetParameterSubscriptionInfoResponseRewardItemUnit> $unit Unit the reward's value is expressed in — one of the currency codes listed below, or PERCENT. Omitted when the reward has no unit (e.g. free-product rewards).
+     */
+    #[JsonProperty('unit')]
+    public ?string $unit;
 
     /**
      * @var ?DateTime $updatedAt Timestamp when the reward was last updated.
@@ -71,6 +89,12 @@ class GetParameterSubscriptionInfoResponseRewardItem extends JsonSerializableTyp
     public ?DateTime $validFrom;
 
     /**
+     * @var ?float $value The value recorded when this reward was attributed to the contact — a snapshot, not necessarily the reward's current configured value. Omitted when not set.
+     */
+    #[JsonProperty('value')]
+    public ?float $value;
+
+    /**
      * @param array{
      *   code?: ?string,
      *   contactId?: ?int,
@@ -79,9 +103,13 @@ class GetParameterSubscriptionInfoResponseRewardItem extends JsonSerializableTyp
      *   id?: ?string,
      *   loyaltyProgramId?: ?string,
      *   meta?: ?array<string, mixed>,
+     *   publicDescription?: ?string,
      *   rewardId?: ?string,
+     *   rewardName?: ?string,
+     *   unit?: ?value-of<GetParameterSubscriptionInfoResponseRewardItemUnit>,
      *   updatedAt?: ?DateTime,
      *   validFrom?: ?DateTime,
+     *   value?: ?float,
      * } $values
      */
     public function __construct(
@@ -94,9 +122,13 @@ class GetParameterSubscriptionInfoResponseRewardItem extends JsonSerializableTyp
         $this->id = $values['id'] ?? null;
         $this->loyaltyProgramId = $values['loyaltyProgramId'] ?? null;
         $this->meta = $values['meta'] ?? null;
+        $this->publicDescription = $values['publicDescription'] ?? null;
         $this->rewardId = $values['rewardId'] ?? null;
+        $this->rewardName = $values['rewardName'] ?? null;
+        $this->unit = $values['unit'] ?? null;
         $this->updatedAt = $values['updatedAt'] ?? null;
         $this->validFrom = $values['validFrom'] ?? null;
+        $this->value = $values['value'] ?? null;
     }
 
     /**
