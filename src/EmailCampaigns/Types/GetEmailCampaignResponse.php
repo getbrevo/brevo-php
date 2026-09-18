@@ -215,19 +215,19 @@ class GetEmailCampaignResponse extends JsonSerializableType
     public ?string $toField;
 
     /**
-     * @var ?string $utmCampaignValue The utm_campaign value associated with the campaign. Only present if a UTM campaign value was set.
+     * @var ?string $utmCampaignValue The utm_campaign value applied to the campaign's tracking links. Falls back to your account's global UTM settings when no custom value was set on the campaign, or the campaign name if neither is configured. Only returned when UTM tracking is enabled on the campaign.
      */
     #[JsonProperty('utmCampaignValue')]
     public ?string $utmCampaignValue;
 
     /**
-     * @var ?string $utmContent The utm_content value associated with the campaign. Only present if a utm_content value was set on create or update.
+     * @var ?string $utmContent The utm_content value applied to the campaign's tracking links. Falls back to your account's global UTM settings when no custom value was set on the campaign. Only returned when UTM tracking is enabled on the campaign and a value is set at one of these levels.
      */
     #[JsonProperty('utmContent')]
     public ?string $utmContent;
 
     /**
-     * @var ?int $utmId The campaign ID used as utm_id parameter. Only present if UTM campaign tracking with ID is enabled.
+     * @var ?int $utmId Legacy numeric utm_id value applied to the campaign's tracking links. Present only when UTM tracking is enabled on the campaign and the resolved utm_id is numeric (typically the campaign's ID). For customer-supplied non-numeric values (for example `promo_042`), read $utmIdString (wire key `utmId`) instead. Kept for backward compatibility.
      */
     #[JsonProperty('utmID')]
     public ?int $utmId;
@@ -239,19 +239,19 @@ class GetEmailCampaignResponse extends JsonSerializableType
     public ?string $utmIdString;
 
     /**
-     * @var ?string $utmMedium The utm_medium value. Set to "EMAIL" when UTM campaign tracking is enabled.
+     * @var ?string $utmMedium The utm_medium value applied to the campaign's tracking links. Falls back to your account's global UTM settings when no custom value was set on the campaign, or the default `email` if neither is configured. Case is preserved verbatim. Only returned when UTM tracking is enabled on the campaign.
      */
     #[JsonProperty('utmMedium')]
     public ?string $utmMedium;
 
     /**
-     * @var ?string $utmSource The utm_source value. Set to "Brevo" when UTM campaign tracking is enabled.
+     * @var ?string $utmSource The utm_source value applied to the campaign's tracking links. Falls back to your account's global UTM settings when no custom value was set on the campaign, or the account default (`brevo` or `sendinblue`) if neither is configured. Case is preserved verbatim. Only returned when UTM tracking is enabled on the campaign.
      */
     #[JsonProperty('utmSource')]
     public ?string $utmSource;
 
     /**
-     * @var ?string $utmTerm The utm_term value associated with the campaign. Only present if a utm_term value was set on create or update.
+     * @var ?string $utmTerm The utm_term value applied to the campaign's tracking links. Falls back to your account's global UTM settings when no custom value was set on the campaign. Only returned when UTM tracking is enabled on the campaign and a value is set at one of these levels.
      */
     #[JsonProperty('utmTerm')]
     public ?string $utmTerm;
