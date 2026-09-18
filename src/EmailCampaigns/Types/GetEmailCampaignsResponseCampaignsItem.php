@@ -233,6 +233,12 @@ class GetEmailCampaignsResponseCampaignsItem extends JsonSerializableType
     public ?int $utmId;
 
     /**
+     * @var ?string $utmIdString The utm_id value applied to the campaign's tracking links, returned verbatim as a string. Falls back to your account's global UTM settings when no custom value was set on the campaign. Only returned when UTM tracking is enabled on the campaign and a value is set at one of these levels. Preferred field for new consumers — covers both numeric IDs and customer-supplied non-numeric strings. (JSON key `utmId` — distinct from the legacy `utmID`.)
+     */
+    #[JsonProperty('utmId')]
+    public ?string $utmIdString;
+
+    /**
      * @var ?string $utmMedium The utm_medium value. Set to "EMAIL" when UTM campaign tracking is enabled.
      */
     #[JsonProperty('utmMedium')]
@@ -303,6 +309,7 @@ class GetEmailCampaignsResponseCampaignsItem extends JsonSerializableType
      *   utmCampaignValue?: ?string,
      *   utmContent?: ?string,
      *   utmId?: ?int,
+     *   utmIdString?: ?string,
      *   utmMedium?: ?string,
      *   utmSource?: ?string,
      *   utmTerm?: ?string,
@@ -348,6 +355,7 @@ class GetEmailCampaignsResponseCampaignsItem extends JsonSerializableType
         $this->utmCampaignValue = $values['utmCampaignValue'] ?? null;
         $this->utmContent = $values['utmContent'] ?? null;
         $this->utmId = $values['utmId'] ?? null;
+        $this->utmIdString = $values['utmIdString'] ?? null;
         $this->utmMedium = $values['utmMedium'] ?? null;
         $this->utmSource = $values['utmSource'] ?? null;
         $this->utmTerm = $values['utmTerm'] ?? null;
