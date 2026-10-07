@@ -4,11 +4,11 @@ namespace Brevo\Tier;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Tier\Types\AddSubscriptionToTierResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -28,7 +28,6 @@ class TierClient implements TierClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -43,21 +42,21 @@ class TierClient implements TierClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -76,7 +75,6 @@ class TierClient implements TierClientInterface
      * @param string $cid Contact ID
      * @param string $tid Tier ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -93,7 +91,7 @@ class TierClient implements TierClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/tier/programs/{$pid}/contacts/{$cid}/tiers/{$tid}",
                     method: HttpMethod::POST,
                 ),
@@ -133,7 +131,6 @@ class TierClient implements TierClientInterface
      * @param string $pid Loyalty Program ID
      * @param GetListOfTierGroupsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -154,7 +151,7 @@ class TierClient implements TierClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/tier/programs/{$pid}/tier-groups",
                     method: HttpMethod::GET,
                     query: $query,
@@ -197,7 +194,6 @@ class TierClient implements TierClientInterface
      * @param string $pid Loyalty Program ID
      * @param CreateTierGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -214,7 +210,7 @@ class TierClient implements TierClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/tier/programs/{$pid}/tier-groups",
                     method: HttpMethod::POST,
                     body: $request,
@@ -257,7 +253,6 @@ class TierClient implements TierClientInterface
      * @param string $gid Tier group ID
      * @param GetTierGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -278,7 +273,7 @@ class TierClient implements TierClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/tier/programs/{$pid}/tier-groups/{$gid}",
                     method: HttpMethod::GET,
                     query: $query,
@@ -328,7 +323,6 @@ class TierClient implements TierClientInterface
      * @param string $gid Tier group ID
      * @param UpdateTierGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -345,7 +339,7 @@ class TierClient implements TierClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/tier/programs/{$pid}/tier-groups/{$gid}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -386,7 +380,6 @@ class TierClient implements TierClientInterface
      * @param string $pid Loyalty Program ID
      * @param string $gid Tier group ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -402,7 +395,7 @@ class TierClient implements TierClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/tier/programs/{$pid}/tier-groups/{$gid}",
                     method: HttpMethod::DELETE,
                 ),
@@ -443,7 +436,6 @@ class TierClient implements TierClientInterface
      * @param string $gid Tier group ID
      * @param CreateTierForTierGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -460,7 +452,7 @@ class TierClient implements TierClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/tier/programs/{$pid}/tier-groups/{$gid}/tiers",
                     method: HttpMethod::POST,
                     body: $request,
@@ -501,7 +493,6 @@ class TierClient implements TierClientInterface
      * @param string $pid Loyalty Program ID
      * @param GetLoyaltyProgramTierRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -522,7 +513,7 @@ class TierClient implements TierClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/tier/programs/{$pid}/tiers",
                     method: HttpMethod::GET,
                     query: $query,
@@ -573,7 +564,6 @@ class TierClient implements TierClientInterface
      * @param string $tid Tier ID
      * @param UpdateTierRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -590,7 +580,7 @@ class TierClient implements TierClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/tier/programs/{$pid}/tiers/{$tid}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -631,7 +621,6 @@ class TierClient implements TierClientInterface
      * @param string $pid Loyalty Program ID
      * @param string $tid Tier ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -647,7 +636,7 @@ class TierClient implements TierClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/tier/programs/{$pid}/tiers/{$tid}",
                     method: HttpMethod::DELETE,
                 ),

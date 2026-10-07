@@ -45,7 +45,6 @@ interface EcommerceClientInterface
      *
      * @param GetCategoriesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -70,7 +69,6 @@ interface EcommerceClientInterface
      *
      * @param CreateUpdateCategoryRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -99,7 +97,6 @@ interface EcommerceClientInterface
      *
      * @param CreateUpdateBatchCategoryRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -122,7 +119,6 @@ interface EcommerceClientInterface
      *
      * @param string $id Category ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -142,7 +138,6 @@ interface EcommerceClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -170,7 +165,6 @@ interface EcommerceClientInterface
      *
      * @param GetEcommerceAttributionMetricsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -195,7 +189,6 @@ interface EcommerceClientInterface
      * @param value-of<GetEcommerceAttributionMetricsConversionSourceConversionSourceIdRequestConversionSource> $conversionSource The Brevo campaign type or workflow type for which data will be retrieved
      * @param string $conversionSourceId The Brevo campaign or automation workflow id for which data will be retrieved
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -220,7 +213,6 @@ interface EcommerceClientInterface
      * @param value-of<GetEcommerceAttributionProductsConversionSourceConversionSourceIdRequestConversionSource> $conversionSource The Brevo campaign or automation workflow type for which data will be retrieved
      * @param string $conversionSourceId The Brevo campaign or automation workflow id for which data will be retrieved
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -240,7 +232,6 @@ interface EcommerceClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -265,7 +256,6 @@ interface EcommerceClientInterface
      *
      * @param SetConfigDisplayCurrencyRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -288,7 +278,6 @@ interface EcommerceClientInterface
      *
      * @param GetOrdersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -323,7 +312,6 @@ interface EcommerceClientInterface
      *
      * @param Order $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -361,7 +349,6 @@ interface EcommerceClientInterface
      *
      * @param CreateBatchOrderRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -384,7 +371,6 @@ interface EcommerceClientInterface
      *
      * @param GetProductsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -410,7 +396,6 @@ interface EcommerceClientInterface
      *
      * @param CreateUpdateProductRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -440,7 +425,6 @@ interface EcommerceClientInterface
      *
      * @param CreateUpdateBatchProductsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -463,7 +447,6 @@ interface EcommerceClientInterface
      *
      * @param string $id Product ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -490,7 +473,6 @@ interface EcommerceClientInterface
      * @param 'back_in_stock' $type Alert type
      * @param CreateProductAlertRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

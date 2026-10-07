@@ -35,7 +35,6 @@ interface RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param string $cpid Code Pool ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -60,7 +59,6 @@ interface RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param GetLoyaltyOfferProgramsPidOffersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -87,7 +85,6 @@ interface RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param CreateRewardRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -114,7 +111,6 @@ interface RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param CreateVoucherRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -139,7 +135,6 @@ interface RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param RedeemVoucherRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -164,7 +159,6 @@ interface RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param string $tid Redeem transaction ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -189,7 +183,6 @@ interface RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param RevokeVouchersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -213,7 +206,6 @@ interface RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param ValidateRewardRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -240,7 +232,6 @@ interface RewardClientInterface
      * @param string $rid Reward ID
      * @param GetLoyaltyOfferProgramsPidRewardsRidRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -267,7 +258,6 @@ interface RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param GetLoyaltyOfferProgramsPidVouchersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

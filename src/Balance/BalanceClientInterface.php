@@ -46,7 +46,6 @@ interface BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param GetLoyaltyBalanceProgramsPidActiveBalanceRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -71,7 +70,6 @@ interface BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param GetBalanceDefinitionListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -99,7 +97,6 @@ interface BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -126,7 +123,6 @@ interface BalanceClientInterface
      * @param string $bdid Balance Definition Id
      * @param GetBalanceDefinitionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -156,7 +152,6 @@ interface BalanceClientInterface
      * @param string $bdid Balance Definition Id
      * @param UpdateBalanceDefinitionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -181,7 +176,6 @@ interface BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param string $bdid Balance Definition Id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -213,7 +207,6 @@ interface BalanceClientInterface
      * @param string $bdid Balance Definition Id
      * @param CreateBalanceLimitRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -242,7 +235,6 @@ interface BalanceClientInterface
      * @param string $blid Balance Limit Id
      * @param GetBalanceLimitRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -277,7 +269,6 @@ interface BalanceClientInterface
      * @param string $blid Balance Limit Id
      * @param UpdateBalanceLimitRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -304,7 +295,6 @@ interface BalanceClientInterface
      * @param string $bdid Balance Definition Id
      * @param string $blid Balance Limit Id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -330,7 +320,6 @@ interface BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param GetContactBalancesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -361,7 +350,6 @@ interface BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param CreateBalanceOrderRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -388,7 +376,6 @@ interface BalanceClientInterface
      * @param string $cid Contact Id
      * @param GetSubscriptionBalancesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -417,7 +404,6 @@ interface BalanceClientInterface
      * @param string $cid Contact Id
      * @param PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -445,7 +431,6 @@ interface BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param GetLoyaltyBalanceProgramsPidTransactionHistoryRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -473,7 +458,6 @@ interface BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param BeginTransactionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -498,7 +482,6 @@ interface BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param string $tid Transaction Id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -523,7 +506,6 @@ interface BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param string $tid Transaction Id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

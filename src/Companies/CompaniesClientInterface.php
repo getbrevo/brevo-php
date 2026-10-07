@@ -30,7 +30,6 @@ interface CompaniesClientInterface
      *
      * @param GetCompaniesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -55,7 +54,6 @@ interface CompaniesClientInterface
      *
      * @param PostCompaniesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -80,7 +78,6 @@ interface CompaniesClientInterface
      *
      * @param PostCompaniesImportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -104,7 +101,6 @@ interface CompaniesClientInterface
      * @param string $id
      * @param PatchCompaniesLinkUnlinkIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -126,7 +122,6 @@ interface CompaniesClientInterface
      *
      * @param string $id Get Company Details
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -149,7 +144,6 @@ interface CompaniesClientInterface
      *
      * @param string $id Company ID to delete
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -173,7 +167,6 @@ interface CompaniesClientInterface
      * @param string $id
      * @param PatchCompaniesIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -200,7 +193,6 @@ interface CompaniesClientInterface
      *
      * @param PostCrmAttributesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -223,7 +215,6 @@ interface CompaniesClientInterface
      *
      * @param string $id Attribute ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -247,7 +238,6 @@ interface CompaniesClientInterface
      * @param string $id Attribute ID
      * @param PatchCrmAttributesIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -266,7 +256,6 @@ interface CompaniesClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

@@ -33,7 +33,6 @@ interface TierClientInterface
      * @param string $cid Contact ID
      * @param string $tid Tier ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -58,7 +57,6 @@ interface TierClientInterface
      * @param string $pid Loyalty Program ID
      * @param GetListOfTierGroupsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -85,7 +83,6 @@ interface TierClientInterface
      * @param string $pid Loyalty Program ID
      * @param CreateTierGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -112,7 +109,6 @@ interface TierClientInterface
      * @param string $gid Tier group ID
      * @param GetTierGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -146,7 +142,6 @@ interface TierClientInterface
      * @param string $gid Tier group ID
      * @param UpdateTierGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -171,7 +166,6 @@ interface TierClientInterface
      * @param string $pid Loyalty Program ID
      * @param string $gid Tier group ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -202,7 +196,6 @@ interface TierClientInterface
      * @param string $gid Tier group ID
      * @param CreateTierForTierGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -227,7 +220,6 @@ interface TierClientInterface
      * @param string $pid Loyalty Program ID
      * @param GetLoyaltyProgramTierRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -262,7 +254,6 @@ interface TierClientInterface
      * @param string $tid Tier ID
      * @param UpdateTierRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -287,7 +278,6 @@ interface TierClientInterface
      * @param string $pid Loyalty Program ID
      * @param string $tid Tier ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

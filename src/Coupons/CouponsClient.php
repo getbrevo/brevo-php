@@ -4,12 +4,12 @@ namespace Brevo\Coupons;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Coupons\Requests\GetCouponCollectionsRequest;
 use Brevo\Types\GetCouponCollection;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -23,7 +23,6 @@ class CouponsClient implements CouponsClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -38,21 +37,21 @@ class CouponsClient implements CouponsClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -67,7 +66,6 @@ class CouponsClient implements CouponsClientInterface
      *
      * @param GetCouponCollectionsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -97,7 +95,7 @@ class CouponsClient implements CouponsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "couponCollections",
                     method: HttpMethod::GET,
                     query: $query,
@@ -139,7 +137,6 @@ class CouponsClient implements CouponsClientInterface
      *
      * @param CreateCouponCollectionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -156,7 +153,7 @@ class CouponsClient implements CouponsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "couponCollections",
                     method: HttpMethod::POST,
                     body: $request,
@@ -195,7 +192,6 @@ class CouponsClient implements CouponsClientInterface
      *
      * @param string $id Id of the collection to return
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -212,7 +208,7 @@ class CouponsClient implements CouponsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "couponCollections/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -252,7 +248,6 @@ class CouponsClient implements CouponsClientInterface
      * @param string $id Id of the collection to update
      * @param UpdateCouponCollectionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -269,7 +264,7 @@ class CouponsClient implements CouponsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "couponCollections/{$id}",
                     method: HttpMethod::PATCH,
                     body: $request,
@@ -313,7 +308,6 @@ class CouponsClient implements CouponsClientInterface
      *
      * @param CreateCouponsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -329,7 +323,7 @@ class CouponsClient implements CouponsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "coupons",
                     method: HttpMethod::POST,
                     body: $request,

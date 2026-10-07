@@ -4,12 +4,12 @@ namespace Brevo\WhatsAppCampaigns;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\WhatsAppCampaigns\Requests\GetWhatsAppCampaignsRequest;
 use Brevo\WhatsAppCampaigns\Types\GetWhatsAppCampaignsResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -27,7 +27,6 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -42,21 +41,21 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -71,7 +70,6 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
      *
      * @param GetWhatsAppCampaignsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -104,7 +102,7 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "whatsappCampaigns",
                     method: HttpMethod::GET,
                     query: $query,
@@ -152,7 +150,6 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
      *
      * @param CreateWhatsAppCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -169,7 +166,7 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "whatsappCampaigns",
                     method: HttpMethod::POST,
                     body: $request,
@@ -206,7 +203,6 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -223,7 +219,7 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "whatsappCampaigns/config",
                     method: HttpMethod::GET,
                 ),
@@ -267,7 +263,6 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
      *
      * @param CreateWhatsAppTemplateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -284,7 +279,7 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "whatsappCampaigns/template",
                     method: HttpMethod::POST,
                     body: $request,
@@ -323,7 +318,6 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
      *
      * @param GetWhatsAppTemplatesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -359,7 +353,7 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "whatsappCampaigns/template-list",
                     method: HttpMethod::GET,
                     query: $query,
@@ -399,7 +393,6 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
      *
      * @param int $templateId id of the template
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -415,7 +408,7 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "whatsappCampaigns/template/approval/{$templateId}",
                     method: HttpMethod::POST,
                 ),
@@ -451,7 +444,6 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
      *
      * @param int $campaignId Id of the campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -468,7 +460,7 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "whatsappCampaigns/{$campaignId}",
                     method: HttpMethod::GET,
                 ),
@@ -512,7 +504,6 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
      * @param int $campaignId id of the campaign
      * @param UpdateWhatsAppCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -528,7 +519,7 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "whatsappCampaigns/{$campaignId}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -561,7 +552,6 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
      *
      * @param int $campaignId id of the campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -577,7 +567,7 @@ class WhatsAppCampaignsClient implements WhatsAppCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "whatsappCampaigns/{$campaignId}",
                     method: HttpMethod::DELETE,
                 ),

@@ -42,7 +42,6 @@ interface ProcessClientInterface
      *
      * @param GetProcessesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -83,7 +82,6 @@ interface ProcessClientInterface
      *
      * @param int $processId Id of the process
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

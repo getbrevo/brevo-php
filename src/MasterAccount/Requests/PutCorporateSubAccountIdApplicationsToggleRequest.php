@@ -8,6 +8,16 @@ use Brevo\Core\Json\JsonProperty;
 class PutCorporateSubAccountIdApplicationsToggleRequest extends JsonSerializableType
 {
     /**
+     * Set this field to enable or disable Analytics on the
+     * sub-account. Requires the master account's plan to include
+     * Analytics; otherwise the call returns a 400 error.
+     *
+     * @var ?bool $analytics
+     */
+    #[JsonProperty('analytics')]
+    public ?bool $analytics;
+
+    /**
      * Set this field to enable or disable Automation on the
      * sub-account
      *
@@ -117,6 +127,7 @@ class PutCorporateSubAccountIdApplicationsToggleRequest extends JsonSerializable
 
     /**
      * @param array{
+     *   analytics?: ?bool,
      *   automation?: ?bool,
      *   conversations?: ?bool,
      *   crm?: ?bool,
@@ -135,6 +146,7 @@ class PutCorporateSubAccountIdApplicationsToggleRequest extends JsonSerializable
     public function __construct(
         array $values = [],
     ) {
+        $this->analytics = $values['analytics'] ?? null;
         $this->automation = $values['automation'] ?? null;
         $this->conversations = $values['conversations'] ?? null;
         $this->crm = $values['crm'] ?? null;

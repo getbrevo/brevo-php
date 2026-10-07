@@ -60,7 +60,6 @@ interface ContactsClientInterface
      *
      * @param GetContactsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -85,7 +84,6 @@ interface ContactsClientInterface
      *
      * @param CreateContactRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -105,7 +103,6 @@ interface ContactsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -132,7 +129,6 @@ interface ContactsClientInterface
      * @param string $attributeName Name of the attribute
      * @param CreateAttributeRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -158,7 +154,6 @@ interface ContactsClientInterface
      * @param string $attributeName Name of the existing attribute
      * @param UpdateAttributeRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -182,7 +177,6 @@ interface ContactsClientInterface
      * @param value-of<DeleteAttributeRequestAttributeCategory> $attributeCategory Category of the attribute
      * @param string $attributeName Name of the existing attribute
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -208,7 +202,6 @@ interface ContactsClientInterface
      * @param string $multipleChoiceAttribute Name of the existing multiple-choice attribute
      * @param string $multipleChoiceAttributeOption Name of the existing multiple-choice attribute option that you want to delete
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -230,7 +223,6 @@ interface ContactsClientInterface
      *
      * @param UpdateBatchContactsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -259,7 +251,6 @@ interface ContactsClientInterface
      *
      * @param CreateDoiContactRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -283,7 +274,6 @@ interface ContactsClientInterface
      *
      * @param RequestContactExportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -310,7 +300,6 @@ interface ContactsClientInterface
      *
      * @param GetFoldersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -333,7 +322,6 @@ interface ContactsClientInterface
      *
      * @param CreateUpdateFolder $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -358,7 +346,6 @@ interface ContactsClientInterface
      *
      * @param int $folderId id of the folder
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -385,7 +372,6 @@ interface ContactsClientInterface
      * @param int $folderId Id of the folder
      * @param UpdateFolderRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -407,7 +393,6 @@ interface ContactsClientInterface
      *
      * @param int $folderId Id of the folder
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -433,7 +418,6 @@ interface ContactsClientInterface
      * @param int $folderId Id of the folder
      * @param GetFolderListsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -456,7 +440,6 @@ interface ContactsClientInterface
      *
      * @param ImportContactsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -481,7 +464,6 @@ interface ContactsClientInterface
      *
      * @param GetListsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -507,7 +489,6 @@ interface ContactsClientInterface
      *
      * @param CreateListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -532,7 +513,6 @@ interface ContactsClientInterface
      * @param int $listId Id of the list
      * @param GetListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -557,7 +537,6 @@ interface ContactsClientInterface
      * @param int $listId Id of the list
      * @param UpdateListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -579,7 +558,6 @@ interface ContactsClientInterface
      *
      * @param int $listId Id of the list
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -603,7 +581,6 @@ interface ContactsClientInterface
      * @param int $listId Id of the list
      * @param GetContactsFromListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -633,7 +610,6 @@ interface ContactsClientInterface
      * @param int $listId Id of the list
      * @param AddContactToListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -658,7 +634,6 @@ interface ContactsClientInterface
      * @param int $listId Id of the list
      * @param RemoveContactFromListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -681,7 +656,6 @@ interface ContactsClientInterface
      *
      * @param GetSegmentsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -711,7 +685,6 @@ interface ContactsClientInterface
      * ) $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value OR EXT_ID attribute (urlencoded)
      * @param GetContactInfoRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -741,7 +714,6 @@ interface ContactsClientInterface
      * ) $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE_NUMBER attribute value
      * @param UpdateContactRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -768,7 +740,6 @@ interface ContactsClientInterface
      * ) $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded)
      * @param DeleteContactRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -795,7 +766,6 @@ interface ContactsClientInterface
      * ) $identifier Email (urlencoded) OR ID of the contact
      * @param GetContactStatsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

@@ -14,7 +14,7 @@ class UploadImageToGalleryRequest extends JsonSerializableType
     public string $imageUrl;
 
     /**
-     * @var ?string $name Name of the image.
+     * @var ?string $name Name shown in your Brevo image gallery. Include the file extension, e.g. product-banner.png
      */
     #[JsonProperty('name')]
     public ?string $name;

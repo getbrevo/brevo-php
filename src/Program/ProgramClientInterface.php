@@ -30,7 +30,6 @@ interface ProgramClientInterface
      *
      * @param GetLpListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -55,7 +54,6 @@ interface ProgramClientInterface
      *
      * @param CreateNewLpRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -78,7 +76,6 @@ interface ProgramClientInterface
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -105,7 +102,6 @@ interface ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param UpdateLoyaltyProgramRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -128,7 +124,6 @@ interface ProgramClientInterface
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -152,7 +147,6 @@ interface ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param PartiallyUpdateLoyaltyProgramRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -177,7 +171,6 @@ interface ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param GetParameterSubscriptionInfoRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -202,7 +195,6 @@ interface ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param int $cid Contact ID.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -224,7 +216,6 @@ interface ProgramClientInterface
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -252,7 +243,6 @@ interface ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param SubscribeMemberToASubscriptionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -279,7 +269,6 @@ interface ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param DeleteContactMembersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -305,7 +294,6 @@ interface ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param SubscribeToLoyaltyProgramRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

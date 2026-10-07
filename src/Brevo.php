@@ -36,8 +36,10 @@ use Brevo\TransactionalWhatsApp\TransactionalWhatsAppClient;
 use Brevo\TransactionalEmails\TransactionalEmailsClient;
 use Brevo\TransactionalSms\TransactionalSmsClient;
 use Brevo\SmsTemplates\SmsTemplatesClient;
+use Brevo\OAuth\OAuthClient;
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Core\OAuthTokenProvider;
 use Brevo\Account\AccountClientInterface;
 use Brevo\MasterAccount\MasterAccountClientInterface;
 use Brevo\User\UserClientInterface;
@@ -72,6 +74,7 @@ use Brevo\TransactionalWhatsApp\TransactionalWhatsAppClientInterface;
 use Brevo\TransactionalEmails\TransactionalEmailsClientInterface;
 use Brevo\TransactionalSms\TransactionalSmsClientInterface;
 use Brevo\SmsTemplates\SmsTemplatesClientInterface;
+use Brevo\OAuth\OAuthClientInterface;
 
 class Brevo implements BrevoInterface
 {
@@ -246,8 +249,12 @@ class Brevo implements BrevoInterface
     public SmsTemplatesClient $smsTemplates;
 
     /**
+     * @var OAuthClient $oAuth
+     */
+    public OAuthClient $oAuth;
+
+    /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -262,9 +269,21 @@ class Brevo implements BrevoInterface
     private RawClient $client;
 
     /**
-     * @param string $apiKey The apiKey to use for authentication.
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
+     * @var OAuthTokenProvider $oauthTokenProvider
+     */
+    private OAuthTokenProvider $oauthTokenProvider;
+
+    /**
+     * @param ?string $apiKey The apiKey to use for authentication.
+     * @param ?string $clientId The client ID for OAuth authentication.
+     * @param ?string $clientSecret The client secret for OAuth authentication.
+     * @param ?Environments $environment The environment to use for API requests.
      * @param ?array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -272,62 +291,83 @@ class Brevo implements BrevoInterface
      * } $options
      */
     public function __construct(
-        string $apiKey,
+        ?string $apiKey = null,
+        ?string $clientId = null,
+        ?string $clientSecret = null,
+        ?Environments $environment = null,
         ?array $options = null,
     ) {
+        $clientId ??= getenv('BREVO_CLIENT_ID') ?: null;
+        $clientSecret ??= getenv('BREVO_CLIENT_SECRET') ?: null;
         $defaultHeaders = [
-            'api-key' => $apiKey,
             'X-Fern-Language' => 'PHP',
             'X-Fern-SDK-Name' => 'Brevo',
-            'X-Fern-SDK-Version' => '5.0.2',
-            'User-Agent' => 'getbrevo/brevo-php/5.0.2',
+            'X-Fern-SDK-Version' => '5.0.3',
+            'User-Agent' => 'getbrevo/brevo-php/5.0.3',
         ];
+        if ($apiKey != null) {
+            $defaultHeaders['api-key'] = $apiKey;
+        }
 
         $this->options = $options ?? [];
+        $environment ??= Environments::Default_();
+        $this->environment = $environment;
 
+        if ($clientId !== null && $clientSecret !== null) {
+            $authRawClient = new RawClient(['headers' => []]);
+            $authClient = new OAuthClient($authRawClient, $environment);
+            $this->oauthTokenProvider = new OAuthTokenProvider($clientId, $clientSecret, $authClient);
+
+        }
         $this->options['headers'] = array_merge(
             $defaultHeaders,
             $this->options['headers'] ?? [],
         );
 
+        if ($clientId !== null && $clientSecret !== null) {
+            $this->options['getAuthHeaders'] = fn () =>
+                ['Authorization' => "Bearer " . $this->oauthTokenProvider->getToken()];
+        }
+
         $this->client = new RawClient(
             options: $this->options,
         );
 
-        $this->account = new AccountClient($this->client, $this->options);
-        $this->masterAccount = new MasterAccountClient($this->client, $this->options);
-        $this->user = new UserClient($this->client, $this->options);
-        $this->process = new ProcessClient($this->client, $this->options);
-        $this->senders = new SendersClient($this->client, $this->options);
-        $this->domains = new DomainsClient($this->client, $this->options);
-        $this->webhooks = new WebhooksClient($this->client, $this->options);
-        $this->externalFeeds = new ExternalFeedsClient($this->client, $this->options);
-        $this->customObjects = new CustomObjectsClient($this->client, $this->options);
-        $this->contacts = new ContactsClient($this->client, $this->options);
-        $this->consentGroups = new ConsentGroupsClient($this->client, $this->options);
-        $this->conversations = new ConversationsClient($this->client, $this->options);
-        $this->ecommerce = new EcommerceClient($this->client, $this->options);
-        $this->coupons = new CouponsClient($this->client, $this->options);
-        $this->payments = new PaymentsClient($this->client, $this->options);
-        $this->event = new EventClient($this->client, $this->options);
-        $this->inboundParsing = new InboundParsingClient($this->client, $this->options);
-        $this->balance = new BalanceClient($this->client, $this->options);
-        $this->program = new ProgramClient($this->client, $this->options);
-        $this->reward = new RewardClient($this->client, $this->options);
-        $this->tier = new TierClient($this->client, $this->options);
-        $this->wallet = new WalletClient($this->client, $this->options);
-        $this->emailCampaigns = new EmailCampaignsClient($this->client, $this->options);
-        $this->smsCampaigns = new SmsCampaignsClient($this->client, $this->options);
-        $this->whatsAppCampaigns = new WhatsAppCampaignsClient($this->client, $this->options);
-        $this->companies = new CompaniesClient($this->client, $this->options);
-        $this->deals = new DealsClient($this->client, $this->options);
-        $this->files = new FilesClient($this->client, $this->options);
-        $this->notes = new NotesClient($this->client, $this->options);
-        $this->tasks = new TasksClient($this->client, $this->options);
-        $this->transactionalWhatsApp = new TransactionalWhatsAppClient($this->client, $this->options);
-        $this->transactionalEmails = new TransactionalEmailsClient($this->client, $this->options);
-        $this->transactionalSms = new TransactionalSmsClient($this->client, $this->options);
-        $this->smsTemplates = new SmsTemplatesClient($this->client, $this->options);
+        $this->account = new AccountClient($this->client, $this->environment);
+        $this->masterAccount = new MasterAccountClient($this->client, $this->environment);
+        $this->user = new UserClient($this->client, $this->environment);
+        $this->process = new ProcessClient($this->client, $this->environment);
+        $this->senders = new SendersClient($this->client, $this->environment);
+        $this->domains = new DomainsClient($this->client, $this->environment);
+        $this->webhooks = new WebhooksClient($this->client, $this->environment);
+        $this->externalFeeds = new ExternalFeedsClient($this->client, $this->environment);
+        $this->customObjects = new CustomObjectsClient($this->client, $this->environment);
+        $this->contacts = new ContactsClient($this->client, $this->environment);
+        $this->consentGroups = new ConsentGroupsClient($this->client, $this->environment);
+        $this->conversations = new ConversationsClient($this->client, $this->environment);
+        $this->ecommerce = new EcommerceClient($this->client, $this->environment);
+        $this->coupons = new CouponsClient($this->client, $this->environment);
+        $this->payments = new PaymentsClient($this->client, $this->environment);
+        $this->event = new EventClient($this->client, $this->environment);
+        $this->inboundParsing = new InboundParsingClient($this->client, $this->environment);
+        $this->balance = new BalanceClient($this->client, $this->environment);
+        $this->program = new ProgramClient($this->client, $this->environment);
+        $this->reward = new RewardClient($this->client, $this->environment);
+        $this->tier = new TierClient($this->client, $this->environment);
+        $this->wallet = new WalletClient($this->client, $this->environment);
+        $this->emailCampaigns = new EmailCampaignsClient($this->client, $this->environment);
+        $this->smsCampaigns = new SmsCampaignsClient($this->client, $this->environment);
+        $this->whatsAppCampaigns = new WhatsAppCampaignsClient($this->client, $this->environment);
+        $this->companies = new CompaniesClient($this->client, $this->environment);
+        $this->deals = new DealsClient($this->client, $this->environment);
+        $this->files = new FilesClient($this->client, $this->environment);
+        $this->notes = new NotesClient($this->client, $this->environment);
+        $this->tasks = new TasksClient($this->client, $this->environment);
+        $this->transactionalWhatsApp = new TransactionalWhatsAppClient($this->client, $this->environment);
+        $this->transactionalEmails = new TransactionalEmailsClient($this->client, $this->environment);
+        $this->transactionalSms = new TransactionalSmsClient($this->client, $this->environment);
+        $this->smsTemplates = new SmsTemplatesClient($this->client, $this->environment);
+        $this->oAuth = new OAuthClient($this->client, $this->environment);
     }
 
     /**
@@ -600,5 +640,13 @@ class Brevo implements BrevoInterface
     public function getSmsTemplates(): SmsTemplatesClientInterface
     {
         return $this->smsTemplates;
+    }
+
+    /**
+     * @return OAuthClientInterface
+     */
+    public function getOAuth(): OAuthClientInterface
+    {
+        return $this->oAuth;
     }
 }

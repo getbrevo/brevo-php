@@ -31,7 +31,6 @@ interface TransactionalSmsClientInterface
      *
      * @param SendTransacSms $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -57,7 +56,6 @@ interface TransactionalSmsClientInterface
      *
      * @param SendTransacSms $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -80,7 +78,6 @@ interface TransactionalSmsClientInterface
      *
      * @param GetTransacAggregatedSmsReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -103,7 +100,6 @@ interface TransactionalSmsClientInterface
      *
      * @param GetSmsEventsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -126,7 +122,6 @@ interface TransactionalSmsClientInterface
      *
      * @param GetTransacSmsReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

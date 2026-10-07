@@ -45,7 +45,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param GetTransacBlockedContactsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -68,7 +67,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param string $email contact email (urlencoded) to unblock.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -87,7 +85,6 @@ interface TransactionalEmailsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -112,7 +109,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param BlockNewDomainRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -134,7 +130,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param string $domain The name of the domain to be deleted
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -156,7 +151,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param DeleteHardbouncesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -191,7 +185,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param SendTransacEmailRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -214,7 +207,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param string $identifier The `batchId` of scheduled emails batch (must be a valid UUIDv4) or the `messageId` of scheduled email (enclosed in angle brackets with @ sign, e.g. `<...@domain>`).
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -241,7 +233,6 @@ interface TransactionalEmailsClientInterface
      * @param string $identifier The `batchId` of scheduled emails batch (must be a valid UUIDv4) or the `messageId` of scheduled email (enclosed in angle brackets with @ sign, e.g. `<...@domain>`). When using `messageId`, the `limit`, `offset`, `sort`, and `status` query parameters are ignored.
      * @param GetScheduledEmailByIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -267,7 +258,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param GetTransacEmailsListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -292,7 +282,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param string $uuid Unique id of the transactional email that has been sent to a particular contact
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -317,7 +306,6 @@ interface TransactionalEmailsClientInterface
      * @param string $identifier MessageId or email address of the transactional log(s) to delete. Must be a valid message ID (enclosed in angle brackets with @ sign) or a valid email address.
      * @param DeleteSmtpLogIdentifierRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -339,7 +327,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param GetAggregatedSmtpReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -362,7 +349,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param GetEmailEventReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -385,7 +371,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param GetSmtpReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -412,7 +397,6 @@ interface TransactionalEmailsClientInterface
      *    mixed
      * ) $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -435,7 +419,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param GetSmtpTemplatesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -462,7 +445,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param CreateSmtpTemplateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -488,7 +470,6 @@ interface TransactionalEmailsClientInterface
      *   |string
      * ) $templateId ID of the template. Can be a numeric template ID or a custom template identifier string (alphanumeric, hyphens, and underscores only, max 64 characters, must start with a letter).
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -516,7 +497,6 @@ interface TransactionalEmailsClientInterface
      * ) $templateId ID of the template. Can be a numeric template ID or a custom template identifier string.
      * @param UpdateSmtpTemplateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -538,7 +518,6 @@ interface TransactionalEmailsClientInterface
      *
      * @param int $templateId id of the template
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -564,7 +543,6 @@ interface TransactionalEmailsClientInterface
      * @param int $templateId Id of the template
      * @param SendTestTemplateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

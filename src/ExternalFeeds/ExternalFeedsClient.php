@@ -4,13 +4,13 @@ namespace Brevo\ExternalFeeds;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\ExternalFeeds\Requests\GetAllExternalFeedsRequest;
 use Brevo\ExternalFeeds\Types\GetAllExternalFeedsResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonSerializer;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -23,7 +23,6 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -38,21 +37,21 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -95,7 +94,6 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
      *
      * @param GetAllExternalFeedsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -134,7 +132,7 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "feeds",
                     method: HttpMethod::GET,
                     query: $query,
@@ -199,7 +197,6 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
      *
      * @param CreateExternalFeedRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -216,7 +213,7 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "feeds",
                     method: HttpMethod::POST,
                     body: $request,
@@ -276,7 +273,6 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
      *
      * @param string $uuid UUID of the feed to fetch
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -293,7 +289,7 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "feeds/{$uuid}",
                     method: HttpMethod::GET,
                 ),
@@ -353,7 +349,6 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
      * @param string $uuid UUID of the feed to update
      * @param UpdateExternalFeedRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -369,7 +364,7 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "feeds/{$uuid}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -418,7 +413,6 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
      *
      * @param string $uuid UUID of the feed to delete
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -434,7 +428,7 @@ class ExternalFeedsClient implements ExternalFeedsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "feeds/{$uuid}",
                     method: HttpMethod::DELETE,
                 ),

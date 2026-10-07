@@ -4,12 +4,12 @@ namespace Brevo\ConsentGroups;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\ConsentGroups\Requests\GetConsentGroupsRequest;
 use Brevo\Types\ConsentGroupsListResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -21,7 +21,6 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -36,21 +35,21 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -67,7 +66,6 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
      *
      * @param GetConsentGroupsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -100,7 +98,7 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/consent-groups",
                     method: HttpMethod::GET,
                     query: $query,
@@ -144,7 +142,6 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
      *
      * @param CreateConsentGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -161,7 +158,7 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/consent-groups",
                     method: HttpMethod::POST,
                     body: $request,
@@ -202,7 +199,6 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
      *
      * @param int $id ID of the consent group
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -219,7 +215,7 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/consent-groups/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -261,7 +257,6 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
      * @param int $id ID of the consent group to update
      * @param UpdateConsentGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -278,7 +273,7 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/consent-groups/{$id}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -319,7 +314,6 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
      *
      * @param int $id ID of the consent group to delete
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -335,7 +329,7 @@ class ConsentGroupsClient implements ConsentGroupsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/consent-groups/{$id}",
                     method: HttpMethod::DELETE,
                 ),

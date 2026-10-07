@@ -50,7 +50,6 @@ interface MasterAccountClientInterface
      *
      * @param PostCorporateGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -81,7 +80,6 @@ interface MasterAccountClientInterface
      * @param string $groupId Group id
      * @param PutCorporateGroupUnlinkGroupIdSubAccountsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -104,7 +102,6 @@ interface MasterAccountClientInterface
      *
      * @param string $id Id of the group of sub-organization
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -129,7 +126,6 @@ interface MasterAccountClientInterface
      * @param string $id Id of the group
      * @param PutCorporateGroupIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -154,7 +150,6 @@ interface MasterAccountClientInterface
      *
      * @param string $id Id of the group
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -173,7 +168,6 @@ interface MasterAccountClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -198,7 +192,6 @@ interface MasterAccountClientInterface
      *
      * @param GetCorporateInvitedUsersListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -219,7 +212,6 @@ interface MasterAccountClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -239,7 +231,6 @@ interface MasterAccountClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -267,7 +258,6 @@ interface MasterAccountClientInterface
      *
      * @param PostCorporateSsoTokenRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -294,7 +284,6 @@ interface MasterAccountClientInterface
      *
      * @param GetCorporateSubAccountRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -326,7 +315,6 @@ interface MasterAccountClientInterface
      *
      * @param PostCorporateSubAccountRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -356,7 +344,6 @@ interface MasterAccountClientInterface
      *
      * @param PostCorporateSubAccountIpAssociateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -386,7 +373,6 @@ interface MasterAccountClientInterface
      *
      * @param PutCorporateSubAccountIpDissociateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -411,7 +397,6 @@ interface MasterAccountClientInterface
      *
      * @param PostCorporateSubAccountKeyRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -439,7 +424,6 @@ interface MasterAccountClientInterface
      *
      * @param PostCorporateSubAccountSsoTokenRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -462,7 +446,6 @@ interface MasterAccountClientInterface
      *
      * @param int $id Id of the sub-account organization
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -485,7 +468,6 @@ interface MasterAccountClientInterface
      *
      * @param int $id Id of the sub-account organization to be deleted
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -516,7 +498,6 @@ interface MasterAccountClientInterface
      * @param int $id Id of the sub-account organization (mandatory)
      * @param PutCorporateSubAccountIdApplicationsToggleRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -557,7 +538,6 @@ interface MasterAccountClientInterface
      * @param int $id Id of the sub-account organization
      * @param PutCorporateSubAccountIdPlanRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -600,7 +580,6 @@ interface MasterAccountClientInterface
      *
      * @param PutCorporateSubAccountsPlanRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -653,7 +632,6 @@ interface MasterAccountClientInterface
      *
      * @param InviteAdminUserRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -680,7 +658,6 @@ interface MasterAccountClientInterface
      * @param value-of<PutCorporateUserInvitationActionEmailRequestAction> $action Action to be performed (cancel / resend)
      * @param string $email Email address of the recipient
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -704,7 +681,6 @@ interface MasterAccountClientInterface
      *
      * @param string $email Email of the invited user
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -726,7 +702,6 @@ interface MasterAccountClientInterface
      *
      * @param string $email Email of the invited user.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -814,7 +789,6 @@ interface MasterAccountClientInterface
      * @param string $email Email address of Admin user
      * @param PutCorporateUserEmailPermissionsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

@@ -39,7 +39,6 @@ interface WebhooksClientInterface
      *
      * @param GetWebhooksRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -75,7 +74,6 @@ interface WebhooksClientInterface
      *
      * @param CreateWebhookRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -111,7 +109,6 @@ interface WebhooksClientInterface
      *
      * @param ExportWebhooksHistoryRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -148,7 +145,6 @@ interface WebhooksClientInterface
      *
      * @param int $webhookId Id of the webhook
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -183,7 +179,6 @@ interface WebhooksClientInterface
      * @param int $webhookId Id of the webhook
      * @param UpdateWebhookRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -214,7 +209,6 @@ interface WebhooksClientInterface
      *
      * @param int $webhookId Id of the webhook
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

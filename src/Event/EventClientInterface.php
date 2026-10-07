@@ -26,7 +26,6 @@ interface EventClientInterface
      *
      * @param GetEventsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -52,7 +51,6 @@ interface EventClientInterface
      *
      * @param CreateEventRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -81,7 +79,6 @@ interface EventClientInterface
      *
      * @param CreateBatchEventsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

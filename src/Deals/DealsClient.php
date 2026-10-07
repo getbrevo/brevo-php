@@ -4,11 +4,11 @@ namespace Brevo\Deals;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Deals\Types\GetCrmAttributesDealsResponseItem;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use Brevo\Core\Json\JsonDecoder;
 use JsonException;
@@ -31,7 +31,6 @@ class DealsClient implements DealsClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -46,21 +45,21 @@ class DealsClient implements DealsClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -72,7 +71,6 @@ class DealsClient implements DealsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -89,7 +87,7 @@ class DealsClient implements DealsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/attributes/deals",
                     method: HttpMethod::GET,
                 ),
@@ -127,7 +125,6 @@ class DealsClient implements DealsClientInterface
      *
      * @param GetCrmDealsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -181,7 +178,7 @@ class DealsClient implements DealsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/deals",
                     method: HttpMethod::GET,
                     query: $query,
@@ -222,7 +219,6 @@ class DealsClient implements DealsClientInterface
      *
      * @param PostCrmDealsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -239,7 +235,7 @@ class DealsClient implements DealsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/deals",
                     method: HttpMethod::POST,
                     body: $request,
@@ -280,7 +276,6 @@ class DealsClient implements DealsClientInterface
      *
      * @param PostCrmDealsImportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -303,7 +298,7 @@ class DealsClient implements DealsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new MultipartApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/deals/import",
                     method: HttpMethod::POST,
                     body: $body,
@@ -344,7 +339,6 @@ class DealsClient implements DealsClientInterface
      * @param string $id
      * @param PatchCrmDealsLinkUnlinkIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -360,7 +354,7 @@ class DealsClient implements DealsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/deals/link-unlink/{$id}",
                     method: HttpMethod::PATCH,
                     body: $request,
@@ -393,7 +387,6 @@ class DealsClient implements DealsClientInterface
      *
      * @param string $id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -410,7 +403,7 @@ class DealsClient implements DealsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/deals/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -448,7 +441,6 @@ class DealsClient implements DealsClientInterface
      *
      * @param string $id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -464,7 +456,7 @@ class DealsClient implements DealsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/deals/{$id}",
                     method: HttpMethod::DELETE,
                 ),
@@ -498,7 +490,6 @@ class DealsClient implements DealsClientInterface
      * @param string $id
      * @param PatchCrmDealsIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -514,7 +505,7 @@ class DealsClient implements DealsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/deals/{$id}",
                     method: HttpMethod::PATCH,
                     body: $request,
@@ -544,7 +535,6 @@ class DealsClient implements DealsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -561,7 +551,7 @@ class DealsClient implements DealsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/pipeline/details",
                     method: HttpMethod::GET,
                 ),
@@ -596,7 +586,6 @@ class DealsClient implements DealsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -613,7 +602,7 @@ class DealsClient implements DealsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/pipeline/details/all",
                     method: HttpMethod::GET,
                 ),
@@ -651,7 +640,6 @@ class DealsClient implements DealsClientInterface
      *
      * @param string $pipelineId
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -668,7 +656,7 @@ class DealsClient implements DealsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/pipeline/details/{$pipelineId}",
                     method: HttpMethod::GET,
                 ),

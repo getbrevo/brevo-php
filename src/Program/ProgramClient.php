@@ -4,12 +4,12 @@ namespace Brevo\Program;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Program\Requests\GetLpListRequest;
 use Brevo\Program\Types\GetLpListResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -29,7 +29,6 @@ class ProgramClient implements ProgramClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -44,21 +43,21 @@ class ProgramClient implements ProgramClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -73,7 +72,6 @@ class ProgramClient implements ProgramClientInterface
      *
      * @param GetLpListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -103,7 +101,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs",
                     method: HttpMethod::GET,
                     query: $query,
@@ -144,7 +142,6 @@ class ProgramClient implements ProgramClientInterface
      *
      * @param CreateNewLpRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -161,7 +158,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs",
                     method: HttpMethod::POST,
                     body: $request,
@@ -200,7 +197,6 @@ class ProgramClient implements ProgramClientInterface
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -217,7 +213,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs/{$pid}",
                     method: HttpMethod::GET,
                 ),
@@ -259,7 +255,6 @@ class ProgramClient implements ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param UpdateLoyaltyProgramRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -276,7 +271,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs/{$pid}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -315,7 +310,6 @@ class ProgramClient implements ProgramClientInterface
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -331,7 +325,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs/{$pid}",
                     method: HttpMethod::DELETE,
                 ),
@@ -365,7 +359,6 @@ class ProgramClient implements ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param PartiallyUpdateLoyaltyProgramRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -382,7 +375,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs/{$pid}",
                     method: HttpMethod::PATCH,
                     body: $request,
@@ -423,7 +416,6 @@ class ProgramClient implements ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param GetParameterSubscriptionInfoRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -453,7 +445,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs/{$pid}/account-info",
                     method: HttpMethod::GET,
                     query: $query,
@@ -494,7 +486,6 @@ class ProgramClient implements ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param int $cid Contact ID.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -510,7 +501,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs/{$pid}/contact/{$cid}",
                     method: HttpMethod::DELETE,
                 ),
@@ -542,7 +533,6 @@ class ProgramClient implements ProgramClientInterface
      *
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -558,7 +548,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs/{$pid}/publish",
                     method: HttpMethod::POST,
                 ),
@@ -596,7 +586,6 @@ class ProgramClient implements ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param SubscribeMemberToASubscriptionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -613,7 +602,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs/{$pid}/subscription-members",
                     method: HttpMethod::POST,
                     body: $request,
@@ -656,7 +645,6 @@ class ProgramClient implements ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param DeleteContactMembersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -674,7 +662,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs/{$pid}/subscription-members",
                     method: HttpMethod::DELETE,
                     query: $query,
@@ -711,7 +699,6 @@ class ProgramClient implements ProgramClientInterface
      * @param string $pid Loyalty Program ID. A unique identifier for the loyalty program.
      * @param SubscribeToLoyaltyProgramRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -728,7 +715,7 @@ class ProgramClient implements ProgramClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/config/programs/{$pid}/subscriptions",
                     method: HttpMethod::POST,
                     body: $request,

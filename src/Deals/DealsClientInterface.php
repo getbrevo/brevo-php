@@ -25,7 +25,6 @@ interface DealsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -48,7 +47,6 @@ interface DealsClientInterface
      *
      * @param GetCrmDealsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -73,7 +71,6 @@ interface DealsClientInterface
      *
      * @param PostCrmDealsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -98,7 +95,6 @@ interface DealsClientInterface
      *
      * @param PostCrmDealsImportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -122,7 +118,6 @@ interface DealsClientInterface
      * @param string $id
      * @param PatchCrmDealsLinkUnlinkIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -144,7 +139,6 @@ interface DealsClientInterface
      *
      * @param string $id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -167,7 +161,6 @@ interface DealsClientInterface
      *
      * @param string $id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -191,7 +184,6 @@ interface DealsClientInterface
      * @param string $id
      * @param PatchCrmDealsIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -210,7 +202,6 @@ interface DealsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -230,7 +221,6 @@ interface DealsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -253,7 +243,6 @@ interface DealsClientInterface
      *
      * @param string $pipelineId
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

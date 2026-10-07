@@ -24,7 +24,6 @@ interface ConsentGroupsClientInterface
      *
      * @param GetConsentGroupsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -52,7 +51,6 @@ interface ConsentGroupsClientInterface
      *
      * @param CreateConsentGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -77,7 +75,6 @@ interface ConsentGroupsClientInterface
      *
      * @param int $id ID of the consent group
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -104,7 +101,6 @@ interface ConsentGroupsClientInterface
      * @param int $id ID of the consent group to update
      * @param UpdateConsentGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -129,7 +125,6 @@ interface ConsentGroupsClientInterface
      *
      * @param int $id ID of the consent group to delete
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

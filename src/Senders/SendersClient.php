@@ -4,12 +4,12 @@ namespace Brevo\Senders;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Senders\Requests\GetSendersRequest;
 use Brevo\Senders\Types\GetSendersResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -24,7 +24,6 @@ class SendersClient implements SendersClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -39,21 +38,21 @@ class SendersClient implements SendersClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -88,7 +87,6 @@ class SendersClient implements SendersClientInterface
      *
      * @param GetSendersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -112,7 +110,7 @@ class SendersClient implements SendersClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "senders",
                     method: HttpMethod::GET,
                     query: $query,
@@ -172,7 +170,6 @@ class SendersClient implements SendersClientInterface
      *
      * @param CreateSenderRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -189,7 +186,7 @@ class SendersClient implements SendersClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "senders",
                     method: HttpMethod::POST,
                     body: $request,
@@ -238,7 +235,6 @@ class SendersClient implements SendersClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -255,7 +251,7 @@ class SendersClient implements SendersClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "senders/ips",
                     method: HttpMethod::GET,
                 ),
@@ -307,7 +303,6 @@ class SendersClient implements SendersClientInterface
      * @param int $senderId Id of the sender
      * @param UpdateSenderRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -323,7 +318,7 @@ class SendersClient implements SendersClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "senders/{$senderId}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -364,7 +359,6 @@ class SendersClient implements SendersClientInterface
      *
      * @param int $senderId Id of the sender
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -380,7 +374,7 @@ class SendersClient implements SendersClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "senders/{$senderId}",
                     method: HttpMethod::DELETE,
                 ),
@@ -423,7 +417,6 @@ class SendersClient implements SendersClientInterface
      *
      * @param int $senderId Id of the sender
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -440,7 +433,7 @@ class SendersClient implements SendersClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "senders/{$senderId}/ips",
                     method: HttpMethod::GET,
                 ),
@@ -492,7 +485,6 @@ class SendersClient implements SendersClientInterface
      * @param int $senderId Id of the sender
      * @param ValidateSenderByOtpRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -508,7 +500,7 @@ class SendersClient implements SendersClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "senders/{$senderId}/validate",
                     method: HttpMethod::PUT,
                     body: $request,

@@ -20,7 +20,6 @@ interface WalletClientInterface
      * @param string $passId Pass ID. The unique identifier of the wallet pass for which to generate an installation URL.
      * @param int $contactId The Brevo contact ID the installation URL is generated for.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

@@ -20,7 +20,6 @@ interface InboundParsingClientInterface
      *
      * @param GetInboundEmailEventsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -43,7 +42,6 @@ interface InboundParsingClientInterface
      *
      * @param string $uuid UUID to fetch events specific to received email
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -66,7 +64,6 @@ interface InboundParsingClientInterface
      *
      * @param string $downloadToken Token to fetch a particular attachment
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

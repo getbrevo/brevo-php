@@ -4,12 +4,12 @@ namespace Brevo\InboundParsing;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\InboundParsing\Requests\GetInboundEmailEventsRequest;
 use Brevo\InboundParsing\Types\GetInboundEmailEventsResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -19,7 +19,6 @@ class InboundParsingClient implements InboundParsingClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -34,21 +33,21 @@ class InboundParsingClient implements InboundParsingClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -63,7 +62,6 @@ class InboundParsingClient implements InboundParsingClientInterface
      *
      * @param GetInboundEmailEventsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -99,7 +97,7 @@ class InboundParsingClient implements InboundParsingClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "inbound/events",
                     method: HttpMethod::GET,
                     query: $query,
@@ -138,7 +136,6 @@ class InboundParsingClient implements InboundParsingClientInterface
      *
      * @param string $uuid UUID to fetch events specific to received email
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -155,7 +152,7 @@ class InboundParsingClient implements InboundParsingClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "inbound/events/{$uuid}",
                     method: HttpMethod::GET,
                 ),
@@ -193,7 +190,6 @@ class InboundParsingClient implements InboundParsingClientInterface
      *
      * @param string $downloadToken Token to fetch a particular attachment
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -210,7 +206,7 @@ class InboundParsingClient implements InboundParsingClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "inbound/attachments/{$downloadToken}",
                     method: HttpMethod::GET,
                 ),

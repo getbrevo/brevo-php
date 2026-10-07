@@ -21,7 +21,6 @@ interface FilesClientInterface
      *
      * @param GetCrmFilesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -46,7 +45,6 @@ interface FilesClientInterface
      *
      * @param PostCrmFilesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -68,7 +66,6 @@ interface FilesClientInterface
      *
      * @param string $id File id to download.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -91,7 +88,6 @@ interface FilesClientInterface
      *
      * @param string $id File id to delete.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -113,7 +109,6 @@ interface FilesClientInterface
      *
      * @param string $id File id to get file data.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

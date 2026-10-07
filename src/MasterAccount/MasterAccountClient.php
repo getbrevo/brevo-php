@@ -4,12 +4,12 @@ namespace Brevo\MasterAccount;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\MasterAccount\Requests\PostCorporateGroupRequest;
 use Brevo\MasterAccount\Types\PostCorporateGroupResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -48,7 +48,6 @@ class MasterAccountClient implements MasterAccountClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -63,21 +62,21 @@ class MasterAccountClient implements MasterAccountClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -94,7 +93,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param PostCorporateGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -111,7 +109,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/group",
                     method: HttpMethod::POST,
                     body: $request,
@@ -158,7 +156,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      * @param string $groupId Group id
      * @param PutCorporateGroupUnlinkGroupIdSubAccountsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -174,7 +171,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/group/unlink/{$groupId}/subAccounts",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -208,7 +205,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param string $id Id of the group of sub-organization
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -225,7 +221,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/group/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -265,7 +261,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      * @param string $id Id of the group
      * @param PutCorporateGroupIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -281,7 +276,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/group/{$id}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -317,7 +312,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param string $id Id of the group
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -333,7 +327,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/group/{$id}",
                     method: HttpMethod::DELETE,
                 ),
@@ -362,7 +356,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -379,7 +372,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/groups",
                     method: HttpMethod::GET,
                 ),
@@ -419,7 +412,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param GetCorporateInvitedUsersListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -446,7 +438,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/invited/users",
                     method: HttpMethod::GET,
                     query: $query,
@@ -483,7 +475,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -500,7 +491,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/ip",
                     method: HttpMethod::GET,
                 ),
@@ -535,7 +526,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -552,7 +542,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/masterAccount",
                     method: HttpMethod::GET,
                 ),
@@ -595,7 +585,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param PostCorporateSsoTokenRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -612,7 +601,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/ssoToken",
                     method: HttpMethod::POST,
                     body: $request,
@@ -655,7 +644,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param GetCorporateSubAccountRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -675,7 +663,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/subAccount",
                     method: HttpMethod::GET,
                     query: $query,
@@ -723,7 +711,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param PostCorporateSubAccountRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -740,7 +727,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/subAccount",
                     method: HttpMethod::POST,
                     body: $request,
@@ -786,7 +773,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param PostCorporateSubAccountIpAssociateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -803,7 +789,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/subAccount/ip/associate",
                     method: HttpMethod::POST,
                     body: $request,
@@ -849,7 +835,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param PutCorporateSubAccountIpDissociateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -865,7 +850,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/subAccount/ip/dissociate",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -901,7 +886,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param PostCorporateSubAccountKeyRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -918,7 +902,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/subAccount/key",
                     method: HttpMethod::POST,
                     body: $request,
@@ -962,7 +946,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param PostCorporateSubAccountSsoTokenRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -979,7 +962,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/subAccount/ssoToken",
                     method: HttpMethod::POST,
                     body: $request,
@@ -1018,7 +1001,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param int $id Id of the sub-account organization
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1035,7 +1017,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/subAccount/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -1073,7 +1055,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param int $id Id of the sub-account organization to be deleted
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1089,7 +1070,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/subAccount/{$id}",
                     method: HttpMethod::DELETE,
                 ),
@@ -1130,7 +1111,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      * @param int $id Id of the sub-account organization (mandatory)
      * @param PutCorporateSubAccountIdApplicationsToggleRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1146,7 +1126,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/subAccount/{$id}/applications/toggle",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -1198,7 +1178,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      * @param int $id Id of the sub-account organization
      * @param PutCorporateSubAccountIdPlanRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1214,7 +1193,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/subAccount/{$id}/plan",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -1268,7 +1247,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param PutCorporateSubAccountsPlanRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1284,7 +1262,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/subAccounts/plan",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -1348,7 +1326,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param InviteAdminUserRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1365,7 +1342,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/user/invitation/send",
                     method: HttpMethod::POST,
                     body: $request,
@@ -1408,7 +1385,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      * @param value-of<PutCorporateUserInvitationActionEmailRequestAction> $action Action to be performed (cancel / resend)
      * @param string $email Email address of the recipient
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1425,7 +1401,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/user/invitation/{$action}/{$email}",
                     method: HttpMethod::PUT,
                 ),
@@ -1464,7 +1440,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param string $email Email of the invited user
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1480,7 +1455,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/user/revoke/{$email}",
                     method: HttpMethod::DELETE,
                 ),
@@ -1512,7 +1487,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      *
      * @param string $email Email of the invited user.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1529,7 +1503,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/user/{$email}/permissions",
                     method: HttpMethod::GET,
                 ),
@@ -1632,7 +1606,6 @@ class MasterAccountClient implements MasterAccountClientInterface
      * @param string $email Email address of Admin user
      * @param PutCorporateUserEmailPermissionsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1648,7 +1621,7 @@ class MasterAccountClient implements MasterAccountClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "corporate/user/{$email}/permissions",
                     method: HttpMethod::PUT,
                     body: $request,

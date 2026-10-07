@@ -33,7 +33,6 @@ interface TransactionalWhatsAppClientInterface
      *   |SendWhatsappMessageRequestText
      * ) $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -56,7 +55,6 @@ interface TransactionalWhatsAppClientInterface
      *
      * @param GetWhatsappEventReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

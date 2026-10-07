@@ -28,7 +28,6 @@ interface WhatsAppCampaignsClientInterface
      *
      * @param GetWhatsAppCampaignsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -60,7 +59,6 @@ interface WhatsAppCampaignsClientInterface
      *
      * @param CreateWhatsAppCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -81,7 +79,6 @@ interface WhatsAppCampaignsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -110,7 +107,6 @@ interface WhatsAppCampaignsClientInterface
      *
      * @param CreateWhatsAppTemplateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -133,7 +129,6 @@ interface WhatsAppCampaignsClientInterface
      *
      * @param GetWhatsAppTemplatesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -157,7 +152,6 @@ interface WhatsAppCampaignsClientInterface
      *
      * @param int $templateId id of the template
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -183,7 +177,6 @@ interface WhatsAppCampaignsClientInterface
      *
      * @param int $campaignId Id of the campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -212,7 +205,6 @@ interface WhatsAppCampaignsClientInterface
      * @param int $campaignId id of the campaign
      * @param UpdateWhatsAppCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -234,7 +226,6 @@ interface WhatsAppCampaignsClientInterface
      *
      * @param int $campaignId id of the campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
