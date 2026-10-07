@@ -111,7 +111,6 @@ interface CustomObjectsClientInterface
      * @param string $objectType Object type for the records to upsert. Must be a previously created custom object type. Only lowercase alphanumeric characters and underscores are allowed (max 32 characters).
      * @param UpsertrecordsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -141,7 +140,6 @@ interface CustomObjectsClientInterface
      * @param string $objectType Object type for the records to retrieve. Must be a previously created custom object type. Contact as object type is not supported in this endpoint.
      * @param GetrecordsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -174,7 +172,6 @@ interface CustomObjectsClientInterface
      * @param string $objectType Object type for the records to delete
      * @param BatchDeleteObjectRecordsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -226,7 +223,6 @@ interface CustomObjectsClientInterface
      * @param string $objectType Object type of the source record, exactly as defined in your account. Accepts any object type defined in the account, for example a custom object type or `contact`.
      * @param GetAssociatedRecordsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

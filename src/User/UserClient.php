@@ -4,11 +4,11 @@ namespace Brevo\User;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\User\Types\GetInvitedUsersListResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -24,7 +24,6 @@ class UserClient implements UserClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -39,21 +38,21 @@ class UserClient implements UserClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -65,7 +64,6 @@ class UserClient implements UserClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -82,7 +80,7 @@ class UserClient implements UserClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "organization/invited/users",
                     method: HttpMethod::GET,
                 ),
@@ -120,7 +118,6 @@ class UserClient implements UserClientInterface
      *
      * @param string $email Email of the invited user.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -137,7 +134,7 @@ class UserClient implements UserClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "organization/user/invitation/revoke/{$email}",
                     method: HttpMethod::PUT,
                 ),
@@ -248,7 +245,6 @@ class UserClient implements UserClientInterface
      *
      * @param Inviteuser $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -265,7 +261,7 @@ class UserClient implements UserClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "organization/user/invitation/send",
                     method: HttpMethod::POST,
                     body: $request,
@@ -306,7 +302,6 @@ class UserClient implements UserClientInterface
      * @param value-of<PutresendcancelinvitationRequestAction> $action action
      * @param string $email Email of the invited user.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -323,7 +318,7 @@ class UserClient implements UserClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "organization/user/invitation/{$action}/{$email}",
                     method: HttpMethod::PUT,
                 ),
@@ -433,7 +428,6 @@ class UserClient implements UserClientInterface
      *
      * @param Inviteuser $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -450,7 +444,7 @@ class UserClient implements UserClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "organization/user/update/permissions",
                     method: HttpMethod::POST,
                     body: $request,
@@ -489,7 +483,6 @@ class UserClient implements UserClientInterface
      *
      * @param string $email Email of the invited user.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -506,7 +499,7 @@ class UserClient implements UserClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "organization/user/{$email}/permissions",
                     method: HttpMethod::GET,
                 ),

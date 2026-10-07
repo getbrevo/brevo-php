@@ -4,11 +4,11 @@ namespace Brevo\Conversations;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Conversations\Requests\PostConversationsAgentOnlinePingRequest;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use Psr\Http\Client\ClientExceptionInterface;
 use Brevo\Conversations\Requests\PostConversationsMessagesRequest;
@@ -24,7 +24,6 @@ class ConversationsClient implements ConversationsClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -39,21 +38,21 @@ class ConversationsClient implements ConversationsClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -70,7 +69,6 @@ class ConversationsClient implements ConversationsClientInterface
      *
      * @param PostConversationsAgentOnlinePingRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -86,7 +84,7 @@ class ConversationsClient implements ConversationsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "conversations/agentOnlinePing",
                     method: HttpMethod::POST,
                     body: $request,
@@ -123,7 +121,6 @@ class ConversationsClient implements ConversationsClientInterface
      *
      * @param PostConversationsMessagesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -140,7 +137,7 @@ class ConversationsClient implements ConversationsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "conversations/messages",
                     method: HttpMethod::POST,
                     body: $request,
@@ -179,7 +176,6 @@ class ConversationsClient implements ConversationsClientInterface
      *
      * @param string $id ID of the message
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -196,7 +192,7 @@ class ConversationsClient implements ConversationsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "conversations/messages/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -238,7 +234,6 @@ class ConversationsClient implements ConversationsClientInterface
      * @param string $id ID of the message
      * @param PutConversationsMessagesIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -255,7 +250,7 @@ class ConversationsClient implements ConversationsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "conversations/messages/{$id}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -294,7 +289,6 @@ class ConversationsClient implements ConversationsClientInterface
      *
      * @param string $id ID of the message
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -310,7 +304,7 @@ class ConversationsClient implements ConversationsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "conversations/messages/{$id}",
                     method: HttpMethod::DELETE,
                 ),
@@ -346,7 +340,6 @@ class ConversationsClient implements ConversationsClientInterface
      *
      * @param PostConversationsPushedMessagesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -363,7 +356,7 @@ class ConversationsClient implements ConversationsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "conversations/pushedMessages",
                     method: HttpMethod::POST,
                     body: $request,
@@ -402,7 +395,6 @@ class ConversationsClient implements ConversationsClientInterface
      *
      * @param string $id ID of the message sent previously
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -419,7 +411,7 @@ class ConversationsClient implements ConversationsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "conversations/pushedMessages/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -461,7 +453,6 @@ class ConversationsClient implements ConversationsClientInterface
      * @param string $id ID of the message
      * @param PutConversationsPushedMessagesIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -478,7 +469,7 @@ class ConversationsClient implements ConversationsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "conversations/pushedMessages/{$id}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -517,7 +508,6 @@ class ConversationsClient implements ConversationsClientInterface
      *
      * @param string $id ID of the message
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -533,7 +523,7 @@ class ConversationsClient implements ConversationsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "conversations/pushedMessages/{$id}",
                     method: HttpMethod::DELETE,
                 ),
@@ -567,7 +557,6 @@ class ConversationsClient implements ConversationsClientInterface
      *
      * @param PutConversationsVisitorGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -584,7 +573,7 @@ class ConversationsClient implements ConversationsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "conversations/visitorGroup",
                     method: HttpMethod::PUT,
                     body: $request,

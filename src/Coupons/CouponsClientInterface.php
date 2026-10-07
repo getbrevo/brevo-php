@@ -24,7 +24,6 @@ interface CouponsClientInterface
      *
      * @param GetCouponCollectionsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -50,7 +49,6 @@ interface CouponsClientInterface
      *
      * @param CreateCouponCollectionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -73,7 +71,6 @@ interface CouponsClientInterface
      *
      * @param string $id Id of the collection to return
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -98,7 +95,6 @@ interface CouponsClientInterface
      * @param string $id Id of the collection to update
      * @param UpdateCouponCollectionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -126,7 +122,6 @@ interface CouponsClientInterface
      *
      * @param CreateCouponsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

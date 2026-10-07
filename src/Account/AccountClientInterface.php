@@ -40,7 +40,6 @@ interface AccountClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -79,7 +78,6 @@ interface AccountClientInterface
      *
      * @param GetAccountActivityRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

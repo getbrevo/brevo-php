@@ -4,12 +4,12 @@ namespace Brevo\Notes;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Notes\Requests\GetCrmNotesRequest;
 use Brevo\Types\Note;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use Brevo\Core\Json\JsonDecoder;
 use JsonException;
@@ -22,7 +22,6 @@ class NotesClient implements NotesClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -37,21 +36,21 @@ class NotesClient implements NotesClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -66,7 +65,6 @@ class NotesClient implements NotesClientInterface
      *
      * @param GetCrmNotesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -105,7 +103,7 @@ class NotesClient implements NotesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/notes",
                     method: HttpMethod::GET,
                     query: $query,
@@ -146,7 +144,6 @@ class NotesClient implements NotesClientInterface
      *
      * @param NoteData $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -163,7 +160,7 @@ class NotesClient implements NotesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/notes",
                     method: HttpMethod::POST,
                     body: $request,
@@ -202,7 +199,6 @@ class NotesClient implements NotesClientInterface
      *
      * @param string $id Note ID to get
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -219,7 +215,7 @@ class NotesClient implements NotesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/notes/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -257,7 +253,6 @@ class NotesClient implements NotesClientInterface
      *
      * @param string $id Note ID to delete
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -273,7 +268,7 @@ class NotesClient implements NotesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/notes/{$id}",
                     method: HttpMethod::DELETE,
                 ),
@@ -311,7 +306,6 @@ class NotesClient implements NotesClientInterface
      * @param string $id Note ID to update
      * @param PatchCrmNotesIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -327,7 +321,7 @@ class NotesClient implements NotesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/notes/{$id}",
                     method: HttpMethod::PATCH,
                     body: $request->body,

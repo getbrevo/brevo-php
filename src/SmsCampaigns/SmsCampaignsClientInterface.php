@@ -28,7 +28,6 @@ interface SmsCampaignsClientInterface
      *
      * @param GetSmsCampaignsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -55,7 +54,6 @@ interface SmsCampaignsClientInterface
      *
      * @param CreateSmsCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -78,7 +76,6 @@ interface SmsCampaignsClientInterface
      *
      * @param int $campaignId id of the SMS campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -103,7 +100,6 @@ interface SmsCampaignsClientInterface
      * @param int $campaignId id of the SMS campaign
      * @param UpdateSmsCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -125,7 +121,6 @@ interface SmsCampaignsClientInterface
      *
      * @param int $campaignId id of the SMS campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -151,7 +146,6 @@ interface SmsCampaignsClientInterface
      * @param int $campaignId id of the campaign
      * @param RequestSmsRecipientExportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -174,7 +168,6 @@ interface SmsCampaignsClientInterface
      *
      * @param int $campaignId id of the campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -207,7 +200,6 @@ interface SmsCampaignsClientInterface
      * @param int $campaignId id of the campaign
      * @param SendSmsReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -231,7 +223,6 @@ interface SmsCampaignsClientInterface
      * @param int $campaignId Id of the SMS campaign
      * @param SendTestSmsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -257,7 +248,6 @@ interface SmsCampaignsClientInterface
      * @param int $campaignId id of the campaign
      * @param UpdateSmsCampaignStatusRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

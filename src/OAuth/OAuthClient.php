@@ -1,19 +1,20 @@
 <?php
 
-namespace Brevo\Wallet;
+namespace Brevo\OAuth;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
 use Brevo\Environments;
-use Brevo\Types\WalletPassInstallUrl;
+use Brevo\OAuth\Requests\GetOAuthM2MTokenRequest;
+use Brevo\OAuth\Types\GetOAuthM2MTokenResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
-use Brevo\Core\Json\JsonApiRequest;
+use Brevo\Core\Client\UrlEncodedApiRequest;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
 
-class WalletClient implements WalletClientInterface
+class OAuthClient implements OAuthClientInterface
 {
     /**
      * @var array{
@@ -49,18 +50,20 @@ class WalletClient implements WalletClientInterface
     }
 
     /**
-     * Generate a wallet installation URL for a specific contact. The returned URL points to the pass installation page and encodes the pass, contact and organization identifiers as an encrypted token, so it can be shared with the contact (email, SMS, QR code, ...) to add the pass to their Apple Wallet or Google Wallet.
+     * Exchanges an app's client_id/client_secret for a short-lived access token using the OAuth 2.0 client_credentials grant (RFC 6749 §4.4). Confirmed working via a direct manual test (2026-09-18). See docs/superpowers/specs/ for the design.
      *
      * Example:
      * ```php
-     * $client->wallet->getWalletPassInstallUrl(
-     *     'passId',
-     *     1000000,
+     * $client->oAuth->getOAuthM2MToken(
+     *     new GetOAuthM2MTokenRequest([
+     *         'grantType' => 'client_credentials',
+     *         'clientId' => 'client_id',
+     *         'clientSecret' => 'client_secret',
+     *     ]),
      * );
      * ```
      *
-     * @param string $passId Pass ID. The unique identifier of the wallet pass for which to generate an installation URL.
-     * @param int $contactId The Brevo contact ID the installation URL is generated for.
+     * @param GetOAuthM2MTokenRequest $request
      * @param ?array{
      *   maxRetries?: int,
      *   timeout?: float,
@@ -68,19 +71,20 @@ class WalletClient implements WalletClientInterface
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?WalletPassInstallUrl
+     * @return ?GetOAuthM2MTokenResponse
      * @throws BrevoException
      * @throws BrevoApiException
      */
-    public function getWalletPassInstallUrl(string $passId, int $contactId, ?array $options = null): ?WalletPassInstallUrl
+    public function getOAuthM2MToken(GetOAuthM2MTokenRequest $request, ?array $options = null): ?GetOAuthM2MTokenResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
             $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $this->environment->base,
-                    path: "wallet/passes/{$passId}/installUrl/{$contactId}",
-                    method: HttpMethod::GET,
+                new UrlEncodedApiRequest(
+                    baseUrl: $this->environment->oAuth,
+                    path: "oauth/token",
+                    method: HttpMethod::POST,
+                    body: $request,
                 ),
                 $options,
             );
@@ -90,7 +94,7 @@ class WalletClient implements WalletClientInterface
                 if (empty($json)) {
                     return null;
                 }
-                return WalletPassInstallUrl::fromJson($json);
+                return GetOAuthM2MTokenResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new BrevoException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

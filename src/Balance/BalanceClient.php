@@ -4,12 +4,12 @@ namespace Brevo\Balance;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Balance\Requests\GetLoyaltyBalanceProgramsPidActiveBalanceRequest;
 use Brevo\Balance\Types\GetLoyaltyBalanceProgramsPidActiveBalanceResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -40,7 +40,6 @@ class BalanceClient implements BalanceClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -55,21 +54,21 @@ class BalanceClient implements BalanceClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -89,7 +88,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param GetLoyaltyBalanceProgramsPidActiveBalanceRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -124,7 +122,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/active-balance",
                     method: HttpMethod::GET,
                     query: $query,
@@ -165,7 +163,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param GetBalanceDefinitionListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -198,7 +195,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/balance-definitions",
                     method: HttpMethod::GET,
                     query: $query,
@@ -242,7 +239,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param PostLoyaltyBalanceProgramsPidBalanceDefinitionsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -259,7 +255,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/balance-definitions",
                     method: HttpMethod::POST,
                     body: $request,
@@ -302,7 +298,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $bdid Balance Definition Id
      * @param GetBalanceDefinitionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -323,7 +318,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/balance-definitions/{$bdid}",
                     method: HttpMethod::GET,
                     query: $query,
@@ -369,7 +364,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $bdid Balance Definition Id
      * @param UpdateBalanceDefinitionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -386,7 +380,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/balance-definitions/{$bdid}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -427,7 +421,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param string $bdid Balance Definition Id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -443,7 +436,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/balance-definitions/{$bdid}",
                     method: HttpMethod::DELETE,
                 ),
@@ -485,7 +478,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $bdid Balance Definition Id
      * @param CreateBalanceLimitRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -502,7 +494,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/balance-definitions/{$bdid}/limits",
                     method: HttpMethod::POST,
                     body: $request,
@@ -547,7 +539,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $blid Balance Limit Id
      * @param GetBalanceLimitRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -568,7 +559,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/balance-definitions/{$bdid}/limits/{$blid}",
                     method: HttpMethod::GET,
                     query: $query,
@@ -619,7 +610,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $blid Balance Limit Id
      * @param UpdateBalanceLimitRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -636,7 +626,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/balance-definitions/{$bdid}/limits/{$blid}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -679,7 +669,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $bdid Balance Definition Id
      * @param string $blid Balance Limit Id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -695,7 +684,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/balance-definitions/{$bdid}/limits/{$blid}",
                     method: HttpMethod::DELETE,
                 ),
@@ -731,7 +720,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param GetContactBalancesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -765,7 +753,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/contact-balances",
                     method: HttpMethod::GET,
                     query: $query,
@@ -812,7 +800,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param CreateBalanceOrderRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -829,7 +816,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/create-order",
                     method: HttpMethod::POST,
                     body: $request,
@@ -872,7 +859,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $cid Contact Id
      * @param GetSubscriptionBalancesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -893,7 +879,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/subscriptions/{$cid}/balances",
                     method: HttpMethod::GET,
                     query: $query,
@@ -938,7 +924,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $cid Contact Id
      * @param PostLoyaltyBalanceProgramsPidSubscriptionsCidBalancesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -955,7 +940,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/subscriptions/{$cid}/balances",
                     method: HttpMethod::POST,
                     body: $request,
@@ -999,7 +984,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param GetLoyaltyBalanceProgramsPidTransactionHistoryRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1040,7 +1024,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/transaction-history",
                     method: HttpMethod::GET,
                     query: $query,
@@ -1084,7 +1068,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param BeginTransactionRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1101,7 +1084,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/transactions",
                     method: HttpMethod::POST,
                     body: $request,
@@ -1142,7 +1125,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param string $tid Transaction Id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1159,7 +1141,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/transactions/{$tid}/cancel",
                     method: HttpMethod::POST,
                 ),
@@ -1199,7 +1181,6 @@ class BalanceClient implements BalanceClientInterface
      * @param string $pid Loyalty Program Id
      * @param string $tid Transaction Id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1216,7 +1197,7 @@ class BalanceClient implements BalanceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/balance/programs/{$pid}/transactions/{$tid}/complete",
                     method: HttpMethod::POST,
                 ),

@@ -4,12 +4,12 @@ namespace Brevo\CustomObjects;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\CustomObjects\Requests\UpsertrecordsRequest;
 use Brevo\CustomObjects\Types\UpsertrecordsResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -24,7 +24,6 @@ class CustomObjectsClient implements CustomObjectsClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -39,21 +38,21 @@ class CustomObjectsClient implements CustomObjectsClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -154,7 +153,6 @@ class CustomObjectsClient implements CustomObjectsClientInterface
      * @param string $objectType Object type for the records to upsert. Must be a previously created custom object type. Only lowercase alphanumeric characters and underscores are allowed (max 32 characters).
      * @param UpsertrecordsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -171,7 +169,7 @@ class CustomObjectsClient implements CustomObjectsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "objects/{$objectType}/batch/upsert",
                     method: HttpMethod::POST,
                     body: $request,
@@ -217,7 +215,6 @@ class CustomObjectsClient implements CustomObjectsClientInterface
      * @param string $objectType Object type for the records to retrieve. Must be a previously created custom object type. Contact as object type is not supported in this endpoint.
      * @param GetrecordsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -243,7 +240,7 @@ class CustomObjectsClient implements CustomObjectsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "objects/{$objectType}/records",
                     method: HttpMethod::GET,
                     query: $query,
@@ -292,7 +289,6 @@ class CustomObjectsClient implements CustomObjectsClientInterface
      * @param string $objectType Object type for the records to delete
      * @param BatchDeleteObjectRecordsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -309,7 +305,7 @@ class CustomObjectsClient implements CustomObjectsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "objects/{$objectType}/batch/delete",
                     method: HttpMethod::POST,
                     body: $request,
@@ -377,7 +373,6 @@ class CustomObjectsClient implements CustomObjectsClientInterface
      * @param string $objectType Object type of the source record, exactly as defined in your account. Accepts any object type defined in the account, for example a custom object type or `contact`.
      * @param GetAssociatedRecordsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -413,7 +408,7 @@ class CustomObjectsClient implements CustomObjectsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "objects/{$objectType}/associated-records",
                     method: HttpMethod::GET,
                     query: $query,

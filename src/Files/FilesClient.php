@@ -4,12 +4,12 @@ namespace Brevo\Files;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Files\Requests\GetCrmFilesRequest;
 use Brevo\Types\FileData;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use Brevo\Core\Json\JsonDecoder;
 use JsonException;
@@ -23,7 +23,6 @@ class FilesClient implements FilesClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -38,21 +37,21 @@ class FilesClient implements FilesClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -67,7 +66,6 @@ class FilesClient implements FilesClientInterface
      *
      * @param GetCrmFilesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -106,7 +104,7 @@ class FilesClient implements FilesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/files",
                     method: HttpMethod::GET,
                     query: $query,
@@ -147,7 +145,6 @@ class FilesClient implements FilesClientInterface
      *
      * @param PostCrmFilesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -174,7 +171,7 @@ class FilesClient implements FilesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new MultipartApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/files",
                     method: HttpMethod::POST,
                     body: $body,
@@ -213,7 +210,6 @@ class FilesClient implements FilesClientInterface
      *
      * @param string $id File id to download.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -230,7 +226,7 @@ class FilesClient implements FilesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/files/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -268,7 +264,6 @@ class FilesClient implements FilesClientInterface
      *
      * @param string $id File id to delete.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -284,7 +279,7 @@ class FilesClient implements FilesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/files/{$id}",
                     method: HttpMethod::DELETE,
                 ),
@@ -316,7 +311,6 @@ class FilesClient implements FilesClientInterface
      *
      * @param string $id File id to get file data.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -333,7 +327,7 @@ class FilesClient implements FilesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/files/{$id}/data",
                     method: HttpMethod::GET,
                 ),

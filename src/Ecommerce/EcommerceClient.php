@@ -4,12 +4,12 @@ namespace Brevo\Ecommerce;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Ecommerce\Requests\GetCategoriesRequest;
 use Brevo\Ecommerce\Types\GetCategoriesResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -46,7 +46,6 @@ class EcommerceClient implements EcommerceClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -61,21 +60,21 @@ class EcommerceClient implements EcommerceClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -90,7 +89,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param GetCategoriesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -132,7 +130,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "categories",
                     method: HttpMethod::GET,
                     query: $query,
@@ -173,7 +171,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param CreateUpdateCategoryRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -190,7 +187,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "categories",
                     method: HttpMethod::POST,
                     body: $request,
@@ -235,7 +232,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param CreateUpdateBatchCategoryRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -252,7 +248,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "categories/batch",
                     method: HttpMethod::POST,
                     body: $request,
@@ -291,7 +287,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param string $id Category ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -308,7 +303,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "categories/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -343,7 +338,6 @@ class EcommerceClient implements EcommerceClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -359,7 +353,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "ecommerce/activate",
                     method: HttpMethod::POST,
                 ),
@@ -397,7 +391,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param GetEcommerceAttributionMetricsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -433,7 +426,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "ecommerce/attribution/metrics",
                     method: HttpMethod::GET,
                     query: $query,
@@ -474,7 +467,6 @@ class EcommerceClient implements EcommerceClientInterface
      * @param value-of<GetEcommerceAttributionMetricsConversionSourceConversionSourceIdRequestConversionSource> $conversionSource The Brevo campaign type or workflow type for which data will be retrieved
      * @param string $conversionSourceId The Brevo campaign or automation workflow id for which data will be retrieved
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -491,7 +483,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "ecommerce/attribution/metrics/{$conversionSource}/{$conversionSourceId}",
                     method: HttpMethod::GET,
                 ),
@@ -531,7 +523,6 @@ class EcommerceClient implements EcommerceClientInterface
      * @param value-of<GetEcommerceAttributionProductsConversionSourceConversionSourceIdRequestConversionSource> $conversionSource The Brevo campaign or automation workflow type for which data will be retrieved
      * @param string $conversionSourceId The Brevo campaign or automation workflow id for which data will be retrieved
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -548,7 +539,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "ecommerce/attribution/products/{$conversionSource}/{$conversionSourceId}",
                     method: HttpMethod::GET,
                 ),
@@ -583,7 +574,6 @@ class EcommerceClient implements EcommerceClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -600,7 +590,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "ecommerce/config/displayCurrency",
                     method: HttpMethod::GET,
                 ),
@@ -640,7 +630,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param SetConfigDisplayCurrencyRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -657,7 +646,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "ecommerce/config/displayCurrency",
                     method: HttpMethod::POST,
                     body: $request,
@@ -696,7 +685,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param GetOrdersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -729,7 +717,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "orders",
                     method: HttpMethod::GET,
                     query: $query,
@@ -780,7 +768,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param Order $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -796,7 +783,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "orders/status",
                     method: HttpMethod::POST,
                     body: $request,
@@ -845,7 +832,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param CreateBatchOrderRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -862,7 +848,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "orders/status/batch",
                     method: HttpMethod::POST,
                     body: $request,
@@ -901,7 +887,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param GetProductsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -988,7 +973,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "products",
                     method: HttpMethod::GET,
                     query: $query,
@@ -1030,7 +1015,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param CreateUpdateProductRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1047,7 +1031,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "products",
                     method: HttpMethod::POST,
                     body: $request,
@@ -1093,7 +1077,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param CreateUpdateBatchProductsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1110,7 +1093,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "products/batch",
                     method: HttpMethod::POST,
                     body: $request,
@@ -1149,7 +1132,6 @@ class EcommerceClient implements EcommerceClientInterface
      *
      * @param string $id Product ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1166,7 +1148,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "products/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -1208,7 +1190,6 @@ class EcommerceClient implements EcommerceClientInterface
      * @param 'back_in_stock' $type Alert type
      * @param CreateProductAlertRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1224,7 +1205,7 @@ class EcommerceClient implements EcommerceClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "products/{$id}/alerts/{$type}",
                     method: HttpMethod::POST,
                     body: $request,

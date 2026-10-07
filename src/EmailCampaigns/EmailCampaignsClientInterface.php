@@ -34,7 +34,6 @@ interface EmailCampaignsClientInterface
      *
      * @param GetEmailCampaignsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -60,7 +59,6 @@ interface EmailCampaignsClientInterface
      *
      * @param CreateEmailCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -85,7 +83,6 @@ interface EmailCampaignsClientInterface
      *
      * @param UploadImageToGalleryRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -110,7 +107,6 @@ interface EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param GetEmailCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -135,7 +131,6 @@ interface EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param UpdateEmailCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -157,7 +152,6 @@ interface EmailCampaignsClientInterface
      *
      * @param int $campaignId id of the campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -179,7 +173,6 @@ interface EmailCampaignsClientInterface
      *
      * @param int $campaignId Id of the A/B test campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -206,7 +199,6 @@ interface EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param EmailExportRecipientsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -229,7 +221,6 @@ interface EmailCampaignsClientInterface
      *
      * @param int $campaignId Id of the campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -262,7 +253,6 @@ interface EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param SendReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -288,7 +278,6 @@ interface EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param SendTestEmailRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -310,7 +299,6 @@ interface EmailCampaignsClientInterface
      *
      * @param int $campaignId Id of the campaign or template
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -337,7 +325,6 @@ interface EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param UpdateCampaignStatusRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

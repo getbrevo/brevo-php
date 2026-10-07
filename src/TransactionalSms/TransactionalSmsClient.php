@@ -4,12 +4,12 @@ namespace Brevo\TransactionalSms;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Types\SendTransacSms;
 use Brevo\TransactionalSms\Types\SendAsyncTransactionalSmsResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -25,7 +25,6 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -40,21 +39,21 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -74,7 +73,6 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
      *
      * @param SendTransacSms $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -91,7 +89,7 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "transactionalSMS/send",
                     method: HttpMethod::POST,
                     body: $request,
@@ -133,7 +131,6 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
      *
      * @param SendTransacSms $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -150,7 +147,7 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "transactionalSMS/sms",
                     method: HttpMethod::POST,
                     body: $request,
@@ -189,7 +186,6 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
      *
      * @param GetTransacAggregatedSmsReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -219,7 +215,7 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "transactionalSMS/statistics/aggregatedReport",
                     method: HttpMethod::GET,
                     query: $query,
@@ -258,7 +254,6 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
      *
      * @param GetSmsEventsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -303,7 +298,7 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "transactionalSMS/statistics/events",
                     method: HttpMethod::GET,
                     query: $query,
@@ -342,7 +337,6 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
      *
      * @param GetTransacSmsReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -375,7 +369,7 @@ class TransactionalSmsClient implements TransactionalSmsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "transactionalSMS/statistics/reports",
                     method: HttpMethod::GET,
                     query: $query,

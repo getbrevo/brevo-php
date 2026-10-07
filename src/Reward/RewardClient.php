@@ -4,11 +4,11 @@ namespace Brevo\Reward;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Reward\Types\GetCodeCountResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -32,7 +32,6 @@ class RewardClient implements RewardClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -47,21 +46,21 @@ class RewardClient implements RewardClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -78,7 +77,6 @@ class RewardClient implements RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param string $cpid Code Pool ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -95,7 +93,7 @@ class RewardClient implements RewardClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/offer/programs/{$pid}/code-pools/{$cpid}/codes-count",
                     method: HttpMethod::GET,
                 ),
@@ -135,7 +133,6 @@ class RewardClient implements RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param GetLoyaltyOfferProgramsPidOffersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -165,7 +162,7 @@ class RewardClient implements RewardClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/offer/programs/{$pid}/offers",
                     method: HttpMethod::GET,
                     query: $query,
@@ -208,7 +205,6 @@ class RewardClient implements RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param CreateRewardRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -225,7 +221,7 @@ class RewardClient implements RewardClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/offer/programs/{$pid}/offers",
                     method: HttpMethod::POST,
                     body: $request,
@@ -268,7 +264,6 @@ class RewardClient implements RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param CreateVoucherRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -285,7 +280,7 @@ class RewardClient implements RewardClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/offer/programs/{$pid}/rewards/attribute",
                     method: HttpMethod::POST,
                     body: $request,
@@ -326,7 +321,6 @@ class RewardClient implements RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param RedeemVoucherRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -343,7 +337,7 @@ class RewardClient implements RewardClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/offer/programs/{$pid}/rewards/redeem",
                     method: HttpMethod::POST,
                     body: $request,
@@ -384,7 +378,6 @@ class RewardClient implements RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param string $tid Redeem transaction ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -401,7 +394,7 @@ class RewardClient implements RewardClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/offer/programs/{$pid}/rewards/redeem/{$tid}/complete",
                     method: HttpMethod::POST,
                 ),
@@ -441,7 +434,6 @@ class RewardClient implements RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param RevokeVouchersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -461,7 +453,7 @@ class RewardClient implements RewardClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/offer/programs/{$pid}/rewards/revoke",
                     method: HttpMethod::DELETE,
                     query: $query,
@@ -496,7 +488,6 @@ class RewardClient implements RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param ValidateRewardRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -513,7 +504,7 @@ class RewardClient implements RewardClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/offer/programs/{$pid}/rewards/validate",
                     method: HttpMethod::POST,
                     body: $request,
@@ -556,7 +547,6 @@ class RewardClient implements RewardClientInterface
      * @param string $rid Reward ID
      * @param GetLoyaltyOfferProgramsPidRewardsRidRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -577,7 +567,7 @@ class RewardClient implements RewardClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/offer/programs/{$pid}/rewards/{$rid}",
                     method: HttpMethod::GET,
                     query: $query,
@@ -620,7 +610,6 @@ class RewardClient implements RewardClientInterface
      * @param string $pid Loyalty Program ID
      * @param GetLoyaltyOfferProgramsPidVouchersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -657,7 +646,7 @@ class RewardClient implements RewardClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "loyalty/offer/programs/{$pid}/vouchers",
                     method: HttpMethod::GET,
                     query: $query,

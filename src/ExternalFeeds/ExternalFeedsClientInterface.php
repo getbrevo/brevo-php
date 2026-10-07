@@ -51,7 +51,6 @@ interface ExternalFeedsClientInterface
      *
      * @param GetAllExternalFeedsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -100,7 +99,6 @@ interface ExternalFeedsClientInterface
      *
      * @param CreateExternalFeedRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -144,7 +142,6 @@ interface ExternalFeedsClientInterface
      *
      * @param string $uuid UUID of the feed to fetch
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -189,7 +186,6 @@ interface ExternalFeedsClientInterface
      * @param string $uuid UUID of the feed to update
      * @param UpdateExternalFeedRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -227,7 +223,6 @@ interface ExternalFeedsClientInterface
      *
      * @param string $uuid UUID of the feed to delete
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

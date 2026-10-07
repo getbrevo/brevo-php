@@ -27,7 +27,6 @@ interface PaymentsClientInterface
      *
      * @param CreatePaymentRequestRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -50,7 +49,6 @@ interface PaymentsClientInterface
      *
      * @param string $id Id of the payment Request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -73,7 +71,6 @@ interface PaymentsClientInterface
      *
      * @param string $id ID of the payment request.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

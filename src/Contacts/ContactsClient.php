@@ -4,12 +4,12 @@ namespace Brevo\Contacts;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Contacts\Requests\GetContactsRequest;
 use Brevo\Types\GetContacts;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -59,7 +59,6 @@ class ContactsClient implements ContactsClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -74,21 +73,21 @@ class ContactsClient implements ContactsClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -103,7 +102,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param GetContactsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -148,7 +146,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts",
                     method: HttpMethod::GET,
                     query: $query,
@@ -189,7 +187,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param CreateContactRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -206,7 +203,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts",
                     method: HttpMethod::POST,
                     body: $request,
@@ -242,7 +239,6 @@ class ContactsClient implements ContactsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -259,7 +255,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/attributes",
                     method: HttpMethod::GET,
                 ),
@@ -301,7 +297,6 @@ class ContactsClient implements ContactsClientInterface
      * @param string $attributeName Name of the attribute
      * @param CreateAttributeRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -317,7 +312,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/attributes/{$attributeCategory}/{$attributeName}",
                     method: HttpMethod::POST,
                     body: $request,
@@ -354,7 +349,6 @@ class ContactsClient implements ContactsClientInterface
      * @param string $attributeName Name of the existing attribute
      * @param UpdateAttributeRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -370,7 +364,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/attributes/{$attributeCategory}/{$attributeName}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -405,7 +399,6 @@ class ContactsClient implements ContactsClientInterface
      * @param value-of<DeleteAttributeRequestAttributeCategory> $attributeCategory Category of the attribute
      * @param string $attributeName Name of the existing attribute
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -421,7 +414,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/attributes/{$attributeCategory}/{$attributeName}",
                     method: HttpMethod::DELETE,
                 ),
@@ -457,7 +450,6 @@ class ContactsClient implements ContactsClientInterface
      * @param string $multipleChoiceAttribute Name of the existing multiple-choice attribute
      * @param string $multipleChoiceAttributeOption Name of the existing multiple-choice attribute option that you want to delete
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -473,7 +465,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/attributes/{$attributeType}/{$multipleChoiceAttribute}/{$multipleChoiceAttributeOption}",
                     method: HttpMethod::DELETE,
                 ),
@@ -505,7 +497,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param UpdateBatchContactsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -521,7 +512,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/batch",
                     method: HttpMethod::POST,
                     body: $request,
@@ -561,7 +552,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param CreateDoiContactRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -577,7 +567,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/doubleOptinConfirmation",
                     method: HttpMethod::POST,
                     body: $request,
@@ -612,7 +602,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param RequestContactExportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -629,7 +618,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/export",
                     method: HttpMethod::POST,
                     body: $request,
@@ -672,7 +661,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param GetFoldersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -699,7 +687,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/folders",
                     method: HttpMethod::GET,
                     query: $query,
@@ -738,7 +726,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param CreateUpdateFolder $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -755,7 +742,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/folders",
                     method: HttpMethod::POST,
                     body: $request,
@@ -796,7 +783,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param int $folderId id of the folder
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -813,7 +799,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/folders/{$folderId}",
                     method: HttpMethod::GET,
                 ),
@@ -855,7 +841,6 @@ class ContactsClient implements ContactsClientInterface
      * @param int $folderId Id of the folder
      * @param UpdateFolderRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -871,7 +856,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/folders/{$folderId}",
                     method: HttpMethod::PUT,
                     body: $request->body,
@@ -904,7 +889,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param int $folderId Id of the folder
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -920,7 +904,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/folders/{$folderId}",
                     method: HttpMethod::DELETE,
                 ),
@@ -956,7 +940,6 @@ class ContactsClient implements ContactsClientInterface
      * @param int $folderId Id of the folder
      * @param GetFolderListsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -983,7 +966,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/folders/{$folderId}/lists",
                     method: HttpMethod::GET,
                     query: $query,
@@ -1022,7 +1005,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param ImportContactsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1039,7 +1021,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/import",
                     method: HttpMethod::POST,
                     body: $request,
@@ -1080,7 +1062,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param GetListsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1107,7 +1088,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/lists",
                     method: HttpMethod::GET,
                     query: $query,
@@ -1149,7 +1130,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param CreateListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1166,7 +1146,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/lists",
                     method: HttpMethod::POST,
                     body: $request,
@@ -1207,7 +1187,6 @@ class ContactsClient implements ContactsClientInterface
      * @param int $listId Id of the list
      * @param GetListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1231,7 +1210,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/lists/{$listId}",
                     method: HttpMethod::GET,
                     query: $query,
@@ -1272,7 +1251,6 @@ class ContactsClient implements ContactsClientInterface
      * @param int $listId Id of the list
      * @param UpdateListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1288,7 +1266,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/lists/{$listId}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -1321,7 +1299,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param int $listId Id of the list
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1337,7 +1314,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/lists/{$listId}",
                     method: HttpMethod::DELETE,
                 ),
@@ -1371,7 +1348,6 @@ class ContactsClient implements ContactsClientInterface
      * @param int $listId Id of the list
      * @param GetContactsFromListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1401,7 +1377,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/lists/{$listId}/contacts",
                     method: HttpMethod::GET,
                     query: $query,
@@ -1447,7 +1423,6 @@ class ContactsClient implements ContactsClientInterface
      * @param int $listId Id of the list
      * @param AddContactToListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1464,7 +1439,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/lists/{$listId}/contacts/add",
                     method: HttpMethod::POST,
                     body: $request->body,
@@ -1505,7 +1480,6 @@ class ContactsClient implements ContactsClientInterface
      * @param int $listId Id of the list
      * @param RemoveContactFromListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1522,7 +1496,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/lists/{$listId}/contacts/remove",
                     method: HttpMethod::POST,
                     body: $request->body,
@@ -1561,7 +1535,6 @@ class ContactsClient implements ContactsClientInterface
      *
      * @param GetSegmentsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1588,7 +1561,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/segments",
                     method: HttpMethod::GET,
                     query: $query,
@@ -1634,7 +1607,6 @@ class ContactsClient implements ContactsClientInterface
      * ) $identifier Email (urlencoded) OR ID of the contact OR its SMS attribute value OR EXT_ID attribute (urlencoded)
      * @param GetContactInfoRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1661,7 +1633,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/{$identifier}",
                     method: HttpMethod::GET,
                     query: $query,
@@ -1707,7 +1679,6 @@ class ContactsClient implements ContactsClientInterface
      * ) $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded) OR its SMS attribute value OR its WHATSAPP attribute value OR its LANDLINE_NUMBER attribute value
      * @param UpdateContactRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1727,7 +1698,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/{$identifier}",
                     method: HttpMethod::PUT,
                     query: $query,
@@ -1766,7 +1737,6 @@ class ContactsClient implements ContactsClientInterface
      * ) $identifier Email (urlencoded) OR ID of the contact OR EXT_ID attribute (urlencoded)
      * @param DeleteContactRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1786,7 +1756,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/{$identifier}",
                     method: HttpMethod::DELETE,
                     query: $query,
@@ -1824,7 +1794,6 @@ class ContactsClient implements ContactsClientInterface
      * ) $identifier Email (urlencoded) OR ID of the contact
      * @param GetContactStatsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1848,7 +1817,7 @@ class ContactsClient implements ContactsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "contacts/{$identifier}/campaignStats",
                     method: HttpMethod::GET,
                     query: $query,

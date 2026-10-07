@@ -4,12 +4,12 @@ namespace Brevo\TransactionalEmails;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\TransactionalEmails\Requests\GetTransacBlockedContactsRequest;
 use Brevo\TransactionalEmails\Types\GetTransacBlockedContactsResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -47,7 +47,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -62,21 +61,21 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -91,7 +90,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param GetTransacBlockedContactsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -127,7 +125,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/blockedContacts",
                     method: HttpMethod::GET,
                     query: $query,
@@ -166,7 +164,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param string $email contact email (urlencoded) to unblock.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -182,7 +179,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/blockedContacts/{$email}",
                     method: HttpMethod::DELETE,
                 ),
@@ -211,7 +208,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -228,7 +224,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/blockedDomains",
                     method: HttpMethod::GET,
                 ),
@@ -268,7 +264,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param BlockNewDomainRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -284,7 +279,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/blockedDomains",
                     method: HttpMethod::POST,
                     body: $request,
@@ -317,7 +312,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param string $domain The name of the domain to be deleted
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -333,7 +327,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/blockedDomains/{$domain}",
                     method: HttpMethod::DELETE,
                 ),
@@ -365,7 +359,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param DeleteHardbouncesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -381,7 +374,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/deleteHardbounces",
                     method: HttpMethod::POST,
                     body: $request,
@@ -427,7 +420,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param SendTransacEmailRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -444,7 +436,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/email",
                     method: HttpMethod::POST,
                     body: $request,
@@ -483,7 +475,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param string $identifier The `batchId` of scheduled emails batch (must be a valid UUIDv4) or the `messageId` of scheduled email (enclosed in angle brackets with @ sign, e.g. `<...@domain>`).
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -499,7 +490,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/email/{$identifier}",
                     method: HttpMethod::DELETE,
                 ),
@@ -536,7 +527,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      * @param string $identifier The `batchId` of scheduled emails batch (must be a valid UUIDv4) or the `messageId` of scheduled email (enclosed in angle brackets with @ sign, e.g. `<...@domain>`). When using `messageId`, the `limit`, `offset`, `sort`, and `status` query parameters are ignored.
      * @param GetScheduledEmailByIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -575,7 +565,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/emailStatus/{$identifier}",
                     method: HttpMethod::GET,
                     query: $query,
@@ -614,7 +604,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param GetTransacEmailsListRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -656,7 +645,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/emails",
                     method: HttpMethod::GET,
                     query: $query,
@@ -697,7 +686,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param string $uuid Unique id of the transactional email that has been sent to a particular contact
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -714,7 +702,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/emails/{$uuid}",
                     method: HttpMethod::GET,
                 ),
@@ -754,7 +742,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      * @param string $identifier MessageId or email address of the transactional log(s) to delete. Must be a valid message ID (enclosed in angle brackets with @ sign) or a valid email address.
      * @param DeleteSmtpLogIdentifierRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -777,7 +764,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/log/{$identifier}",
                     method: HttpMethod::DELETE,
                     query: $query,
@@ -810,7 +797,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param GetAggregatedSmtpReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -840,7 +826,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/statistics/aggregatedReport",
                     method: HttpMethod::GET,
                     query: $query,
@@ -879,7 +865,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param GetEmailEventReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -930,7 +915,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/statistics/events",
                     method: HttpMethod::GET,
                     query: $query,
@@ -969,7 +954,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param GetSmtpReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1008,7 +992,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/statistics/reports",
                     method: HttpMethod::GET,
                     query: $query,
@@ -1051,7 +1035,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *    mixed
      * ) $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1068,7 +1051,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/template/preview",
                     method: HttpMethod::POST,
                     body: $request,
@@ -1107,7 +1090,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param GetSmtpTemplatesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1140,7 +1122,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/templates",
                     method: HttpMethod::GET,
                     query: $query,
@@ -1183,7 +1165,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param CreateSmtpTemplateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1200,7 +1181,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/templates",
                     method: HttpMethod::POST,
                     body: $request,
@@ -1242,7 +1223,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *   |string
      * ) $templateId ID of the template. Can be a numeric template ID or a custom template identifier string (alphanumeric, hyphens, and underscores only, max 64 characters, must start with a letter).
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1259,7 +1239,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/templates/{$templateId}",
                     method: HttpMethod::GET,
                 ),
@@ -1302,7 +1282,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      * ) $templateId ID of the template. Can be a numeric template ID or a custom template identifier string.
      * @param UpdateSmtpTemplateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1318,7 +1297,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/templates/{$templateId}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -1351,7 +1330,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      *
      * @param int $templateId id of the template
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1367,7 +1345,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/templates/{$templateId}",
                     method: HttpMethod::DELETE,
                 ),
@@ -1403,7 +1381,6 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
      * @param int $templateId Id of the template
      * @param SendTestTemplateRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -1419,7 +1396,7 @@ class TransactionalEmailsClient implements TransactionalEmailsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "smtp/templates/{$templateId}/sendTest",
                     method: HttpMethod::POST,
                     body: $request->body,

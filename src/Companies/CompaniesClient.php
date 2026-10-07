@@ -4,12 +4,12 @@ namespace Brevo\Companies;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\Companies\Requests\GetCompaniesRequest;
 use Brevo\Companies\Types\GetCompaniesResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -33,7 +33,6 @@ class CompaniesClient implements CompaniesClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -48,21 +47,21 @@ class CompaniesClient implements CompaniesClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -77,7 +76,6 @@ class CompaniesClient implements CompaniesClientInterface
      *
      * @param GetCompaniesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -122,7 +120,7 @@ class CompaniesClient implements CompaniesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "companies",
                     method: HttpMethod::GET,
                     query: $query,
@@ -163,7 +161,6 @@ class CompaniesClient implements CompaniesClientInterface
      *
      * @param PostCompaniesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -180,7 +177,7 @@ class CompaniesClient implements CompaniesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "companies",
                     method: HttpMethod::POST,
                     body: $request,
@@ -221,7 +218,6 @@ class CompaniesClient implements CompaniesClientInterface
      *
      * @param PostCompaniesImportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -244,7 +240,7 @@ class CompaniesClient implements CompaniesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new MultipartApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "companies/import",
                     method: HttpMethod::POST,
                     body: $body,
@@ -285,7 +281,6 @@ class CompaniesClient implements CompaniesClientInterface
      * @param string $id
      * @param PatchCompaniesLinkUnlinkIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -301,7 +296,7 @@ class CompaniesClient implements CompaniesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "companies/link-unlink/{$id}",
                     method: HttpMethod::PATCH,
                     body: $request,
@@ -334,7 +329,6 @@ class CompaniesClient implements CompaniesClientInterface
      *
      * @param string $id Get Company Details
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -351,7 +345,7 @@ class CompaniesClient implements CompaniesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "companies/{$id}",
                     method: HttpMethod::GET,
                 ),
@@ -389,7 +383,6 @@ class CompaniesClient implements CompaniesClientInterface
      *
      * @param string $id Company ID to delete
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -405,7 +398,7 @@ class CompaniesClient implements CompaniesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "companies/{$id}",
                     method: HttpMethod::DELETE,
                 ),
@@ -439,7 +432,6 @@ class CompaniesClient implements CompaniesClientInterface
      * @param string $id
      * @param PatchCompaniesIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -456,7 +448,7 @@ class CompaniesClient implements CompaniesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "companies/{$id}",
                     method: HttpMethod::PATCH,
                     body: $request,
@@ -499,7 +491,6 @@ class CompaniesClient implements CompaniesClientInterface
      *
      * @param PostCrmAttributesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -516,7 +507,7 @@ class CompaniesClient implements CompaniesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/attributes",
                     method: HttpMethod::POST,
                     body: $request,
@@ -555,7 +546,6 @@ class CompaniesClient implements CompaniesClientInterface
      *
      * @param string $id Attribute ID
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -571,7 +561,7 @@ class CompaniesClient implements CompaniesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/attributes/{$id}",
                     method: HttpMethod::DELETE,
                 ),
@@ -605,7 +595,6 @@ class CompaniesClient implements CompaniesClientInterface
      * @param string $id Attribute ID
      * @param PatchCrmAttributesIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -621,7 +610,7 @@ class CompaniesClient implements CompaniesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/attributes/{$id}",
                     method: HttpMethod::PATCH,
                     body: $request,
@@ -651,7 +640,6 @@ class CompaniesClient implements CompaniesClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -668,7 +656,7 @@ class CompaniesClient implements CompaniesClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "crm/attributes/companies",
                     method: HttpMethod::GET,
                 ),

@@ -33,7 +33,6 @@ interface DomainsClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -70,7 +69,6 @@ interface DomainsClientInterface
      *
      * @param CreateDomainRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -104,7 +102,6 @@ interface DomainsClientInterface
      *
      * @param string $domainName Domain name
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -135,7 +132,6 @@ interface DomainsClientInterface
      *
      * @param string $domainName Domain name
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -167,7 +163,6 @@ interface DomainsClientInterface
      *
      * @param string $domainName Domain name
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

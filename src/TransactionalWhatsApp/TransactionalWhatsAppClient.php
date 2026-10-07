@@ -4,13 +4,13 @@ namespace Brevo\TransactionalWhatsApp;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\TransactionalWhatsApp\Types\SendWhatsappMessageRequestParams;
 use Brevo\TransactionalWhatsApp\Types\SendWhatsappMessageRequestText;
 use Brevo\TransactionalWhatsApp\Types\SendWhatsappMessageResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use Brevo\Core\Json\JsonSerializer;
 use Brevo\Core\Types\Union;
@@ -23,7 +23,6 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -38,21 +37,21 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -78,7 +77,6 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
      *   |SendWhatsappMessageRequestText
      * ) $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -95,7 +93,7 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "whatsapp/sendMessage",
                     method: HttpMethod::POST,
                     body: JsonSerializer::serializeUnion($request, new Union(SendWhatsappMessageRequestParams::class, SendWhatsappMessageRequestText::class)),
@@ -134,7 +132,6 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
      *
      * @param GetWhatsappEventReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -176,7 +173,7 @@ class TransactionalWhatsAppClient implements TransactionalWhatsAppClientInterfac
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "whatsapp/statistics/events",
                     method: HttpMethod::GET,
                     query: $query,

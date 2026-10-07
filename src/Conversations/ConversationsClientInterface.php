@@ -27,7 +27,6 @@ interface ConversationsClientInterface
      *
      * @param PostConversationsAgentOnlinePingRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -53,7 +52,6 @@ interface ConversationsClientInterface
      *
      * @param PostConversationsMessagesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -76,7 +74,6 @@ interface ConversationsClientInterface
      *
      * @param string $id ID of the message
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -103,7 +100,6 @@ interface ConversationsClientInterface
      * @param string $id ID of the message
      * @param PutConversationsMessagesIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -126,7 +122,6 @@ interface ConversationsClientInterface
      *
      * @param string $id ID of the message
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -152,7 +147,6 @@ interface ConversationsClientInterface
      *
      * @param PostConversationsPushedMessagesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -175,7 +169,6 @@ interface ConversationsClientInterface
      *
      * @param string $id ID of the message sent previously
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -202,7 +195,6 @@ interface ConversationsClientInterface
      * @param string $id ID of the message
      * @param PutConversationsPushedMessagesIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -225,7 +217,6 @@ interface ConversationsClientInterface
      *
      * @param string $id ID of the message
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -249,7 +240,6 @@ interface ConversationsClientInterface
      *
      * @param PutConversationsVisitorGroupRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

@@ -17,7 +17,6 @@ interface SmsTemplatesClientInterface
      *
      * @param GetSmsTemplatesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

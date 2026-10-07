@@ -36,6 +36,7 @@ use Brevo\TransactionalWhatsApp\TransactionalWhatsAppClientInterface;
 use Brevo\TransactionalEmails\TransactionalEmailsClientInterface;
 use Brevo\TransactionalSms\TransactionalSmsClientInterface;
 use Brevo\SmsTemplates\SmsTemplatesClientInterface;
+use Brevo\OAuth\OAuthClientInterface;
 
 interface BrevoInterface
 {
@@ -208,4 +209,9 @@ interface BrevoInterface
      * @return SmsTemplatesClientInterface
      */
     public function getSmsTemplates(): SmsTemplatesClientInterface;
+
+    /**
+     * @return OAuthClientInterface
+     */
+    public function getOAuth(): OAuthClientInterface;
 }

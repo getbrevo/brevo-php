@@ -22,7 +22,6 @@ interface NotesClientInterface
      *
      * @param GetCrmNotesRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -47,7 +46,6 @@ interface NotesClientInterface
      *
      * @param NoteData $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -70,7 +68,6 @@ interface NotesClientInterface
      *
      * @param string $id Note ID to get
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -93,7 +90,6 @@ interface NotesClientInterface
      *
      * @param string $id Note ID to delete
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -121,7 +117,6 @@ interface NotesClientInterface
      * @param string $id Note ID to update
      * @param PatchCrmNotesIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

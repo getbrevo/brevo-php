@@ -1414,6 +1414,18 @@ $client->masterAccount->enableDisableSubAccountApplicationS(
 <dl>
 <dd>
 
+**$analytics:** `?bool` 
+
+Set this field to enable or disable Analytics on the
+sub-account. Requires the master account's plan to include
+Analytics; otherwise the call returns a 400 error.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$automation:** `?bool` 
 
 Set this field to enable or disable Automation on the
@@ -6086,6 +6098,14 @@ $client->contacts->createDoiContact(
 <dd>
 
 **$attributes:** `?array` — Pass the set of attributes and their values. **These attributes must be present in your Brevo account**. For eg. **{'FNAME':'Elly', 'LNAME':'Roger', 'COUNTRIES': ['India','China']}**
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$contactPixelTrackingConsent:** `?bool` — Consent of the DOI recipient for open (pixel) and click tracking in the double opt-in confirmation email, resolved by the sender at send time. Considered only if the per-contact pixel tracking consent feature is enabled for your account. Pass `true` if this recipient has consented to open and click tracking, in which case the open pixel and tracked links identify the recipient. Pass `false` to anonymise the open and click events (counted in aggregate statistics only). If it is not passed, the recipient is treated as unknown consent status and the email is still sent (the open and click are anonymised unless your account tracks unknown-consent contacts). A value other than `true`/`false` is rejected. Ignored when the feature is not enabled for your account.
     
 </dd>
 </dl>
@@ -16532,6 +16552,30 @@ $client->emailCampaigns->createEmailCampaign(
 <dl>
 <dd>
 
+**$utmId:** `?string` — Customize the utm_id value. Appears on outgoing tracking links alongside utm_campaign. When omitted or empty, the utm_id entry from the account's global utm_settings is used if enabled; otherwise no utm_id parameter is emitted.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$utmMedium:** `?string` — Customize the utm_medium value. When omitted or empty, the utm_medium entry from the account's global utm_settings is used if set; otherwise the default `email` is used.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$utmSource:** `?string` — Customize the utm_source value. When omitted or empty, the utm_source entry from the account's global utm_settings is used if set; otherwise the account default (`brevo` or `sendinblue`) is used.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$utmTerm:** `?string` — Customize the utm_term value. Appears on outgoing tracking links alongside utm_campaign. Only alphanumeric characters and spaces are allowed
     
 </dd>
@@ -16614,7 +16658,7 @@ $client->emailCampaigns->uploadImageToGallery(
 <dl>
 <dd>
 
-**$name:** `?string` — Name of the image.
+**$name:** `?string` — Name shown in your Brevo image gallery. Include the file extension, e.g. product-banner.png
     
 </dd>
 </dl>
@@ -16993,6 +17037,30 @@ $client->emailCampaigns->updateEmailCampaign(
 <dd>
 
 **$utmContent:** `?string` — Customize the utm_content value. Appears on outgoing tracking links alongside utm_campaign. Only alphanumeric characters and spaces are allowed
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$utmId:** `?string` — Customize the utm_id value. Appears on outgoing tracking links alongside utm_campaign. When omitted or empty, the utm_id entry from the account's global utm_settings is used if enabled; otherwise no utm_id parameter is emitted.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$utmMedium:** `?string` — Customize the utm_medium value. When omitted or empty, the utm_medium entry from the account's global utm_settings is used if set; otherwise the default `email` is used.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$utmSource:** `?string` — Customize the utm_source value. When omitted or empty, the utm_source entry from the account's global utm_settings is used if set; otherwise the account default (`brevo` or `sendinblue`) is used.
     
 </dd>
 </dl>
@@ -24337,6 +24405,91 @@ $client->smsTemplates->getSmsTemplates(
 <dd>
 
 **$sort:** `?string` — Sort the results in the ascending/descending order of record creation. Default order is **descending** if `sort` is not passed
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## OAuth
+<details><summary><code>$client-&gt;oAuth-&gt;getOAuthM2MToken($request) -> ?GetOAuthM2MTokenResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exchanges an app's client_id/client_secret for a short-lived access token using the OAuth 2.0 client_credentials grant (RFC 6749 §4.4). Confirmed working via a direct manual test (2026-09-18). See docs/superpowers/specs/ for the design.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->oAuth->getOAuthM2MToken(
+    new GetOAuthM2MTokenRequest([
+        'grantType' => 'client_credentials',
+        'clientId' => 'client_id',
+        'clientSecret' => 'client_secret',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$grantType:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$clientId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$clientSecret:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$scope:** `?string` — Space-separated list of requested scopes.
     
 </dd>
 </dl>

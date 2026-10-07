@@ -26,7 +26,6 @@ interface TasksClientInterface
      *
      * @param GetCrmTasksRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -53,7 +52,6 @@ interface TasksClientInterface
      *
      * @param PostCrmTasksRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -76,7 +74,6 @@ interface TasksClientInterface
      *
      * @param string $id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -99,7 +96,6 @@ interface TasksClientInterface
      *
      * @param string $id
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -123,7 +119,6 @@ interface TasksClientInterface
      * @param string $id
      * @param PatchCrmTasksIdRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -142,7 +137,6 @@ interface TasksClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

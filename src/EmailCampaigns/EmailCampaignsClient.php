@@ -4,12 +4,12 @@ namespace Brevo\EmailCampaigns;
 
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Environments;
 use Brevo\EmailCampaigns\Requests\GetEmailCampaignsRequest;
 use Brevo\EmailCampaigns\Types\GetEmailCampaignsResponse;
 use Brevo\Exceptions\BrevoException;
 use Brevo\Exceptions\BrevoApiException;
 use Brevo\Core\Json\JsonApiRequest;
-use Brevo\Environments;
 use Brevo\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -32,7 +32,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
 {
     /**
      * @var array{
-     *   baseUrl?: string,
      *   client?: ClientInterface,
      *   maxRetries?: int,
      *   timeout?: float,
@@ -47,21 +46,21 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
     private RawClient $client;
 
     /**
+     * @var Environments $environment
+     */
+    private Environments $environment;
+
+    /**
      * @param RawClient $client
-     * @param ?array{
-     *   baseUrl?: string,
-     *   client?: ClientInterface,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     * } $options
+     * @param Environments $environment
      */
     public function __construct(
         RawClient $client,
-        ?array $options = null,
+        Environments $environment,
     ) {
         $this->client = $client;
-        $this->options = $options ?? [];
+        $this->environment = $environment;
+        $this->options = [];
     }
 
     /**
@@ -77,7 +76,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *
      * @param GetEmailCampaignsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -125,7 +123,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns",
                     method: HttpMethod::GET,
                     query: $query,
@@ -167,7 +165,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *
      * @param CreateEmailCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -184,7 +181,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns",
                     method: HttpMethod::POST,
                     body: $request,
@@ -225,7 +222,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *
      * @param UploadImageToGalleryRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -242,7 +238,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns/images",
                     method: HttpMethod::POST,
                     body: $request,
@@ -283,7 +279,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param GetEmailCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -307,7 +302,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns/{$campaignId}",
                     method: HttpMethod::GET,
                     query: $query,
@@ -348,7 +343,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param UpdateEmailCampaignRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -364,7 +358,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns/{$campaignId}",
                     method: HttpMethod::PUT,
                     body: $request,
@@ -397,7 +391,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *
      * @param int $campaignId id of the campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -413,7 +406,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns/{$campaignId}",
                     method: HttpMethod::DELETE,
                 ),
@@ -445,7 +438,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *
      * @param int $campaignId Id of the A/B test campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -462,7 +454,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns/{$campaignId}/abTestCampaignResult",
                     method: HttpMethod::GET,
                 ),
@@ -504,7 +496,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param EmailExportRecipientsRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -521,7 +512,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns/{$campaignId}/exportRecipients",
                     method: HttpMethod::POST,
                     body: $request,
@@ -560,7 +551,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *
      * @param int $campaignId Id of the campaign
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -576,7 +566,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns/{$campaignId}/sendNow",
                     method: HttpMethod::POST,
                 ),
@@ -619,7 +609,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param SendReportRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -635,7 +624,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns/{$campaignId}/sendReport",
                     method: HttpMethod::POST,
                     body: $request->body,
@@ -672,7 +661,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param SendTestEmailRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -688,7 +676,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns/{$campaignId}/sendTest",
                     method: HttpMethod::POST,
                     body: $request->body,
@@ -721,7 +709,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      *
      * @param int $campaignId Id of the campaign or template
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -738,7 +725,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns/{$campaignId}/sharedUrl",
                     method: HttpMethod::GET,
                 ),
@@ -780,7 +767,6 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
      * @param int $campaignId Id of the campaign
      * @param UpdateCampaignStatusRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -796,7 +782,7 @@ class EmailCampaignsClient implements EmailCampaignsClientInterface
         try {
             $response = $this->client->sendRequest(
                 new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Default_->value,
+                    baseUrl: $this->environment->base,
                     path: "emailCampaigns/{$campaignId}/status",
                     method: HttpMethod::PUT,
                     body: $request->body,

@@ -22,7 +22,6 @@ interface UserClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -45,7 +44,6 @@ interface UserClientInterface
      *
      * @param string $email Email of the invited user.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -141,7 +139,6 @@ interface UserClientInterface
      *
      * @param Inviteuser $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -166,7 +163,6 @@ interface UserClientInterface
      * @param value-of<PutresendcancelinvitationRequestAction> $action action
      * @param string $email Email of the invited user.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -261,7 +257,6 @@ interface UserClientInterface
      *
      * @param Inviteuser $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -284,7 +279,6 @@ interface UserClientInterface
      *
      * @param string $email Email of the invited user.
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,

@@ -45,7 +45,6 @@ interface SendersClientInterface
      *
      * @param GetSendersRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -89,7 +88,6 @@ interface SendersClientInterface
      *
      * @param CreateSenderRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -122,7 +120,6 @@ interface SendersClientInterface
      * ```
      *
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -159,7 +156,6 @@ interface SendersClientInterface
      * @param int $senderId Id of the sender
      * @param UpdateSenderRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -189,7 +185,6 @@ interface SendersClientInterface
      *
      * @param int $senderId Id of the sender
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -222,7 +217,6 @@ interface SendersClientInterface
      *
      * @param int $senderId Id of the sender
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
@@ -259,7 +253,6 @@ interface SendersClientInterface
      * @param int $senderId Id of the sender
      * @param ValidateSenderByOtpRequest $request
      * @param ?array{
-     *   baseUrl?: string,
      *   maxRetries?: int,
      *   timeout?: float,
      *   headers?: array<string, string>,
