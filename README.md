@@ -12,9 +12,13 @@ Official SDK for the Brevo API.
 - [Documentation](#documentation)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Upgrading from v5.x](#upgrading-from-v5x)
 - [Upgrading from v4.x](#upgrading-from-v4x)
 - [Migration from v1.x](#migration-from-v1x)
 - [Usage](#usage)
+- [Authentication](#authentication)
+  - [API key](#api-key)
+  - [OAuth 2.0 machine-to-machine (M2M)](#oauth-20-machine-to-machine-m2m)
 - [Exception Handling](#exception-handling)
 - [Advanced](#advanced)
   - [Custom Client](#custom-client)
@@ -36,6 +40,28 @@ This SDK requires PHP ^8.1.
 ```sh
 composer require getbrevo/brevo-php
 ```
+
+## Upgrading from v5.x
+
+v6 adds OAuth 2.0 machine-to-machine authentication (see [Authentication](#authentication)). Two changes can break existing code:
+
+**`Brevo` constructor — pass `options` by name**
+
+`clientId` and `clientSecret` were added before `options`, so a positional second argument no longer works:
+
+```php
+// v5
+$client = new Brevo('xkeysib-xxx', ['timeout' => 30]);
+
+// v6
+$client = new Brevo(apiKey: 'xkeysib-xxx', options: ['timeout' => 30]);
+```
+
+Calls that already use named arguments, or pass only the API key, are unaffected.
+
+**`TransactionStatus` enum — values renamed**
+
+`TransactionStatus::Pending` (`pending`) and `TransactionStatus::Complete` (`complete`) are replaced by `TransactionStatus::Draft` (`draft`) and `TransactionStatus::Completed` (`completed`), matching the values the API returns for balance transactions.
 
 ## Upgrading from v4.x
 
@@ -197,6 +223,43 @@ $client->transactionalEmails->sendTransacEmail(
 
 ```
 
+## Authentication
+
+The client supports two authentication methods. Use one per client.
+
+### API key
+
+```php
+use Brevo\Brevo;
+
+$client = new Brevo(apiKey: 'xkeysib-xxx');
+```
+
+Create an API key in your Brevo account at [app.brevo.com/settings/keys/api](https://app.brevo.com/settings/keys/api). See [API key authentication](https://developers.brevo.com/docs/api-key-authentication).
+
+### OAuth 2.0 machine-to-machine (M2M)
+
+Pass the client ID and secret of an M2M app. The client exchanges them for an access token on the first request, reuses the token, and fetches a new one shortly before it expires (tokens are valid for about one hour).
+
+```php
+use Brevo\Brevo;
+
+$client = new Brevo(
+    clientId: 'your-client-id',
+    clientSecret: 'your-client-secret',
+);
+
+$account = $client->account->getAccount();
+```
+
+Or set `BREVO_CLIENT_ID` and `BREVO_CLIENT_SECRET` in the environment and create the client without arguments:
+
+```php
+$client = new Brevo();
+```
+
+The token carries every scope granted to the app. To create an M2M app and choose its scopes, see [Machine-to-machine (M2M) authentication](https://developers.brevo.com/docs/oauth-m2m-authentication).
+
 ## Exception Handling
 
 When the API returns a non-success status code (4xx or 5xx response), an exception will be thrown.
@@ -276,7 +339,7 @@ The SDK does not configure a default timeout. Unless you set one, the underlying
 
 ```php
 // Client-level
-$client = new Brevo('xkeysib-xxx', ['timeout' => 30.0]);
+$client = new Brevo(apiKey: 'xkeysib-xxx', options: ['timeout' => 30.0]);
 
 // Request-level (overrides client setting)
 $response = $client->transactionalEmails->sendTransacEmail(
@@ -311,9 +374,10 @@ $stack->push(Middleware::log(
     new MessageFormatter('{method} {uri} → {code}')
 ));
 
-$client = new Brevo('xkeysib-xxx', [
-    'client' => new Client(['handler' => $stack, 'timeout' => 5.0]),
-]);
+$client = new Brevo(
+    apiKey: 'xkeysib-xxx',
+    options: ['client' => new Client(['handler' => $stack, 'timeout' => 5.0])],
+);
 ```
 
 Logging happens at the HTTP layer, so each SDK call produces one log line per HTTP request — **including retries**, which the SDK performs internally.
