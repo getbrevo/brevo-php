@@ -21,6 +21,12 @@ class CreateDoiContactRequest extends JsonSerializableType
     public ?array $attributes;
 
     /**
+     * @var ?bool $contactPixelTrackingConsent Consent of the DOI recipient for open (pixel) and click tracking in the double opt-in confirmation email, resolved by the sender at send time. Considered only if the per-contact pixel tracking consent feature is enabled for your account. Pass `true` if this recipient has consented to open and click tracking, in which case the open pixel and tracked links identify the recipient. Pass `false` to anonymise the open and click events (counted in aggregate statistics only). If it is not passed, the recipient is treated as unknown consent status and the email is still sent (the open and click are anonymised unless your account tracks unknown-consent contacts). A value other than `true`/`false` is rejected. Ignored when the feature is not enabled for your account.
+     */
+    #[JsonProperty('contactPixelTrackingConsent')]
+    public ?bool $contactPixelTrackingConsent;
+
+    /**
      * @var string $email Email address where the confirmation email will be sent. This email address will be the identifier for all other contact attributes.
      */
     #[JsonProperty('email')]
@@ -62,6 +68,7 @@ class CreateDoiContactRequest extends JsonSerializableType
      *   |bool
      *   |array<string>
      * )>,
+     *   contactPixelTrackingConsent?: ?bool,
      *   excludeListIds?: ?array<int>,
      * } $values
      */
@@ -69,6 +76,7 @@ class CreateDoiContactRequest extends JsonSerializableType
         array $values,
     ) {
         $this->attributes = $values['attributes'] ?? null;
+        $this->contactPixelTrackingConsent = $values['contactPixelTrackingConsent'] ?? null;
         $this->email = $values['email'];
         $this->excludeListIds = $values['excludeListIds'] ?? null;
         $this->includeListIds = $values['includeListIds'];

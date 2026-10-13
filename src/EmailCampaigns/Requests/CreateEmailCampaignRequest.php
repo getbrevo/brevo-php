@@ -199,6 +199,24 @@ class CreateEmailCampaignRequest extends JsonSerializableType
     public ?string $utmContent;
 
     /**
+     * @var ?string $utmId Customize the utm_id value. Appears on outgoing tracking links alongside utm_campaign. When omitted or empty, the utm_id entry from the account's global utm_settings is used if enabled; otherwise no utm_id parameter is emitted.
+     */
+    #[JsonProperty('utmId')]
+    public ?string $utmId;
+
+    /**
+     * @var ?string $utmMedium Customize the utm_medium value. When omitted or empty, the utm_medium entry from the account's global utm_settings is used if set; otherwise the default `email` is used.
+     */
+    #[JsonProperty('utmMedium')]
+    public ?string $utmMedium;
+
+    /**
+     * @var ?string $utmSource Customize the utm_source value. When omitted or empty, the utm_source entry from the account's global utm_settings is used if set; otherwise the account default (`brevo` or `sendinblue`) is used.
+     */
+    #[JsonProperty('utmSource')]
+    public ?string $utmSource;
+
+    /**
      * @var ?string $utmTerm Customize the utm_term value. Appears on outgoing tracking links alongside utm_campaign. Only alphanumeric characters and spaces are allowed
      */
     #[JsonProperty('utmTerm')]
@@ -249,6 +267,9 @@ class CreateEmailCampaignRequest extends JsonSerializableType
      *   updateFormId?: ?string,
      *   utmCampaign?: ?string,
      *   utmContent?: ?string,
+     *   utmId?: ?string,
+     *   utmMedium?: ?string,
+     *   utmSource?: ?string,
      *   utmTerm?: ?string,
      *   winnerCriteria?: ?value-of<CreateEmailCampaignRequestWinnerCriteria>,
      *   winnerDelay?: ?int,
@@ -288,6 +309,9 @@ class CreateEmailCampaignRequest extends JsonSerializableType
         $this->updateFormId = $values['updateFormId'] ?? null;
         $this->utmCampaign = $values['utmCampaign'] ?? null;
         $this->utmContent = $values['utmContent'] ?? null;
+        $this->utmId = $values['utmId'] ?? null;
+        $this->utmMedium = $values['utmMedium'] ?? null;
+        $this->utmSource = $values['utmSource'] ?? null;
         $this->utmTerm = $values['utmTerm'] ?? null;
         $this->winnerCriteria = $values['winnerCriteria'] ?? null;
         $this->winnerDelay = $values['winnerDelay'] ?? null;

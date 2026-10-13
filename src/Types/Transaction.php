@@ -26,6 +26,12 @@ class Transaction extends JsonSerializableType
     public ?float $amount;
 
     /**
+     * @var ?float $balance The contact's total balance for this balance definition after the transaction was applied. Only returned when the transaction actually updated the balance (i.e. it was completed or auto-completed).
+     */
+    #[JsonProperty('balance')]
+    public ?float $balance;
+
+    /**
      * @var ?value-of<TransactionTransactionType> $transactionType The type of the transaction.
      */
     #[JsonProperty('transactionType')]
@@ -113,6 +119,7 @@ class Transaction extends JsonSerializableType
      * @param array{
      *   id?: ?string,
      *   amount?: ?float,
+     *   balance?: ?float,
      *   transactionType?: ?value-of<TransactionTransactionType>,
      *   meta?: ?array<string, mixed>,
      *   status?: ?value-of<TransactionStatus>,
@@ -134,6 +141,7 @@ class Transaction extends JsonSerializableType
     ) {
         $this->id = $values['id'] ?? null;
         $this->amount = $values['amount'] ?? null;
+        $this->balance = $values['balance'] ?? null;
         $this->transactionType = $values['transactionType'] ?? null;
         $this->meta = $values['meta'] ?? null;
         $this->status = $values['status'] ?? null;
