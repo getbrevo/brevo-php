@@ -27,6 +27,12 @@ class GetParameterSubscriptionInfoResponseTierItem extends JsonSerializableType
     public ?string $groupId;
 
     /**
+     * @var ?string $groupName Name of the group associated with the tier.
+     */
+    #[JsonProperty('groupName')]
+    public ?string $groupName;
+
+    /**
      * @var ?string $loyaltyProgramId Unique identifier of the loyalty program.
      */
     #[JsonProperty('loyaltyProgramId')]
@@ -45,6 +51,12 @@ class GetParameterSubscriptionInfoResponseTierItem extends JsonSerializableType
     public ?string $tierId;
 
     /**
+     * @var ?string $tierName Name of the tier.
+     */
+    #[JsonProperty('tierName')]
+    public ?string $tierName;
+
+    /**
      * @var ?string $updatedAt Timestamp when the tier was last updated
      */
     #[JsonProperty('updatedAt')]
@@ -55,9 +67,11 @@ class GetParameterSubscriptionInfoResponseTierItem extends JsonSerializableType
      *   contactId?: ?int,
      *   createdAt?: ?string,
      *   groupId?: ?string,
+     *   groupName?: ?string,
      *   loyaltyProgramId?: ?string,
      *   meta?: ?array<string, mixed>,
      *   tierId?: ?string,
+     *   tierName?: ?string,
      *   updatedAt?: ?string,
      * } $values
      */
@@ -67,9 +81,11 @@ class GetParameterSubscriptionInfoResponseTierItem extends JsonSerializableType
         $this->contactId = $values['contactId'] ?? null;
         $this->createdAt = $values['createdAt'] ?? null;
         $this->groupId = $values['groupId'] ?? null;
+        $this->groupName = $values['groupName'] ?? null;
         $this->loyaltyProgramId = $values['loyaltyProgramId'] ?? null;
         $this->meta = $values['meta'] ?? null;
         $this->tierId = $values['tierId'] ?? null;
+        $this->tierName = $values['tierName'] ?? null;
         $this->updatedAt = $values['updatedAt'] ?? null;
     }
 

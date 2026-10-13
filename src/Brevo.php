@@ -36,8 +36,10 @@ use Brevo\TransactionalWhatsApp\TransactionalWhatsAppClient;
 use Brevo\TransactionalEmails\TransactionalEmailsClient;
 use Brevo\TransactionalSms\TransactionalSmsClient;
 use Brevo\SmsTemplates\SmsTemplatesClient;
+use Brevo\OAuth\OAuthClient;
 use Psr\Http\Client\ClientInterface;
 use Brevo\Core\Client\RawClient;
+use Brevo\Core\OAuthTokenProvider;
 use Brevo\Account\AccountClientInterface;
 use Brevo\MasterAccount\MasterAccountClientInterface;
 use Brevo\User\UserClientInterface;
@@ -72,6 +74,7 @@ use Brevo\TransactionalWhatsApp\TransactionalWhatsAppClientInterface;
 use Brevo\TransactionalEmails\TransactionalEmailsClientInterface;
 use Brevo\TransactionalSms\TransactionalSmsClientInterface;
 use Brevo\SmsTemplates\SmsTemplatesClientInterface;
+use Brevo\OAuth\OAuthClientInterface;
 
 class Brevo implements BrevoInterface
 {
@@ -246,6 +249,11 @@ class Brevo implements BrevoInterface
     public SmsTemplatesClient $smsTemplates;
 
     /**
+     * @var OAuthClient $oAuth
+     */
+    public OAuthClient $oAuth;
+
+    /**
      * @var array{
      *   baseUrl?: string,
      *   client?: ClientInterface,
@@ -262,7 +270,14 @@ class Brevo implements BrevoInterface
     private RawClient $client;
 
     /**
-     * @param string $apiKey The apiKey to use for authentication.
+     * @var OAuthTokenProvider $oauthTokenProvider
+     */
+    private OAuthTokenProvider $oauthTokenProvider;
+
+    /**
+     * @param ?string $apiKey The apiKey to use for authentication.
+     * @param ?string $clientId The client ID for OAuth authentication.
+     * @param ?string $clientSecret The client secret for OAuth authentication.
      * @param ?array{
      *   baseUrl?: string,
      *   client?: ClientInterface,
@@ -272,23 +287,40 @@ class Brevo implements BrevoInterface
      * } $options
      */
     public function __construct(
-        string $apiKey,
+        ?string $apiKey = null,
+        ?string $clientId = null,
+        ?string $clientSecret = null,
         ?array $options = null,
     ) {
+        $clientId ??= getenv('BREVO_CLIENT_ID') ?: null;
+        $clientSecret ??= getenv('BREVO_CLIENT_SECRET') ?: null;
         $defaultHeaders = [
-            'api-key' => $apiKey,
             'X-Fern-Language' => 'PHP',
             'X-Fern-SDK-Name' => 'Brevo',
-            'X-Fern-SDK-Version' => '5.0.2',
-            'User-Agent' => 'getbrevo/brevo-php/5.0.2',
+            'X-Fern-SDK-Version' => '6.0.0',
+            'User-Agent' => 'getbrevo/brevo-php/6.0.0',
         ];
+        if ($apiKey != null) {
+            $defaultHeaders['api-key'] = $apiKey;
+        }
 
         $this->options = $options ?? [];
 
+        if ($clientId !== null && $clientSecret !== null) {
+            $authRawClient = new RawClient(isset($this->options['baseUrl']) ? ['baseUrl' => $this->options['baseUrl'], 'headers' => []] : ['headers' => []]);
+            $authClient = new OAuthClient($authRawClient);
+            $this->oauthTokenProvider = new OAuthTokenProvider($clientId, $clientSecret, $authClient);
+
+        }
         $this->options['headers'] = array_merge(
             $defaultHeaders,
             $this->options['headers'] ?? [],
         );
+
+        if ($clientId !== null && $clientSecret !== null) {
+            $this->options['getAuthHeaders'] = fn () =>
+                ['Authorization' => "Bearer " . $this->oauthTokenProvider->getToken()];
+        }
 
         $this->client = new RawClient(
             options: $this->options,
@@ -328,6 +360,7 @@ class Brevo implements BrevoInterface
         $this->transactionalEmails = new TransactionalEmailsClient($this->client, $this->options);
         $this->transactionalSms = new TransactionalSmsClient($this->client, $this->options);
         $this->smsTemplates = new SmsTemplatesClient($this->client, $this->options);
+        $this->oAuth = new OAuthClient($this->client, $this->options);
     }
 
     /**
@@ -600,5 +633,13 @@ class Brevo implements BrevoInterface
     public function getSmsTemplates(): SmsTemplatesClientInterface
     {
         return $this->smsTemplates;
+    }
+
+    /**
+     * @return OAuthClientInterface
+     */
+    public function getOAuth(): OAuthClientInterface
+    {
+        return $this->oAuth;
     }
 }

@@ -15,10 +15,22 @@ class GetParameterSubscriptionInfoResponse extends JsonSerializableType
     public ?GetParameterSubscriptionInfoResponseBalance $balance;
 
     /**
+     * @var ?string $loyaltyProgramName Name of the loyalty program.
+     */
+    #[JsonProperty('loyaltyProgramName')]
+    public ?string $loyaltyProgramName;
+
+    /**
      * @var ?array<GetParameterSubscriptionInfoResponseMembersItem> $members List of members associated with the subscription.
      */
     #[JsonProperty('members'), ArrayType([GetParameterSubscriptionInfoResponseMembersItem::class])]
     public ?array $members;
+
+    /**
+     * @var ?GetParameterSubscriptionInfoResponseMembership $membership Membership details of the subscription. Returned when the subscription could be resolved from the provided `contactId` or `loyaltySubscriptionId`.
+     */
+    #[JsonProperty('membership')]
+    public ?GetParameterSubscriptionInfoResponseMembership $membership;
 
     /**
      * @var ?array<GetParameterSubscriptionInfoResponseRewardItem> $reward List of rewards associated with the subscription.
@@ -35,7 +47,9 @@ class GetParameterSubscriptionInfoResponse extends JsonSerializableType
     /**
      * @param array{
      *   balance?: ?GetParameterSubscriptionInfoResponseBalance,
+     *   loyaltyProgramName?: ?string,
      *   members?: ?array<GetParameterSubscriptionInfoResponseMembersItem>,
+     *   membership?: ?GetParameterSubscriptionInfoResponseMembership,
      *   reward?: ?array<GetParameterSubscriptionInfoResponseRewardItem>,
      *   tier?: ?array<GetParameterSubscriptionInfoResponseTierItem>,
      * } $values
@@ -44,7 +58,9 @@ class GetParameterSubscriptionInfoResponse extends JsonSerializableType
         array $values = [],
     ) {
         $this->balance = $values['balance'] ?? null;
+        $this->loyaltyProgramName = $values['loyaltyProgramName'] ?? null;
         $this->members = $values['members'] ?? null;
+        $this->membership = $values['membership'] ?? null;
         $this->reward = $values['reward'] ?? null;
         $this->tier = $values['tier'] ?? null;
     }

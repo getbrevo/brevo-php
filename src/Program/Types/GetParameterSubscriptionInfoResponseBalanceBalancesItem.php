@@ -14,6 +14,12 @@ class GetParameterSubscriptionInfoResponseBalanceBalancesItem extends JsonSerial
     public ?string $balanceDefinitionId;
 
     /**
+     * @var ?string $balanceDefinitionName Name of the balance definition.
+     */
+    #[JsonProperty('balanceDefinitionName')]
+    public ?string $balanceDefinitionName;
+
+    /**
      * @var ?float $value The amount of the balance.
      */
     #[JsonProperty('value')]
@@ -22,6 +28,7 @@ class GetParameterSubscriptionInfoResponseBalanceBalancesItem extends JsonSerial
     /**
      * @param array{
      *   balanceDefinitionId?: ?string,
+     *   balanceDefinitionName?: ?string,
      *   value?: ?float,
      * } $values
      */
@@ -29,6 +36,7 @@ class GetParameterSubscriptionInfoResponseBalanceBalancesItem extends JsonSerial
         array $values = [],
     ) {
         $this->balanceDefinitionId = $values['balanceDefinitionId'] ?? null;
+        $this->balanceDefinitionName = $values['balanceDefinitionName'] ?? null;
         $this->value = $values['value'] ?? null;
     }
 
