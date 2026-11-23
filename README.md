@@ -7,8 +7,26 @@
 
 Official SDK for the Brevo API.
 
+## Quick facts
+
+For people and AI coding agents who want the essentials first.
+
+| | |
+|---|---|
+| Package | `getbrevo/brevo-php` (`composer require getbrevo/brevo-php`) |
+| Class | `Brevo\Brevo`, for example `new Brevo(apiKey: '...')` |
+| Authentication | API key (`apiKey`) or OAuth 2.0 machine-to-machine (`clientId` and `clientSecret`, or the `BREVO_CLIENT_ID` and `BREVO_CLIENT_SECRET` environment variables). See [Authentication](#authentication). |
+| Call shape | `$client-><resource>-><method>(new <Request>([...]))`, for example `$client->transactionalEmails->sendTransacEmail(new SendTransacEmailRequest([...]))` |
+| Resources | Over 30 namespaced clients on the client, such as `contacts`, `emailCampaigns`, `transactionalEmails` and `account` |
+| Errors | `Brevo\Exceptions\BrevoApiException`; `getCode()` is the HTTP status |
+| Defaults | 2 retries on `408`, `429` and `5xx`; no default timeout (set `options: ['timeout' => 30.0]`) |
+| Requirements | PHP ^8.1 and a PSR-18 HTTP client, such as Guzzle (see [Requirements](#requirements)) |
+| Full method list | [`reference.md`](reference.md) |
+| API docs | <https://developers.brevo.com> |
+
 ## Table of Contents
 
+- [Quick facts](#quick-facts)
 - [Documentation](#documentation)
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -33,7 +51,11 @@ API reference documentation is available [here](https://developers.brevo.com).
 
 ## Requirements
 
-This SDK requires PHP ^8.1.
+This SDK requires PHP ^8.1 and a PSR-18 HTTP client. The SDK finds an installed client automatically (see [Custom Client](#custom-client)); if none is installed, calls fail with `No PSR-18 clients found`. To install one, for example Guzzle:
+
+```sh
+composer require guzzlehttp/guzzle
+```
 
 ## Installation
 

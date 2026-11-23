@@ -11,3 +11,4 @@ wiremock/wiremock-mappings.json
 .fern/replay.lock
 .fern/replay.yml
 .gitattributes
+AGENTS.md
